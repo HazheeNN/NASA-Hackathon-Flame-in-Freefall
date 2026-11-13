@@ -1,0 +1,72 @@
+@import "tailwindcss";
+
+/* Mirrors DESIGN.md. Change a colour there first, then here. Components use these tokens
+   only (bg-surface, text-muted, border-line, text-primary, bg-risk-high-soft, …). One dark theme. */
+@theme {
+  --color-primary: #5B9BFF;
+  --color-primary-hover: #7DB0FF;
+  --color-primary-soft: #12264A;
+  --color-on-primary: #04122B;
+  --color-ember: #FF8A3D;
+  --color-ember-soft: #3A1E0C;
+  --color-on-ember: #2A1102;
+  --color-page: #070B14;
+  --color-surface: #0E1524;
+  --color-raised: #141D30;
+  --color-fg: #E6ECF5;
+  --color-muted: #93A1B8;
+  --color-line: #22304A;
+  --color-risk-high: #FF6B6B;
+  --color-risk-high-soft: #3A1416;
+  --color-risk-medium: #F5C451;
+  --color-risk-medium-soft: #3A2E0E;
+  --color-risk-low: #3DD68C;
+  --color-risk-low-soft: #0E3324;
+  --color-verified: #3DD68C;
+  --color-unverified: #F5C451;
+  --color-focus: #FFD166;
+  --color-series-1: #5B9BFF;
+  --color-series-2: #FF8A3D;
+  --color-series-3: #2EC4B6;
+  --color-series-4: #A78BFA;
+  --color-series-5: #A3E635;
+  --color-series-6: #F472B6;
+
+  --font-sans: var(--font-plex-sans), ui-sans-serif, system-ui, sans-serif;
+  --font-mono: var(--font-plex-mono), ui-monospace, monospace;
+}
+
+html {
+  color-scheme: dark;
+}
+
+body {
+  background: var(--color-page);
+  color: var(--color-fg);
+  font-family: var(--font-sans);
+  font-size: 15px;
+  line-height: 1.55;
+}
+
+:focus-visible {
+  outline: 2px solid var(--color-focus);
+  outline-offset: 2px;
+}
+
+.tabular {
+  font-variant-numeric: tabular-nums;
+}
+
+/* The signature motion (DESIGN.md › Motion): the flame sphere breathes. */
+@keyframes breathe {
+  0%, 100% { transform: scale(1); }
+  50% { transform: scale(1.04); }
+}
+.breathe {
+  animation: breathe 4s ease-in-out infinite;
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .breathe { animation: none; }
+  * { transition: none !important; }
+}

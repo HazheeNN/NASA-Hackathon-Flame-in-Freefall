@@ -1,0 +1,32 @@
+# dependencies
+/node_modules
+
+# testing
+/coverage
+
+# next.js
+/.next/
+/out/
+/build
+
+# misc
+.DS_Store
+*.pem
+*.key
+
+# env files: secrets never go in git; .env.example lists the names only
+.env*
+!.env.example
+
+# vercel
+.vercel
+
+# typescript
+*.tsbuildinfo
+next-env.d.ts
+
+# raw downloads (PDFs, big NTRS dumps): keep them local, commit only the cleaned JSON
+data/raw/
+
+# screenshots you take while working (docs/screenshots/ is for the ones worth keeping)
+/screenshots/

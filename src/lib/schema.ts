@@ -94,7 +94,7 @@ export const Finding = z.object({
 export const Mission = z.enum(["ISS", "Artemis (Moon)", "Mars transit", "Mars surface"]);
 export const Risk = z.enum(["high", "medium", "low"]);
 
-// Made by the SI pipeline (scripts/build-insights.ts) from the findings. Never hand-edited.
+// Made by the SI (prompts/synthesize.md) from the findings. Never hand-edited.
 export const Insight = z.object({
   id: z.string().regex(/^I-\d{2}$/),
   rank: z.number().int().min(1),
@@ -115,15 +115,34 @@ export const Insight = z.object({
   }),
 });
 
-export const InsightsFile = z.object({
+// Who ran the SI and on which findings, so a stale file is caught (npm run data:validate).
+const Provenance = {
   generatedAt: z.string(),
+  // e.g. "Claude Code (claude-opus-5-5)" for mode A, "claude-opus-5-5" for the API scripts.
   model: z.string(),
+  // Hash of data/findings.json when this file was made (findingsHash() in src/lib/validate.ts).
   findingsHash: z.string(),
-  insights: z.array(Insight),
+};
+
+export const InsightsFile = z.object({ ...Provenance, insights: z.array(Insight) });
+
+// A prepared answer for the Ask library (prompts/answer.md). Facts in `answer` carry inline
+// citations like [F-004, F-011]; every cited ID must also be in findingIds.
+export const Answer = z.object({
+  id: z.string().regex(/^Q-\d{2}$/),
+  question: z.string().max(200),
+  answer: z.string(),
+  findingIds: z.array(z.string().regex(/^F-\d{3}$/)),
+  themes: z.array(Theme),
+  missions: z.array(Mission),
 });
+
+export const AnswersFile = z.object({ ...Provenance, answers: z.array(Answer) });
 
 export type Experiment = z.infer<typeof Experiment>;
 export type Finding = z.infer<typeof Finding>;
 export type Insight = z.infer<typeof Insight>;
 export type InsightsFile = z.infer<typeof InsightsFile>;
+export type Answer = z.infer<typeof Answer>;
+export type AnswersFile = z.infer<typeof AnswersFile>;
 export type ThemeName = z.infer<typeof Theme>;

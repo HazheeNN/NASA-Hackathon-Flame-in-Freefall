@@ -1,6 +1,6 @@
 ---
 name: demo-check
-description: Pre-demo and pre-submission checklist for Flame in Freefall. Verifies the build, the deploy, the no-API fallback, the golden questions, screenshots and security. Use before the feature freeze, before recording the video, before submitting, and before the live pitch.
+description: Pre-demo and pre-submission checklist for Flame in Freefall. Verifies the build, the deploy, offline safety, the SI output freshness, the golden questions, screenshots and security. Use before the feature freeze, before recording the video, before submitting, and before the live pitch.
 ---
 
 # Demo check
@@ -9,7 +9,7 @@ Go through it in order and report each item as ✅ / ❌ (with the problem) / �
 
 ## Build and data
 - [ ] `npm run check` green; `npm run data:validate` green; numbers match `docs/status.md`.
-- [ ] `data/generated/insights.json` was built from the current findings (its `findingsHash` matches: rebuild if findings changed since).
+- [ ] `npm run data:validate` prints no stale warning (insights and answers were made from the current findings; otherwise run SI jobs 2 and 3).
 - [ ] `scripts/security-scan.sh` and `npm audit` clean.
 
 ## Deploy
@@ -19,9 +19,9 @@ Go through it in order and report each item as ✅ / ❌ (with the problem) / �
 ## Demo flow (`docs/prd.md` › Flow 1)
 - [ ] Overview → #1 insight → cited finding → NASA source link opens.
 - [ ] Mission lens → Mars surface shows gaps.
-- [ ] Ask: live answer streams with citations in < 3 s to first words.
-- [ ] Same flow with `LIVE_SI=off` (or no key): suggested questions show pre-generated answers, labelled; nothing errors.
+- [ ] Ask: typing a few words of each golden question finds it; answers show citation chips that open findings; the "prepared by our SI" label is visible.
 - [ ] Golden questions (`docs/ai.md`) ≥ 9/10 correct and cited.
+- [ ] Local production build works with Wi-Fi off (`npm run build && npm start`).
 
 ## Look
 - [ ] Screenshots of every page at 360 px and 1440 px; nothing overflows; empty and error states look intentional.

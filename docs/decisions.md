@@ -2,12 +2,13 @@
 
 Newest first. Each entry: date, decision, why, who. Add one whenever you choose between real options, so the next person (or Claude) doesn't reopen it.
 
+- **2026-11-13** **No API key for now: the SI runs in Claude Code sessions (mode A)** (owner). The three SI jobs live in `prompts/`; a teammate runs them in Claude Code on our Pro plan, the output is validated, reviewed and committed, and the app makes no AI calls at runtime. Ask becomes a library of 20–30 prepared, cited answers with search, instead of a live chatbot. Why: no API spend, nothing to fail on stage, every answer reviewed. Tradeoff: judges can't type a free question to a live AI. The API scripts stay in `scripts/` (mode B) in case we get a key; switching back is in `docs/ai.md` › Mode B. Supersedes the `LIVE_SI` and live-advisor parts of the entries below.
 - **2026-11-13** **Collaborate in one repo, not forks** (proposed): teammates are added as collaborators on `HazheeNN/NASA-Hackathon-Flame-in-Freefall` and work on branches. A fork works too (PRs from the fork), but one repo means one CI, one Vercel project and no syncing. Confirm on Day 0.
-- **2026-11-13** **Demo safety switch `LIVE_SI`**: `off` (or no API key) makes the app use only pre-built insights and cached answers. Why: a live API call on stage is the biggest single risk.
+- ~~**2026-11-13** **Demo safety switch `LIVE_SI`**~~ (mode B only now): `off` (or no API key) makes the app use only pre-built insights and cached answers. Why: a live API call on stage is the biggest single risk.
 - **2026-11-13** **Human verification gate**: Claude-extracted findings land in `data/raw/proposed/` and reach `data/findings.json` only after a person checks them; `verified` is shown in the UI. Why: validity is a judging criterion, and AI extraction can be wrong.
-- **2026-11-13** **Pre-built insights, committed to git**: ranking runs offline (`npm run si:build`) and the output is reviewed and committed. Live AI is only for the advisor. Why: fast, free at demo time, reviewable, can't fail on stage.
+- **2026-11-13** **Pre-built insights, committed to git**: ranking runs offline (now in Claude Code, mode A) and the output is reviewed and committed. Why: fast, free at demo time, reviewable, can't fail on stage.
 - **2026-11-13** **Whole-corpus prompting, no RAG / vector DB**: the corpus (≈ 100 findings) fits in one prompt; prompt caching makes repeats cheap. Why: simpler, nothing to break, and the model can link findings across experiments.
-- **2026-11-13** **Claude Opus 5.5 (`claude-opus-5-5`) for all SI**, `CLAUDE_MODEL` to override while iterating. Why: the most capable default model, 1M context, cheaper than earlier Opus. Cost estimate under $40 for the event (`docs/ai.md`).
+- **2026-11-13** **Claude Opus 5.5 (`claude-opus-5-5`) for all SI** (in Claude Code for mode A; `CLAUDE_MODEL` overrides it in the mode-B scripts). Why: the most capable default model, 1M context, cheaper than earlier Opus. In mode A it costs only Pro usage.
 - **2026-11-13** **No database**: JSON in `data/`, validated with Zod at build. Why: tens to hundreds of read-only records; a DB adds setup, secrets and a failure point.
 - **2026-11-13** **Stack: Next.js 16 + TypeScript + Tailwind 4 on Vercel**, Recharts for charts, Lucide icons. Why: most polished result in 2 days with the stack we already use (Deployment Report); static pages are fast and robust.
 - **2026-11-13** **Dark theme only, English only, no accounts.** Why: scope. One theme done well beats two half done; check readability on a projector.
@@ -21,7 +22,8 @@ Newest first. Each entry: date, decision, why, who. Add one whenever you choose 
 |---|---|---|
 | Product name | Keep "Flame in Freefall" / name the tool (e.g. "Firesight") | Day 1 morning |
 | Public repo at submission | Public (judges can read the code) / keep private and link the live site | Before submission |
-| One Claude Pro account or two | See `docs/claude-workflow.md` | Day 0 |
+| One Claude Pro account or two | See `docs/claude-workflow.md`; more important now that the SI runs on Pro usage | Day 0 |
+| Get an API key after all? | Only if we want a live Ask; `docs/ai.md` › Mode B | Any time; owner |
 | Licence if public | MIT / none | Before making it public |
 
 ## Parked

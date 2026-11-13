@@ -1,4 +1,5 @@
-// Shared bits for the SI scripts (run with tsx on your laptop, never in the browser).
+// Shared bits for the SI scripts: mode B of the SI, only with an API key (docs/ai.md).
+// Run with tsx on your laptop, never in the browser.
 // src/lib/claude.ts is the app's copy; this one avoids "server-only", which throws outside Next.
 import Anthropic from "@anthropic-ai/sdk";
 import { readFileSync, writeFileSync } from "node:fs";
@@ -12,6 +13,9 @@ export function client() {
   }
   return new Anthropic();
 }
+
+// The SI instructions live in prompts/*.md, shared with mode A (Claude Code). See prompts/README.md.
+export const prompt = (name: "extract" | "synthesize" | "answer") => readFileSync(`prompts/${name}.md`, "utf8");
 
 export const readJson = <T,>(path: string): T => JSON.parse(readFileSync(path, "utf8")) as T;
 export const writeJson = (path: string, data: unknown) => writeFileSync(path, JSON.stringify(data, null, 2) + "\n");

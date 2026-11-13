@@ -23,9 +23,10 @@ The corpus is the product. The SI is only as good as the findings it reads, and 
 |---|---|---|
 | `data/experiments.json` | People (seed list from the foundation PR, all `verified: false`) | Yes |
 | `data/findings.json` | People, after verifying (Claude proposals copied in by hand) | Yes |
-| `data/generated/insights.json` | `npm run si:build` only | Yes (so the demo needs no API) |
+| `data/generated/insights.json` | SI job 2 only (`si-run` skill) | Yes (the app reads it; no AI at runtime) |
+| `data/generated/answers.json` | SI job 3 only (`si-run` skill) | Yes |
 | `data/raw/ntrs/*.json` | `npm run data:ntrs` | No |
-| `data/raw/proposed/*.json` | `npm run si:extract` | No |
+| `data/raw/proposed/*.json` | SI job 1 (`si-run` skill) | No |
 | `data/raw/*.pdf` | You, downloading papers | No |
 
 The shape of every record is in `src/lib/schema.ts` (Zod). The app parses the files at build time, so bad data fails the build, not the demo.
@@ -69,11 +70,11 @@ The shape of every record is in `src/lib/schema.ts` (Zod). The app parses the fi
 
 1. **Find papers.** `npm run data:ntrs -- "BASS flame spread" "Saffire flame growth"` → read titles and abstracts in `data/raw/ntrs/`. Pick papers with numbers and clear conclusions. Prefer results papers and final reports over proposals.
 2. **Download** the PDF into `data/raw/`.
-3. **Extract.** `npm run si:extract -- bass data/raw/paper.pdf "Exact paper title" https://ntrs.nasa.gov/citations/<id> 2014` → `data/raw/proposed/paper.json`. It prints the cost (typically a few cents per paper).
+3. **Extract.** In a Claude Code session, run SI job 1 (`si-run` skill, `prompts/extract.md`) on the paper's abstract and results pages → `data/raw/proposed/<paper>.json`. One paper per session keeps Pro usage down. (With an API key: `npm run si:extract`.)
 4. **Verify** (the step that makes us credible; see below).
 5. **Add** the checked findings to `data/findings.json`: next free IDs, `verified: true`, remove `_quote`.
 6. `npm run data:validate`, then commit in small batches (one paper or one experiment per commit).
-7. When a batch is in, rebuild insights (`docs/ai.md` › Pipeline).
+7. Insights and answers get rebuilt at the planned checkpoints; `npm run data:validate` warns when they're stale (`docs/ai.md` › When to re-run).
 
 You can also write findings by hand (`extractedBy: "human"`) from a summary page or a paper you've read.
 

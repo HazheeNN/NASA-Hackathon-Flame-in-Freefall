@@ -10,28 +10,27 @@
 | Icons | `lucide-react` | One icon set, mapped in `DESIGN.md` |
 | Charts | **Recharts** (add with the first chart) | Quick, good-looking, accessible enough; SVG |
 | Data | JSON in `data/`, validated with **Zod** (`src/lib/schema.ts`) | Small corpus; no database to set up or break |
-| AI | **Claude API**, `@anthropic-ai/sdk`, model `claude-opus-5-5` | See `docs/ai.md` |
+| AI | **Claude, offline:** the SI jobs in `prompts/` run in Claude Code sessions and write JSON (mode A). `@anthropic-ai/sdk` scripts kept for an optional API mode (B) | See `docs/ai.md` |
 | Scripts | `tsx` (TypeScript scripts in `scripts/*.mts`) | Same types and schema as the app |
 | Tests | **Vitest** (data integrity, pure functions) | Fast; CI-friendly |
 | Hosting | **Vercel** (Hobby/free) | Preview per PR, zero config for Next.js |
-| CI | GitHub Actions: typecheck, lint, tests, data validation, build, DESIGN.md lint | Every PR checked; no API key in CI |
+| CI | GitHub Actions: typecheck, lint, tests, data validation, build, DESIGN.md lint | Every PR checked; no secrets anywhere |
 
 ## Shape of the system
 
 ```
-                    ┌───────────────── build time (your laptop / Vercel build) ─────────────────┐
- NASA NTRS / PSI ──►│ scripts/fetch-ntrs ─► scripts/extract-findings ─► people verify ─► data/*.json │
-                    │                                   scripts/build-insights ─► data/generated/*  │
+                    ┌──────────────── before the build (our laptops + Claude Code) ──────────────┐
+ NASA NTRS / PSI ──►│ scripts/fetch-ntrs ─► SI job 1: extract ─► people verify ─► data/findings.json │
+                    │      SI jobs (prompts/, in Claude Code) ─► data/generated/insights, answers   │
                     └───────────────────────────────────────────┬──────────────────────────────────┘
                                                                 │ imported + Zod-validated (src/lib/data.ts)
                                                                 ▼
  Browser ◄── static pages (server components, pre-rendered) ◄── Next.js on Vercel
-    │                                                            │
-    └── Ask panel (client) ── POST /api/ask ── route handler ── Claude API (streamed, corpus cached)
+    └── Ask panel and filters (client components, search in the browser, no network calls)
 ```
 
-- **Everything except Ask is static:** pages are pre-rendered from the JSON at build time. Fast, cheap, and they can't fail at runtime.
-- **The only runtime dependency is the Claude API**, used by `/api/ask` only, with a fallback to pre-generated answers.
+- **Everything is static:** pages are pre-rendered from the JSON at build time; filters and Ask search run in the browser. Fast, free, and nothing can fail at runtime.
+- **No runtime dependencies** (mode A). Mode B would add one route, `/api/ask` (`docs/ai.md` › Mode B), not planned.
 
 ## Folders
 
@@ -44,18 +43,19 @@ src/
     findings/             explorer (F6) + [id] detail                 (to build)
     missions/[mission]/   mission lens (F8)                           (to build)
     sources/              sources and method (F9)                     (to build)
-    api/ask/route.ts      live advisor (F7), streaming                (to build)
+    ask/                  Ask: question library + search (F7)          (to build)
     globals.css           theme tokens (mirrors DESIGN.md)
   components/             shared UI: flame-mark, cards, badges, citation chip, charts
   lib/
     schema.ts             the one data shape (Zod) + types
     data.ts               loads and validates data/*.json (server only)
-    validate.ts           cross-record checks (used by scripts, tests)
-    claude.ts             the app's Claude client and model (server only)
+    validate.ts           cross-record checks, findings hash, stale check (scripts, tests)
+    claude.ts             Claude API client: mode B only, unused today
     format.ts             units and numbers
 data/
-  experiments.json  findings.json  generated/insights.json  raw/ (git-ignored)
-scripts/            si.mts (shared) · fetch-ntrs · extract-findings · build-insights · validate-data
+  experiments.json  findings.json  generated/{insights,answers}.json  raw/ (git-ignored)
+prompts/            the SI instructions: extract.md · synthesize.md · answer.md
+scripts/            validate-data · fetch-ntrs · (mode B) si.mts · extract-findings · build-insights
 tests/              Vitest
 docs/               everything a teammate or Claude needs (start at CLAUDE.md)
 .claude/            settings (deny rules for secrets) + skills
@@ -71,10 +71,10 @@ docs/               everything a teammate or Claude needs (start at CLAUDE.md)
 | `/findings` | Explorer: search + filters in the URL | Static shell + client filters |
 | `/findings/[id]` | Finding detail: conditions, numbers, sources | Static |
 | `/missions/[mission]` | Mission lens: `iss`, `moon`, `mars-transit`, `mars-surface` | Static |
+| `/ask` | Question library + search; `?q=` keeps the search, `/ask/[id]` opens an answer | Static shell + client search |
 | `/sources` | Sources, method, ranking rubric, AI disclosure | Static |
-| `/api/ask` | POST `{ question }` → streamed text + citations | Dynamic (Node runtime) |
 
-The Ask panel is a client component opened from the top bar on any page.
+The Ask button in the top bar opens `/ask` (or a panel with the same content) from any page.
 
 Next.js 16 notes: `params` and `searchParams` are Promises (`await` them); middleware is `proxy.ts`. Check `node_modules/next/dist/docs/` before using anything from memory.
 
@@ -83,7 +83,7 @@ Next.js 16 notes: `params` and `searchParams` are Promises (`await` them); middl
 - **Server first.** Pages are server components that read from `src/lib/data.ts`. Client components (`"use client"`) only for filters, charts, and the Ask panel; pass them plain data as props.
 - **One data shape.** Types come from `src/lib/schema.ts` (`z.infer`). No duplicate interfaces.
 - **No business logic in components:** filtering, sorting and grouping live in small pure functions in `src/lib/` with a unit test when they're not trivial.
-- **Secrets stay on the server.** `src/lib/claude.ts` and `src/lib/data.ts` import `server-only`.
+- **Server-only data loading.** `src/lib/data.ts` (and the dormant `claude.ts`) import `server-only`. The app has no secrets today.
 - **Tokens and icons** per `DESIGN.md`; ESLint enforces no raw hex and no `dark:`.
 - **Responsive:** grids 1 / 2 / 3 columns (`sm:grid-cols-2 xl:grid-cols-3`), no fixed widths that break at 360 px.
 
@@ -95,11 +95,11 @@ Next.js 16 notes: `params` and `searchParams` are Promises (`await` them); middl
 | Pure functions (filters, ranking helpers, formatting) | Vitest unit tests | When written |
 | Pages | `npm run build` (pre-renders every page with the real data) | CI |
 | Look and feel | Screenshots at 360 px and 1440 px (Playwright, or by hand) | Before each UI PR |
-| SI quality | Golden questions (`docs/ai.md`) | After prompt changes, before the demo |
-| Demo safety | Full demo with `LIVE_SI=off` | Before freeze and before submitting |
+| SI quality | Review checklist + golden questions (`docs/ai.md`) | After every SI run |
+| Demo safety | Full demo on a local production build with Wi-Fi off | Before freeze and before submitting |
 
 ## Deploy
 
 - Vercel project linked to the GitHub repo; Production = `main`, a Preview for every PR.
-- Env vars in Vercel: `ANTHROPIC_API_KEY` (Production and Preview), optional `CLAUDE_MODEL`, `LIVE_SI`.
+- No env vars needed (mode A). Mode B would add `ANTHROPIC_API_KEY` (Production and Preview).
 - Steps in `docs/runbook.md`.

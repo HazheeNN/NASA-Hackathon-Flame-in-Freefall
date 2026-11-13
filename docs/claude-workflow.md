@@ -1,18 +1,23 @@
 # Working with Claude on a Pro plan
 
-We build with Claude Code, and the app itself runs on the Claude API. These are **two separate things with separate budgets:**
+We have **no API key** (decision 2026-11-13). Claude Code on our Pro plan does two jobs, from one usage limit:
 
-| | Claude Code (building the app) | Claude API (the app's SI) |
-|---|---|---|
-| Account | Claude Pro subscription (claude.ai) | Anthropic Console (pay as you go) |
-| Limit | Usage limits that reset every few hours, plus a weekly cap, shared between claude.ai chat and Claude Code | Credits and the spend limit you set |
-| Runs out → | Wait for the reset, or work without Claude | Ask stops working (fallback kicks in); scripts fail |
+1. **Building the app** (pages, components, data wiring).
+2. **Running the SI** (`prompts/`, `si-run` skill): extracting findings from papers, ranking insights, answering the question library.
+
+| | Claude Pro (Claude Code) |
+|---|---|
+| Limit | Usage limits that reset every few hours, plus a weekly cap, shared between claude.ai chat and Claude Code |
+| Runs out → | Wait for the reset, or work without Claude (read papers, verify findings, design, write) |
+| Heaviest use | Reading papers for SI job 1, and the full-corpus runs of jobs 2 and 3 |
+
+The API key path (mode B) is documented in `docs/ai.md` if we change our minds.
 
 ## One Pro account or two?
 
 ⚠ **A Claude Pro plan is for one person.** Sharing one login between three people is likely against Anthropic's consumer terms (check the current terms) and splits one usage limit three ways in the busiest 48 hours. Options:
 
-1. **Recommended: each teammate who builds with Claude has their own account** (Pro if possible; a second Pro for the weekend is ≈ $20). Each person gets a full limit.
+1. **Recommended: each teammate who builds with Claude has their own account** (Pro if possible; a second Pro for the weekend is ≈ $20). Each person gets a full limit, which matters more now that the SI also runs on Pro usage.
 2. **One account, one driver:** the account owner runs the Claude sessions; the others pair (sit with the driver), read papers, verify findings, design and write: the work that doesn't need Claude anyway.
 3. Never share passwords in chat.
 
@@ -31,7 +36,8 @@ Do it yourself (no Claude) when it's: reading papers and verifying findings, dec
 - **Be specific** about files, the acceptance criteria and how to verify ("run `npm run check`, screenshot at 360 and 1440 px").
 - **Don't make Claude read big files** it doesn't need (PDFs, `package-lock.json`, `data/raw/`).
 - **Lighter model for small jobs** if your plan offers a model switch (`/model`); keep the strongest for design and tricky logic.
-- **Don't let Claude run the SI scripts in a loop.** They cost API money; run them yourself, once, on purpose.
+- **Batch the SI.** Job 1: feed the abstract + results pages, not whole PDFs, one paper per session, then `/clear`. Jobs 2 and 3: only at the planned checkpoints (end of Day 1, before the freeze), not after every new finding.
+- **Plan the SI sessions around resets.** Put the big full-corpus run right after a usage reset so it doesn't stop halfway.
 - **Write the handoff** (`handoff` skill) before the session ends or the limit runs out, so the next person or session starts warm.
 
 ## Skills in this repo (`.claude/skills/`)
@@ -42,7 +48,7 @@ Do it yourself (no Claude) when it's: reading papers and verifying findings, dec
 | `handoff` | End any session: update `docs/status.md`, commit, push |
 | `build-slice` | Build one feature slice from the PRD to a PR, the project way |
 | `add-findings` | Turn a NASA paper into verified findings |
-| `si-run` | Run extraction or insight building safely, and review the output |
+| `si-run` | Run an SI job (extract, synthesize, answer) in the session, validate it and review the output |
 | `demo-check` | Pre-demo and pre-submission checklist |
 | `submission-pack` | Draft the project page, video script and slides from the docs |
 | Design skills (`ui-ux-pro-max`, `high-end-visual-design`, `design-taste-frontend`, …) | Polish passes on the UI; always within `DESIGN.md` |

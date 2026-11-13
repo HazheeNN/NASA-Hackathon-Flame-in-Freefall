@@ -14,7 +14,7 @@ A slice is one feature end to end: its data, its page, its polish, its screensho
 
 At any moment each of us holds **one** slice. The rough shape:
 - one person on the **corpus** (reading papers, verifying findings): the most human work; needs little Claude;
-- one on **SI + data plumbing** (scripts, insights, advisor);
+- one on **SI + data plumbing** (SI jobs in Claude Code, insights, the Ask answers);
 - one on **UI** (pages, charts, polish).
 
 Rotate every half day so everyone knows every part (and anyone can present any part).

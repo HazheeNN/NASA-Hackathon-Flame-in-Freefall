@@ -22,7 +22,7 @@ Fire is one of the most dangerous emergencies a crew can face, and in microgravi
 
 **What it does / how it works:**
 1. Corpus: N findings from M NASA experiments (list), each with conditions, numbers and a cited source; X % checked by a person.
-2. SI layer (Claude by Anthropic): extracts findings from papers, links them across experiments into ranked insights (safety relevance, severity, evidence, actionability), and powers a cited Q&A advisor.
+2. SI layer (Claude by Anthropic): extracts findings from papers, links them across experiments into ranked insights (safety relevance, severity, evidence, actionability), and prepares cited answers to the questions mission planners ask, all reviewed by the team.
 3. Mission lens: what applies to ISS, Artemis, Mars transit and the Mars surface, and where NASA has no data yet.
 
 **Benefits:** faster, evidence-backed fire safety decisions for habitat and vehicle design; a map of evidence gaps for future experiments; a clear explainer for crews and the public.
@@ -31,9 +31,9 @@ Fire is one of the most dangerous emergencies a crew can face, and in microgravi
 
 **Space agency partner resources used:** (if any, e.g. JAXA FLARE.)
 
-**Tools and technologies:** Next.js, TypeScript, Tailwind CSS, Recharts, Vercel; Claude API (`claude-opus-5-5`) for analysis.
+**Tools and technologies:** Next.js, TypeScript, Tailwind CSS, Recharts, Vercel; Claude (Anthropic, Opus 5.5, via Claude Code) for analysis.
 
-**Use of AI:** Claude (Anthropic) is the app's analysis engine (extraction, ranking, Q&A, always from cited NASA findings, with human verification of extracted findings). We also used Claude Code as a coding assistant. No AI-generated images; no NASA logos.
+**Use of AI:** Claude (Anthropic) is our analysis engine: it extracted findings from NASA papers (each verified by a person), ranked them into insights with a published rubric, and prepared cited answers, always from the NASA findings only. All AI output was reviewed before publishing; the app makes no live AI calls. We also used Claude Code as a coding assistant. No AI-generated images; no NASA logos.
 
 **References:** link to the Sources page in the app.
 
@@ -44,7 +44,7 @@ Fire is one of the most dangerous emergencies a crew can face, and in microgravi
 | 0–4 s | Flame sphere, title | "In space, fire doesn't rise. It spreads in ways we don't expect." |
 | 4–10 s | Overview KPIs | "NASA has decades of experiments. We put them in one place: N findings, all sourced." |
 | 10–18 s | #1 insight → cited findings | "Our AI ranks what matters most for crew safety and shows the evidence behind every claim." |
-| 18–25 s | Mars lens, Ask streaming | "Planning a Mars habitat? Ask, and get a cited answer in seconds." |
+| 18–25 s | Mars lens, Ask search → answer | "Planning a Mars habitat? Ask, and get a cited answer in seconds." |
 | 25–30 s | Evidence gaps, URL | "And see what NASA still needs to test. Flame in Freefall." |
 
 Recording: screen capture at 1920×1080 (OBS or QuickTime), browser at 100 % zoom, voice recorded separately in a quiet room, captions burned in, no music with lyrics.
@@ -61,7 +61,7 @@ Recording: screen capture at 1920×1080 (OBS or QuickTime), browser at 100 % zoo
 
 ## Live demo (3 minutes)
 
-Follow `docs/prd.md` › Flow 1. Rehearse it 3 times; once with `LIVE_SI=off`. Have the video ready as a backup.
+Follow `docs/prd.md` › Flow 1. Rehearse it 3 times; once offline on a local build. Have the video ready as a backup.
 
 ## Likely judge questions (prepare answers)
 
@@ -69,4 +69,6 @@ Follow `docs/prd.md` › Flow 1. Rehearse it 3 times; once with `LIVE_SI=off`. H
 - Why is insight #1 ranked first? → the four scores and the rubric.
 - What data did you use? → Sources page.
 - What would you do with more time? → more PSI raw data, partial-gravity gap analysis, NASA-STD-6001 comparison.
-- How much does it cost to run? → cents per question with caching (`docs/ai.md` › Cost).
+- How much does it cost to run? → nothing at runtime: it's a static site; the AI work happens offline and is reviewed.
+- Why not a live chatbot? → every answer is reviewed and cited before anyone sees it; live answers are a small upgrade (`docs/ai.md` › Mode B) once validity is proven.
+- Is the AI really doing the work? → show `prompts/`, a proposed-vs-verified finding, and the rubric scores.

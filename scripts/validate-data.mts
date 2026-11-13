@@ -1,16 +1,21 @@
 // npm run data:validate — checks every JSON file in data/ against src/lib/schema.ts and the
-// cross-record rules in src/lib/validate.ts. Run it after any hand edit or script run.
+// cross-record rules in src/lib/validate.ts. Run it after any hand edit or SI run.
+// It also prints the findings hash to put in an SI output file (mode A, docs/ai.md).
 import { readFileSync } from "node:fs";
-import { validateCorpus } from "../src/lib/validate";
+import { findingsHash, staleWarnings, validateCorpus } from "../src/lib/validate";
 
 const read = (p: string) => JSON.parse(readFileSync(p, "utf8"));
-const problems = validateCorpus({
+const raw = {
   experiments: read("data/experiments.json"),
   findings: read("data/findings.json"),
   insights: read("data/generated/insights.json"),
-});
-const findings = read("data/findings.json") as { verified: boolean }[];
-console.log(`${findings.length} findings, ${findings.filter((f) => f.verified).length} verified`);
+  answers: read("data/generated/answers.json"),
+};
+const findings = raw.findings as { verified: boolean }[];
+console.log(`${raw.experiments.length} experiments · ${findings.length} findings (${findings.filter((f) => f.verified).length} verified) · ${raw.insights.insights.length} insights · ${raw.answers.answers.length} answers`);
+console.log(`findingsHash: ${findingsHash(raw.findings)}`);
+for (const w of staleWarnings(raw)) console.warn(`! ${w}`);
+const problems = validateCorpus(raw);
 if (problems.length) {
   console.error(problems.map((p) => `✗ ${p}`).join("\n"));
   process.exit(1);

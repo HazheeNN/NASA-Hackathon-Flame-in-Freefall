@@ -17,24 +17,16 @@ cd NASA-Hackathon-Flame-in-Freefall && npm ci
 ```
 
 ```bash
-cp .env.example .env.local
-```
-
-```bash
 npm run dev
 ```
 
-   Open http://localhost:3000. It works without an API key (Ask needs one).
-4. Fill `ANTHROPIC_API_KEY` in `.env.local` when the owner shares it (password manager or Vercel, not chat).
-5. `npm run check` should pass.
+   Open http://localhost:3000. No API key or other secrets are needed.
+4. `npm run check` should pass.
+5. Install Claude Code and sign in (`docs/claude-workflow.md`); open it in the repo folder and say "start session".
 
-## Anthropic API key (owner, once)
+## Anthropic API key: not needed now
 
-A **Claude Pro subscription is not API access.** The app and the SI scripts need an API key, billed separately:
-1. Sign in at console.anthropic.com → create a workspace for this project.
-2. Add credits (≈ $20–40 covers the event, `docs/ai.md` › Cost) and **set a monthly spend limit**.
-3. Create an API key → store it in a password manager → add it to Vercel and share it with the team there.
-4. Check usage once per session on the Console's usage page.
+We run the SI in Claude Code (mode A, `docs/ai.md`). Only if we decide to switch to mode B: a Claude Pro subscription is not API access, so the owner would create a key at console.anthropic.com, add ≈ $10–20 of credit, **set a spend limit**, and add it to Vercel and `.env.local` as `ANTHROPIC_API_KEY` (`docs/security.md` › If we switch).
 
 ## NASA accounts (Day 0)
 
@@ -45,36 +37,35 @@ A **Claude Pro subscription is not API access.** The app and the SI scripts need
 
 1. vercel.com → sign in with GitHub → **Add New → Project** → import `NASA-Hackathon-Flame-in-Freefall`.
 2. Framework: Next.js (auto). Build command and output: defaults.
-3. Environment variables: `ANTHROPIC_API_KEY` for Production and Preview. Optional: `CLAUDE_MODEL`, `LIVE_SI`.
+3. Environment variables: none needed.
 4. Deploy. Every push to `main` updates Production; every PR gets a Preview URL.
 5. Put the Production URL in `CLAUDE.md`, `README.md` and `docs/submission.md`.
 
 ## Running the SI
 
+Find papers:
+
 ```bash
 npm run data:ntrs -- "Saffire flame spread"
 ```
 
-```bash
-npm run si:extract -- saffire data/raw/paper.pdf "Exact title" https://ntrs.nasa.gov/citations/<id> 2019
-```
+Then, in a Claude Code session, use the `si-run` skill: say e.g. *"Run SI job 1 on data/raw/saffire-2019.pdf pages 5–9 for experiment saffire"*, or *"Run SI jobs 2 and 3 on the full corpus"*. Afterwards:
 
 ```bash
-npm run si:build
+npm run data:validate
 ```
 
-Each run prints its token use and cost. Then follow the review checklists in `docs/data.md` and `docs/ai.md`.
+and follow the review checklists in `docs/data.md` and `docs/ai.md`.
 
 ## Demo day
 
 1. Freeze: only fixes after the freeze time in the plan.
 2. Production deploy is green and opens on a phone and the demo laptop.
-3. Run the 3-minute demo twice live, once with `LIVE_SI=off` (set it in Vercel → redeploy, or run locally).
+3. Run the 3-minute demo twice on the live site, once on a local production build with Wi-Fi off.
 4. Golden questions pass (`docs/ai.md`).
-5. Demo laptop: charger, browser zoom 100 %, notifications off, tabs pre-opened, offline backup (local `npm run build && npm start` with `LIVE_SI=off`) and the demo video file.
+5. Demo laptop: charger, browser zoom 100 %, notifications off, tabs pre-opened, offline backup (local `npm run build && npm start`) and the demo video file.
 6. Submit with ≥ 2 hours buffer (`docs/submission.md`).
 
 ## After the event
 
-- Rotate or delete the API key; lower the spend limit.
 - Decide about making the repo public (`docs/security.md` › Owner actions).

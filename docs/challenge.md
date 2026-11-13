@@ -19,12 +19,12 @@
 |---|---|---|
 | "decades… trove of experimental data" | Real NASA experiments across eras and platforms (drop towers → ISS → Saffire) | Corpus: `data/experiments.json`, `data/findings.json`; Sources page |
 | "hard to find, compare, and understand" | Search, filter and side-by-side comparison; plain-language summaries | Findings explorer, compare view, glossary tooltips |
-| "interactive" | People click, filter, ask; not a static report | Filters, mission lens, Ask the advisor, chart interactions |
-| "super intelligence (SI) powered" | AI that does real analytic work: reads papers, links findings across experiments, ranks, explains, answers questions with citations | SI pipeline (`docs/ai.md`): extraction, synthesis/ranking, live advisor |
+| "interactive" | People click, filter, ask; not a static report | Filters, mission lens, Ask (search the question library), chart interactions |
+| "super intelligence (SI) powered" | AI that does real analytic work: reads papers, links findings across experiments, ranks, explains, answers questions with citations | SI jobs (`docs/ai.md`): extraction, synthesis/ranking, the cited question library |
 | "dashboard" | One glanceable overview, then drill-down | Overview page: KPIs, top insights, hero chart |
 | "summarizes" | A short, plain summary per finding, experiment and insight | `statement`, `answer`, experiment `summary` |
 | "ranks" | An explicit, explainable ordering of what matters most for safety | Ranked insights with 4 visible scores and "How we rank" |
-| "interprets" | "So what for a crew?" in every insight: implication, recommendation, caveats | Insight cards and the advisor |
+| "interprets" | "So what for a crew?" in every insight: implication, recommendation, caveats | Insight cards and the Ask answers |
 | "fire safety insights for human space exploration" | Tie everything to missions: ISS, Artemis (Moon, 0.17 g), Mars transit (0 g), Mars surface (0.38 g) | Mission lens |
 
 **Our one-line pitch (draft):** *"An AI analyst that has read NASA's fire-in-space research, so a mission planner can ask what's dangerous on the way to Mars and get a ranked, cited answer in seconds."*
@@ -58,4 +58,4 @@ Submissions have usually needed: a project page (title, summary, details, how NA
 ## Open questions
 
 - Which datasets does the challenge page list? If it links specific PSI datasets (raw ISS experiment data), we should show at least one real-data chart from them.
-- Does the event provide API credits (sponsors sometimes do)?
+- Does the event provide API credits (sponsors sometimes do)? That would make a live Ask cheap to add (`docs/ai.md` › Mode B).

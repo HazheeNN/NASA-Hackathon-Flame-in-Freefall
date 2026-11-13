@@ -289,7 +289,7 @@ Lucide only, 20 px, stroke 1.75. The same meaning always uses the same icon:
 | Experiment / program | `flask-conical` |
 | Finding | `file-text` |
 | Insight (AI) | `sparkles` |
-| Ask the advisor | `message-square-text` |
+| Ask (question library) | `message-square-text` |
 | Source / citation | `book-open` |
 | Verified | `badge-check` |
 | Unverified | `circle-alert` |

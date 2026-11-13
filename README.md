@@ -9,15 +9,14 @@ In microgravity, fire doesn't rise: a candle flame becomes a dim blue sphere, fl
 ## How it works
 
 1. **Corpus:** findings from NASA experiments (FLEX, ACME, BASS, SoFIE, Saffire, …), each with test conditions, measurements and a cited source, checked by a person.
-2. **SI layer (Claude by Anthropic):** extracts findings from papers, links them across experiments into ranked insights using a published rubric (safety relevance, severity, evidence, actionability), and powers a cited Q&A advisor.
+2. **SI layer (Claude by Anthropic):** extracts findings from papers, links them across experiments into ranked insights using a published rubric (safety relevance, severity, evidence, actionability), and prepares cited answers to the questions mission planners ask. Every output is reviewed by the team before it's published.
 3. **Dashboard:** overview, ranked insights, findings explorer, mission lens (ISS, Moon, Mars transit, Mars surface) with evidence gaps.
 
 ## Run locally
 
 ```bash
 npm ci
-cp .env.example .env.local   # add ANTHROPIC_API_KEY for the Ask feature; never commit it
-npm run dev
+npm run dev   # no API key or other secrets needed
 ```
 
 ```bash

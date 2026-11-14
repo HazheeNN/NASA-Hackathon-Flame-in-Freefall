@@ -12,6 +12,21 @@ Proposed by Claude (SI job 1) from *Detailed Results From the Flame Extinguishme
 
 Then tick **Keep**, **Fix** (write what) or **Drop**, and tell Claude. Pages: printed page first, PDF page in brackets; the links open at the PDF page.
 
+## Result (Claude, 2026-11-14, at the owner's request)
+
+All six were checked against the PDF: every quote was matched word for word on its page again (the "…" gaps split into separate quotes), and each statement was read against the 4 checks. **All six kept and added to `data/findings.json` as F-033…F-038, `verified: true`.** Quotes are in `2026-11-14-findings-quotes.md`. Changes made while checking:
+
+| Finding | Decision | Change |
+|---|---|---|
+| F-033 | Keep | Kept as FLEX's own statement (second, primary source next to F-001). Implication reworded to stay with the paper: estimates *overstated* the oxygen needed, so margins *may* be smaller. |
+| F-034 | Keep | Implication reworded: a limit measured at one dilution may not hold at another (the suppression-strategy line went further than the paper). |
+| F-035 | Keep | Theme "smoke-detection" removed (the paper only compares two cameras); "typically about three-fourths" kept as 0.75. |
+| F-036 | Keep | Conclusions (printed p. 17, PDF p. 23) added as a second quote for the 0.70–3.05 atm range. |
+| F-037 | Keep | Theme "partial-gravity" removed (the passage is about normal gravity vs microgravity); stays "review". |
+| F-038 | Keep | No change; quote split into items (1), (2), (4), (7). |
+
+Also added from the FX-03 paper: **F-039**, a 1 g blowoff test that estimated 13.4 % O₂ for PMMA rods against 13.6 % observed in BASS-II (Marcum, Olson, Ferkul 2016, PDF p. 8 and abstract).
+
 ## F-033 · Droplet flames needed less oxygen than expected to keep burning
 
 **Statement:** In FLEX tests on the ISS, the lowest oxygen level at which methanol and heptane droplets still burned (the limiting oxygen index) appeared slightly lower than initially expected.
@@ -26,7 +41,7 @@ Then tick **Keep**, **Fix** (write what) or **Drop**, and tell Claude. Pages: pr
 
 **Look carefully:** The paper gives no numbers, only "slightly lower than initially expected". "May not be conservative" in the implication is our wording, not the paper's.
 
-- [ ] Keep  - [ ] Fix: ……  - [ ] Drop  · Checked by: ……
+- [x] Keep  - [ ] Fix  - [ ] Drop  · Checked by: Claude, against the PDF (owner request, 2026-11-14)
 
 ## F-034 · Droplet flames went out in two different ways depending on dilution
 
@@ -42,7 +57,7 @@ Then tick **Keep**, **Fix** (write what) or **Drop**, and tell Claude. Pages: pr
 
 **Look carefully:** Close to the paper's wording. Check "disruptive extinction" is described as an extra outcome, as written.
 
-- [ ] Keep  - [ ] Fix: ……  - [ ] Drop  · Checked by: ……
+- [x] Keep  - [ ] Fix  - [ ] Drop  · Checked by: Claude, against the PDF (owner request, 2026-11-14)
 
 ## F-035 · The visible flame looks smaller than the full flame
 
@@ -58,7 +73,7 @@ Then tick **Keep**, **Fix** (write what) or **Drop**, and tell Claude. Pages: pr
 
 **Look carefully:** Fixed after review: "the peak of the soot glow is typically inside" (the paper's wording), not "sits inside". "About three-fourths" is stored as 0.75. The "smoke-detection" theme and the visual-size implication are ours; the paper only compares two cameras.
 
-- [ ] Keep  - [ ] Fix: ……  - [ ] Drop  · Checked by: ……
+- [x] Keep  - [ ] Fix  - [ ] Drop  · Checked by: Claude, against the PDF (owner request, 2026-11-14)
 
 ## F-036 · FLEX covered 0.70 to 3.05 atm, mostly 0.7 to 1 atm
 
@@ -74,7 +89,7 @@ Then tick **Keep**, **Fix** (write what) or **Drop**, and tell Claude. Pages: pr
 
 **Look carefully:** The ranges are the paper's. The link to the 0.56 atm (8.2 psia) habitat air is our implication. Conclusions on p. 17 (PDF 23) repeat the 0.70–3.05 atm range.
 
-- [ ] Keep  - [ ] Fix: ……  - [ ] Drop  · Checked by: ……
+- [x] Keep  - [ ] Fix  - [ ] Drop  · Checked by: Claude, against the PDF (owner request, 2026-11-14)
 
 ## F-037 · Without gravity a droplet flame stays spherical
 
@@ -90,7 +105,7 @@ Then tick **Keep**, **Fix** (write what) or **Drop**, and tell Claude. Pages: pr
 
 **Look carefully:** The authors summarise older experiments (1950s), not a FLEX result, so it is marked "review". The crew and detector implication is ours.
 
-- [ ] Keep  - [ ] Fix: ……  - [ ] Drop  · Checked by: ……
+- [x] Keep  - [ ] Fix  - [ ] Drop  · Checked by: Claude, against the PDF (owner request, 2026-11-14)
 
 ## F-038 · Some droplet break-ups were caused by a needle coating, not the fuel
 
@@ -106,4 +121,4 @@ Then tick **Keep**, **Fix** (write what) or **Drop**, and tell Claude. Pages: pr
 
 **Look carefully:** A data-quality caveat. The quote now includes item (2) (flame size), which the statement mentions.
 
-- [ ] Keep  - [ ] Fix: ……  - [ ] Drop  · Checked by: ……
+- [x] Keep  - [ ] Fix  - [ ] Drop  · Checked by: Claude, against the PDF (owner request, 2026-11-14)

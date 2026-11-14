@@ -204,7 +204,7 @@
     "steps": [
       "Take the airflow speed U that reaches the flame and the radius r of the burning rod.",
       "Compute a = 1.5 × U ÷ r. A larger a means the flow pulls harder on the flame.",
-      "In NASA's tests, the stretch rate at blowoff rose with oxygen and with the square root of the rod radius.",
+      "In NASA's tests, the stretch rate at blowoff varied linearly with oxygen and as the square root of the rod radius (p. 3).",
       "Explained only for now: the site doesn't compute it, because the Flame Lab's fuels are droplets, not PMMA rods."
     ],
     "example": {
@@ -237,6 +237,6 @@
         "locator": "p. 3 (stretch rate definition); p. 1 abstract and p. 2 (rod sizes, O₂ range, 60.3 cm/s maximum flow)"
       }
     ],
-    "verified": false
+    "verified": true
   }
 ]

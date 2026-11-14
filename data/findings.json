@@ -1060,5 +1060,269 @@
     ],
     "extractedBy": "claude",
     "verified": true
+  },
+  {
+    "id": "F-033",
+    "experimentId": "flex",
+    "title": "Droplet flames needed less oxygen than expected to keep burning",
+    "statement": "In FLEX tests on the ISS, the lowest oxygen level at which methanol and heptane droplets still burned (the limiting oxygen index) appeared slightly lower than initially expected.",
+    "conditions": {
+      "gravityG": 0,
+      "fuel": "methanol and n-heptane droplets"
+    },
+    "measurements": [],
+    "safetyImplication": "Oxygen limits estimated before flight overstated how much oxygen these droplet fires need, so fire margins based on such estimates may be smaller than assumed.",
+    "themes": [
+      "flammability-limits",
+      "spacecraft-atmosphere"
+    ],
+    "evidence": {
+      "kind": "measured",
+      "strength": 2
+    },
+    "sources": [
+      {
+        "title": "Detailed Results From the Flame Extinguishment Experiment (FLEX) March 2009 to December 2011 (NASA/TP—2015-216046)",
+        "url": "https://ntrs.nasa.gov/citations/20150023456",
+        "year": 2015,
+        "ntrsId": "20150023456",
+        "locator": "Executive Summary, printed p. 2 (PDF p. 8)"
+      }
+    ],
+    "extractedBy": "claude",
+    "verified": true
+  },
+  {
+    "id": "F-034",
+    "experimentId": "flex",
+    "title": "Droplet flames went out in two different ways depending on dilution",
+    "statement": "Both methanol and heptane flames showed radiative extinction at higher dilutions of oxygen and diffusive extinction at lower dilutions; some flames also ended by disruptive extinction.",
+    "conditions": {
+      "gravityG": 0,
+      "fuel": "methanol and n-heptane droplets"
+    },
+    "measurements": [],
+    "safetyImplication": "How a droplet fire goes out depends on how diluted the oxygen is, so a limit measured at one dilution may not hold at another.",
+    "themes": [
+      "extinction",
+      "suppression"
+    ],
+    "evidence": {
+      "kind": "measured",
+      "strength": 2
+    },
+    "sources": [
+      {
+        "title": "Detailed Results From the Flame Extinguishment Experiment (FLEX) March 2009 to December 2011 (NASA/TP—2015-216046)",
+        "url": "https://ntrs.nasa.gov/citations/20150023456",
+        "year": 2015,
+        "ntrsId": "20150023456",
+        "locator": "Executive Summary, printed p. 2 (PDF p. 8)"
+      }
+    ],
+    "extractedBy": "claude",
+    "verified": true
+  },
+  {
+    "id": "F-035",
+    "experimentId": "flex",
+    "title": "The visible flame looks smaller than the full flame",
+    "statement": "Flame diameters seen by the color camera were typically about three-fourths of those measured by the ultraviolet (LLUV) camera. For heptane the gap was even larger, because the peak of the soot glow is typically inside the blue flame envelope.",
+    "conditions": {
+      "gravityG": 0,
+      "fuel": "methanol and n-heptane droplets"
+    },
+    "measurements": [
+      {
+        "quantity": "visible / ultraviolet flame diameter ratio",
+        "value": 0.75,
+        "unit": "—"
+      }
+    ],
+    "safetyImplication": "A microgravity flame can extend beyond what a visible-light camera shows, so visual size estimates may understate the burning zone.",
+    "themes": [
+      "soot-radiation"
+    ],
+    "evidence": {
+      "kind": "measured",
+      "strength": 2
+    },
+    "sources": [
+      {
+        "title": "Detailed Results From the Flame Extinguishment Experiment (FLEX) March 2009 to December 2011 (NASA/TP—2015-216046)",
+        "url": "https://ntrs.nasa.gov/citations/20150023456",
+        "year": 2015,
+        "ntrsId": "20150023456",
+        "locator": "4.2 Analyzed Data, printed p. 16 (PDF p. 22)"
+      }
+    ],
+    "extractedBy": "claude",
+    "verified": true
+  },
+  {
+    "id": "F-036",
+    "experimentId": "flex",
+    "title": "FLEX covered 0.70 to 3.05 atm, mostly 0.7 to 1 atm",
+    "statement": "FLEX burned methanol and n-heptane droplets 2 to 5 mm across at pressures between 0.70 and 3.05 atm, with oxygen diluted by nitrogen, carbon dioxide or both; most tests were between 0.7 and 1 atm and many were in air.",
+    "conditions": {
+      "gravityG": 0,
+      "fuel": "methanol and n-heptane droplets"
+    },
+    "measurements": [
+      {
+        "quantity": "lowest test pressure",
+        "value": 0.7,
+        "unit": "atm"
+      },
+      {
+        "quantity": "highest test pressure",
+        "value": 3.05,
+        "unit": "atm"
+      },
+      {
+        "quantity": "smallest initial droplet diameter",
+        "value": 2,
+        "unit": "mm"
+      },
+      {
+        "quantity": "largest initial droplet diameter",
+        "value": 5,
+        "unit": "mm"
+      }
+    ],
+    "safetyImplication": "Cabin atmospheres below 0.70 atm, such as the proposed 8.2 psia (about 0.56 atm) habitat air, lie outside the conditions FLEX measured.",
+    "themes": [
+      "spacecraft-atmosphere",
+      "flammability-limits"
+    ],
+    "evidence": {
+      "kind": "measured",
+      "strength": 2
+    },
+    "sources": [
+      {
+        "title": "Detailed Results From the Flame Extinguishment Experiment (FLEX) March 2009 to December 2011 (NASA/TP—2015-216046)",
+        "url": "https://ntrs.nasa.gov/citations/20150023456",
+        "year": 2015,
+        "ntrsId": "20150023456",
+        "locator": "Executive Summary, printed p. 2 (PDF p. 8)"
+      },
+      {
+        "title": "Detailed Results From the Flame Extinguishment Experiment (FLEX) March 2009 to December 2011 (NASA/TP—2015-216046)",
+        "url": "https://ntrs.nasa.gov/citations/20150023456",
+        "year": 2015,
+        "ntrsId": "20150023456",
+        "locator": "6.0 Conclusions, printed p. 17 (PDF p. 23)"
+      }
+    ],
+    "extractedBy": "claude",
+    "verified": true
+  },
+  {
+    "id": "F-037",
+    "experimentId": "flex",
+    "title": "Without gravity a droplet flame stays spherical",
+    "statement": "Natural convection destroys the spherical symmetry of droplet burning in normal gravity; microgravity allows spherical symmetry, which NASA has used in combustion research for years.",
+    "conditions": {
+      "gravityG": 0
+    },
+    "measurements": [],
+    "safetyImplication": "A fire in a spacecraft does not take the familiar upward teardrop shape, so Earth experience of how a flame looks is a poor guide.",
+    "themes": [
+      "soot-radiation"
+    ],
+    "evidence": {
+      "kind": "review",
+      "strength": 2
+    },
+    "sources": [
+      {
+        "title": "Detailed Results From the Flame Extinguishment Experiment (FLEX) March 2009 to December 2011 (NASA/TP—2015-216046)",
+        "url": "https://ntrs.nasa.gov/citations/20150023456",
+        "year": 2015,
+        "ntrsId": "20150023456",
+        "locator": "1.0 Introduction, printed p. 2 (PDF p. 8)"
+      }
+    ],
+    "extractedBy": "claude",
+    "verified": true
+  },
+  {
+    "id": "F-038",
+    "experimentId": "flex",
+    "title": "Some droplet break-ups were caused by a needle coating, not the fuel",
+    "statement": "A coating on the fuel needles contaminated some droplets. The authors judge that disruptive extinction of methanol was probably caused by it, that burning rates and flame size were only minimally influenced, and that radiative extinction diameters were not influenced.",
+    "conditions": {
+      "gravityG": 0,
+      "fuel": "methanol and n-heptane droplets"
+    },
+    "measurements": [],
+    "safetyImplication": "FLEX 'disruption' outcomes for methanol in this report should not be read as how a clean fuel fire behaves.",
+    "themes": [
+      "extinction"
+    ],
+    "evidence": {
+      "kind": "measured",
+      "strength": 1
+    },
+    "sources": [
+      {
+        "title": "Detailed Results From the Flame Extinguishment Experiment (FLEX) March 2009 to December 2011 (NASA/TP—2015-216046)",
+        "url": "https://ntrs.nasa.gov/citations/20150023456",
+        "year": 2015,
+        "ntrsId": "20150023456",
+        "locator": "5.2 Fuel Needle Contamination, printed p. 17 (PDF p. 23)"
+      }
+    ],
+    "extractedBy": "claude",
+    "verified": true
+  },
+  {
+    "id": "F-039",
+    "experimentId": "bass",
+    "title": "A 1 g test can estimate the microgravity oxygen limit of PMMA rods",
+    "statement": "Normal-gravity blowoff tests on PMMA rods, extrapolated to zero stretch, estimated 13.4 % O₂ as the limit below which the fuel cannot burn at any stretch rate, a conservative estimate close to the 13.6 % O₂ minimum for stable flames observed in BASS-II on the ISS.",
+    "conditions": {
+      "material": "cast PMMA rods"
+    },
+    "measurements": [
+      {
+        "quantity": "estimated limiting oxygen concentration (1 g test)",
+        "value": 13.4,
+        "unit": "% O₂"
+      },
+      {
+        "quantity": "minimum for stable flames in BASS-II",
+        "value": 13.6,
+        "unit": "% O₂"
+      }
+    ],
+    "safetyImplication": "Earth tests designed around flame blowoff could give useful, slightly conservative oxygen limits for spacecraft materials, which current 1 g methods cannot.",
+    "themes": [
+      "flammability-limits",
+      "materials"
+    ],
+    "evidence": {
+      "kind": "modelled",
+      "strength": 2
+    },
+    "sources": [
+      {
+        "title": "Correlation of normal gravity mixed convection blowoff limits with microgravity forced flow blowoff limits (Marcum, Olson, Ferkul, 2016)",
+        "url": "https://ntrs.nasa.gov/citations/20160012691",
+        "year": 2016,
+        "ntrsId": "20160012691",
+        "locator": "PDF p. 8, Conclusions"
+      },
+      {
+        "title": "Correlation of normal gravity mixed convection blowoff limits with microgravity forced flow blowoff limits (Marcum, Olson, Ferkul, 2016)",
+        "url": "https://ntrs.nasa.gov/citations/20160012691",
+        "year": 2016,
+        "ntrsId": "20160012691",
+        "locator": "PDF p. 1, Abstract"
+      }
+    ],
+    "extractedBy": "claude",
+    "verified": true
   }
 ]

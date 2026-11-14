@@ -1,7 +1,7 @@
 {
   "generatedAt": "2026-11-14T18:10:46Z",
   "model": "Claude Code (claude-opus-5-5)",
-  "findingsHash": "cd1d2ce78e4d8ff8",
+  "findingsHash": "9678921f8c8b2b8a",
   "insights": [
     {
       "id": "I-01",
@@ -103,7 +103,7 @@
       "answer": "Do not assume lunar gravity is safer than Earth: for some materials it extends flammability, so lunar habitats and landers need their own material data.",
       "explanation": "Lunar gravity removes much of the convective cooling but still drives enough buoyant flow to bring oxygen to a flame, a 'goldilocks zone' that raises flammability limits for some materials [F-028]. A cotton-fiberglass fabric that goes out immediately on Earth keeps burning downward at lunar gravity [F-029]. NASA's review notes that in low flow, in microgravity or partial gravity, some materials burn at lower oxygen than in 1 g [F-004].",
       "recommendation": "Fly or simulate lunar-gravity flammability tests (as FM2 plans) at the habitat atmospheres, including 34 % O₂ at 8.2 psia, before certifying materials.",
-      "caveats": "Evidence comes from centrifuge, parabolic-flight and review statements; long-duration lunar tests have not flown yet. Mars gravity (0.38 g) is untested in these findings.",
+      "caveats": "Evidence comes from centrifuge, parabolic-flight and review statements; long-duration lunar tests have not flown yet. Mars gravity (0.38 g) is untested in these findings. FLEX droplet tests also stopped at 0.70 atm, above the 8.2 psia (about 0.56 atm) exploration air [F-036].",
       "risk": "high",
       "missions": [
         "Artemis (Moon)"
@@ -116,7 +116,8 @@
       "findingIds": [
         "F-028",
         "F-029",
-        "F-004"
+        "F-004",
+        "F-036"
       ],
       "scores": {
         "safetyRelevance": 5,
@@ -130,8 +131,8 @@
       "rank": 5,
       "title": "Earth material tests are not conservative for space",
       "answer": "Add a safety margin to, or replace, 1 g material ratings for space use, because several lines of evidence show materials can burn in space where Earth tests say they won't.",
-      "explanation": "NASA-STD-6001 Test 1 is an upward-burning 1 g test, and drop-tower results suggest it might not be conservative [F-018]. Droplet flammability limits are lower in reduced gravity [F-001], some solids burn at lower oxygen in low flow [F-004], and on Earth a flame's own buoyant flow (at least about 30 cm/s) makes slow-flow behaviour impossible to test [F-027]. Designers have had to rely on 1 g understanding for lack of large-scale space data [F-021].",
-      "recommendation": "Use microgravity flammability data (e.g., FLARE, SoFIE) to set oxygen margins on Test 1 results for every habitat atmosphere.",
+      "explanation": "NASA-STD-6001 Test 1 is an upward-burning 1 g test, and drop-tower results suggest it might not be conservative [F-018]. Droplet flammability limits are lower in reduced gravity [F-001], some solids burn at lower oxygen in low flow [F-004], and on Earth a flame's own buoyant flow (at least about 30 cm/s) makes slow-flow behaviour impossible to test [F-027]. Designers have had to rely on 1 g understanding for lack of large-scale space data [F-021]. FLEX's own report also found droplet oxygen limits slightly lower than expected before flight [F-033].",
+      "recommendation": "Use microgravity flammability data (e.g., FLARE, SoFIE) to set oxygen margins on Test 1 results, and develop 1 g tests that can estimate microgravity limits: a blowoff-based rod test estimated 13.4 % O₂ for PMMA against 13.6 % observed in BASS-II [F-039].",
       "caveats": "The size of the margin needed is not established by these findings; it differs by material and flow.",
       "risk": "high",
       "missions": [
@@ -149,7 +150,9 @@
         "F-001",
         "F-004",
         "F-027",
-        "F-021"
+        "F-021",
+        "F-033",
+        "F-039"
       ],
       "scores": {
         "safetyRelevance": 5,

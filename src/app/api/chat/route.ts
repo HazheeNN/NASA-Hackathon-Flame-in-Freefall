@@ -8,6 +8,9 @@ import { askProviders } from "@/lib/chat/providers";
 // Every reply is checked: citations must point to findings the model was given; answers about
 // where the data comes from may instead name experiments and the Sources page.
 
+// Up to 3 models per provider at 12 s each; Vercel stops the function after this many seconds.
+export const maxDuration = 60;
+
 const Body = z.object({
   messages: z
     .array(z.object({ role: z.enum(["user", "assistant"]), content: z.string().min(1).max(2000) }))

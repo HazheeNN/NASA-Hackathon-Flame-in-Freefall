@@ -3,18 +3,32 @@
 
 const NOT_CHAT = /whisper|tts|speech|audio|guard|embed|vision|image|imagen|veo|live|aqa|robotics|computer-use|transcri|moderation|compound|native-audio/i;
 
-// Groq (OpenAI-style /models list): prefer Meta's Llama, larger first; else a large open model.
-export function pickGroqModel(ids: string[]): string | null {
+// Groq (OpenAI-style /models list), best first: Meta's Llama (larger first), then large open
+// models; small "instant" models last.
+export function rankGroqModels(ids: string[]): string[] {
   const chat = ids.filter((id) => !NOT_CHAT.test(id));
-  const order: RegExp[] = [/llama.*(maverick|70b|405b)/i, /llama.*scout/i, /llama/i, /gpt-oss-120b/i, /qwen|kimi|gpt-oss|deepseek|mistral|gemma/i];
+  const order: RegExp[] = [/llama.*(maverick|70b|405b)/i, /llama.*scout/i, /gpt-oss-120b/i, /llama/i, /kimi|qwen|gpt-oss|deepseek|mistral|gemma/i, /./];
+  const out: string[] = [];
   for (const re of order) {
-    const hit = chat.filter((id) => re.test(id)).sort((a, b) => b.localeCompare(a, undefined, { numeric: true }))[0];
-    if (hit) return hit;
+    for (const id of chat.filter((x) => re.test(x)).sort((a, b) => b.localeCompare(a, undefined, { numeric: true }))) if (!out.includes(id)) out.push(id);
   }
-  return chat[0] ?? null;
+  return out;
+}
+export const pickGroqModel = (ids: string[]) => rankGroqModels(ids)[0] ?? null;
+
+// Gemini (/v1beta/models), best first: stable Flash that supports generateContent, newest first.
+export function rankGeminiModels(models: { name: string; supportedGenerationMethods?: string[] }[]): string[] {
+  const out: string[] = [];
+  let rest = [...models];
+  for (let i = 0; i < 6; i++) {
+    const best = pickGeminiModel(rest);
+    if (!best) break;
+    out.push(best);
+    rest = rest.filter((m) => m.name.replace(/^models\//, "") !== best);
+  }
+  return out;
 }
 
-// Gemini (/v1beta/models): a stable Flash model that supports generateContent, newest version first.
 export function pickGeminiModel(models: { name: string; supportedGenerationMethods?: string[] }[]): string | null {
   const usable = models
     .filter((m) => (m.supportedGenerationMethods ?? ["generateContent"]).includes("generateContent"))

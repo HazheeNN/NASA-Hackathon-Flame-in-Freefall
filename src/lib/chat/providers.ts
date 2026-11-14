@@ -1,5 +1,5 @@
 import "server-only";
-import { pickGeminiModel, pickGroqModel } from "./models";
+import { rankGeminiModels, rankGroqModels } from "./models";
 
 // Free-tier AI providers for the live chat, tried in the order of AI_ORDER (decision 2026-11-15).
 // Keys live only in Vercel's environment variables; they never reach the browser or the model.
@@ -7,7 +7,8 @@ import { pickGeminiModel, pickGroqModel } from "./models";
 export type Turn = { role: "user" | "assistant"; content: string };
 export type Reply = { text: string; provider: string; model: string };
 
-const TIMEOUT_MS = 15_000;
+const TIMEOUT_MS = 12_000;
+const TRIES_PER_PROVIDER = 3; // models tried per provider before moving on
 
 class HttpError extends Error {
   constructor(public status: number) {
@@ -31,8 +32,8 @@ type Provider = {
   label: string;
   defaultModel: string;
   envModel: string;
-  // Ask the provider which models it offers now and pick one (used when a model name is retired).
-  discover: (key: string) => Promise<string | null>;
+  // Ask the provider which models it offers now, best first (names are retired every few months).
+  discover: (key: string) => Promise<string[]>;
   chat: (model: string, system: string, turns: Turn[], key: string) => Promise<string>;
 };
 
@@ -49,13 +50,14 @@ const PROVIDERS: Record<string, Provider> = {
     discover: async (key) => {
       const data = await call(`${GROQ}/models`, { authorization: `Bearer ${key}` });
       const ids: string[] = (data?.data ?? []).filter((m: { active?: boolean }) => m.active !== false).map((m: { id: string }) => m.id);
-      return pickGroqModel(ids);
+      return rankGroqModels(ids);
     },
     chat: async (model, system, turns, key) => {
       const data = await call(
         `${GROQ}/chat/completions`,
         { authorization: `Bearer ${key}` },
-        { model, temperature: 0.2, max_tokens: 500, messages: [{ role: "system", content: system }, ...turns] },
+        // Room for "thinking" models, whose hidden reasoning counts against max_tokens.
+        { model, temperature: 0.2, max_tokens: 1500, messages: [{ role: "system", content: system }, ...turns] },
       );
       return String(data?.choices?.[0]?.message?.content ?? "");
     },
@@ -68,7 +70,7 @@ const PROVIDERS: Record<string, Provider> = {
     defaultModel: "gemini-flash-latest",
     discover: async (key) => {
       const data = await call(`${GEMINI}/models?pageSize=1000`, { "x-goog-api-key": key });
-      return pickGeminiModel(data?.models ?? []);
+      return rankGeminiModels(data?.models ?? []);
     },
     chat: async (model, system, turns, key) => {
       const data = await call(
@@ -77,7 +79,7 @@ const PROVIDERS: Record<string, Provider> = {
         {
           systemInstruction: { parts: [{ text: system }] },
           contents: turns.map((t) => ({ role: t.role === "assistant" ? "model" : "user", parts: [{ text: t.content }] })),
-          generationConfig: { temperature: 0.2, maxOutputTokens: 500 },
+          generationConfig: { temperature: 0.2, maxOutputTokens: 1500 },
         },
       );
       const parts: { text?: string; thought?: boolean }[] = data?.candidates?.[0]?.content?.parts ?? [];
@@ -88,28 +90,39 @@ const PROVIDERS: Record<string, Provider> = {
 
 // The model that worked last, per provider (kept while this server instance lives).
 const working = new Map<string, string>();
-export const forgetModels = () => working.clear(); // tests
+export const forgetModels = () => (working.clear(), discovered.clear()); // tests
 
-// Which model to use: a GROQ_MODEL / GEMINI_MODEL setting if present; otherwise ask the
-// provider which models it offers now (once per server instance) and pick one; the built-in
-// default is only a last guess. If the provider says the model doesn't exist (404, or 400 for an
-// unknown name), look again and retry once.
+// Models to try, best first: a GROQ_MODEL / GEMINI_MODEL setting, the one that worked last,
+// then the provider's current list (looked up once per server instance), then a built-in guess.
+const discovered = new Map<string, string[]>();
+async function candidates(name: string, p: Provider, key: string) {
+  if (!discovered.get(name)?.length) discovered.set(name, await p.discover(key).catch(() => []));
+  const list = [process.env[p.envModel], working.get(name), ...(discovered.get(name) ?? []), p.defaultModel].filter((m): m is string => !!m);
+  return [...new Set(list)].slice(0, TRIES_PER_PROVIDER);
+}
+
+// Try the candidates in turn. A model that is retired (404/400), overloaded or rate-limited
+// (503/429) or that replies with nothing is skipped for the next one; other errors stop here.
 async function ask(name: string, p: Provider, system: string, turns: Turn[], key: string): Promise<Reply> {
-  let model = working.get(name) || process.env[p.envModel];
-  if (!model) model = (await p.discover(key).catch(() => null)) ?? p.defaultModel;
-  try {
-    const text = await p.chat(model, system, turns, key);
-    working.set(name, model);
-    return { text, provider: p.label, model };
-  } catch (e) {
-    if (!(e instanceof HttpError) || (e.status !== 404 && e.status !== 400)) throw e;
-    working.delete(name);
-    const found = await p.discover(key).catch(() => null);
-    if (!found || found === model) throw new Error(`HTTP ${e.status} (model ${model}; no other model found)`);
-    const text = await p.chat(found, system, turns, key);
-    working.set(name, found);
-    return { text, provider: p.label, model: found };
+  const notes: string[] = [];
+  for (const model of await candidates(name, p, key)) {
+    try {
+      const text = await p.chat(model, system, turns, key);
+      if (!text.trim()) {
+        notes.push(`${model}: empty reply`);
+        continue;
+      }
+      working.set(name, model);
+      return { text, provider: p.label, model };
+    } catch (e) {
+      const status = e instanceof HttpError ? e.status : 0;
+      const why = status ? `HTTP ${status}` : e instanceof Error && e.name === "TimeoutError" ? "timeout" : "error";
+      notes.push(`${model}: ${why}`);
+      if (![400, 404, 429, 500, 503].includes(status)) break;
+    }
   }
+  if (working.get(name) && notes.some((n) => n.startsWith(working.get(name)!))) working.delete(name);
+  throw new Error(notes.join(", ") || "no model available");
 }
 
 const configured = () =>
@@ -122,7 +135,6 @@ export function providerOrder() {
   return configured().filter((name) => PROVIDERS[name] && process.env[PROVIDERS[name].key]);
 }
 
-// Try each configured provider in turn; return the first non-empty reply (or null if all fail).
 // Try each configured provider in turn; return the first usable reply, plus why the others
 // failed (provider names and status codes only, never keys) so a fallback can explain itself.
 export async function askProviders(system: string, turns: Turn[], accept: (r: Reply) => boolean) {
@@ -139,11 +151,10 @@ export async function askProviders(system: string, turns: Turn[], accept: (r: Re
     }
     try {
       const reply = await ask(name, p, system, turns, process.env[p.key]!);
-      if (!reply.text.trim()) failures.push(`${name}: empty reply`);
-      else if (!accept(reply)) failures.push(`${name}: answer without valid sources`);
+      if (!accept(reply)) failures.push(`${name}: answer without valid sources`);
       else return { reply, failures };
     } catch (e) {
-      const why = e instanceof Error ? (e.name === "TimeoutError" ? "timeout" : e.message) : "error";
+      const why = e instanceof Error ? e.message : "error";
       failures.push(`${name}: ${why}`);
       console.warn(`chat: ${name} failed (${why})`);
     }

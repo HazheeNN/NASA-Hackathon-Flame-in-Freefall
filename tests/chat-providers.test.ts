@@ -31,7 +31,7 @@ describe("provider chain (simulated AI, no network)", () => {
     });
     const r = await askProviders("sys", [{ role: "user", content: "q" }], () => true);
     expect(r.reply?.provider).toBe("Google Gemini");
-    expect(r.failures).toEqual(["groq: HTTP 429"]);
+    expect(r.failures[0]).toMatch(/^groq: .*HTTP 429/);
     expect(calls).toEqual(["groq", "gemini"]);
   });
 
@@ -78,7 +78,21 @@ describe("prepared-answer fallback matching", () => {
     const r = await askProviders("sys", [{ role: "user", content: "q" }], () => true);
     expect(r.reply).toBeNull();
     expect(r.failures[0]).toBe("groq: no key");
-    expect(r.failures[1]).toMatch(/^gemini: HTTP 404/);
+    expect(r.failures[1]).toMatch(/^gemini: .*HTTP 404/);
+  });
+
+  it("skips a model that replies empty or is overloaded, and names it", async () => {
+    vi.stubEnv("AI_ORDER", "groq");
+    vi.stubEnv("GROQ_API_KEY", "test");
+    vi.stubGlobal("fetch", async (url: string, init?: RequestInit) => {
+      if (url.endsWith("/models")) return ok({ data: [{ id: "meta-llama/llama-4-maverick-17b-128e-instruct" }, { id: "openai/gpt-oss-120b" }, { id: "qwen/qwen3-32b" }] });
+      const model = JSON.parse(String(init?.body)).model as string;
+      if (model.includes("maverick")) return ok({ choices: [{ message: { content: "" } }] });
+      if (model.includes("gpt-oss")) return new Response("{}", { status: 503 });
+      return ok({ choices: [{ message: { content: "Cited [F-001]." } }] });
+    });
+    const r = await askProviders("sys", [{ role: "user", content: "q" }], () => true);
+    expect(r.reply?.model).toBe("qwen/qwen3-32b");
   });
 
   it("finds a current model when the configured one is retired (404), then answers", async () => {

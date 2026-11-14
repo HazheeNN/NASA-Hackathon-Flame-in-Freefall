@@ -2,10 +2,16 @@
   {
     "id": "earth-sea-level",
     "name": "Earth air at sea level",
-    "pressureKPa": 101.3,
-    "oxygenPercent": 20.9,
+    "pressureKPa": 101.4,
+    "oxygenPercent": 20.95,
     "usedFor": "The 1 g baseline that most fire tests and material ratings assume",
-    "sources": [{ "title": "NASA NSSDC Earth Fact Sheet", "url": "https://nssdc.gsfc.nasa.gov/planetary/factsheet/earthfact.html", "locator": "Terrestrial atmosphere: surface pressure, composition" }],
+    "sources": [
+      {
+        "title": "NASA NSSDC Earth Fact Sheet",
+        "url": "https://nssdc.gsfc.nasa.gov/planetary/factsheet/earthfact.html",
+        "locator": "Terrestrial atmosphere: surface pressure 1014 mb; 20.95 % O₂"
+      }
+    ],
     "verified": false
   },
   {
@@ -14,7 +20,15 @@
     "pressureKPa": 101.3,
     "oxygenPercent": 21,
     "usedFor": "International Space Station (sea-level-like, 14.7 psia)",
-    "sources": [{ "title": "ECLSS testing at 14.7 psia and the exploration atmosphere (ICES 2024)", "url": "https://ntrs.nasa.gov/api/citations/20240005117/downloads/ICES-2024-128-Final%20Manuscript-No%20Tracked%20Changes.pdf", "year": 2024, "ntrsId": "20240005117" }],
+    "sources": [
+      {
+        "title": "Creating the Test Environment for Exploration Habitats (ICES-2024-128)",
+        "url": "https://ntrs.nasa.gov/api/citations/20240005117/downloads/ICES-2024-128-Final%20Manuscript-No%20Tracked%20Changes.pdf",
+        "year": 2024,
+        "ntrsId": "20240005117",
+        "locator": "p. 1, Introduction: vehicle cabins mimic Earth sea level, 21 % O₂ at 14.7 psia (101.35 kPa)"
+      }
+    ],
     "verified": false
   },
   {
@@ -24,8 +38,20 @@
     "oxygenPercent": 34,
     "usedFor": "Proposed for Moon and Mars habitats and landers: shorter prebreathe before spacewalks, at the cost of more oxygen",
     "sources": [
-      { "title": "Norcross et al., Evidence Report: Risk of Hypoxia from the Exploration Atmosphere", "url": "https://ntrs.nasa.gov/citations/20150021491", "year": 2015, "ntrsId": "20150021491" },
-      { "title": "Exploration atmosphere technical paper (8.2 psia / 34 % O₂ rationale)", "url": "https://ntrs.nasa.gov/citations/20130013505", "year": 2013, "ntrsId": "20130013505" }
+      {
+        "title": "Norcross et al., Evidence Report: Risk of Hypobaric Hypoxia from the Exploration Atmosphere",
+        "url": "https://ntrs.nasa.gov/citations/20150021491",
+        "year": 2015,
+        "ntrsId": "20150021491",
+        "locator": "p. 1 (Risk statement): 8/32 altered to 8.2 psia and 34 % O₂ in 2012"
+      },
+      {
+        "title": "Effects of the 8 psia / 32% O2 Atmosphere on the Human in the Spaceflight Environment",
+        "url": "https://ntrs.nasa.gov/citations/20130013505",
+        "year": 2013,
+        "ntrsId": "20130013505",
+        "locator": "PDF p. 11"
+      }
     ],
     "verified": false
   },
@@ -34,8 +60,16 @@
     "name": "Original EAWG recommendation (8.0 psia, 32 % O₂)",
     "pressureKPa": 55.2,
     "oxygenPercent": 32,
-    "usedFor": "First recommendation of the Exploration Atmospheres Working Group (2005), later raised to 8.2 psia / 34 %",
-    "sources": [{ "title": "Exploration atmosphere technical paper", "url": "https://ntrs.nasa.gov/citations/20130013505", "year": 2013, "ntrsId": "20130013505" }],
+    "usedFor": "First recommendation of the Exploration Atmospheres Working Group (commissioned 2005), later raised to 8.2 psia / 34 %",
+    "sources": [
+      {
+        "title": "Effects of the 8 psia / 32% O2 Atmosphere on the Human in the Spaceflight Environment",
+        "url": "https://ntrs.nasa.gov/citations/20130013505",
+        "year": 2013,
+        "ntrsId": "20130013505",
+        "locator": "PDF p. 11"
+      }
+    ],
     "verified": false
   },
   {
@@ -44,7 +78,15 @@
     "pressureKPa": 70.3,
     "oxygenPercent": 26.5,
     "usedFor": "Used on many Shuttle missions before spacewalks; a comparison point",
-    "sources": [{ "title": "Exploration atmosphere technical paper", "url": "https://ntrs.nasa.gov/citations/20130013505", "year": 2013, "ntrsId": "20130013505" }],
+    "sources": [
+      {
+        "title": "Effects of the 8 psia / 32% O2 Atmosphere on the Human in the Spaceflight Environment",
+        "url": "https://ntrs.nasa.gov/citations/20130013505",
+        "year": 2013,
+        "ntrsId": "20130013505",
+        "locator": "PDF p. 11"
+      }
+    ],
     "verified": false
   }
 ]

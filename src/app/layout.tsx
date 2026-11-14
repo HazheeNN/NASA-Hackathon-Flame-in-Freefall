@@ -1,7 +1,7 @@
 import type { Metadata } from "next";
 import { IBM_Plex_Mono, IBM_Plex_Sans } from "next/font/google";
 import Link from "next/link";
-import { FlameMark } from "@/components/flame-mark";
+import { SiteHeader } from "@/components/site-header";
 import "./globals.css";
 
 const sans = IBM_Plex_Sans({ subsets: ["latin"], weight: ["400", "600"], variable: "--font-plex-sans" });
@@ -15,18 +15,19 @@ export const metadata: Metadata = {
 export default function RootLayout({ children }: Readonly<{ children: React.ReactNode }>) {
   return (
     <html lang="en" className={`${sans.variable} ${mono.variable}`}>
-      <body className="min-h-dvh antialiased">
-        <header className="border-b border-line">
-          <div className="mx-auto flex h-14 max-w-[1440px] items-center gap-3 px-4 lg:px-10">
-            <Link href="/" className="flex items-center gap-2 font-semibold">
-              <FlameMark />
-              <span>Flame in Freefall</span>
-            </Link>
+      <body className="flex min-h-dvh flex-col antialiased">
+        <SiteHeader />
+        <main className="mx-auto w-full max-w-[1440px] flex-1 px-4 py-8 lg:px-10 lg:py-12">{children}</main>
+        <footer className="border-t border-line">
+          <div className="mx-auto flex max-w-[1440px] flex-col gap-2 px-4 py-8 text-[13px] text-muted sm:flex-row sm:justify-between lg:px-10">
+            <p>Built for the NASA Space Apps Challenge from public NASA data. Not affiliated with or endorsed by NASA.</p>
+            <p>
+              Every claim cites its source ·{" "}
+              <Link href="/sources" className="text-primary hover:underline">
+                Sources &amp; method
+              </Link>
+            </p>
           </div>
-        </header>
-        <main className="mx-auto max-w-[1440px] px-4 py-8 lg:px-10 lg:py-12">{children}</main>
-        <footer className="mx-auto max-w-[1440px] px-4 pb-10 text-sm text-muted lg:px-10">
-          Built for the NASA Space Apps Challenge from public NASA data. Not affiliated with or endorsed by NASA.
         </footer>
       </body>
     </html>

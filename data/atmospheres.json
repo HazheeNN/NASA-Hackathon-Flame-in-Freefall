@@ -88,5 +88,37 @@
       }
     ],
     "verified": true
+  },
+  {
+    "id": "apollo-1-pad",
+    "name": "Apollo 1 pad test (pure oxygen, 16.7 psi)",
+    "pressureKPa": 115.1,
+    "oxygenPercent": 100,
+    "usedFor": "The cabin atmosphere during the fatal 1967 ground test; with flammable materials in the cabin, the fire spread very rapidly. A historical comparison, not a current design",
+    "sources": [
+      {
+        "title": "55 Years Ago: The Apollo 1 Fire and its Aftermath (NASA History, John Uri)",
+        "url": "https://www.nasa.gov/history/55-years-ago-the-apollo-1-fire-and-its-aftermath/",
+        "year": 2022,
+        "locator": "'pressurized it with pure oxygen at 16.7 pounds per square inch'; 'Because of the pure oxygen atmosphere … the fire spread very rapidly'"
+      }
+    ],
+    "verified": true
+  },
+  {
+    "id": "apollo-pad-60-40",
+    "name": "Apollo launch pad after the fire (60 % O₂ / 40 % N₂, 16 psi)",
+    "pressureKPa": 110.3,
+    "oxygenPercent": 60,
+    "usedFor": "NASA's change for Apollo 7 onward on the launch pad, announced 14 March 1968 as a direct result of the Apollo 1 fire",
+    "sources": [
+      {
+        "title": "50th anniversary of NASA deciding on a mixed-gas atmosphere for Apollo, a direct result of the Apollo fire (NASA History, John Uri)",
+        "url": "https://www.nasa.gov/history/50th-anniversary-of-nasa-deciding-on-a-mixed-gas-atmosphere-for-apollo-a-direct-result-of-the-apollo-fire/",
+        "year": 2018,
+        "locator": "Paragraph 1: 60% oxygen and 40% nitrogen at a pressure of 16 psi during operations on the launch pad"
+      }
+    ],
+    "verified": true
   }
 ]

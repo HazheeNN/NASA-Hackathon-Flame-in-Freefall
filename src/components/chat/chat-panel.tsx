@@ -1,10 +1,12 @@
 "use client";
 
-import { ArrowUp, Sparkles } from "lucide-react";
+import { ArrowUp, BookOpen, Sparkles } from "lucide-react";
+import Link from "next/link";
 import { useEffect, useRef, useState } from "react";
 import { CitedText } from "@/components/ui";
 
-type Msg = { role: "user" | "assistant"; content: string; source?: string };
+type Source = { findingId: string; title: string; url: string; locator?: string; year?: number; experiment: string; experimentId: string };
+type Msg = { role: "user" | "assistant"; content: string; source?: string; sources?: Source[] };
 
 const SOURCE: Record<string, string> = {
   prepared: "Prepared answer, reviewed by the team",
@@ -38,9 +40,9 @@ export function ChatPanel({ suggestions, autoFocus = false, compact = false }: {
         headers: { "content-type": "application/json" },
         body: JSON.stringify({ messages: next.slice(-6).map(({ role, content }) => ({ role, content: content.slice(0, 2000) })) }),
       });
-      const data = (await res.json()) as { answer: string; provider: string; model?: string };
+      const data = (await res.json()) as { answer: string; provider: string; model?: string; sources?: Source[] };
       const source = SOURCE[data.provider] ?? `AI answer (${data.model ?? data.provider} via ${data.provider}), checked for citations`;
-      setMsgs([...next, { role: "assistant", content: data.answer, source }]);
+      setMsgs([...next, { role: "assistant", content: data.answer, source, sources: data.sources ?? [] }]);
     } catch {
       setMsgs([...next, { role: "assistant", content: "The assistant can't be reached right now. The prepared answers on the Ask page still work.", source: "Offline" }]);
     } finally {
@@ -75,6 +77,7 @@ export function ChatPanel({ suggestions, autoFocus = false, compact = false }: {
               <div className="rounded-2xl rounded-bl-sm border border-line bg-surface px-4 py-3 text-[15px] leading-relaxed">
                 <CitedText text={m.content} />
               </div>
+              {m.sources && m.sources.length > 0 && <SourceList sources={m.sources} />}
               {m.source && (
                 <p className="inline-flex items-center gap-1.5 px-1 text-[12px] text-muted">
                   <Sparkles size={12} strokeWidth={1.75} aria-hidden className="text-primary" /> {m.source}
@@ -126,5 +129,52 @@ export function ChatPanel({ suggestions, autoFocus = false, compact = false }: {
         question is sent to that service. Unchecked claims are never shown.
       </p>
     </div>
+  );
+}
+
+// Where the answer comes from: each cited finding's NASA document (with page), linked to the
+// source itself and to its experiment on the Sources page.
+function SourceList({ sources }: { sources: Source[] }) {
+  // One line per document page; findings that cite the same page are listed together.
+  const groups = new Map<string, Source & { ids: string[] }>();
+  for (const s of sources) {
+    const key = `${s.url}|${s.locator ?? ""}`;
+    const g = groups.get(key);
+    if (g) {
+      if (!g.ids.includes(s.findingId)) g.ids.push(s.findingId);
+    } else groups.set(key, { ...s, ids: [s.findingId] });
+  }
+  const list = [...groups.values()];
+  // PDFs open at the cited page ("PDF p. 31" → #page=31).
+  const href = (s: Source) => {
+    const page = s.locator?.match(/PDF p\. (\d+)/)?.[1];
+    return page && s.url.toLowerCase().includes(".pdf") ? `${s.url}#page=${page}` : s.url;
+  };
+  return (
+    <details className="rounded-xl border border-line bg-page/40 px-3 py-2 text-[13px]">
+      <summary className="cursor-pointer font-semibold text-primary hover:text-primary-hover">
+        Where this comes from ({list.length} NASA source{list.length === 1 ? "" : "s"})
+      </summary>
+      <ul className="mt-2 space-y-2">
+        {list.map((s) => (
+          <li key={`${s.url}|${s.locator}`} className="space-y-0.5">
+            <a href={href(s)} target="_blank" rel="noreferrer" className="inline-flex items-start gap-1.5 text-fg hover:text-primary hover:underline">
+              <BookOpen size={14} strokeWidth={1.75} aria-hidden className="mt-0.5 shrink-0 text-primary" />
+              <span>
+                {s.title}
+                {s.year ? ` (${s.year})` : ""}
+              </span>
+            </a>
+            <p className="pl-5 text-muted">
+              <span className="font-mono">{s.ids.join(", ")}</span>
+              {s.locator ? ` · ${s.locator}` : ""} ·{" "}
+              <Link href={`/sources#${s.experimentId}`} className="text-primary hover:underline">
+                {s.experiment} on our Sources page
+              </Link>
+            </p>
+          </li>
+        ))}
+      </ul>
+    </details>
   );
 }

@@ -43,3 +43,12 @@ describe("provider chain (simulated AI, no network)", () => {
     expect(r?.text).toBe("Cited [F-001].");
   });
 });
+
+describe("chat sources", () => {
+  it("returns the NASA document and page for each cited finding", async () => {
+    const { sourcesFor } = await import("@/lib/chat/knowledge");
+    const s = sourcesFor(["F-001", "F-999"]);
+    expect(s.length).toBeGreaterThan(0);
+    expect(s.every((x) => x.findingId === "F-001" && x.url.startsWith("http") && x.title && x.experimentId)).toBe(true);
+  });
+});

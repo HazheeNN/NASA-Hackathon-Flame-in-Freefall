@@ -20,8 +20,30 @@ const findingLine = (f: (typeof findings)[number]) => {
     .filter(Boolean)
     .join(", ");
   const exp = experimentById.get(f.experimentId);
-  return `${f.id} (${exp?.acronym ?? exp?.name ?? f.experimentId}${cond ? `; ${cond}` : ""}): ${f.statement} Why it matters: ${f.safetyImplication}`;
+  const src = f.sources.map((s) => `${s.title}${s.year ? ` (${s.year})` : ""}${s.locator ? `, ${s.locator}` : ""}`).join("; ");
+  return `${f.id} (${exp?.acronym ?? exp?.name ?? f.experimentId}${cond ? `; ${cond}` : ""}): ${f.statement} Why it matters: ${f.safetyImplication} Source: ${src}`;
 };
+
+export type ChatSource = { findingId: string; title: string; url: string; locator?: string; year?: number; experiment: string; experimentId: string };
+
+// The NASA documents behind the cited findings, shown under each chat answer and linked to /sources.
+export function sourcesFor(ids: string[]): ChatSource[] {
+  const byId = new Map(visible(findings).map((f) => [f.id, f]));
+  return ids.flatMap((id) => {
+    const f = byId.get(id);
+    if (!f) return [];
+    const exp = experimentById.get(f.experimentId);
+    return f.sources.map((s) => ({
+      findingId: id,
+      title: s.title,
+      url: s.url,
+      locator: s.locator,
+      year: s.year,
+      experiment: exp?.acronym ?? exp?.name ?? f.experimentId,
+      experimentId: f.experimentId,
+    }));
+  });
+}
 
 export function knowledgeFor(question: string) {
   const pool = visible(findings);

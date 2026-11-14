@@ -1,7 +1,7 @@
 import { z } from "zod";
 import { allow, cleanCitations, isGrounded } from "@/lib/chat/guard";
 import { CHAT_INSTRUCTIONS } from "@/lib/chat/instructions";
-import { knowledgeFor, preparedAnswer } from "@/lib/chat/knowledge";
+import { knowledgeFor, preparedAnswer, sourcesFor } from "@/lib/chat/knowledge";
 import { askProviders } from "@/lib/chat/providers";
 
 // POST /api/chat: the live assistant. Groq → Gemini (AI_ORDER) → closest prepared answer.
@@ -39,12 +39,12 @@ export async function POST(request: Request) {
   });
   if (reply && checked) {
     const c = checked as { text: string; ids: string[] };
-    return Response.json({ answer: c.text, provider: reply.provider, model: reply.model, findingIds: c.ids });
+    return Response.json({ answer: c.text, provider: reply.provider, model: reply.model, findingIds: c.ids, sources: sourcesFor(c.ids) });
   }
 
   const prepared = preparedAnswer(question);
   if (prepared) {
-    return Response.json({ answer: prepared.answer, provider: "prepared", question: prepared.question, findingIds: prepared.findingIds });
+    return Response.json({ answer: prepared.answer, provider: "prepared", question: prepared.question, findingIds: prepared.findingIds, sources: sourcesFor(prepared.findingIds) });
   }
   return Response.json({
     answer: "I can't answer that right now from our verified NASA data. Try rephrasing, or browse the prepared answers on the Ask page.",

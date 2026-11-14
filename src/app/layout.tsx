@@ -2,7 +2,7 @@ import type { Metadata } from "next";
 import { DM_Mono, Public_Sans } from "next/font/google";
 import Link from "next/link";
 import { SiteHeader } from "@/components/site-header";
-import { searchIndex } from "@/lib/search";
+import { chatSuggestions, searchIndex } from "@/lib/search";
 import "./globals.css";
 
 // NASA Horizon Design System typefaces (DESIGN.md › Typography).
@@ -18,7 +18,7 @@ export default function RootLayout({ children }: Readonly<{ children: React.Reac
   return (
     <html lang="en" className={`${sans.variable} ${mono.variable}`}>
       <body className="flex min-h-dvh flex-col antialiased">
-        <SiteHeader index={searchIndex()} />
+        <SiteHeader index={searchIndex()} suggestions={chatSuggestions()} />
         <main className="mx-auto w-full max-w-[1440px] flex-1 px-4 py-8 lg:px-10 lg:py-12">{children}</main>
         <footer className="border-t border-line">
           <div className="mx-auto flex max-w-[1440px] flex-col gap-2 px-4 py-8 text-[13px] text-muted sm:flex-row sm:justify-between lg:px-10">

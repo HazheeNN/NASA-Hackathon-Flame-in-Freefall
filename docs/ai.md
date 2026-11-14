@@ -113,6 +113,18 @@ These go into the answer library, and are the check for answer quality. Target: 
 - **No custom ML model.** Small data, 2 days, and judges score validity.
 - **Prompt changes are code changes:** they go through PRs, and the affected outputs are regenerated and reviewed.
 
+## Live chat (`/api/chat`, decision 2026-11-15)
+
+The one place the site calls an AI while running. Opened from the Ask button (Ctrl/⌘ K, "Chat with the assistant" tab) and at the top of `/ask`.
+
+- **Providers, in order:** `AI_ORDER` in Vercel (default `groq,gemini`). Groq runs Meta's Llama (`GROQ_MODEL`, default `llama-3.3-70b-versatile`); Google Gemini is the backup (`GEMINI_MODEL`, default `gemini-2.5-flash`). Model names change: if a provider starts failing, check its console and set the model variable. A provider without a key is skipped. Code: `src/lib/chat/providers.ts`.
+- **Knowledge:** per question, the 14 verified findings sharing the most words with the conversation, plus the formulas and worlds (`src/lib/chat/knowledge.ts`). Nothing else.
+- **Rules** (same for every provider): `src/lib/chat/instructions.ts`. Answer only from the findings, cite `[F-###]`, say "Our verified NASA data doesn't cover that." when it doesn't, flag partial gravity as barely tested, refuse off-topic, at most 120 words.
+- **Checks** (`src/lib/chat/guard.ts`, tested in `tests/chat.test.ts` and `tests/chat-providers.test.ts`): citations to findings the model wasn't given are removed; an answer with no valid citation is rejected (the next provider is tried) unless it says the data doesn't cover it or declines an off-topic question. Questions ≤ 600 characters, last 6 turns kept, 12 questions per visitor per 10 minutes, 15 s timeout per provider.
+- **Fallback:** if no provider gives a usable answer, the closest prepared answer (`data/generated/answers.json`) is shown, labelled "Prepared answer, reviewed by the team"; otherwise an honest "can't answer".
+- **Keys:** only in Vercel (Production + Preview). Never in the repo, chat or browser. No credit card on the accounts.
+- **Before the demo:** ask the 10 golden questions and 2 off-topic ones on the live site; check every chip opens a finding that supports the sentence.
+
 ## Mode B: if we get an API key
 
 Nothing above changes; this is extra.

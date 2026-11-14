@@ -14,6 +14,14 @@ Small surface: a static site with no secrets, no accounts, no runtime API calls 
 | Personal data | None collected: no accounts, no analytics, Ask search runs in the browser | ✅ |
 | Content Security Policy | Not set yet; add a simple CSP before the final deploy if time allows (easy: no third-party hosts at runtime) | ⏳ optional |
 
+## Live chat keys (decision 2026-11-15)
+
+- `GROQ_API_KEY` and `GEMINI_API_KEY` live only in Vercel's environment variables (Production + Preview); the server route `/api/chat` reads them; they never reach the browser, the repo or the model.
+- No credit card on the Groq or Google accounts, so the worst case is a used-up free quota, never a bill.
+- Abuse: 12 questions per visitor per 10 minutes, 600-character questions, uncited answers dropped.
+- Visitors' questions are sent to Groq or Google; the chat says so under the input.
+- After the event: delete both keys in the providers' dashboards.
+
 ## If we switch to mode B (API key)
 
 Then these come back, and must be done before the key goes anywhere:

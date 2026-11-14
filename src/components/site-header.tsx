@@ -6,6 +6,7 @@ import { usePathname } from "next/navigation";
 import { useEffect, useState } from "react";
 import type { SearchItem } from "@/lib/search";
 import { AskSearch } from "./ask-search";
+import { ChatPanel } from "./chat/chat-panel";
 import { FlameMark } from "./flame-mark";
 
 const NAV = [
@@ -20,10 +21,11 @@ const NAV = [
 
 const isActive = (pathname: string, href: string) => (href === "/" ? pathname === "/" : pathname.startsWith(href));
 
-export function SiteHeader({ index }: { index: SearchItem[] }) {
+export function SiteHeader({ index, suggestions }: { index: SearchItem[]; suggestions: string[] }) {
   const pathname = usePathname();
   const [menuOn, setMenuOn] = useState<string | null>(null);
   const [askOpen, setAskOpen] = useState(false);
+  const [askTab, setAskTab] = useState<"chat" | "search">("chat");
   const open = menuOn === pathname;
 
   useEffect(() => {
@@ -99,13 +101,35 @@ export function SiteHeader({ index }: { index: SearchItem[] }) {
           <div className="w-full max-w-2xl rounded-2xl border border-line bg-surface p-5 shadow-2xl" onClick={(e) => e.stopPropagation()}>
             <div className="mb-4 flex items-center justify-between">
               <p className="eyebrow inline-flex items-center gap-2">
-                <MessageSquareText size={14} strokeWidth={1.75} aria-hidden /> Ask · prepared answers and NASA sources
+                <MessageSquareText size={14} strokeWidth={1.75} aria-hidden /> Ask
               </p>
               <button type="button" onClick={() => setAskOpen(false)} aria-label="Close" className="rounded-full p-1 text-muted hover:text-fg">
                 <X size={20} strokeWidth={1.75} aria-hidden />
               </button>
             </div>
-            <AskSearch items={index} autoFocus onNavigate={() => setAskOpen(false)} />
+            <div role="tablist" aria-label="Ask" className="mb-4 flex gap-2">
+              {(
+                [
+                  ["chat", "Chat with the assistant"],
+                  ["search", "Search the library"],
+                ] as const
+              ).map(([id, label]) => (
+                <button
+                  key={id}
+                  role="tab"
+                  aria-selected={askTab === id}
+                  onClick={() => setAskTab(id)}
+                  className={`h-9 rounded-full px-3.5 text-[13px] font-semibold ${askTab === id ? "bg-fg text-page" : "bg-raised text-fg hover:bg-line"}`}
+                >
+                  {label}
+                </button>
+              ))}
+            </div>
+            {askTab === "chat" ? (
+              <ChatPanel suggestions={suggestions} autoFocus compact />
+            ) : (
+              <AskSearch items={index} autoFocus onNavigate={() => setAskOpen(false)} />
+            )}
           </div>
         </div>
       )}

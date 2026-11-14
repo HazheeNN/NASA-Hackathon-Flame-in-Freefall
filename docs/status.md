@@ -63,6 +63,11 @@ Worlds: 4 · atmospheres: 7 · formulas: 2 · FLEX tests: 276 (all verified).
 
 ## Log
 
+### 2026-11-15 · live AI chat (Shera + Claude)
+- Done: `/api/chat` with Groq (Llama) → Gemini → closest prepared answer, order set by `AI_ORDER`; same rules for every provider; citation check (invented IDs removed, uncited answers rejected); per-visitor limit; chat window in the Ask dialog ("Chat with the assistant" tab) and on `/ask`; decision, AI, security, architecture docs; 7 new tests (23 total).
+- Tested: without keys (prepared-answer fallback, off-topic and invalid requests), a 3-question conversation in the browser at 360 and 1440 px with no console errors; the provider chain with a simulated AI (rate limit → backup, uncited → backup).
+- Not tested: the real Groq and Gemini calls (this cloud session can't reach their hosts): test on the Vercel preview, where the keys are.
+
 ### 2026-11-14 · independent second review (Hazheen + Claude)
 - Done: a fresh Claude agent reviewed all findings, insights and answers against the sources (26/12/1, 4/7/0, 15/8/0 pass/minor/issue); every point re-checked and fixed (`docs/verification/2026-11-14-independent-review.md`); 66 quotes re-matched; files restamped.
 - Not done: the human spot-check list still wants a person.

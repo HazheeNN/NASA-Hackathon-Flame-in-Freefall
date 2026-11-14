@@ -71,6 +71,7 @@ docs/               everything a teammate or Claude needs (start at CLAUDE.md)
 | `/gaps` | Gaps map (SVG) + what NASA should test next | Static shell + client |
 | `/insights`, `/insights/[id]` | Ranked insights with filters and confidence meter; detail | Static |
 | `/findings`, `/findings/[id]` | Findings explorer + FLEX dataset table (`?tab=datasets`); finding detail | Static shell + client |
+| `/api/chat` | Live chat (POST): free AI providers in `AI_ORDER`, citation checks, prepared-answer fallback (`docs/ai.md` › Live chat) | Dynamic (server) |
 | `/ask` | Question library search (also a dialog on every page, Ctrl/⌘ K) | Static shell + client |
 | `/formulas` | Every NASA formula: what it is for, equation and symbols, how we use it, worked example, valid range and limits, where it appears, citation; the lab's "How is this calculated?" links here | Static |
 | `/sources` | Method, rubric, formulas, datasets, cabin air, experiments, image credits | Static |

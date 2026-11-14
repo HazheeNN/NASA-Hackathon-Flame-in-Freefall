@@ -1,21 +1,28 @@
 import { AskSearch } from "@/components/ask-search";
+import { ChatPanel } from "@/components/chat/chat-panel";
 import { AiLabel, CitedText, Label, MissionChip, PageHeader } from "@/components/ui";
 import { answers } from "@/lib/data";
-import { searchIndex } from "@/lib/search";
+import { chatSuggestions, searchIndex } from "@/lib/search";
 
 export const metadata = { title: "Ask · Flame in Freefall" };
 
 // F7: the question library. Prepared, reviewed SI answers (data/generated/answers.json) plus
-// every NASA source, searchable as you type. No live AI call (docs/ai.md › Mode A).
+// every NASA source, searchable as you type; plus the live assistant (decision 2026-11-15).
 export default function AskPage() {
   return (
     <div className="mx-auto max-w-3xl space-y-8">
       <PageHeader
-        eyebrow="Prepared by our SI, reviewed by the team"
+        eyebrow="Answers from verified NASA findings"
         title="Ask"
-        lead="Questions mission planners and judges ask, answered from cited NASA findings. Search as you type; open the same search anywhere with Ctrl/⌘ K."
+        lead="Chat with the assistant, or search the questions mission planners and judges ask. Every fact cites its NASA finding. Open it anywhere with Ctrl/⌘ K."
       />
-      <AskSearch items={searchIndex()} autoFocus />
+      <section aria-label="Chat" className="rounded-2xl border border-line bg-surface/60 p-5">
+        <ChatPanel suggestions={chatSuggestions()} />
+      </section>
+      <section aria-label="Search the library" className="space-y-3">
+        <h2 className="text-[22px] font-semibold">Search the library</h2>
+        <AskSearch items={searchIndex()} />
+      </section>
 
       {answers.answers.length > 0 && (
         <section aria-labelledby="all-answers" className="space-y-4">

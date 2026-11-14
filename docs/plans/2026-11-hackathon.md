@@ -87,6 +87,9 @@ On every insight and answer, computed from the data: findings, experiments, veri
 ### WP7: Sources and method (F9)
 All sources from the data; the SI diagram; the ranking rubric; AI disclosure.
 
+### WP10: UI/UX polish → `docs/plans/2026-11-15-ui-polish.md`
+The Flame Lab first (WP-L1…L7), then every panel (WP-P0…P6); each WP is one PR with steps, files and checks.
+
 ### WP8: Submission (`docs/submission.md`)
 Project page, video, slides, links; checked in a private window.
 

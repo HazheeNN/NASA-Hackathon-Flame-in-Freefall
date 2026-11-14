@@ -26,11 +26,13 @@ Read this first. Update it at the end of every session (`handoff` skill). Newest
 - [ ] **Ask library:** write 20–30 questions incl. the 10 golden ones (`docs/ai.md`), then SI job 3 answers them with citations.
 - [ ] Review all SI output with the checklist in `docs/ai.md`.
 
-### 3. Website polish (feedback section by section)
-- [ ] Review the Flame Lab on a laptop: flame look, layout, world cards, colours.
+### 3. Website polish: follow `docs/plans/2026-11-15-ui-polish.md`
+Each work package is one PR, done by one person's Claude Code session; claim it in "Now". The Flame Lab track comes first (F1 → L1 → L2 … L7, where L2 can run in parallel), then the panels (P0 … P6). The plan has the exact steps, files, checks and a prompt to paste.
+- [ ] WP-F1 shared pieces · [ ] WP-L1 layout · [ ] WP-L2 flame look · [ ] WP-L3 world rail + compare + URL · [ ] WP-L4 verdict · [ ] WP-L5 controls (fixes the Apollo 100 % O₂ slider bug) · [ ] WP-L6 fire-only + motion · [ ] WP-L7 "what you just saw"
+- [ ] WP-P0 header/nav · [ ] WP-P1 gaps map · [ ] WP-P2 insights · [ ] WP-P3 findings · [ ] WP-P4 Ask · [ ] WP-P5 formulas/sources/about · [ ] WP-P6 final pass
 - [ ] Check on a real projector, in Safari and on a tablet (not tested yet).
 - [ ] Add solids and gas flames (BASS, Saffire, ACME) to the fuel choices once their data is verified.
-- [ ] Verify the 3 formulas on `/formulas` (FX-01–03), then add more (each needs where used, steps, a worked example and limits in `data/formulas.json`).
+- [ ] FX-01–03 are verified; add more formulas if time allows (each needs where used, steps, a worked example and limits in `data/formulas.json`).
 - [ ] Optional: real NASA flame photos inside the lab (FLEX droplet, Saffire), credited.
 
 ### 4. Deployment and housekeeping
@@ -62,6 +64,9 @@ Read this first. Update it at the end of every session (`handoff` skill). Newest
 Worlds: 4 · atmospheres: 7 · formulas: 2 · FLEX tests: 276 (all verified).
 
 ## Log
+
+### 2026-11-14 · UI/UX polish plan (Hazheen + Claude)
+Wrote `docs/plans/2026-11-15-ui-polish.md` from screenshots of every page at 1440 and 360 px and the judging criteria. Main problems: the Flame Lab doesn't fit above the fold, the flame reads as a small ring, the columns are uneven, the world picker sits two screens down, the verdict is buried, and the Apollo presets (100 % / 60 % O₂) go past the 45 % slider. Nothing is built yet. 15 work packages, with an order for 3 people and a cut line.
 
 ### 2026-11-14 · independent second review (Hazheen + Claude)
 - Done: a fresh Claude agent reviewed all findings, insights and answers against the sources (26/12/1, 4/7/0, 15/8/0 pass/minor/issue); every point re-checked and fixed (`docs/verification/2026-11-14-independent-review.md`); 66 quotes re-matched; files restamped.

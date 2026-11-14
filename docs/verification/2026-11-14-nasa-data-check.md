@@ -16,3 +16,15 @@ Every table in `data/` compared with the NASA documents it cites, downloaded str
 - FLEX: `pdftotext -layout` on the report's pp. 19–40, every `FLEX–NNN` line matched to its JSON row field by field. This is independent of `scripts/flex-table-ix.mts`'s parser.
 - Worlds and atmospheres: NSSDC fact sheets (HTML) and NTRS PDFs, read at the cited pages.
 - Experiments: NTRS search API, then the abstracts of the matching papers.
+
+## Follow-up: the four missing sources (2026-11-14)
+
+All four now cite a NASA source with a page (`data/experiments.json`), still `verified: false` for a teammate's sign-off. Found through the NTRS API and nasa.gov in this cloud session; Agent Reach wasn't needed (and isn't installed in cloud sessions).
+
+| Experiment | Source | What it confirms, and what changed |
+|---|---|---|
+| **FLEX-2** | NTRS 20210022617 (Nayagam, Dietrich, Williams 2021), PDF p. 2; NTRS 20205008449, p. 2 | Part of the FLEX series on the ISS, 2008–2016, on the CIR + MDCA. Years changed from "2010s" to that. **Fuels (heptane, decane, mixtures) not yet confirmed.** |
+| **CFI** | Same two papers: p. 2 ("Cool Flame Investigation (CFI): ISS 2017"), p. 13 (warm flames at elevated pressures) | **Corrected:** it was a **droplet** experiment on the MDCA in **2017**, not gaseous fuels "late 2010s onward". NASA's name is *Cool Flame Investigation*. |
+| **FLARE** | NTRS 20160001023 (Juarez et al., NASA White Sands, 2016), p. 1, 2, 4 | JAXA-led with NASA and ESA, on the ISS Japanese Experiment Module (Kibo). Goal: compare NASA-STD-6001 Test 1 with oxygen limits measured in orbit. Ground work 2015–2019. **Flight dates still unconfirmed** (JAXA's own site would have them; not reachable from this session). Name corrected to *Reduced-g*. |
+| **Mir 1997** | NASA History, "25 Years Ago: Fire Aboard Space Station Mir" (John Uri, 2022) | 24 Feb 1997, solid-fuel oxygen generator in the Kvant-1 module, six crew, flame for several minutes, smoke, one Soyuz route blocked; NASA calls it the worst in-orbit fire in spaceflight history. Summary reworded to match. |
+| **ACME** (extra) | NTRS 20250002347 (Stocker 2025 poster) | Gaseous-fuel tests ran **2017–2022**: years changed from "2017 to 2020". |

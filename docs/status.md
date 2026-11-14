@@ -41,6 +41,11 @@ Worlds: 4 · atmospheres: 5 (all unverified seeds).
 - Tested: typecheck, lint, 15 tests, build, data:validate, DESIGN.md lint; headless browser at 360 and 1440 px on every page: no console errors, no horizontal overflow.
 - Not tested: on a real GPU/projector (headless used software WebGL), Safari, a production (VERCEL_ENV=production) deploy showing only verified data.
 
+### 2026-11-14 · missing sources found (Hazheen + Claude)
+- Done: FLEX-2, CFI, FLARE and Mir 1997 now cite NASA sources with pages; corrected CFI (droplet experiment, 2017), FLARE name and partners, Mir details, ACME years (2017–2022). Report: `docs/verification/2026-11-14-nasa-data-check.md` › Follow-up.
+- Not confirmed: FLEX-2 fuels, FLARE flight dates (JAXA site not reachable from the cloud session). Nothing set to verified.
+- Next: a teammate signs off; the 14 experiments now all have real sources.
+
 ### 2026-11-14 · data checked against NASA (Hazheen + Claude)
 - Done: every table compared with its NASA source (`docs/verification/2026-11-14-nasa-data-check.md`). FLEX Table IX: all 276 rows match the PDF. Worlds and exploration atmospheres match. Fixed: Earth air values, 3 wrong source titles, SAME years, and 8 experiments now cite real NTRS papers instead of search links. Nothing set to verified.
 - Not confirmed: FLEX-2, CFI, FLARE, Mir 1997 sources; a few experiment years; a Moon 0.16 g flammability source.

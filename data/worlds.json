@@ -54,9 +54,10 @@
         "locator": "Surface gravity 1.62 m/s² ÷ 9.80665"
       },
       {
-        "title": "Material flammability in partial gravity (0.16 g Moon, 0.38 g Mars)",
+        "title": "Physical and Chemical Aspects of Fire Suppression in Extraterrestrial Environments",
         "url": "https://ntrs.nasa.gov/citations/20010074098",
-        "ntrsId": "20010074098"
+        "ntrsId": "20010074098",
+        "year": 2001
       }
     ],
     "verified": false
@@ -79,9 +80,11 @@
         "locator": "Surface gravity (mean) 3.73 m/s² ÷ 9.80665"
       },
       {
-        "title": "Material flammability in partial gravity (0.16 g Moon, 0.38 g Mars)",
+        "title": "Physical and Chemical Aspects of Fire Suppression in Extraterrestrial Environments",
         "url": "https://ntrs.nasa.gov/citations/20010074098",
-        "ntrsId": "20010074098"
+        "ntrsId": "20010074098",
+        "year": 2001,
+        "locator": "p. 1 (partial-gravity Martian environments, 0.38 g)"
       }
     ],
     "verified": false

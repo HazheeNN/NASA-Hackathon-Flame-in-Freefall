@@ -29,6 +29,7 @@ Our entry for the **NASA Space Apps Challenge, "Flame in Freefall"**: an interac
 | Decisions and why | `docs/decisions.md` |
 | How the 3 of us work together | `docs/team.md` |
 | Working with Claude on limited Pro usage | `docs/claude-workflow.md` |
+| Web research rules (Agent Reach, installed per laptop) | `.claude/skills/web-research/SKILL.md` |
 | Security and open owner actions | `docs/security.md` |
 | Setup steps (laptops, Vercel, NASA accounts), demo-day steps | `docs/runbook.md` |
 | Submission: project page text, video script, slides, checklist | `docs/submission.md` |
@@ -41,7 +42,7 @@ Read the matching doc before changing anything non-trivial; they record decision
 
 ## Non-obvious rules
 
-- **Every claim has a source.** Every finding cites a NASA (or partner agency) source with a page/section; every AI insight and prepared answer cites finding IDs (`F-012`). No source, no claim. This is our credibility and our pitch.
+- **Every claim has a source.** Every finding cites a NASA (or partner agency) source with a page/section; every AI insight and prepared answer cites finding IDs (`F-012`). No source, no claim. This is our credibility and our pitch. Web finds (videos, posts, blogs, e.g. via Agent Reach) are leads to a NASA source, never the source.
 - **Unverified is labelled, never hidden.** `verified: false` until a teammate checked the finding against the paper (`docs/data.md` › Verification). Claude-extracted findings start unverified. The UI always shows the badge.
 - **The SI writes to files, people check, the app reads files.** Insights and prepared answers come only from running the SI jobs in `prompts/` (`si-run` skill) into `data/generated/` (committed), each stamped with the `findingsHash` it was made from. Never hand-edit generated output (regenerate it), and never write insight or answer text directly in components. The app makes no AI calls at runtime.
 - **One data shape:** `src/lib/schema.ts`. Change it there, update `docs/data.md`, run `npm run data:validate`. Bad data fails the build on purpose.

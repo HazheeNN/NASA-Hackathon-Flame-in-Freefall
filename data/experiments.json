@@ -52,7 +52,7 @@
     "fuels": ["methane", "ethylene", "other gaseous fuels"],
     "summary": "A set of gaseous-flame studies (including Coflow Laminar Diffusion Flame, Flame Design, Structure and Response of Spherical Diffusion Flames, Electric-Field Effects, and the Burning Rate Emulator) on soot, flame structure and extinction limits.",
     "themes": ["soot-radiation", "extinction", "flammability-limits"],
-    "sources": [{ "title": "NTRS search: ACME Advanced Combustion via Microgravity Experiments", "url": "https://ntrs.nasa.gov/search?q=Advanced%20Combustion%20via%20Microgravity%20Experiments%20ACME" }],
+    "sources": [{ "title": "Advanced Combustion via Microgravity Experiments (ACME) on the International Space Station (ISS)", "url": "https://ntrs.nasa.gov/citations/20210015913", "year": 2021, "ntrsId": "20210015913", "locator": "Abstract: CIR, testing began 2017" }],
     "verified": false
   },
   {
@@ -66,7 +66,7 @@
     "fuels": ["PMMA (acrylic)", "cotton-fiberglass fabric", "paper"],
     "summary": "Burned small solid samples in a slow, controlled airflow to see how flames spread and when they go out, and tested putting them out with nitrogen.",
     "themes": ["flame-spread", "extinction", "suppression", "materials"],
-    "sources": [{ "title": "NTRS search: Burning and Suppression of Solids BASS", "url": "https://ntrs.nasa.gov/search?q=Burning%20and%20Suppression%20of%20Solids%20BASS%20microgravity" }],
+    "sources": [{ "title": "Thickness and Fuel Preheating Effects on Material Flammability in Microgravity from the BASS Experiment", "url": "https://ntrs.nasa.gov/citations/20140011099", "year": 2013, "ntrsId": "20140011099", "locator": "Abstract: Microgravity Science Glovebox, air flow up to 40 cm/s" }, { "title": "Burning and Suppression of Solids–II (BASS-II) Summary Report", "url": "https://ntrs.nasa.gov/citations/20210011385", "year": 2021, "ntrsId": "20210011385" }],
     "verified": false
   },
   {
@@ -80,7 +80,7 @@
     "fuels": ["spacecraft materials (solids)"],
     "summary": "A facility for igniting and burning solid materials under controlled oxygen, pressure and airflow, to map when spacecraft materials can ignite and keep burning.",
     "themes": ["ignition", "flame-spread", "flammability-limits", "materials"],
-    "sources": [{ "title": "NTRS search: Solid Fuel Ignition and Extinction SoFIE", "url": "https://ntrs.nasa.gov/search?q=Solid%20Fuel%20Ignition%20and%20Extinction%20SoFIE" }],
+    "sources": [{ "title": "Solid Fuel Ignition and Extinction (SoFIE) Project on ISS", "url": "https://ntrs.nasa.gov/citations/20200000361", "year": 2019, "ntrsId": "20200000361", "locator": "Abstract: insert for the Combustion Integrated Rack" }],
     "verified": false
   },
   {
@@ -94,7 +94,7 @@
     "fuels": ["cotton-fiberglass fabric", "Nomex", "PMMA", "silicone", "other spacecraft materials"],
     "summary": "The first large-scale fires in space, lit inside an empty cargo vehicle after it left the station. Measured how flames grow on spacecraft-sized samples and how quickly smoke and heat change the cabin air. No crew on board.",
     "themes": ["flame-spread", "materials", "smoke-detection", "spacecraft-atmosphere"],
-    "sources": [{ "title": "NTRS search: Saffire spacecraft fire safety experiment", "url": "https://ntrs.nasa.gov/search?q=Saffire%20spacecraft%20fire%20safety%20experiment%20Cygnus" }],
+    "sources": [{ "title": "The Spacecraft Fire Experiment (Saffire) - Objectives, Development and Status", "url": "https://ntrs.nasa.gov/citations/20170001636", "year": 2016, "ntrsId": "20170001636", "locator": "Abstract: Saffire-I launched 2016 on Cygnus" }, { "title": "Preliminary Results from the Saffire VI Experiment", "url": "https://ntrs.nasa.gov/citations/20240007488", "year": 2024, "ntrsId": "20240007488", "locator": "Abstract: last flight, on an orbiting Cygnus" }],
     "verified": false
   },
   {
@@ -104,11 +104,11 @@
     "agency": "NASA",
     "platform": "ISS",
     "facility": "Microgravity Science Glovebox",
-    "years": "Late 2000s",
+    "years": "2007 (SAME) and 2010 (SAME-2)",
     "fuels": ["overheated spacecraft materials (smoke sources)"],
     "summary": "Measured the size of smoke particles from overheated spacecraft materials in microgravity, to judge how well spacecraft smoke detectors would see them.",
     "themes": ["smoke-detection", "materials"],
-    "sources": [{ "title": "NTRS search: Smoke Aerosol Measurement Experiment", "url": "https://ntrs.nasa.gov/search?q=Smoke%20Aerosol%20Measurement%20Experiment%20SAME" }],
+    "sources": [{ "title": "Particle and Smoke Detection on ISS for Next Generation Smoke Detectors", "url": "https://ntrs.nasa.gov/citations/20070031686", "year": 2007, "ntrsId": "20070031686" }, { "title": "Particle Morphology and Size Results from the Smoke Aerosol Measurement Experiment-2", "url": "https://ntrs.nasa.gov/citations/20130000422", "year": 2012, "ntrsId": "20130000422", "locator": "Abstract: SAME-2 on Expedition 24, July–September 2010; first flight Expedition 15" }],
     "verified": false
   },
   {
@@ -161,7 +161,7 @@
     "fuels": ["candidate spacecraft materials"],
     "summary": "The ground test NASA uses to decide which materials may fly. A key open question for fire safety is how well this 1 g test predicts burning in microgravity and partial gravity.",
     "themes": ["materials", "flammability-limits", "partial-gravity"],
-    "sources": [{ "title": "NTRS search: NASA-STD-6001 upward flame propagation microgravity", "url": "https://ntrs.nasa.gov/search?q=NASA-STD-6001%20upward%20flame%20propagation%20microgravity" }],
+    "sources": [{ "title": "Organizing Questions for Reduced-Gravity Flammability", "url": "https://ntrs.nasa.gov/citations/20040142368", "year": 2004, "ntrsId": "20040142368", "locator": "Abstract: is NASA-STD-6001 Test 1 conservative in reduced gravity?" }],
     "verified": false
   },
   {
@@ -174,7 +174,7 @@
     "fuels": ["cabin materials in pure oxygen"],
     "summary": "A fire in a pure-oxygen cabin during a ground test killed three astronauts and reshaped how NASA treats cabin atmosphere and flammable materials. Context, not microgravity data.",
     "themes": ["incidents", "spacecraft-atmosphere", "materials"],
-    "sources": [{ "title": "NTRS search: Apollo 204 review board report", "url": "https://ntrs.nasa.gov/search?q=Apollo%20204%20review%20board%20fire" }],
+    "sources": [{ "title": "Apollo 204 Review Board activities: Second interim report", "url": "https://ntrs.nasa.gov/citations/19670009428", "year": 1967, "ntrsId": "19670009428" }],
     "verified": false
   },
   {

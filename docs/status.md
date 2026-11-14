@@ -34,6 +34,16 @@ Worlds: 4 · atmospheres: 5 (all unverified seeds).
 
 ## Log
 
+### 2026-11-14 · data checked against NASA (Hazheen + Claude)
+- Done: every table compared with its NASA source (`docs/verification/2026-11-14-nasa-data-check.md`). FLEX Table IX: all 276 rows match the PDF. Worlds and exploration atmospheres match. Fixed: Earth air values, 3 wrong source titles, SAME years, and 8 experiments now cite real NTRS papers instead of search links. Nothing set to verified.
+- Not confirmed: FLEX-2, CFI, FLARE, Mir 1997 sources; a few experiment years; a Moon 0.16 g flammability source.
+- Next: a teammate signs off the checked rows (`verified: true` + locator).
+
+### 2026-11-14 · Agent Reach (Hazheen + Claude)
+- Done: Agent Reach v1.6.1 added as an optional per-laptop tool: install steps in `docs/runbook.md`, project rules in the `web-research` skill, decision logged. Its skill passed `scripts/security-scan.sh skills`.
+- Not tested: the tool itself (installing third-party programs was blocked in the cloud session). First teammate to install: run `agent-reach doctor --text` and note the result here.
+- Next: Day 0 setup, then WP0/WP1.
+
 ### 2026-11-14 · FLEX Table IX in the repo (Shera + Claude)
 - Done: `scripts/flex-table-ix.mts` (`npm run data:flex`) downloads NASA/TP—2015-216046 from NTRS and parses Table IX with `pdftotext`; `data/datasets/flex-table-ix.json` (276 tests, page per row, cleaning notes); `FlexDataset` schema, loaded as `flex` in `src/lib/data.ts`; checks for duplicates, mole-fraction sums and the report's counts; 2 tests; FLEX experiment now cites the report instead of a search link.
 - Not tested: a human spot-check against the PDF (dataset `verified: false`); `npm run data:flex` on Windows (needs WSL or poppler).

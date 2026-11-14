@@ -8,19 +8,46 @@ Read this first. Update it at the end of every session (`handoff` skill). Newest
 |---|---|---|---|
 | — | — | — | — |
 
-## Next up (in order; take the top unclaimed one)
+## Next up (in order; take the top unclaimed one, write your name in "Now")
 
-1. **Day 0:** everyone through `docs/runbook.md` › Day 0; owner sets up Vercel (no API key: SI runs in Claude Code, decision 2026-11-13); decide one Claude account or two (`docs/claude-workflow.md`).
-2. **WP0:** paste the full challenge page into `docs/challenge.md`; re-check the plan against its data list.
-3. **WP1:** verify the 14 seed experiments; first findings from BASS, Saffire, FLEX.
-0. **Verify data so the live site isn't empty:** the live site (main) shows only verified records. Check and flip `verified: true` on `data/worlds.json` (4), `data/atmospheres.json` (5), `data/formulas.json` (2) and `data/datasets/flex-table-ix.json` (spot-check ~10 rows). Until then review on the Vercel **preview** of the PR, which shows everything with badges.
-1b. **Flame Lab review** on the preview: layout, flame look, world cards; feedback as text.
-4. **WP3a review:** PR with the app shell, shared components and insights pages on sample data; owner connects Vercel to see the Preview (`docs/runbook.md` › Vercel), team gives layout feedback. Then WP3b (findings explorer) and WP3c (filters, confidence meter, overview top 3).
-5. **FLEX Table IX:** in `data/datasets/flex-table-ix.json` (276 tests). A teammate spot-checks ~10 rows against PDF pp. 20–28, then sets `verified: true`. Next: findings from the report's text (conclusions p. 17), and the gaps map uses the rows.
-5b. **WP5 step 1:** open the links in `docs/data.md` › Sources for Four Worlds… on a laptop (NASA sites were blocked from the cloud session), verify the world and atmosphere values, and start findings on partial gravity, 8.2 psia / 34 % O₂ and ventilation flow.
-6. **Verify `data/worlds.json` and `data/atmospheres.json`** (4 worlds, 5 atmospheres, all unverified seeds) against their links; add a `locator` and set `verified: true`. Add credited NASA flame images (`image`) where they exist.
-7. **WP9 formulas (F22):** find and verify 3–4 NASA formulas (`docs/data.md` › Formulas), starting with O₂ partial pressure and one fire formula; then add the `Formula` schema.
-8. **Schema for the test-next proposals (F18):** add when WP6 starts (an optional list next to insights in `generated/insights.json`, written by SI job 2).
+### 1. Must do first (the site is empty or fake without these)
+- [ ] **Verify the base data** so the live site shows something (check against the NASA link, add the page `locator`, set `verified: true`; most values are already confirmed in `docs/verification/2026-11-14-nasa-data-check.md`):
+  - [ ] 4 worlds (`data/worlds.json`)
+  - [ ] 5 cabin airs (`data/atmospheres.json`)
+  - [ ] 2 formulas (`data/formulas.json`)
+  - [ ] FLEX Table IX: spot-check ~10 rows against PDF pp. 20–28 (`data/datasets/flex-table-ix.json`)
+  - [ ] 14 experiments (`data/experiments.json`)
+- [ ] **WP0: paste the official challenge page** into `docs/challenge.md` (objectives, NASA data list) and re-check the plan against it.
+- [ ] **WP1: findings** (0 now, target 25–40): FLEX (report conclusions p. 17), BASS, Saffire, Moon-gravity flammability, airflow. Claude extracts (SI job 1, `si-run`), a teammate verifies.
+
+### 2. The SI part (needs findings first)
+- [ ] **SI job 2:** 8–15 ranked insights (replaces the sample cards, fills the confidence meters).
+- [ ] **"What NASA should test next" (F18):** 3–6 SI-written proposals (add their schema next to insights in `generated/insights.json`).
+- [ ] **Ask library:** write 20–30 questions incl. the 10 golden ones (`docs/ai.md`), then SI job 3 answers them with citations.
+- [ ] Review all SI output with the checklist in `docs/ai.md`.
+
+### 3. Website polish (feedback section by section)
+- [ ] Review the Flame Lab on a laptop: flame look, layout, world cards, colours.
+- [ ] Check on a real projector, in Safari and on a tablet (not tested yet).
+- [ ] Add solids and gas flames (BASS, Saffire, ACME) to the fuel choices once their data is verified.
+- [ ] 2 more NASA formulas (e.g. flame blowoff, `docs/data.md` › Formulas).
+- [ ] Optional: real NASA flame photos inside the lab (FLEX droplet, Saffire), credited.
+
+### 4. Deployment and housekeeping
+- [ ] Put the live Vercel address in `CLAUDE.md`, `README.md` and `docs/submission.md`.
+- [ ] Decide the product name and whether the repo is public at submission (`docs/decisions.md` › Open decisions).
+- [ ] Back to the team rule: a teammate reviews every PR before merging.
+
+### 5. Submission (Day 2)
+- [ ] Feature freeze; rehearse the demo 3 times (once offline on a local build).
+- [ ] Project page text with NASA data used and the AI-use disclosure (`docs/submission.md`).
+- [ ] Demo video (~30 s) or slides (≤ 7); check the current limits.
+- [ ] Check every link in a private window; submit at least 2 hours before the deadline.
+
+### On hold / optional
+- [ ] Globe of where NASA has burned things (Earth, ISS orbit, Moon; Mars all red).
+- [ ] "Life of a Flame" scroll story (F21).
+- [ ] Live AI chat (only with an API key, `docs/ai.md` › Mode B).
 
 ## Blocked / waiting
 
@@ -35,6 +62,9 @@ Read this first. Update it at the end of every session (`handoff` skill). Newest
 Worlds: 4 · atmospheres: 5 (all unverified seeds).
 
 ## Log
+
+### 2026-11-14 · to-do list (Shera + Claude)
+- Done: "Next up" rewritten as one prioritized checklist (data verification, findings, SI runs, polish, deploy, submission); finished items removed.
 
 ### 2026-11-14 · new website: Flame Lab homepage (Shera + Claude)
 - Done: redesign around NASA Horizon typefaces (DESIGN.md rewritten, lint clean); Flame Lab homepage with WebGL2 raymarched flame (0 g sphere, 1 g sooty teardrop, partial gravity in between, oxygen/pressure/airflow/fuel), cabin-air presets, sliders with tested range in blue and untested in red, "What NASA has measured" panel (FLEX coverage, nearest tests, d² law burn time, O₂ partial pressure), four world cards with real NASA photos and glow, background switch, fire-only mode (Esc), insights for the world with confidence meter; gaps map; insights with filters; findings explorer + FLEX table; Ask dialog (Ctrl/⌘ K) and page; sources & method; about. `data/formulas.json` (FX-01, FX-02, unverified); world photos in `public/worlds/`; visibility rule (live = verified only).

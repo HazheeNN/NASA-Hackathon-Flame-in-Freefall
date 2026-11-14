@@ -12,7 +12,7 @@
         "locator": "Terrestrial atmosphere: surface pressure 1014 mb; 20.95 % O₂"
       }
     ],
-    "verified": false
+    "verified": true
   },
   {
     "id": "iss",
@@ -29,7 +29,7 @@
         "locator": "PDF p. 2, Introduction: vehicle cabins mimic Earth sea level, 21 % O₂ at 14.7 psia (101.35 kPa)"
       }
     ],
-    "verified": false
+    "verified": true
   },
   {
     "id": "exploration-8-2-34",
@@ -53,7 +53,7 @@
         "locator": "PDF p. 11"
       }
     ],
-    "verified": false
+    "verified": true
   },
   {
     "id": "eawg-8-0-32",
@@ -70,7 +70,7 @@
         "locator": "PDF p. 11"
       }
     ],
-    "verified": false
+    "verified": true
   },
   {
     "id": "shuttle-staged-10-2",
@@ -87,6 +87,6 @@
         "locator": "PDF p. 11"
       }
     ],
-    "verified": false
+    "verified": true
   }
 ]

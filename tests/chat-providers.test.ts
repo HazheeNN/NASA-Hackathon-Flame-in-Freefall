@@ -1,5 +1,5 @@
 import { afterEach, describe, expect, it, vi } from "vitest";
-import { askProviders, providerOrder } from "@/lib/chat/providers";
+import { askProviders, forgetModels, providerOrder } from "@/lib/chat/providers";
 
 vi.mock("server-only", () => ({}));
 
@@ -9,6 +9,7 @@ describe("provider chain (simulated AI, no network)", () => {
   afterEach(() => {
     vi.unstubAllEnvs();
     vi.unstubAllGlobals();
+    forgetModels();
   });
 
   it("skips providers without a key and follows AI_ORDER", () => {
@@ -24,6 +25,7 @@ describe("provider chain (simulated AI, no network)", () => {
     vi.stubEnv("GEMINI_API_KEY", "test");
     const calls: string[] = [];
     vi.stubGlobal("fetch", async (url: string) => {
+      if (url.includes("/models") && !url.includes(":generateContent")) return ok({});
       calls.push(url.includes("groq") ? "groq" : "gemini");
       return url.includes("groq") ? new Response("{}", { status: 429 }) : ok({ candidates: [{ content: { parts: [{ text: "Grounded [F-001]." }] } }] });
     });
@@ -59,6 +61,7 @@ describe("prepared-answer fallback matching", () => {
   afterEach(() => {
     vi.unstubAllEnvs();
     vi.unstubAllGlobals();
+    forgetModels();
   });
 
   it("ignores generic words, so a sources question doesn't pick an unrelated answer", async () => {
@@ -74,7 +77,24 @@ describe("prepared-answer fallback matching", () => {
     vi.stubGlobal("fetch", async () => new Response("{}", { status: 404 }));
     const r = await askProviders("sys", [{ role: "user", content: "q" }], () => true);
     expect(r.reply).toBeNull();
-    expect(r.failures).toEqual(["groq: no key", "gemini: HTTP 404"]);
+    expect(r.failures[0]).toBe("groq: no key");
+    expect(r.failures[1]).toMatch(/^gemini: HTTP 404/);
+  });
+
+  it("finds a current model when the configured one is retired (404), then answers", async () => {
+    vi.stubEnv("AI_ORDER", "groq");
+    vi.stubEnv("GROQ_API_KEY", "test");
+    vi.stubEnv("GROQ_MODEL", "llama-3.3-70b-versatile");
+    const used: string[] = [];
+    vi.stubGlobal("fetch", async (url: string, init?: RequestInit) => {
+      if (url.endsWith("/models")) return ok({ data: [{ id: "whisper-large-v3" }, { id: "meta-llama/llama-4-scout-17b-16e-instruct" }] });
+      const model = JSON.parse(String(init?.body)).model as string;
+      used.push(model);
+      return model === "llama-3.3-70b-versatile" ? new Response("{}", { status: 404 }) : ok({ choices: [{ message: { content: "Cited [F-001]." } }] });
+    });
+    const r = await askProviders("sys", [{ role: "user", content: "q" }], () => true);
+    expect(r.reply?.model).toBe("meta-llama/llama-4-scout-17b-16e-instruct");
+    expect(used).toEqual(["llama-3.3-70b-versatile", "meta-llama/llama-4-scout-17b-16e-instruct"]);
   });
 });
 

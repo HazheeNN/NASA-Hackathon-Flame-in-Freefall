@@ -70,7 +70,7 @@ npx @google/design.md lint DESIGN.md
 
 ## Environments
 
-Local dev and Vercel (Production + a Preview per PR). The live chat reads `GROQ_API_KEY`, `GEMINI_API_KEY` and `AI_ORDER` (optional `GROQ_MODEL`, `GEMINI_MODEL`) from Vercel's environment variables only; without them it uses the prepared answers. `.env.example` lists the optional mode-B ones. No database. CI runs `npm run check`, `data:validate` and the DESIGN.md lint on every PR; it never calls an AI.
+Local dev and Vercel (Production + a Preview per PR). The live chat reads `GROQ_API_KEY`, `GEMINI_API_KEY` and `AI_ORDER` (optional `GROQ_MODEL`, `GEMINI_MODEL`; otherwise current models are picked automatically) from Vercel's environment variables only; without them it uses the prepared answers. `.env.example` lists the optional mode-B ones. No database. CI runs `npm run check`, `data:validate` and the DESIGN.md lint on every PR; it never calls an AI.
 
 ## Working style the team expects
 

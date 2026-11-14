@@ -35,3 +35,23 @@ describe("live chat guard", () => {
     expect(isProvenanceAnswer("is Mars dangerous?", "Yes. Every source is listed on this site's Sources page.")).toBe(false);
   });
 });
+
+describe("picking a current model", async () => {
+  const { pickGroqModel, pickGeminiModel } = await import("@/lib/chat/models");
+
+  it("Groq: prefers Meta's Llama, skips speech and guard models", () => {
+    expect(pickGroqModel(["whisper-large-v3", "meta-llama/llama-guard-4-12b", "openai/gpt-oss-120b", "meta-llama/llama-4-maverick-17b-128e-instruct"])).toBe(
+      "meta-llama/llama-4-maverick-17b-128e-instruct",
+    );
+    expect(pickGroqModel(["whisper-large-v3", "openai/gpt-oss-120b", "qwen/qwen3-32b"])).toBe("openai/gpt-oss-120b");
+    expect(pickGroqModel(["whisper-large-v3"])).toBeNull();
+  });
+
+  it("Gemini: newest stable Flash with generateContent", () => {
+    const m = (name: string, methods = ["generateContent"]) => ({ name: `models/${name}`, supportedGenerationMethods: methods });
+    expect(pickGeminiModel([m("gemini-3.5-flash"), m("gemini-3.8-flash"), m("gemini-3.8-flash-preview-05-20"), m("gemini-3.8-flash-lite"), m("text-embedding-004", ["embedContent"])])).toBe(
+      "gemini-3.8-flash",
+    );
+    expect(pickGeminiModel([m("gemini-3.8-flash"), m("gemini-flash-latest")])).toBe("gemini-flash-latest");
+  });
+});

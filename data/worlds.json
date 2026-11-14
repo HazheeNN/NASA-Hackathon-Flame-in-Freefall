@@ -1,0 +1,44 @@
+[
+  {
+    "id": "earth",
+    "name": "Earth",
+    "gravityG": 1,
+    "missions": [],
+    "atmosphereIds": ["earth-sea-level"],
+    "sources": [{ "title": "NASA NSSDC Earth Fact Sheet", "url": "https://nssdc.gsfc.nasa.gov/planetary/factsheet/earthfact.html", "locator": "Surface gravity" }],
+    "verified": false
+  },
+  {
+    "id": "iss",
+    "name": "International Space Station",
+    "gravityG": 0,
+    "missions": ["ISS", "Mars transit"],
+    "atmosphereIds": ["iss"],
+    "sources": [{ "title": "NASA, Combustion in Reduced Gravity (ISS mini-book)", "url": "https://www.nasa.gov/sites/default/files/atoms/files/np-2015-10-034-jsc_combustion_in_reduced_gravity-iss-mini-book-011116-508.pdf", "year": 2015 }],
+    "verified": false
+  },
+  {
+    "id": "moon",
+    "name": "Moon",
+    "gravityG": 0.165,
+    "missions": ["Artemis (Moon)"],
+    "atmosphereIds": ["exploration-8-2-34", "iss"],
+    "sources": [
+      { "title": "NASA NSSDC Moon Fact Sheet", "url": "https://nssdc.gsfc.nasa.gov/planetary/factsheet/moonfact.html", "locator": "Surface gravity (m/s²) ÷ Earth's" },
+      { "title": "Material flammability in partial gravity (0.16 g Moon, 0.38 g Mars)", "url": "https://ntrs.nasa.gov/citations/20010074098", "ntrsId": "20010074098" }
+    ],
+    "verified": false
+  },
+  {
+    "id": "mars",
+    "name": "Mars",
+    "gravityG": 0.378,
+    "missions": ["Mars surface"],
+    "atmosphereIds": ["exploration-8-2-34", "iss"],
+    "sources": [
+      { "title": "NASA NSSDC Mars Fact Sheet", "url": "https://nssdc.gsfc.nasa.gov/planetary/factsheet/marsfact.html", "locator": "Surface gravity (m/s²) ÷ Earth's" },
+      { "title": "Material flammability in partial gravity (0.16 g Moon, 0.38 g Mars)", "url": "https://ntrs.nasa.gov/citations/20010074098", "ntrsId": "20010074098" }
+    ],
+    "verified": false
+  }
+]

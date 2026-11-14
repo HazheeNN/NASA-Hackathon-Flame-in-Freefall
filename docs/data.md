@@ -62,6 +62,8 @@ Decided 2026-11-14 (`docs/decisions.md`). These features need **world and atmosp
 |---|---|---|
 | `data/experiments.json` | People (seed list from the foundation PR, all `verified: false`) | Yes |
 | `data/findings.json` | People, after verifying (Claude proposals copied in by hand) | Yes |
+| `data/worlds.json` | People: Earth, ISS, Moon, Mars (gravity, missions, cabin atmospheres, optional credited NASA image) | Yes |
+| `data/atmospheres.json` | People: cabin atmosphere presets (pressure, O₂, where used), each with a NASA source | Yes |
 | `data/generated/insights.json` | SI job 2 only (`si-run` skill) | Yes (the app reads it; no AI at runtime) |
 | `data/generated/answers.json` | SI job 3 only (`si-run` skill) | Yes |
 | `data/raw/ntrs/*.json` | `npm run data:ntrs` | No |
@@ -104,6 +106,15 @@ The shape of every record is in `src/lib/schema.ts` (Zod). The app parses the fi
   "verified": true
 }
 ```
+
+### Worlds and atmospheres (`data/worlds.json`, `data/atmospheres.json`)
+
+Added 2026-11-14 for Same Fire, Four Worlds (F8), the gaps map (F16) and the Habitat Designer (F19). Both are points in the same condition space as findings (gravity, O₂, pressure).
+
+- **Atmosphere:** `id` (kebab-case), `name`, `pressureKPa`, `oxygenPercent`, `usedFor` (plain words), `sources` (≥ 1), `verified`.
+- **World:** `id` (`earth` · `iss` · `moon` · `mars`), `name`, `gravityG`, `missions` (the `Mission` values it stands for; ISS also stands for Mars transit), `atmosphereIds` (first = default; each must exist in `atmospheres.json`), optional `image` (`src`, `alt`, `credit`, `sourceUrl`: a real NASA flame image; none → the card says "never filmed"), `sources`, `verified`.
+- **Not stored on a world:** "how fire differs here". That text comes from findings at the world's gravity, so every sentence keeps its finding citation.
+- Same rules as findings: a verified record needs a source with a `locator`; seed values (written from web search, NASA hosts blocked) are all `verified: false` until a teammate checks them against the links in › Sources for Four Worlds….
 
 ## Workflow: from paper to finding
 

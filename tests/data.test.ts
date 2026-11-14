@@ -8,6 +8,8 @@ const corpus = () => ({
   findings: read("data/findings.json"),
   insights: read("data/generated/insights.json"),
   answers: read("data/generated/answers.json"),
+  atmospheres: read("data/atmospheres.json"),
+  worlds: read("data/worlds.json"),
 });
 
 const answersWith = (answer: string, findingIds: string[]) => ({
@@ -82,5 +84,18 @@ describe("data/", () => {
     expect(staleWarnings(c)).toHaveLength(1);
     c.answers.findingsHash = findingsHash(c.findings);
     expect(staleWarnings(c)).toEqual([]);
+  });
+
+  it("catches a world pointing at an atmosphere that doesn't exist", () => {
+    const c = corpus();
+    c.worlds = [{ ...c.worlds[0], atmosphereIds: ["nope"] }];
+    expect(validateCorpus(c)).toContain(`world ${c.worlds[0].id}: unknown atmosphere "nope"`);
+  });
+
+  it("refuses a verified atmosphere with no page or section to check", () => {
+    const c = corpus();
+    const a = { ...c.atmospheres[0], verified: true, sources: [{ title: "Example source", url: "https://ntrs.nasa.gov/citations/00000000" }] };
+    c.atmospheres = [a, ...c.atmospheres.slice(1)];
+    expect(validateCorpus(c)).toContain(`${a.id}: verified but no source has a page/section locator`);
   });
 });

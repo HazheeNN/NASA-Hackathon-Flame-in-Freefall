@@ -10,9 +10,11 @@ const raw = {
   findings: read("data/findings.json"),
   insights: read("data/generated/insights.json"),
   answers: read("data/generated/answers.json"),
+  atmospheres: read("data/atmospheres.json"),
+  worlds: read("data/worlds.json"),
 };
 const findings = raw.findings as { verified: boolean }[];
-console.log(`${raw.experiments.length} experiments · ${findings.length} findings (${findings.filter((f) => f.verified).length} verified) · ${raw.insights.insights.length} insights · ${raw.answers.answers.length} answers`);
+console.log(`${raw.experiments.length} experiments · ${findings.length} findings (${findings.filter((f) => f.verified).length} verified) · ${raw.insights.insights.length} insights · ${raw.answers.answers.length} answers · ${raw.worlds.length} worlds · ${raw.atmospheres.length} atmospheres`);
 console.log(`findingsHash: ${findingsHash(raw.findings)}`);
 for (const w of staleWarnings(raw)) console.warn(`! ${w}`);
 const problems = validateCorpus(raw);

@@ -1,7 +1,7 @@
 import { ArrowLeft, FileText } from "lucide-react";
 import Link from "next/link";
 import { notFound } from "next/navigation";
-import { AiLabel, Card, Citations, ConfidenceMeter, Label, MissionChip, RiskBadge, SampleBanner, ThemeChip, VerifiedBadge } from "@/components/ui";
+import { AiLabel, Card, CitedText, Citations, ConfidenceMeter, Label, MissionChip, RiskBadge, SampleBanner, ThemeChip, VerifiedBadge } from "@/components/ui";
 import { confidence } from "@/lib/views";
 import { displayFindingById, displayInsights, experimentById, showingSample } from "@/lib/data";
 
@@ -55,7 +55,9 @@ export default async function InsightPage({ params }: { params: Promise<{ id: st
           ).map(([label, text]) => (
             <Card key={label}>
               <Label>{label}</Label>
-              <p className="mt-2 text-[17px] leading-relaxed">{text}</p>
+              <p className="mt-2 text-[17px] leading-relaxed">
+                <CitedText text={text} />
+              </p>
             </Card>
           ))}
         </div>

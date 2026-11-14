@@ -2,6 +2,8 @@
 
 Proposed by Claude (SI job 1) from *Detailed Results From the Flame Extinguishment Experiment (FLEX)*, NASA/TP—2015-216046, [NTRS 20150023456](https://ntrs.nasa.gov/citations/20150023456). The proposals file is `data/raw/proposed/flex-tp-2015-216046.json` (git-ignored, in Claude's session); this sheet is the copy the team reviews.
 
+**Renumbered F-033…F-038** after the 32 findings merged in #11. **Overlap:** F-033 (lower oxygen limit) says much the same as the verified F-001, which cites the ISS mini-book; keep F-033 only as a second source for F-001, or drop it.
+
 **Already checked by script:** every quote below appears word for word in the PDF on the page linked (hyphenation and line breaks ignored). **Your job:** judge the meaning, using the 4 checks in `docs/data.md` › Verification:
 1. The quote supports the statement.
 2. Every number, unit and condition is right.
@@ -10,7 +12,7 @@ Proposed by Claude (SI job 1) from *Detailed Results From the Flame Extinguishme
 
 Then tick **Keep**, **Fix** (write what) or **Drop**, and tell Claude. Pages: printed page first, PDF page in brackets; the links open at the PDF page.
 
-## F-001 · Droplet flames needed less oxygen than expected to keep burning
+## F-033 · Droplet flames needed less oxygen than expected to keep burning
 
 **Statement:** In FLEX tests on the ISS, the lowest oxygen level at which methanol and heptane droplets still burned (the limiting oxygen index) appeared slightly lower than initially expected.
 
@@ -26,7 +28,7 @@ Then tick **Keep**, **Fix** (write what) or **Drop**, and tell Claude. Pages: pr
 
 - [ ] Keep  - [ ] Fix: ……  - [ ] Drop  · Checked by: ……
 
-## F-002 · Droplet flames went out in two different ways depending on dilution
+## F-034 · Droplet flames went out in two different ways depending on dilution
 
 **Statement:** Both methanol and heptane flames showed radiative extinction at higher dilutions of oxygen and diffusive extinction at lower dilutions; some flames also ended by disruptive extinction.
 
@@ -42,7 +44,7 @@ Then tick **Keep**, **Fix** (write what) or **Drop**, and tell Claude. Pages: pr
 
 - [ ] Keep  - [ ] Fix: ……  - [ ] Drop  · Checked by: ……
 
-## F-003 · The visible flame looks smaller than the full flame
+## F-035 · The visible flame looks smaller than the full flame
 
 **Statement:** Flame diameters seen by the color camera were about three-fourths of those measured by the ultraviolet (OH) camera. For heptane the gap was even larger, because the peak of the soot glow is typically inside the blue flame envelope.
 
@@ -58,7 +60,7 @@ Then tick **Keep**, **Fix** (write what) or **Drop**, and tell Claude. Pages: pr
 
 - [ ] Keep  - [ ] Fix: ……  - [ ] Drop  · Checked by: ……
 
-## F-004 · FLEX covered 0.70 to 3.05 atm, mostly 0.7 to 1 atm
+## F-036 · FLEX covered 0.70 to 3.05 atm, mostly 0.7 to 1 atm
 
 **Statement:** FLEX burned methanol and n-heptane droplets 2 to 5 mm across at pressures between 0.70 and 3.05 atm, with oxygen diluted by nitrogen, carbon dioxide or both; most tests were between 0.7 and 1 atm and many were in air.
 
@@ -74,7 +76,7 @@ Then tick **Keep**, **Fix** (write what) or **Drop**, and tell Claude. Pages: pr
 
 - [ ] Keep  - [ ] Fix: ……  - [ ] Drop  · Checked by: ……
 
-## F-005 · Without gravity a droplet flame stays spherical
+## F-037 · Without gravity a droplet flame stays spherical
 
 **Statement:** Natural convection destroys the spherical symmetry of droplet burning in normal gravity; microgravity allows spherical symmetry, which NASA has used in combustion research for years.
 
@@ -90,7 +92,7 @@ Then tick **Keep**, **Fix** (write what) or **Drop**, and tell Claude. Pages: pr
 
 - [ ] Keep  - [ ] Fix: ……  - [ ] Drop  · Checked by: ……
 
-## F-006 · Some droplet break-ups were caused by a needle coating, not the fuel
+## F-038 · Some droplet break-ups were caused by a needle coating, not the fuel
 
 **Statement:** A coating on the fuel needles contaminated some droplets. The authors judge that disruptive extinction of methanol was probably caused by it, that burning rates and flame size were only minimally influenced, and that radiative extinction diameters were not influenced.
 

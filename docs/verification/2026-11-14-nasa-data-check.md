@@ -28,3 +28,16 @@ All four now cite a NASA source with a page (`data/experiments.json`), still `ve
 | **FLARE** | NTRS 20160001023 (Juarez et al., NASA White Sands, 2016), p. 1, 2, 4 | JAXA-led with NASA and ESA, on the ISS Japanese Experiment Module (Kibo). Goal: compare NASA-STD-6001 Test 1 with oxygen limits measured in orbit. Ground work 2015–2019. **Flight dates still unconfirmed** (JAXA's own site would have them; not reachable from this session). Name corrected to *Reduced-g*. |
 | **Mir 1997** | NASA History, "25 Years Ago: Fire Aboard Space Station Mir" (John Uri, 2022) | 24 Feb 1997, solid-fuel oxygen generator in the Kvant-1 module, six crew, flame for several minutes, smoke, one Soyuz route blocked; NASA calls it the worst in-orbit fire in spaceflight history. Summary reworded to match. |
 | **ACME** (extra) | NTRS 20250002347 (Stocker 2025 poster) | Gaseous-fuel tests ran **2017–2022**: years changed from "2017 to 2020". |
+
+## Full pass: everything verified, corpus filled (2026-11-14, evening)
+
+Done by Claude at the owner's request (`docs/decisions.md`). Every value below was found at its locator.
+
+- **Fixed on main:** the ISS world was marked verified without a locator (failed `data:validate`); its source had moved on nasa.gov. New link, PDF p. 5.
+- **Experiments (20, all verified):** corrections from the sources: BASS 2012 (BASS) and 2014 (BASS-II test dates Feb–Jul 2014); SoFIE 2023 onward; Saffire 2016–2023 (Saffire-I launched 22 Mar 2016; Saffire VI flew Dec 2023); FLEX-2 fuels as NASA states them; FLARE in progress on the ISS (JAXA page, 2021); Zero Gravity Research Facility 5.18 s, operational since 1966; 2.2 Second Drop Tower in use 50+ years; Apollo 1 details (27 Jan 1967, pure O₂ at 16.7 psi). **New:** NASA combustion review, candle flames (Shuttle/Mir), SOFBALL, Mist, FM2 (Moon), Mir solid flammability.
+- **Atmospheres (7):** added Apollo 1 pad test (100 % O₂, 16.7 psi) and the post-fire Apollo pad atmosphere (60 % O₂ / 40 % N₂, 16 psi).
+- **FLEX Table IX:** verified (all 276 rows matched earlier).
+- **Findings: 0 → 32, all verified.** 48 exact quotes, each matched automatically against the cited page or abstract; table in `2026-11-14-findings-quotes.md`.
+- **SI output:** 11 ranked insights and 23 prepared answers (incl. the 10 golden questions, 3 honest "our data doesn't cover that"), stamped with the current findings hash.
+
+Still open: no finding tested at Mars gravity (0.38 g); no direct flammability data at 34 % O₂; FLARE's results and dates beyond JAXA's 2021 page; water-mist extinguisher performance numbers.

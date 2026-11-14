@@ -57,19 +57,25 @@ Read this first. Update it at the end of every session (`handoff` skill). Newest
 
 | Experiments | Findings | Verified | Insights | Answers | Deployed |
 |---|---|---|---|---|---|
-| 14 (0 verified) | 0 | 0 | 0 | 0 | no |
+| 20 (all verified) | 32 | 32 | 11 | 23 | Vercel previews |
 
-Worlds: 4 · atmospheres: 5 (all unverified seeds).
+Worlds: 4 · atmospheres: 7 · formulas: 2 · FLEX tests: 276 (all verified).
 
 ## Log
 
 ### 2026-11-14 · first findings proposed: FLEX report (Shera + Claude)
-- Done: SI job 1 on NASA/TP—2015-216046 → 6 proposed findings (F-001…F-006). Every quote checked word for word against the PDF by script. Review sheet: `docs/verification/2026-11-14-flex-findings-review.md`.
+- Done: SI job 1 on NASA/TP—2015-216046 → 6 proposed findings (renumbered F-033…F-038 after #11; F-033 overlaps the verified F-001). Every quote checked word for word against the PDF by script. Review sheet: `docs/verification/2026-11-14-flex-findings-review.md`.
 - Next: a teammate reviews each (keep / fix / drop); Claude then moves the kept ones into `data/findings.json` as verified.
 
 ### 2026-11-14 · Formulas page (Shera + Claude)
 - Done: `/formulas` in the top navigation: every formula with what it tells you, the equation and symbols, how we use it step by step, a worked example, valid range and limits, where it appears on the site, and the NASA citation with page. The Flame Lab's calculated numbers now have "How is this calculated?" with the visitor's values plugged in. Added FX-03 forced stretch rate (Marcum, Olson, Ferkul 2016, p. 3; explained only). `Formula` schema gained `whereUsed`, `steps`, `example`, `limits`; a test recomputes every worked example.
-- Not tested: real GPU/projector, Safari. All 3 formulas still `verified: false`.
+- Not tested: real GPU/projector, Safari. FX-01 and FX-02 verified by the team (#11); FX-03 still `verified: false`.
+
+### 2026-11-14 · full data pass (Hazheen + Claude)
+- Done: fixed main (ISS locator); all experiments verified with corrections, 6 new experiments, 2 Apollo atmospheres, FLEX dataset verified; 32 verified findings with exact quotes checked against the sources; SI jobs 2 and 3 run (11 insights, 23 answers); citation chips inside SI text; full answers on /ask; phone overflow fix on /findings. Report: `docs/verification/2026-11-14-nasa-data-check.md` › Full pass.
+- Tested: `npm run check` (15 tests, build of 52 pages), `data:validate` (no stale warning), every page at 360 and 1440 px: no console errors, no horizontal overflow.
+- Not done: findings at Mars gravity or 34 % O₂ (no NASA data found), "what NASA should test next" proposals (F18) and their schema.
+- Next: review the insight and answer wording as a team; F18 proposals; website polish.
 
 ### 2026-11-14 · to-do list (Shera + Claude)
 - Done: "Next up" rewritten as one prioritized checklist (data verification, findings, SI runs, polish, deploy, submission); finished items removed.

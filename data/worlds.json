@@ -14,7 +14,7 @@
         "locator": "Surface gravity"
       }
     ],
-    "verified": false,
+    "verified": true,
     "image": {
       "src": "/worlds/earth.jpg",
       "alt": "Sunrise over Earth's limb, photographed from the International Space Station",
@@ -37,11 +37,12 @@
     "sources": [
       {
         "title": "NASA, Combustion in Reduced Gravity (ISS mini-book)",
-        "url": "https://www.nasa.gov/sites/default/files/atoms/files/np-2015-10-034-jsc_combustion_in_reduced_gravity-iss-mini-book-011116-508.pdf",
-        "year": 2015
+        "url": "https://www.nasa.gov/wp-content/uploads/2016/05/np-2015-10-034-jsc_combustion_in_reduced_gravity-iss-mini-book-011116-508.pdf",
+        "year": 2015,
+        "locator": "PDF p. 5: Unique Features of the ISS Research Environment, 1. Microgravity, or weightlessness"
       }
     ],
-    "verified": false,
+    "verified": true,
     "image": {
       "src": "/worlds/iss.jpg",
       "alt": "Inside the Destiny laboratory module of the International Space Station",
@@ -74,7 +75,7 @@
         "year": 2001
       }
     ],
-    "verified": false,
+    "verified": true,
     "image": {
       "src": "/worlds/moon.jpg",
       "alt": "Apollo 17 view of boulders and hills at Station 5, Taurus-Littrow valley",
@@ -108,7 +109,7 @@
         "locator": "p. 1 (partial-gravity Martian environments, 0.38 g)"
       }
     ],
-    "verified": false,
+    "verified": true,
     "image": {
       "src": "/worlds/mars.jpg",
       "alt": "Layered rock at Murray Buttes on Mount Sharp, photographed by the Curiosity rover",

@@ -5,13 +5,32 @@
     "expression": "pO₂ = P × x(O₂)",
     "explanation": "The pressure of oxygen alone: total cabin pressure times the oxygen fraction. Low-pressure habitats raise the O₂ percentage to keep enough oxygen to breathe, which is the trade-off between crew health and fire risk.",
     "variables": [
-      { "symbol": "P", "meaning": "total cabin pressure", "unit": "kPa" },
-      { "symbol": "x(O₂)", "meaning": "oxygen mole fraction (O₂ % ÷ 100)", "unit": "—" },
-      { "symbol": "pO₂", "meaning": "oxygen partial pressure", "unit": "kPa" }
+      {
+        "symbol": "P",
+        "meaning": "total cabin pressure",
+        "unit": "kPa"
+      },
+      {
+        "symbol": "x(O₂)",
+        "meaning": "oxygen mole fraction (O₂ % ÷ 100)",
+        "unit": "—"
+      },
+      {
+        "symbol": "pO₂",
+        "meaning": "oxygen partial pressure",
+        "unit": "kPa"
+      }
     ],
     "validity": {},
-    "usedIn": ["lab"],
-    "whereUsed": [{ "label": "Flame Lab › Oxygen partial pressure", "href": "/#flame-stage" }],
+    "usedIn": [
+      "lab"
+    ],
+    "whereUsed": [
+      {
+        "label": "Flame Lab › Oxygen partial pressure",
+        "href": "/#flame-stage"
+      }
+    ],
     "steps": [
       "Take the cabin pressure P from the preset or the pressure slider, in kPa.",
       "Turn the oxygen percentage into a fraction: x(O₂) = O₂ % ÷ 100.",
@@ -20,16 +39,34 @@
     "example": {
       "text": "NASA's proposed exploration atmosphere for Moon and Mars habitats (8.2 psia, 34 % O₂)",
       "inputs": [
-        { "symbol": "P", "value": 56.5, "unit": "kPa" },
-        { "symbol": "x(O₂)", "value": 0.34, "unit": "—" }
+        {
+          "symbol": "P",
+          "value": 56.5,
+          "unit": "kPa"
+        },
+        {
+          "symbol": "x(O₂)",
+          "value": 0.34,
+          "unit": "—"
+        }
       ],
-      "result": { "symbol": "pO₂", "value": 19.21, "unit": "kPa" }
+      "result": {
+        "symbol": "pO₂",
+        "value": 19.21,
+        "unit": "kPa"
+      }
     },
     "limits": "A definition, valid for any mix. It does not say how fast a fire spreads: at the same pO₂, a higher O₂ percentage at lower total pressure can still burn more readily.",
     "sources": [
-      { "title": "Effects of the 8 psia / 32% O2 Atmosphere on the Human in the Spaceflight Environment", "url": "https://ntrs.nasa.gov/citations/20130013505", "year": 2013, "ntrsId": "20130013505", "locator": "PDF p. 11 (inspired O₂ partial pressure of the 8.2/34 and 10.2/26.5 atmospheres)" }
+      {
+        "title": "Effects of the 8 psia / 32% O2 Atmosphere on the Human in the Spaceflight Environment",
+        "url": "https://ntrs.nasa.gov/citations/20130013505",
+        "year": 2013,
+        "ntrsId": "20130013505",
+        "locator": "PDF p. 11 (inspired O₂ partial pressure of the 8.2/34 and 10.2/26.5 atmospheres)"
+      }
     ],
-    "verified": false
+    "verified": true
   },
   {
     "id": "FX-02",
@@ -37,14 +74,54 @@
     "expression": "d² = d₀² − K · t   →   t_burn = d₀² ÷ K",
     "explanation": "A burning droplet's diameter squared falls in a straight line with time. FLEX measured the slope K (the burning-rate constant) for each test, so the time a droplet lasts follows from its starting size.",
     "variables": [
-      { "symbol": "d₀", "meaning": "initial droplet diameter", "unit": "mm" },
-      { "symbol": "K", "meaning": "burning-rate constant, measured by FLEX", "unit": "mm²/s" },
-      { "symbol": "t", "meaning": "time since ignition", "unit": "s" },
-      { "symbol": "t_burn", "meaning": "time for the droplet to burn away (d = 0)", "unit": "s" }
+      {
+        "symbol": "d₀",
+        "meaning": "initial droplet diameter",
+        "unit": "mm"
+      },
+      {
+        "symbol": "K",
+        "meaning": "burning-rate constant, measured by FLEX",
+        "unit": "mm²/s"
+      },
+      {
+        "symbol": "t",
+        "meaning": "time since ignition",
+        "unit": "s"
+      },
+      {
+        "symbol": "t_burn",
+        "meaning": "time for the droplet to burn away (d = 0)",
+        "unit": "s"
+      }
     ],
-    "validity": { "gravityG": [0, 0], "pressureKPa": [70.2, 309.3], "oxygenPercent": [12, 34], "fuel": ["methanol", "heptane"] },
-    "usedIn": ["lab"],
-    "whereUsed": [{ "label": "Flame Lab › Nearest NASA tests › “A 2 mm droplet lasts”", "href": "/#flame-stage" }],
+    "validity": {
+      "gravityG": [
+        0,
+        0
+      ],
+      "pressureKPa": [
+        70.2,
+        309.3
+      ],
+      "oxygenPercent": [
+        12,
+        34
+      ],
+      "fuel": [
+        "methanol",
+        "heptane"
+      ]
+    },
+    "usedIn": [
+      "lab"
+    ],
+    "whereUsed": [
+      {
+        "label": "Flame Lab › Nearest NASA tests › “A 2 mm droplet lasts”",
+        "href": "/#flame-stage"
+      }
+    ],
     "steps": [
       "Find the FLEX tests closest to your setting: same fuel, O₂ within ±2 points, pressure within ±20 %.",
       "Take the median of their measured burning-rate constants K (needs at least 3 tests).",
@@ -54,16 +131,34 @@
     "example": {
       "text": "A 2 mm droplet with K = 0.6 mm²/s (a typical FLEX value in ISS-like air)",
       "inputs": [
-        { "symbol": "d₀", "value": 2, "unit": "mm" },
-        { "symbol": "K", "value": 0.6, "unit": "mm²/s" }
+        {
+          "symbol": "d₀",
+          "value": 2,
+          "unit": "mm"
+        },
+        {
+          "symbol": "K",
+          "value": 0.6,
+          "unit": "mm²/s"
+        }
       ],
-      "result": { "symbol": "t_burn", "value": 6.67, "unit": "s" }
+      "result": {
+        "symbol": "t_burn",
+        "value": 6.67,
+        "unit": "s"
+      }
     },
     "limits": "Assumes the droplet burns to the end. Many FLEX flames went out first (extinction), so the real flame time can be shorter. Not tested under gravity, below 70 kPa or above 34 % O₂.",
     "sources": [
-      { "title": "Detailed Results From the Flame Extinguishment Experiment (FLEX) March 2009 to December 2011 (NASA/TP—2015-216046)", "url": "https://ntrs.nasa.gov/citations/20150023456", "year": 2015, "ntrsId": "20150023456", "locator": "p. 19, column definitions: burning rate from a linear fit of droplet diameter squared versus time; K per test in Table IX, pp. 20–28" }
+      {
+        "title": "Detailed Results From the Flame Extinguishment Experiment (FLEX) March 2009 to December 2011 (NASA/TP—2015-216046)",
+        "url": "https://ntrs.nasa.gov/citations/20150023456",
+        "year": 2015,
+        "ntrsId": "20150023456",
+        "locator": "p. 19, column definitions: burning rate from a linear fit of droplet diameter squared versus time; K per test in Table IX, pp. 20–28"
+      }
     ],
-    "verified": false
+    "verified": true
   },
   {
     "id": "FX-03",
@@ -71,11 +166,39 @@
     "expression": "a = 3/2 · U ÷ r",
     "explanation": "How hard the oncoming airflow strains the flame at the tip of a burning rod. Too much stretch and the flame blows off; NASA used it to compare blowoff in normal gravity with BASS-II results from the ISS.",
     "variables": [
-      { "symbol": "a", "meaning": "forced stretch rate", "unit": "1/s" },
-      { "symbol": "U", "meaning": "average flow speed entering the tube", "unit": "cm/s" },
-      { "symbol": "r", "meaning": "rod radius", "unit": "cm" }
+      {
+        "symbol": "a",
+        "meaning": "forced stretch rate",
+        "unit": "1/s"
+      },
+      {
+        "symbol": "U",
+        "meaning": "average flow speed entering the tube",
+        "unit": "cm/s"
+      },
+      {
+        "symbol": "r",
+        "meaning": "rod radius",
+        "unit": "cm"
+      }
     ],
-    "validity": { "gravityG": [1, 1], "oxygenPercent": [15, 18], "flowCmPerS": [0, 60.3], "fuel": ["cast PMMA rods, radius 0.318–1.905 cm"] },
+    "validity": {
+      "gravityG": [
+        1,
+        1
+      ],
+      "oxygenPercent": [
+        15,
+        18
+      ],
+      "flowCmPerS": [
+        0,
+        60.3
+      ],
+      "fuel": [
+        "cast PMMA rods, radius 0.318–1.905 cm"
+      ]
+    },
     "usedIn": [],
     "whereUsed": [],
     "steps": [
@@ -87,14 +210,32 @@
     "example": {
       "text": "A 0.635 cm radius PMMA rod in a 20 cm/s flow",
       "inputs": [
-        { "symbol": "U", "value": 20, "unit": "cm/s" },
-        { "symbol": "r", "value": 0.635, "unit": "cm" }
+        {
+          "symbol": "U",
+          "value": 20,
+          "unit": "cm/s"
+        },
+        {
+          "symbol": "r",
+          "value": 0.635,
+          "unit": "cm"
+        }
       ],
-      "result": { "symbol": "a", "value": 47.24, "unit": "1/s" }
+      "result": {
+        "symbol": "a",
+        "value": 47.24,
+        "unit": "1/s"
+      }
     },
     "limits": "Measured in normal gravity on cast PMMA rods, 15–18 % O₂, flows up to 60.3 cm/s. The paper's 14 % O₂ data were discarded. Not a general flammability limit for other materials.",
     "sources": [
-      { "title": "Correlation of normal gravity mixed convection blowoff limits with microgravity forced flow blowoff limits (Marcum, Olson, Ferkul, 2016)", "url": "https://ntrs.nasa.gov/citations/20160012691", "year": 2016, "ntrsId": "20160012691", "locator": "p. 3 (stretch rate definition); p. 1 abstract and p. 2 (rod sizes, O₂ range, 60.3 cm/s maximum flow)" }
+      {
+        "title": "Correlation of normal gravity mixed convection blowoff limits with microgravity forced flow blowoff limits (Marcum, Olson, Ferkul, 2016)",
+        "url": "https://ntrs.nasa.gov/citations/20160012691",
+        "year": 2016,
+        "ntrsId": "20160012691",
+        "locator": "p. 3 (stretch rate definition); p. 1 abstract and p. 2 (rod sizes, O₂ range, 60.3 cm/s maximum flow)"
+      }
     ],
     "verified": false
   }

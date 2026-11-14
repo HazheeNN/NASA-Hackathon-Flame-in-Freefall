@@ -8,7 +8,7 @@ export type SearchItem = { kind: "Answer" | "Finding" | "Experiment" | "Dataset"
 // Everything the Ask search can match. Small (a few hundred items), so it ships to the browser.
 export function searchIndex(): SearchItem[] {
   return [
-    ...answers.answers.map((a) => ({ kind: "Answer" as const, title: a.question, text: a.answer, href: `/ask?q=${encodeURIComponent(a.question)}#${a.id}` })),
+    ...answers.answers.map((a) => ({ kind: "Answer" as const, title: a.question, text: a.answer.replace(/\s*\[F-\d{3}(?:\s*,\s*F-\d{3})*\]/g, ""), href: `/ask?q=${encodeURIComponent(a.question)}#${a.id}` })),
     ...visible(findings).map((f) => ({ kind: "Finding" as const, title: `${f.id} · ${f.title}`, text: f.statement, href: `/findings/${f.id}` })),
     ...visible(experiments).map((e) => ({ kind: "Experiment" as const, title: e.acronym ? `${e.acronym} · ${e.name}` : e.name, text: e.summary, href: `/sources#${e.id}` })),
     ...(showUnverified || flex.verified ? [{ kind: "Dataset" as const, title: flex.title, text: flex.description, href: "/findings?tab=datasets" }] : []),

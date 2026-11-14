@@ -6,12 +6,12 @@
     "agency": "NASA",
     "platform": "ISS",
     "facility": "Combustion Integrated Rack, Multi-user Droplet Combustion Apparatus",
-    "years": "2009 onward",
+    "years": "2009 to 2011 (this report); FLEX series on the ISS 2008–2016",
     "fuels": ["heptane", "methanol"],
     "summary": "Burned free-floating fuel droplets to study how flames go out and how well gaseous suppressants work. Best known for finding that large heptane droplets keep burning in an invisible, low-temperature 'cool flame' after the visible flame goes out.",
     "themes": ["extinction", "cool-flames", "suppression"],
-    "sources": [{ "title": "Detailed Results From the Flame Extinguishment Experiment (FLEX) March 2009 to December 2011 (NASA/TP—2015-216046)", "url": "https://ntrs.nasa.gov/citations/20150023456", "year": 2015, "ntrsId": "20150023456" }],
-    "verified": false
+    "sources": [{ "title": "Detailed Results From the Flame Extinguishment Experiment (FLEX) March 2009 to December 2011 (NASA/TP—2015-216046)", "url": "https://ntrs.nasa.gov/citations/20150023456", "year": 2015, "ntrsId": "20150023456" }, { "title": "Isolated Single Droplet Combustion: FLEX Experiments onboard the International Space Station (Nayagam, Dietrich, Williams)", "url": "https://ntrs.nasa.gov/citations/20210022617", "year": 2021, "ntrsId": "20210022617", "locator": "PDF p. 2: FLEX series on ISS 2008–2016; hardware CIR + MDCA" }, { "title": "NASA, Combustion in Reduced Gravity (ISS mini-book, NP-2015-10-034-JSC)", "url": "https://www.nasa.gov/wp-content/uploads/2016/05/np-2015-10-034-jsc_combustion_in_reduced_gravity-iss-mini-book-011116-508.pdf", "year": 2015, "locator": "p. 13: FLEX demonstrated radiative and diffusive extinction, lower flammability limits and cool flames; p. 36: LOI significantly lower than in normal gravity" }],
+    "verified": true
   },
   {
     "id": "flex-2",
@@ -21,11 +21,11 @@
     "platform": "ISS",
     "facility": "Combustion Integrated Rack, Multi-user Droplet Combustion Apparatus",
     "years": "Part of the FLEX series on the ISS, 2008–2016",
-    "fuels": ["heptane", "decane", "fuel mixtures"],
-    "summary": "Follow-on droplet studies: burning of fuel mixtures, soot formation, and how neighbouring droplets and slow airflow change burning and extinction.",
+    "fuels": ["mixtures of pure fuels", "real-fuel surrogates", "ethanol"],
+    "summary": "Follow-on to FLEX: a range of fuels including mixtures of pure fuels and real-fuel surrogates, soot formation, slow convective flow effects and droplet-droplet interactions.",
     "themes": ["soot-radiation", "extinction", "cool-flames"],
-    "sources": [{ "title": "Isolated Single Droplet Combustion: FLEX Experiments onboard the International Space Station (Nayagam, Dietrich, Williams)", "url": "https://ntrs.nasa.gov/citations/20210022617", "year": 2021, "ntrsId": "20210022617", "locator": "PDF p. 2: FLEX series on ISS 2008–2016 (FLEX, FLEX-2, FLEX-ICEGA, FLEXJ); Cool Flame Investigation (CFI) ISS 2017; hardware CIR + MDCA" }, { "title": "Effects of Ambient Inert Gas Properties on Cool-Flame Combustion of Normal-Alkane Droplets in Microgravity (Nayagam et al.)", "url": "https://ntrs.nasa.gov/citations/20205008449", "year": 2021, "ntrsId": "20205008449", "locator": "PDF p. 2: n-alkane droplet cool-flame results from FLEX, FLEX-2 and CFI" }],
-    "verified": false
+    "sources": [{ "title": "Isolated Single Droplet Combustion: FLEX Experiments onboard the International Space Station (Nayagam, Dietrich, Williams)", "url": "https://ntrs.nasa.gov/citations/20210022617", "year": 2021, "ntrsId": "20210022617", "locator": "PDF p. 2: FLEX series on ISS 2008–2016 (FLEX, FLEX-2, FLEX-ICEGA, FLEXJ); Cool Flame Investigation (CFI) ISS 2017; hardware CIR + MDCA" }, { "title": "Effects of Ambient Inert Gas Properties on Cool-Flame Combustion of Normal-Alkane Droplets in Microgravity (Nayagam et al.)", "url": "https://ntrs.nasa.gov/citations/20205008449", "year": 2021, "ntrsId": "20205008449", "locator": "PDF p. 2: n-alkane droplet cool-flame results from FLEX, FLEX-2 and CFI" }, { "title": "NASA, Combustion in Reduced Gravity (ISS mini-book, NP-2015-10-034-JSC)", "url": "https://www.nasa.gov/wp-content/uploads/2016/05/np-2015-10-034-jsc_combustion_in_reduced_gravity-iss-mini-book-011116-508.pdf", "year": 2015, "locator": "p. 13: FLEX-2 studies mixtures of pure fuels, real fuel surrogates, soot formation, slow convective flow and droplet-droplet interactions; p. 12: ethanol in FLEX-2" }],
+    "verified": true
   },
   {
     "id": "cfi",
@@ -39,7 +39,7 @@
     "summary": "Droplet experiments on the low-temperature 'cool flames' discovered in FLEX, including tests at higher pressure where 'warm flames' appear. Cool flames are hard to see and detect, so they matter for spacecraft fire detection.",
     "themes": ["cool-flames", "ignition", "smoke-detection"],
     "sources": [{ "title": "Isolated Single Droplet Combustion: FLEX Experiments onboard the International Space Station (Nayagam, Dietrich, Williams)", "url": "https://ntrs.nasa.gov/citations/20210022617", "year": 2021, "ntrsId": "20210022617", "locator": "PDF p. 2: FLEX series on ISS 2008–2016 (FLEX, FLEX-2, FLEX-ICEGA, FLEXJ); Cool Flame Investigation (CFI) ISS 2017; hardware CIR + MDCA; p. 13: warm flames at elevated pressures (CFI)" }, { "title": "Effects of Ambient Inert Gas Properties on Cool-Flame Combustion of Normal-Alkane Droplets in Microgravity (Nayagam et al.)", "url": "https://ntrs.nasa.gov/citations/20205008449", "year": 2021, "ntrsId": "20205008449", "locator": "PDF p. 2: n-alkane droplet cool-flame results from FLEX, FLEX-2 and CFI" }],
-    "verified": false
+    "verified": true
   },
   {
     "id": "acme",
@@ -52,8 +52,8 @@
     "fuels": ["methane", "ethylene", "other gaseous fuels"],
     "summary": "A set of gaseous-flame studies (including Coflow Laminar Diffusion Flame, Flame Design, Structure and Response of Spherical Diffusion Flames, Electric-Field Effects, and the Burning Rate Emulator) on soot, flame structure and extinction limits.",
     "themes": ["soot-radiation", "extinction", "flammability-limits"],
-    "sources": [{ "title": "Advanced Combustion via Microgravity Experiments (ACME) on the International Space Station (ISS)", "url": "https://ntrs.nasa.gov/citations/20210015913", "year": 2021, "ntrsId": "20210015913", "locator": "Abstract: CIR, testing began 2017" }],
-    "verified": false
+    "sources": [{ "title": "Advanced Combustion via Microgravity Experiments (ACME) on the International Space Station (ISS)", "url": "https://ntrs.nasa.gov/citations/20210015913", "year": 2021, "ntrsId": "20210015913", "locator": "Abstract: CIR, testing began 2017" }, { "title": "Fire and Flame Research in the Combustion Integrated Rack (CIR) on the International Space Station (Stocker)", "url": "https://ntrs.nasa.gov/citations/20250002347", "year": 2025, "ntrsId": "20250002347", "locator": "Poster: liquid droplets (2009–2017), gaseous fuels (2017–2022), solid fuels (2023–)" }, { "title": "NASA, Combustion in Reduced Gravity (ISS mini-book, NP-2015-10-034-JSC)", "url": "https://www.nasa.gov/wp-content/uploads/2016/05/np-2015-10-034-jsc_combustion_in_reduced_gravity-iss-mini-book-011116-508.pdf", "year": 2015, "locator": "p. 52: ACME supports BRE, CLD Flame, E-FIELD Flames, Flame Design, s-Flame" }],
+    "verified": true
   },
   {
     "id": "bass",
@@ -62,12 +62,12 @@
     "agency": "NASA",
     "platform": "ISS",
     "facility": "Microgravity Science Glovebox",
-    "years": "2011 to 2013",
+    "years": "2012 (BASS) and 2014 (BASS-II)",
     "fuels": ["PMMA (acrylic)", "cotton-fiberglass fabric", "paper"],
     "summary": "Burned small solid samples in a slow, controlled airflow to see how flames spread and when they go out, and tested putting them out with nitrogen.",
     "themes": ["flame-spread", "extinction", "suppression", "materials"],
-    "sources": [{ "title": "Thickness and Fuel Preheating Effects on Material Flammability in Microgravity from the BASS Experiment", "url": "https://ntrs.nasa.gov/citations/20140011099", "year": 2013, "ntrsId": "20140011099", "locator": "Abstract: Microgravity Science Glovebox, air flow up to 40 cm/s" }, { "title": "Burning and Suppression of Solids–II (BASS-II) Summary Report", "url": "https://ntrs.nasa.gov/citations/20210011385", "year": 2021, "ntrsId": "20210011385" }],
-    "verified": false
+    "sources": [{ "title": "Thickness and Fuel Preheating Effects on Material Flammability in Microgravity from the BASS Experiment", "url": "https://ntrs.nasa.gov/citations/20140011099", "year": 2013, "ntrsId": "20140011099", "locator": "Abstract: Microgravity Science Glovebox, air flow up to 40 cm/s" }, { "title": "Burning and Suppression of Solids–II (BASS-II) Summary Report", "url": "https://ntrs.nasa.gov/citations/20210011385", "year": 2021, "ntrsId": "20210011385" }, { "title": "NASA, Combustion in Reduced Gravity (ISS mini-book, NP-2015-10-034-JSC)", "url": "https://www.nasa.gov/wp-content/uploads/2016/05/np-2015-10-034-jsc_combustion_in_reduced_gravity-iss-mini-book-011116-508.pdf", "year": 2015, "locator": "p. 19: BASS flight operations started March 2012; p. 45: in the MSG" }],
+    "verified": true
   },
   {
     "id": "sofie",
@@ -76,12 +76,12 @@
     "agency": "NASA",
     "platform": "ISS",
     "facility": "Combustion Integrated Rack",
-    "years": "2020s",
+    "years": "2023 onward",
     "fuels": ["spacecraft materials (solids)"],
     "summary": "A facility for igniting and burning solid materials under controlled oxygen, pressure and airflow, to map when spacecraft materials can ignite and keep burning.",
     "themes": ["ignition", "flame-spread", "flammability-limits", "materials"],
-    "sources": [{ "title": "Solid Fuel Ignition and Extinction (SoFIE) Project on ISS", "url": "https://ntrs.nasa.gov/citations/20200000361", "year": 2019, "ntrsId": "20200000361", "locator": "Abstract: insert for the Combustion Integrated Rack" }],
-    "verified": false
+    "sources": [{ "title": "Solid Fuel Ignition and Extinction (SoFIE) Project on ISS", "url": "https://ntrs.nasa.gov/citations/20200000361", "year": 2019, "ntrsId": "20200000361", "locator": "Abstract: insert for the Combustion Integrated Rack" }, { "title": "Fire and Flame Research in the Combustion Integrated Rack (CIR) on the International Space Station (Stocker)", "url": "https://ntrs.nasa.gov/citations/20250002347", "year": 2025, "ntrsId": "20250002347", "locator": "Poster: liquid droplets (2009–2017), gaseous fuels (2017–2022), solid fuels (2023–)" }],
+    "verified": true
   },
   {
     "id": "saffire",
@@ -90,12 +90,12 @@
     "agency": "NASA",
     "platform": "Uncrewed spacecraft",
     "facility": "Cygnus cargo vehicle, after leaving the ISS",
-    "years": "2016 to 2024",
+    "years": "2016 to 2023",
     "fuels": ["cotton-fiberglass fabric", "Nomex", "PMMA", "silicone", "other spacecraft materials"],
     "summary": "The first large-scale fires in space, lit inside an empty cargo vehicle after it left the station. Measured how flames grow on spacecraft-sized samples and how quickly smoke and heat change the cabin air. No crew on board.",
     "themes": ["flame-spread", "materials", "smoke-detection", "spacecraft-atmosphere"],
-    "sources": [{ "title": "The Spacecraft Fire Experiment (Saffire) - Objectives, Development and Status", "url": "https://ntrs.nasa.gov/citations/20170001636", "year": 2016, "ntrsId": "20170001636", "locator": "Abstract: Saffire-I launched 2016 on Cygnus" }, { "title": "Preliminary Results from the Saffire VI Experiment", "url": "https://ntrs.nasa.gov/citations/20240007488", "year": 2024, "ntrsId": "20240007488", "locator": "Abstract: last flight, on an orbiting Cygnus" }],
-    "verified": false
+    "sources": [{ "title": "The Spacecraft Fire Experiment (Saffire) - Objectives, Development and Status", "url": "https://ntrs.nasa.gov/citations/20170001636", "year": 2016, "ntrsId": "20170001636", "locator": "PDF p. 4: Saffire-I launched in the Cygnus on 22 March 2016 (OA-6)" }, { "title": "Preliminary Results from the Saffire VI Experiment", "url": "https://ntrs.nasa.gov/citations/20240007488", "year": 2024, "ntrsId": "20240007488", "locator": "Slide 4: Saffire IV and V flew in 2020 and 2021; Saffire VI flew in December 2023" }],
+    "verified": true
   },
   {
     "id": "same",
@@ -108,8 +108,8 @@
     "fuels": ["overheated spacecraft materials (smoke sources)"],
     "summary": "Measured the size of smoke particles from overheated spacecraft materials in microgravity, to judge how well spacecraft smoke detectors would see them.",
     "themes": ["smoke-detection", "materials"],
-    "sources": [{ "title": "Particle and Smoke Detection on ISS for Next Generation Smoke Detectors", "url": "https://ntrs.nasa.gov/citations/20070031686", "year": 2007, "ntrsId": "20070031686" }, { "title": "Particle Morphology and Size Results from the Smoke Aerosol Measurement Experiment-2", "url": "https://ntrs.nasa.gov/citations/20130000422", "year": 2012, "ntrsId": "20130000422", "locator": "Abstract: SAME-2 on Expedition 24, July–September 2010; first flight Expedition 15" }],
-    "verified": false
+    "sources": [{ "title": "Particle and Smoke Detection on ISS for Next Generation Smoke Detectors", "url": "https://ntrs.nasa.gov/citations/20070031686", "year": 2007, "ntrsId": "20070031686" }, { "title": "Particle Morphology and Size Results from the Smoke Aerosol Measurement Experiment-2", "url": "https://ntrs.nasa.gov/citations/20130000422", "year": 2012, "ntrsId": "20130000422", "locator": "Abstract: SAME-2 on Expedition 24, July–September 2010; first flight Expedition 15" }, { "title": "NASA, Combustion in Reduced Gravity (ISS mini-book, NP-2015-10-034-JSC)", "url": "https://www.nasa.gov/wp-content/uploads/2016/05/np-2015-10-034-jsc_combustion_in_reduced_gravity-iss-mini-book-011116-508.pdf", "year": 2015, "locator": "p. 45: SAME conducted in 2007 and 2010; p. 26: particle-size distribution of smoke from spacecraft materials" }],
+    "verified": true
   },
   {
     "id": "flare",
@@ -117,26 +117,26 @@
     "acronym": "FLARE",
     "agency": "JAXA (with NASA and ESA)",
     "platform": "ISS",
-    "facility": "Japanese Experiment Module (Kibo) on the ISS",
-    "years": "Ground correlation work 2015–2019; flight dates not yet confirmed",
+    "facility": "Solid Combustion Experiment Module in the Multi-purpose Small Payload Rack, Kibo (ISS)",
+    "years": "In progress on the ISS (JAXA page dated 22 February 2021); ground work 2015–2019",
     "fuels": ["solid materials"],
-    "summary": "A JAXA-led study, with NASA and ESA, comparing NASA's ground flammability test (NASA-STD-6001 Test 1) with the oxygen limits at which materials stop burning in orbit, to improve how spacecraft materials are rated.",
+    "summary": "A JAXA investigation, with NASA and ESA, that burns solid materials in a low-speed flow tunnel to find the minimum oxygen level at which a flame keeps spreading in microgravity, and compares it with NASA's ground test (NASA-STD-6001 Test 1) to build an international flammability standard.",
     "themes": ["flammability-limits", "materials", "partial-gravity"],
-    "sources": [{ "title": "Flammability Limits at Reduced-g Experiment (FLARE) Task Group 5: Fundamental Research on International Standard of Fire Safety in Space on the ISS/JEM (Juarez et al., NASA WSTF)", "url": "https://ntrs.nasa.gov/citations/20160001023", "year": 2016, "ntrsId": "20160001023", "locator": "PDF p. 1 (ISS/JEM); p. 2 (JAXA, NASA WSTF, ESA); p. 4 (goal: compare NASA-STD-6001 data to flight LOI data; timeline 2015–2019)" }],
-    "verified": false
+    "sources": [{ "title": "Flammability Limits at Reduced-g Experiment (FLARE) Task Group 5: Fundamental Research on International Standard of Fire Safety in Space on the ISS/JEM (Juarez et al., NASA WSTF)", "url": "https://ntrs.nasa.gov/citations/20160001023", "year": 2016, "ntrsId": "20160001023", "locator": "PDF p. 1 (ISS/JEM); p. 2 (JAXA, NASA WSTF, ESA); p. 4 (goal: compare NASA-STD-6001 data to flight LOI data; timeline 2015–2019)" }, { "title": "JAXA: Fundamental Research on International Standard of Fire Safety in Space (FLARE)", "url": "https://humans-in-space.jaxa.jp/en/biz-lab/experiment/theme/detail/000807.html", "year": 2021, "locator": "Experiment Description: MLOC in the MSPR in Kibo; flow below 30 cm/s; 'In progress', 2021.02.22" }],
+    "verified": true
   },
   {
     "id": "zero-gravity-research-facility",
     "name": "Zero Gravity Research Facility (Glenn Research Center)",
     "agency": "NASA",
     "platform": "Drop tower",
-    "facility": "Vacuum drop shaft, about 5 seconds of free fall",
-    "years": "1960s onward",
+    "facility": "Vacuum drop shaft, 5.18 seconds of free fall",
+    "years": "Operational since 1966",
     "fuels": ["many: gases, droplets, solids"],
     "summary": "A ground drop tower that gives a few seconds of microgravity, used for decades for quick, repeatable combustion tests before (and instead of) flying to space.",
     "themes": ["ignition", "flame-spread", "extinction"],
-    "sources": [{ "title": "NTRS search: Zero Gravity Research Facility combustion", "url": "https://ntrs.nasa.gov/search?q=Zero%20Gravity%20Research%20Facility%20combustion%20drop%20tower" }],
-    "verified": false
+    "sources": [{ "title": "NASA Glenn: Zero Gravity Research Facility", "url": "https://www.nasa.gov/centers-and-facilities/glenn/zero-gravity-research-facility/", "year": 2025, "locator": "Facility Overview: near-weightless for 5.18 seconds; operational since 1966; used for combustion" }],
+    "verified": true
   },
   {
     "id": "two-second-drop-tower",
@@ -144,12 +144,12 @@
     "agency": "NASA",
     "platform": "Drop tower",
     "facility": "Drop tower, about 2.2 seconds of free fall",
-    "years": "1960s onward",
+    "years": "In use for over 50 years",
     "fuels": ["many: gases, droplets, solids"],
     "summary": "A shorter, faster-turnaround drop tower used for many early and exploratory microgravity combustion tests.",
     "themes": ["ignition", "flame-spread"],
-    "sources": [{ "title": "NTRS search: 2.2 second drop tower combustion", "url": "https://ntrs.nasa.gov/search?q=2.2%20second%20drop%20tower%20combustion" }],
-    "verified": false
+    "sources": [{ "title": "NASA Glenn: 2.2 Second Drop Tower", "url": "https://www.nasa.gov/centers-and-facilities/glenn/2-2-second-drop-tower/", "year": 2025, "locator": "Facility Overview: used for over 50 years to study combustion and fluid dynamics" }, { "title": "NASA, Combustion in Reduced Gravity (ISS mini-book, NP-2015-10-034-JSC)", "url": "https://www.nasa.gov/wp-content/uploads/2016/05/np-2015-10-034-jsc_combustion_in_reduced_gravity-iss-mini-book-011116-508.pdf", "year": 2015, "locator": "p. 2 and p. 17: flame tests in the 2.2-second Drop Tower" }],
+    "verified": true
   },
   {
     "id": "nasa-std-6001",
@@ -161,21 +161,21 @@
     "fuels": ["candidate spacecraft materials"],
     "summary": "The ground test NASA uses to decide which materials may fly. A key open question for fire safety is how well this 1 g test predicts burning in microgravity and partial gravity.",
     "themes": ["materials", "flammability-limits", "partial-gravity"],
-    "sources": [{ "title": "Organizing Questions for Reduced-Gravity Flammability", "url": "https://ntrs.nasa.gov/citations/20040142368", "year": 2004, "ntrsId": "20040142368", "locator": "Abstract: is NASA-STD-6001 Test 1 conservative in reduced gravity?" }],
-    "verified": false
+    "sources": [{ "title": "Organizing Questions for Reduced-Gravity Flammability", "url": "https://ntrs.nasa.gov/citations/20040142368", "year": 2004, "ntrsId": "20040142368", "locator": "Abstract: NASA-STD-6001 Test 1 is an upward flame propagation test; is it conservative in reduced gravity?" }],
+    "verified": true
   },
   {
     "id": "apollo-1",
     "name": "Apollo 1 cabin fire",
     "agency": "NASA",
     "platform": "Ground (1 g)",
-    "facility": "Launch pad test, pure-oxygen cabin",
-    "years": "1967",
+    "facility": "Launch pad test, cabin of pure oxygen at 16.7 psi",
+    "years": "1967 (27 January)",
     "fuels": ["cabin materials in pure oxygen"],
     "summary": "A fire in a pure-oxygen cabin during a ground test killed three astronauts and reshaped how NASA treats cabin atmosphere and flammable materials. Context, not microgravity data.",
     "themes": ["incidents", "spacecraft-atmosphere", "materials"],
-    "sources": [{ "title": "Apollo 204 Review Board activities: Second interim report", "url": "https://ntrs.nasa.gov/citations/19670009428", "year": 1967, "ntrsId": "19670009428" }],
-    "verified": false
+    "sources": [{ "title": "Apollo 204 Review Board activities: Second interim report", "url": "https://ntrs.nasa.gov/citations/19670009428", "year": 1967, "ntrsId": "19670009428" }, { "title": "55 Years Ago: The Apollo 1 Fire and its Aftermath (NASA History, John Uri)", "url": "https://www.nasa.gov/history/55-years-ago-the-apollo-1-fire-and-its-aftermath/", "year": 2022, "locator": "27 Jan 1967 ground test; pure oxygen at 16.7 psi; three astronauts died; changes to the spacecraft and safety culture" }],
+    "verified": true
   },
   {
     "id": "mir-1997",
@@ -188,6 +188,87 @@
     "summary": "A solid-fuel oxygen generator caught fire, shooting a flame across the module for several minutes, blocking the way to one Soyuz escape craft and filling the station with smoke. NASA calls it the worst in-orbit fire in the history of spaceflight.",
     "themes": ["incidents", "smoke-detection", "suppression"],
     "sources": [{ "title": "25 Years Ago: Fire Aboard Space Station Mir (NASA History, John Uri)", "url": "https://www.nasa.gov/history/25-years-ago-fire-aboard-space-station-mir/", "year": 2022, "locator": "Paragraphs 1 and 3: 24 Feb 1997, SFOG in Kvant-1, six crew, flame for several minutes, smoke; 'worst in-orbit fire incident in the history of spaceflight'" }],
-    "verified": false
+    "verified": true
+  },
+  {
+    "id": "nasa-combustion-review",
+    "name": "NASA microgravity combustion research (review)",
+    "agency": "NASA",
+    "platform": "Multiple platforms",
+    "facility": "Drop towers, reduced-gravity aircraft, Space Shuttle, Mir and ISS",
+    "years": "1960s to 2015 (review published 2015)",
+    "fuels": ["gases", "liquids", "solids"],
+    "summary": "NASA's own review of decades of microgravity combustion research by well over 200 investigators. Used for findings that rest on many experiments rather than one.",
+    "themes": ["flame-spread", "ignition", "flammability-limits", "smoke-detection", "materials"],
+    "sources": [{ "title": "NASA, Combustion in Reduced Gravity (ISS mini-book, NP-2015-10-034-JSC)", "url": "https://www.nasa.gov/wp-content/uploads/2016/05/np-2015-10-034-jsc_combustion_in_reduced_gravity-iss-mini-book-011116-508.pdf", "year": 2015, "locator": "p. 30: well over 200 principal investigators; most research in drop towers and aircraft, the most promising in space" }],
+    "verified": true
+  },
+  {
+    "id": "candle-flames",
+    "name": "Candle Flames in Microgravity (Space Shuttle and Mir)",
+    "agency": "NASA",
+    "platform": "Crewed spacecraft",
+    "facility": "Candle box on the Space Shuttle and the Mir station",
+    "years": "1990s (paper 1999)",
+    "fuels": ["candle wax"],
+    "summary": "Candles burned in still microgravity air on the Shuttle and on Mir. On Mir they burned for as long as 45 minutes, dim and blue, and oscillated just before going out.",
+    "themes": ["extinction", "flammability-limits"],
+    "sources": [{ "title": "Candle Flames in Non-Buoyant Atmospheres (Dietrich et al.)", "url": "https://ntrs.nasa.gov/citations/20000005087", "year": 1999, "ntrsId": "20000005087", "locator": "Abstract" }],
+    "verified": true
+  },
+  {
+    "id": "sofball",
+    "name": "Structure of Flame Balls at Low Lewis-number",
+    "acronym": "SOFBALL",
+    "agency": "NASA",
+    "platform": "Crewed spacecraft",
+    "facility": "Combustion Module on the Space Shuttle (STS-83, STS-94, STS-107)",
+    "years": "1997 and 2003",
+    "fuels": ["lean premixed gas mixtures"],
+    "summary": "Showed that stationary, spherical 'flame balls' can exist in very lean premixed gases in microgravity: the weakest flames ever burned, about 1 watt, some lasting over 40 minutes.",
+    "themes": ["flammability-limits", "extinction"],
+    "sources": [{ "title": "NASA, Combustion in Reduced Gravity (ISS mini-book, NP-2015-10-034-JSC)", "url": "https://www.nasa.gov/wp-content/uploads/2016/05/np-2015-10-034-jsc_combustion_in_reduced_gravity-iss-mini-book-011116-508.pdf", "year": 2015, "locator": "p. 25: SOFBALL on STS-83, STS-94 (1997) and STS-107 (2003); p. 30: about 1 W, over 40 minutes" }],
+    "verified": true
+  },
+  {
+    "id": "mist",
+    "name": "Water Mist Fire Suppression Experiment",
+    "acronym": "Mist",
+    "agency": "NASA",
+    "platform": "Crewed spacecraft",
+    "facility": "Combustion Module on the Space Shuttle (STS-107)",
+    "years": "2003",
+    "fuels": ["premixed gas in a tube"],
+    "summary": "Measured how water droplet size and concentration affect flames, to design water-mist systems that replace banned Halon. Water-mist portable extinguishers later went to the ISS to replace CO₂ units.",
+    "themes": ["suppression"],
+    "sources": [{ "title": "NASA, Combustion in Reduced Gravity (ISS mini-book, NP-2015-10-034-JSC)", "url": "https://www.nasa.gov/wp-content/uploads/2016/05/np-2015-10-034-jsc_combustion_in_reduced_gravity-iss-mini-book-011116-508.pdf", "year": 2015, "locator": "p. 26: Mist on STS-107 in 2003; water-mist portable fire extinguishers sent to the ISS from December 2015" }],
+    "verified": true
+  },
+  {
+    "id": "fm2",
+    "name": "Flammability of Materials on the Moon",
+    "acronym": "FM2",
+    "agency": "NASA",
+    "platform": "Uncrewed spacecraft",
+    "facility": "Robotic combustion chamber on a Commercial Lunar Payload Services lander (CP-21)",
+    "years": "Planned (prototype operational 2024)",
+    "fuels": ["cotton-fiberglass fabric (SIBAL)", "PMMA (acrylic) rods"],
+    "summary": "A self-contained fire experiment for the lunar surface, to burn fabric and acrylic in 21 % O₂ at 14.7 psia and 34 % O₂ at 8.2 psia, because lunar gravity can make some materials more flammable than on Earth.",
+    "themes": ["partial-gravity", "flammability-limits", "materials", "spacecraft-atmosphere"],
+    "sources": [{ "title": "Flammability of Materials on the Moon (Zayac, Johnston, Ruff, Ferkul), NASA Glenn poster", "url": "https://ntrs.nasa.gov/citations/20240015307", "year": 2024, "ntrsId": "20240015307", "locator": "Poster: Introduction; FM2 on CLPS CP-21; atmospheres 21 % / 14.7 psia and 34 % / 8.2 psia" }],
+    "verified": true
+  },
+  {
+    "id": "mir-solid-flammability",
+    "name": "Fire safety experiments on the Mir station (solid materials)",
+    "agency": "Russian researchers on the Mir station",
+    "platform": "Crewed spacecraft",
+    "facility": "Combustion chamber with ventilation control on Mir",
+    "years": "1994 onward",
+    "fuels": ["solid non-metal materials"],
+    "summary": "Russian experiments on Mir measuring the minimum air velocity at which burning solids go out, to support a fire-safety concept based on lowering or stopping ventilation.",
+    "themes": ["extinction", "materials", "flame-spread"],
+    "sources": [{ "title": "Fire safety experiments on MIR Orbital Station (Egorov et al.)", "url": "https://ntrs.nasa.gov/citations/19960008416", "year": 1995, "ntrsId": "19960008416", "locator": "Abstract: first experiments by cosmonauts Viktorenko and Kondakova in late 1994" }],
+    "verified": true
   }
 ]

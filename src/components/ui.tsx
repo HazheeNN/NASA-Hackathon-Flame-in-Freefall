@@ -97,6 +97,27 @@ export function Citations({ ids }: { ids: string[] }) {
   );
 }
 
+// SI text with inline citations like "… spread fastest [F-008, F-015]." The bracketed IDs become
+// citation chips, so every fact links to its finding (docs/ai.md › Job 3). Plain text otherwise.
+export function CitedText({ text }: { text: string }) {
+  const parts = text.split(/\s*\[(F-\d{3}(?:\s*,\s*F-\d{3})*)\]/);
+  return (
+    <>
+      {parts.map((part, i) =>
+        i % 2 === 1 ? (
+          <span key={i} className="ms-1 inline-flex flex-wrap gap-1 align-baseline">
+            {part.split(/\s*,\s*/).map((id) => (
+              <CitationChip key={id} id={id} />
+            ))}
+          </span>
+        ) : (
+          <span key={i}>{part}</span>
+        ),
+      )}
+    </>
+  );
+}
+
 export function SourceLink({ source }: { source: { title: string; url: string; locator?: string; year?: number } }) {
   return (
     <a href={source.url} target="_blank" rel="noreferrer" className="group inline-flex items-start gap-1.5 text-[14px] text-primary hover:text-primary-hover">

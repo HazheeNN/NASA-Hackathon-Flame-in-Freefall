@@ -51,6 +51,7 @@ Do it yourself (no Claude) when it's: reading papers and verifying findings, dec
 | `si-run` | Run an SI job (extract, synthesize, answer) in the session, validate it and review the output |
 | `demo-check` | Pre-demo and pre-submission checklist |
 | `submission-pack` | Draft the project page, video script and slides from the docs |
+| `web-research` | Research on the web with Agent Reach (NASA talk transcripts, hard-to-read pages) under our source rules; needs Agent Reach on your laptop (`docs/runbook.md`) |
 | Design skills (`ui-ux-pro-max`, `high-end-visual-design`, `design-taste-frontend`, …) | Polish passes on the UI; always within `DESIGN.md` |
 
 ## Prompt starters

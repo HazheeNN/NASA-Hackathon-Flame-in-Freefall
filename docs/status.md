@@ -33,6 +33,11 @@ Worlds: 4 · atmospheres: 5 (all unverified seeds).
 
 ## Log
 
+### 2026-11-14 · Agent Reach (Hazheen + Claude)
+- Done: Agent Reach v1.6.1 added as an optional per-laptop tool: install steps in `docs/runbook.md`, project rules in the `web-research` skill, decision logged. Its skill passed `scripts/security-scan.sh skills`.
+- Not tested: the tool itself (installing third-party programs was blocked in the cloud session). First teammate to install: run `agent-reach doctor --text` and note the result here.
+- Next: Day 0 setup, then WP0/WP1.
+
 ### 2026-11-14 · NASA formulas decision (Shera + Claude)
 - Done: decided option C: explain with NASA formulas everywhere, compute only inside each formula's tested range, label computed values (`docs/decisions.md`, `CLAUDE.md` rule, `docs/data.md` › Formulas with rules, planned shape and 6 candidate formulas, PRD F22, plan WP9, `docs/science.md`).
 - Not tested: no formula verified yet; the candidates come from web search (NASA hosts blocked). No code changed.

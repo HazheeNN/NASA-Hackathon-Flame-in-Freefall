@@ -13,6 +13,8 @@ The corpus is the product. The SI is only as good as the findings it reads, and 
 | **Partner agencies** (JAXA, ESA, CSA, …) | e.g. JAXA FLARE results | Public | Only if listed in the challenge or clearly relevant |
 | **Peer-reviewed journals** (Combustion and Flame, Proceedings of the Combustion Institute, Microgravity Science and Technology, …) | The detailed versions of many results | Often paywalled | Cite them when that's where the finding is; use the NTRS copy when one exists |
 
+**Leads, not sources:** videos, blogs and social posts found with Agent Reach (`web-research` skill) or search point you to papers; the finding always cites the NASA or agency source itself.
+
 **Licensing:** NASA-authored works are generally not under copyright in the US, but journal versions may be. We store only short quotes, numbers and links, never whole papers, in the repo. Raw downloads live in `data/raw/` (git-ignored).
 
 ⚠ The NTRS and PSI hosts were blocked from the cloud session that wrote this. The scripts are written to the documented API but untested: check `scripts/fetch-ntrs.mts` against one real response on your laptop first.

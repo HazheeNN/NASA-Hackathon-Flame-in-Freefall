@@ -27,6 +27,8 @@ next-env.d.ts
 
 # raw downloads (PDFs, big NTRS dumps): keep them local, commit only the cleaned JSON
 data/raw/
+# Agent Reach keeps its own files in ~/.agent-reach/; never copy them here
+.agent-reach/
 
 # screenshots you take while working (docs/screenshots/ is for the ones worth keeping)
 /screenshots/

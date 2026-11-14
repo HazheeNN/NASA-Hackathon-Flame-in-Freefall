@@ -24,6 +24,36 @@ npm run dev
 4. `npm run check` should pass.
 5. Install Claude Code and sign in (`docs/claude-workflow.md`); open it in the repo folder and say "start session".
 
+## Agent Reach (optional, each laptop, ≈ 5 min)
+
+A read-only tool that lets Claude read things its built-in web tools can't, mainly YouTube transcripts of NASA talks (project rules: `web-research` skill). It installs on your laptop, never in the repo: the program goes through `uv`, and its settings and any logins live in `~/.agent-reach/`.
+
+1. Install `uv` if `uv --version` fails (no admin password needed):
+
+```bash
+curl -LsSf https://astral.sh/uv/install.sh | sh
+```
+
+2. Install the pinned version (from GitHub only: the PyPI package with the same name is **not** this project):
+
+```bash
+uv tool install https://github.com/Panniantong/Agent-Reach/releases/download/v1.6.1/agent-reach.zip
+```
+
+3. Set it up (turns on the default channels and installs its Claude skill in your home folder):
+
+```bash
+agent-reach setup
+```
+
+4. Check it:
+
+```bash
+agent-reach doctor --text
+```
+
+Then in Claude Code: *"Use the web-research skill to find NASA talks on the Saffire experiments."* Don't add login channels (Twitter, Reddit, …) for this project. To remove it later, ask Claude to "uninstall Agent Reach" (it shows what it will delete first).
+
 ## Anthropic API key: not needed now
 
 We run the SI in Claude Code (mode A, `docs/ai.md`). Only if we decide to switch to mode B: a Claude Pro subscription is not API access, so the owner would create a key at console.anthropic.com, add ≈ $10–20 of credit, **set a spend limit**, and add it to Vercel and `.env.local` as `ANTHROPIC_API_KEY` (`docs/security.md` › If we switch).

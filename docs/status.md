@@ -14,7 +14,8 @@ Read this first. Update it at the end of every session (`handoff` skill). Newest
 2. **WP0:** paste the full challenge page into `docs/challenge.md`; re-check the plan against its data list.
 3. **WP1:** verify the 14 seed experiments; first findings from BASS, Saffire, FLEX.
 4. **WP3a review:** PR with the app shell, shared components and insights pages on sample data; owner connects Vercel to see the Preview (`docs/runbook.md` › Vercel), team gives layout feedback. Then WP3b (findings explorer) and WP3c (filters, confidence meter, overview top 3).
-5. **WP5 step 1:** open the links in `docs/data.md` › Sources for Four Worlds… on a laptop (NASA sites were blocked from the cloud session), verify the world and atmosphere values, and start findings on partial gravity, 8.2 psia / 34 % O₂ and ventilation flow.
+5. **FLEX Table IX into the corpus:** parse it from the NASA PDF (`docs/data.md` › Data we can use now) into `data/` as the first real dataset for the gaps map; a few verified findings from it.
+5b. **WP5 step 1:** open the links in `docs/data.md` › Sources for Four Worlds… on a laptop (NASA sites were blocked from the cloud session), verify the world and atmosphere values, and start findings on partial gravity, 8.2 psia / 34 % O₂ and ventilation flow.
 6. **Verify `data/worlds.json` and `data/atmospheres.json`** (4 worlds, 5 atmospheres, all unverified seeds) against their links; add a `locator` and set `verified: true`. Add credited NASA flame images (`image`) where they exist.
 7. **WP9 formulas (F22):** find and verify 3–4 NASA formulas (`docs/data.md` › Formulas), starting with O₂ partial pressure and one fire formula; then add the `Formula` schema.
 8. **Schema for the test-next proposals (F18):** add when WP6 starts (an optional list next to insights in `generated/insights.json`, written by SI job 2).
@@ -32,6 +33,10 @@ Read this first. Update it at the end of every session (`handoff` skill). Newest
 Worlds: 4 · atmospheres: 5 (all unverified seeds).
 
 ## Log
+
+### 2026-11-14 · data sources checked (Shera + Claude)
+- Done: checked two other teams' repos (FLEX CSV real and matches NASA Table IX on all 276 rows; Fire-atlas data is dummy), api.nasa.gov (no combustion data; image library and TechPort only), NTRS API (works, has full-text downloads). Confirmed against NASA PDFs: exploration atmospheres (p. 11), Moon/Mars gravity (NSSDC), d² law definition (FLEX TP p. 19), stretch-rate formula (Olson 2016 p. 3). Added locators to `data/worlds.json` and `data/atmospheres.json` (still `verified: false` until a teammate checks). No-Chinese-data rule added. A personal cloud environment "NASA-Hackathon-Flame-in-Freefall" now allows NASA hosts for Claude sessions.
+- Next: FLEX Table IX into `data/`.
 
 ### 2026-11-14 · WP3a app shell (Shera + Claude)
 - Done: top bar with navigation (Overview, Insights, Four Worlds, Gaps map, Habitat, Findings, Sources), Ask button, phone menu below 1024 px, footer; shared components in `src/components/ui.tsx` (card, page header, risk badge, verified badge, theme and mission chips, citation chip, AI label, sample banner); `/insights` and `/insights/[id]` on `data/sample/` (placeholder text under a "Sample data" banner, shown only while there are no real insights); minimal `/findings/[id]` so citation chips open something; "coming next" pages for the other routes. Screenshots in `docs/screenshots/wp3a-*`.

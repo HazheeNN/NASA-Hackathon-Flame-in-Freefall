@@ -17,6 +17,32 @@ The corpus is the product. The SI is only as good as the findings it reads, and 
 
 ⚠ The NTRS and PSI hosts were blocked from the cloud session that wrote this. The scripts are written to the documented API but untested: check `scripts/fetch-ntrs.mts` against one real response on your laptop first.
 
+## Data we can use now (checked 2026-11-14 against the NASA PDFs)
+
+| Dataset | What it is | Where | Status |
+|---|---|---|---|
+| **FLEX Table IX** | 276 ISS droplet-combustion tests (FLEX-001…280; 156, 205, 213, 228 absent): fuel (methanol/heptane), pressure (mmHg), O₂/N₂/CO₂/He mole fractions, initial droplet diameter, extinction diameter, burning-rate constant (mm²/s), burn time, outcome (Extinction 186 · Disruption 62 · Completion 28) | Dietrich et al., *Detailed Results From the Flame Extinguishment Experiment (FLEX) March 2009 to December 2011*, NASA/TP—2015-216046, [ntrs.nasa.gov/citations/20150023456](https://ntrs.nasa.gov/citations/20150023456): column definitions p. 19, Table IX from p. 20 | **Real, measured, public.** Our own parse of the PDF matches the CSV in [shaharia179/flame-in-freefall](https://github.com/shaharia179/flame-in-freefall) (`data/flex_table_ix.csv`) on all 276 rows. Gives the gaps map hundreds of real 0 g points (O₂, pressure, diluent, went out or not) |
+| **BASS-II Summary Report** | Solid-fuel flame spread and blowoff on the ISS | NASA TM, [ntrs.nasa.gov/citations/20210011385](https://ntrs.nasa.gov/citations/20210011385) | To read for tables |
+| **Exploration atmospheres** | 8.2 psia / 34 % O₂, 8.0 / 32 %, 10.2 / 26.5 %, 14.7 / 21 % | [ntrs.nasa.gov/citations/20130013505](https://ntrs.nasa.gov/citations/20130013505), PDF p. 11 | Values confirmed in the PDF; `data/atmospheres.json` now has the locator |
+| **Moon and Mars gravity** | Moon 1.62 m/s², Mars 3.73 m/s² (mean) → 0.165 g, 0.380 g (÷ 9.80665) | NASA NSSDC [Moon](https://nssdc.gsfc.nasa.gov/planetary/factsheet/moonfact.html) and [Mars](https://nssdc.gsfc.nasa.gov/planetary/factsheet/marsfact.html) fact sheets, "Surface gravity" row | Confirmed; `data/worlds.json` has the locator |
+| **Partial-gravity flammability** | "Normal gravity may not be the most flammable condition"; Lunar-g tests with SIBAL fabric; limiting O₂ (LOC) at Lunar g | Ferkul, *Material Flammability at Lunar and Martian Gravity*, LPSC 2026, [20260001966](https://ntrs.nasa.gov/api/citations/20260001966/downloads/Ferkul-Lunar%20and%20Planetary%20Science%20Conf%202026%20v2.pdf) | Slides: cite numbers only where a slide states them |
+
+### Other teams' repositories (checked 2026-11-14)
+
+- **[shaharia179/flame-in-freefall](https://github.com/shaharia179/flame-in-freefall)**: useful as a **cross-check**. Its FLEX CSV is a faithful copy of NASA Table IX. It has no licence and is another team's entry, so we **don't copy its code or CSV**: we parse Table IX from the NASA PDF ourselves, cite NASA, and may thank them in the README. We do **not** use its ML models (a predictor is out of scope, `docs/decisions.md`).
+- **[benzene09/…Fire-atlas](https://github.com/benzene09/Nasa-Space-App-Challenge-2k26---Fire-atlas)**: **not usable for data**. Its README and `src/utils/data.js` say every number is dummy/illustrative. Only leads: it names PSI datasets (FLEX PSI-69, FLEX-2 PSI-68, BASS PSI-26, CFI-G PSI-159, PSI-117, DAFT PSI-47); check each ID on the PSI site before citing.
+
+### api.nasa.gov and other NASA APIs
+
+- **api.nasa.gov** (free key) has APOD, DONKI space weather, asteroids, EPIC, Mars rover photos, TechPort and similar. **None has combustion data.** Useful only: **TechPort** (descriptions of NASA combustion projects) and the image library below.
+- **NASA Image and Video Library**, `images-api.nasa.gov` (no key): real photos for Four Worlds, e.g. `sts050-232-011` "Candle Flames in Microgravity Experiment", Saffire images `GRC-2014-C-02323`. Credit "Image: NASA" with the page link.
+- **NTRS API**, `ntrs.nasa.gov/api/citations/search?q=…` (no key): the main source of papers. Each record lists PDF and **full-text `.txt`** downloads, which makes extraction (SI job 1) easy.
+- **PSI** (raw ISS experiment data): free account, browser only; or the AWS Open Data mirror.
+
+### No Chinese data (team rule, 2026-11-14)
+
+We use no data from Chinese agencies, missions, institutions or databases (e.g. CMSA, Tiangong or Shijian experiments, CAS institutes). NASA and partner-agency sources (ESA, JAXA, CSA) only. Papers from NASA or partner agencies are fine whoever the co-authors are. When adding a source, check the publishing agency and the experiment platform.
+
 ## Sources for Four Worlds, the gaps map and the Habitat Designer (to collect)
 
 Decided 2026-11-14 (`docs/decisions.md`). These features need **world and atmosphere facts** (gravity, cabin pressure and O₂) and **findings at the conditions habitats will use** (partial gravity, low pressure, high O₂). Every value below still goes through the normal workflow: a finding or experiment record with a source and locator, verified by a teammate. Found by web search on 2026-11-14 from a session where the NASA hosts were blocked: **open each link on a laptop and check the page/number before using it.**
@@ -84,9 +110,10 @@ The site **explains** with NASA formulas everywhere and **computes** with them o
 |---|---|---|---|
 | Oxygen partial pressure, `pO2 = P × xO2` (8.2 psia × 0.34 ≈ 19.2 kPa vs ISS ≈ 21.3 kPa) | Why low-pressure habitats need a higher O₂ % to breathe, and the fire-risk trade-off | Habitat Designer | Exploration atmosphere papers ([20130013505](https://ntrs.nasa.gov/citations/20130013505), [20150021491](https://ntrs.nasa.gov/citations/20150021491)) |
 | Buoyant velocity scaling, `u_b ~ (g · β · ΔT · L)^½` | Why flames are round at 0 g and how much "natural" flow Moon and Mars gravity give a flame | Four Worlds | Partial-gravity and mixed-convection papers ([20010074098](https://ntrs.nasa.gov/citations/20010074098), Fire on the Moon [20210020516](https://ntrs.nasa.gov/citations/20210020516)) |
-| Droplet d² law, `d² = d₀² − K · t` | How a FLEX droplet burns down; burning-rate constant K | Four Worlds (ISS) | FLEX papers on NTRS |
+| Droplet d² law, `d² = d₀² − K · t` | How a FLEX droplet burns down; burning-rate constant K | Four Worlds (ISS) | **Found:** FLEX TP 2015-216046 p. 19 defines the burning rate as "a linear fit of the droplet diameter squared versus time"; Table IX gives K for 260 tests (valid: 0 g, the tested pressures, O₂ and diluents) |
 | Maximum O₂ concentration (MOC) from NASA-STD-6001 Test 1 | Above which O₂ % a material fails NASA's flame test | Habitat Designer, gaps map | [20040084025](https://ntrs.nasa.gov/citations/20040084025), NESC [TB 26-03](https://ntrs.nasa.gov/api/citations/20260001542/downloads/TB_26-03Final.pdf) |
 | Flammability boundary: O₂ vs flow (and vs gravity) | Where flames survive or go out | Gaps map | Ventilation papers ([20140011099](https://ntrs.nasa.gov/api/citations/20140011099/downloads/20140011099.pdf)), Ferkul LPSC 2026 ([20260001966](https://ntrs.nasa.gov/api/citations/20260001966/downloads/Ferkul-Lunar%20and%20Planetary%20Science%20Conf%202026%20v2.pdf)) |
+| Forced stretch rate `a = 3/2 · U / r` and flame standoff `δ = (α / a)^½` (blowoff of PMMA rods, 1 g vs 0 g flow) | Why airflow can blow a flame off, and how 1 g buoyant flow compares with forced flow in 0 g | Gaps map, Habitat Designer | Olson et al., [20160012691](https://ntrs.nasa.gov/citations/20160012691) p. 3 (valid: cast PMMA rods r 0.318–1.905 cm, the tested O₂) |
 | Thin-fuel flame spread rate (de Ris-type relation) | How fast a flame runs over fabric or paper in a given flow | Habitat Designer | Saffire and BASS papers ([20240002981](https://ntrs.nasa.gov/citations/20240002981)) |
 
 Start with the first one (simple, certain) and one fire formula; 3–4 verified formulas beat 10 unchecked ones.

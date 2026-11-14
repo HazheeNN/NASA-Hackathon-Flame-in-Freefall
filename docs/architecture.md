@@ -72,6 +72,7 @@ docs/               everything a teammate or Claude needs (start at CLAUDE.md)
 | `/insights`, `/insights/[id]` | Ranked insights with filters and confidence meter; detail | Static |
 | `/findings`, `/findings/[id]` | Findings explorer + FLEX dataset table (`?tab=datasets`); finding detail | Static shell + client |
 | `/ask` | Question library search (also a dialog on every page, Ctrl/⌘ K) | Static shell + client |
+| `/formulas` | Every NASA formula: what it is for, equation and symbols, how we use it, worked example, valid range and limits, where it appears, citation; the lab's "How is this calculated?" links here | Static |
 | `/sources` | Method, rubric, formulas, datasets, cabin air, experiments, image credits | Static |
 | `/about` | The project, AI use, rules, not-affiliated note | Static |
 

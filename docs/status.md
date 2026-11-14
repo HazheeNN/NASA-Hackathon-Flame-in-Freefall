@@ -30,7 +30,7 @@ Read this first. Update it at the end of every session (`handoff` skill). Newest
 - [ ] Review the Flame Lab on a laptop: flame look, layout, world cards, colours.
 - [ ] Check on a real projector, in Safari and on a tablet (not tested yet).
 - [ ] Add solids and gas flames (BASS, Saffire, ACME) to the fuel choices once their data is verified.
-- [ ] 2 more NASA formulas (e.g. flame blowoff, `docs/data.md` › Formulas).
+- [ ] Verify the 3 formulas on `/formulas` (FX-01–03), then add more (each needs where used, steps, a worked example and limits in `data/formulas.json`).
 - [ ] Optional: real NASA flame photos inside the lab (FLEX droplet, Saffire), credited.
 
 ### 4. Deployment and housekeeping
@@ -62,6 +62,17 @@ Read this first. Update it at the end of every session (`handoff` skill). Newest
 Worlds: 4 · atmospheres: 7 · formulas: 2 · FLEX tests: 276 (all verified).
 
 ## Log
+
+### 2026-11-14 · spot-check list (Shera + Claude)
+- Done: `docs/verification/2026-11-14-spot-check.md`: a ~20-minute human check of what Claude verified in #11 (the 11 findings behind the top 3 insights with their quotes, 4 FLEX rows, the 4 corrected experiments) plus what's still unverified (FX-03, F-033…F-038). Every link opens at the right page; the 4 FLEX rows were confirmed on their linked pages.
+
+### 2026-11-14 · first findings proposed: FLEX report (Shera + Claude)
+- Done: SI job 1 on NASA/TP—2015-216046 → 6 proposed findings (renumbered F-033…F-038 after #11; F-033 overlaps the verified F-001). Every quote checked word for word against the PDF by script. Review sheet: `docs/verification/2026-11-14-flex-findings-review.md`.
+- Next: a teammate reviews each (keep / fix / drop); Claude then moves the kept ones into `data/findings.json` as verified.
+
+### 2026-11-14 · Formulas page (Shera + Claude)
+- Done: `/formulas` in the top navigation: every formula with what it tells you, the equation and symbols, how we use it step by step, a worked example, valid range and limits, where it appears on the site, and the NASA citation with page. The Flame Lab's calculated numbers now have "How is this calculated?" with the visitor's values plugged in. Added FX-03 forced stretch rate (Marcum, Olson, Ferkul 2016, p. 3; explained only). `Formula` schema gained `whereUsed`, `steps`, `example`, `limits`; a test recomputes every worked example.
+- Not tested: real GPU/projector, Safari. FX-01 and FX-02 verified by the team (#11); FX-03 still `verified: false`.
 
 ### 2026-11-14 · full data pass (Hazheen + Claude)
 - Done: fixed main (ISS locator); all experiments verified with corrections, 6 new experiments, 2 Apollo atmospheres, FLEX dataset verified; 32 verified findings with exact quotes checked against the sources; SI jobs 2 and 3 run (11 insights, 23 answers); citation chips inside SI text; full answers on /ask; phone overflow fix on /findings. Report: `docs/verification/2026-11-14-nasa-data-check.md` › Full pass.

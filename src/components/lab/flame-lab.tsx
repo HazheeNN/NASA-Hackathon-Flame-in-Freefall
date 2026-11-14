@@ -1,10 +1,11 @@
 "use client";
 
-import { Fan, Flame, Gauge, Map as MapIcon, Maximize2, MessageSquareText, Minimize2, Orbit, Wind } from "lucide-react";
+import { Fan, Flame, Gauge, Map as MapIcon, Maximize2, MessageSquareText, Minimize2, Orbit, Sigma, Wind } from "lucide-react";
 import Image from "next/image";
 import Link from "next/link";
 import { useCallback, useEffect, useMemo, useState } from "react";
 import { FlameCanvas } from "@/components/flame-canvas";
+import { FormulaHow } from "@/components/formula-how";
 import { ConfidenceMeter, EmptyState, MissionChip, RiskBadge, SourceLink, StatusChip, VerifiedBadge } from "@/components/ui";
 import { burnTime, coverage, nearestTests, oxygenPartialPressure, type Fuel, type LabTest, type Setup, type WorldId } from "@/lib/lab";
 import type { Formula } from "@/lib/schema";
@@ -244,9 +245,10 @@ export function FlameLab({
                     </dl>
                   )}
                   {d2 && inRange && near.kMedian !== null && near.count >= 3 && (
-                    <p className="mt-2 text-[12px] text-muted">
-                      Calculated from a NASA formula: {d2.expression} ({d2.id}).
-                    </p>
+                    <FormulaHow
+                      f={d2}
+                      substituted={`t_burn = ${DROPLET_MM}² ÷ ${num(near.kMedian, 2)} ≈ ${num(burnTime(DROPLET_MM, near.kMedian), 1)} s`}
+                    />
                   )}
                 </>
               )}
@@ -262,8 +264,12 @@ export function FlameLab({
                   {num(oxygenPartialPressure(pressure, o2), 1)} <span className="text-[16px] text-muted">kPa</span>
                 </p>
                 <p className="mt-1 text-[14px] text-muted">
-                  Calculated from a NASA formula: {pO2.expression}. ISS air is about {num(oxygenPartialPressure(101.3, 21), 1)} kPa.
+                  Calculated from a NASA formula. ISS air is about {num(oxygenPartialPressure(101.3, 21), 1)} kPa.
                 </p>
+                <FormulaHow
+                  f={pO2}
+                  substituted={`pO₂ = ${num(pressure, 1)} kPa × ${num(o2 / 100, 3)} ≈ ${num(oxygenPartialPressure(pressure, o2), 1)} kPa`}
+                />
               </div>
             )}
           </aside>
@@ -374,7 +380,7 @@ export function FlameLab({
           {[
             { href: "/gaps", Icon: MapIcon, title: "Gaps map", text: "Every NASA test as a dot, and the conditions nobody has burned anything in." },
             { href: "/ask", Icon: MessageSquareText, title: "Ask", text: "Questions planners ask, answered from cited NASA findings. Ctrl/⌘ K." },
-            { href: "/sources", Icon: Flame, title: "Sources & method", text: "Every NASA source, the formulas and their limits, and how our SI ranks." },
+            { href: "/formulas", Icon: Sigma, title: "Formulas", text: "Every NASA formula we use: what it is for, how we use it, its limits and its page." },
           ].map(({ href, Icon, title, text }) => (
             <Link key={href} href={href} className="group rounded-xl border border-line bg-surface/90 p-5 transition-colors hover:bg-raised">
               <Icon size={20} strokeWidth={1.75} aria-hidden className="text-primary" />

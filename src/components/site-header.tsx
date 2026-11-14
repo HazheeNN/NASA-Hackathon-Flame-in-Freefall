@@ -12,6 +12,7 @@ const NAV = [
   { href: "/", label: "Flame Lab" },
   { href: "/gaps", label: "Gaps map" },
   { href: "/insights", label: "Insights" },
+  { href: "/formulas", label: "Formulas" },
   { href: "/findings", label: "Findings" },
   { href: "/sources", label: "Sources" },
   { href: "/about", label: "About" },
@@ -61,7 +62,7 @@ export function SiteHeader({ index }: { index: SearchItem[] }) {
             <FlameMark />
             <span>Flame in Freefall</span>
           </Link>
-          <nav aria-label="Main" className="hidden items-center gap-6 lg:flex">
+          <nav aria-label="Main" className="hidden items-center gap-5 lg:flex">
             {NAV.map((n) => link(n))}
           </nav>
           <div className="ml-auto flex items-center gap-2">

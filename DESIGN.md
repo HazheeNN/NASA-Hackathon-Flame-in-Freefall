@@ -277,7 +277,7 @@ components:
 ## Layout
 
 - Max content width 1440 px, 16 px gutters on phones, 40 px on desktops.
-- Top bar: flame mark, name, navigation (Flame Lab, Gaps map, Insights, Findings, Sources, About) and the Ask button (also Ctrl/⌘ K). Collapses to a menu below 1024 px.
+- Top bar: flame mark, name, navigation (Flame Lab, Gaps map, Insights, Formulas, Findings, Sources, About) and the Ask button (also Ctrl/⌘ K). Collapses to a menu below 1024 px.
 - Flame Lab: controls | flame | NASA data side by side on wide screens, stacked on phones; the four world cards below (1 column on small phones, 2 on tablets, 4 on desktops).
 - Every AI-written panel: answer first, then evidence (citation chips), then caveats.
 
@@ -320,6 +320,7 @@ Lucide only, 20 px, stroke 1.75; same meaning, same icon:
 | Pressure | `gauge` |
 | Airflow | `fan` |
 | Gaps map | `map` |
+| Formula | `sigma` |
 | Fire-only mode | `maximize-2` |
 
 The flame-sphere mark is ours (`src/components/flame-mark.tsx`).

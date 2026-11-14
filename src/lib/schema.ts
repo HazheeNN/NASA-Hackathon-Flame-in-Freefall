@@ -223,6 +223,18 @@ export const Formula = z.object({
     fuel: z.array(z.string()).optional(),
   }),
   usedIn: z.array(z.enum(["lab", "worlds", "gaps"])),
+  // Where on the site its result appears (empty: explained only, not computed).
+  whereUsed: z.array(z.object({ label: z.string(), href: z.string() })),
+  // How we use it, step by step, in plain words.
+  steps: z.array(z.string()).min(1),
+  // One worked example with real numbers; `value` of the result must follow from the inputs.
+  example: z.object({
+    text: z.string(),
+    inputs: z.array(z.object({ symbol: z.string(), value: z.number(), unit: z.string() })).min(1),
+    result: z.object({ symbol: z.string(), value: z.number(), unit: z.string() }),
+  }),
+  // What it does not tell you; shown next to the valid range.
+  limits: z.string(),
   sources: z.array(Source).min(1),
   verified: z.boolean(),
 });

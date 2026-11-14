@@ -63,6 +63,9 @@ Worlds: 4 · atmospheres: 7 · formulas: 2 · FLEX tests: 276 (all verified).
 
 ## Log
 
+### 2026-11-14 · spot-check list (Shera + Claude)
+- Done: `docs/verification/2026-11-14-spot-check.md`: a ~20-minute human check of what Claude verified in #11 (the 11 findings behind the top 3 insights with their quotes, 4 FLEX rows, the 4 corrected experiments) plus what's still unverified (FX-03, F-033…F-038). Every link opens at the right page; the 4 FLEX rows were confirmed on their linked pages.
+
 ### 2026-11-14 · first findings proposed: FLEX report (Shera + Claude)
 - Done: SI job 1 on NASA/TP—2015-216046 → 6 proposed findings (renumbered F-033…F-038 after #11; F-033 overlaps the verified F-001). Every quote checked word for word against the PDF by script. Review sheet: `docs/verification/2026-11-14-flex-findings-review.md`.
 - Next: a teammate reviews each (keep / fix / drop); Claude then moves the kept ones into `data/findings.json` as verified.

@@ -60,7 +60,7 @@ function Findings({ rows }: { rows: FindingRow[] }) {
     <div className="space-y-4">
       <div className="flex flex-wrap gap-3">
         <input value={q} onChange={(e) => setQ(e.target.value)} placeholder="Search findings" className="h-10 min-w-0 flex-1 rounded-lg border border-line bg-raised px-3" />
-        <select value={exp} onChange={(e) => setExp(e.target.value)} className="h-10 rounded-lg border border-line bg-raised px-3">
+        <select value={exp} onChange={(e) => setExp(e.target.value)} className="h-10 w-full max-w-full rounded-lg border border-line bg-raised px-3 sm:w-auto sm:max-w-xs">
           <option value="all">All experiments</option>
           {exps.map((e) => (
             <option key={e}>{e}</option>

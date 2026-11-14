@@ -37,8 +37,9 @@
     "sources": [
       {
         "title": "NASA, Combustion in Reduced Gravity (ISS mini-book)",
-        "url": "https://www.nasa.gov/sites/default/files/atoms/files/np-2015-10-034-jsc_combustion_in_reduced_gravity-iss-mini-book-011116-508.pdf",
-        "year": 2015
+        "url": "https://www.nasa.gov/wp-content/uploads/2016/05/np-2015-10-034-jsc_combustion_in_reduced_gravity-iss-mini-book-011116-508.pdf",
+        "year": 2015,
+        "locator": "PDF p. 5: Unique Features of the ISS Research Environment, 1. Microgravity, or weightlessness"
       }
     ],
     "verified": true,

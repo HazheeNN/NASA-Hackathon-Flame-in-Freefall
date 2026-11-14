@@ -1,6 +1,393 @@
 {
-  "generatedAt": "",
-  "model": "",
-  "findingsHash": "",
-  "answers": []
+  "generatedAt": "2026-11-14T18:11:42Z",
+  "model": "Claude Code (claude-opus-5-5)",
+  "findingsHash": "cd1d2ce78e4d8ff8",
+  "answers": [
+    {
+      "id": "Q-01",
+      "question": "Why do flames look different in microgravity?",
+      "answer": "Mainly because there is no buoyancy. On Earth even a small flame makes its own upward wind of at least about 30 cm/s, which shapes and feeds it [F-027]. In microgravity that wind is gone, so less heat is carried away from the fuel and things ignite more easily [F-005]. Flames can become small, dim and long-lived: candles on Mir burned for up to 45 minutes [F-024], and droplet flames can continue as almost invisible 'cool flames' after the visible flame goes out [F-002].",
+      "findingIds": [
+        "F-027",
+        "F-005",
+        "F-024",
+        "F-002"
+      ],
+      "themes": [
+        "flame-spread",
+        "cool-flames"
+      ],
+      "missions": [
+        "ISS",
+        "Mars transit"
+      ]
+    },
+    {
+      "id": "Q-02",
+      "question": "Which materials spread fire fastest, and under what airflow?",
+      "answer": "Our NASA data shows the airflow that matters, but does not rank materials by spread speed. For flames spreading over solids, the fastest spread and the lowest oxygen limit both occur at about 10 cm/s, typical of spacecraft ventilation [F-008]. Flame spread reacts quickly and strongly to changes in that flow [F-015], and in slow flow flames can even spread upstream [F-006]. A material-by-material ranking is not in our verified findings yet.",
+      "findingIds": [
+        "F-008",
+        "F-015",
+        "F-006"
+      ],
+      "themes": [
+        "flame-spread",
+        "materials"
+      ],
+      "missions": [
+        "ISS",
+        "Mars transit"
+      ]
+    },
+    {
+      "id": "Q-03",
+      "question": "How does oxygen concentration change fire risk, and what does it mean for a 34 % oxygen habitat?",
+      "answer": "More oxygen raises fire risk. Spacecraft often run above the oxygen fraction of air, with no easy escape [F-013], and Apollo 1's pure-oxygen cabin let a fire spread very rapidly [F-032]. In low airflow some materials already burn at lower oxygen than on Earth [F-004], and at lunar gravity some are more flammable than in 1 g [F-028]. Our data does not measure flammability at 34 % O₂ directly; that is an evidence gap, and an extrapolation from the findings above.",
+      "findingIds": [
+        "F-013",
+        "F-032",
+        "F-004",
+        "F-028"
+      ],
+      "themes": [
+        "spacecraft-atmosphere",
+        "flammability-limits"
+      ],
+      "missions": [
+        "ISS",
+        "Mars transit",
+        "Artemis (Moon)",
+        "Mars surface"
+      ]
+    },
+    {
+      "id": "Q-04",
+      "question": "What did the Saffire experiments show that small tests couldn't?",
+      "answer": "Saffire burned spacecraft-sized samples (40 cm wide) inside an empty Cygnus vehicle, reaching up to 10 kW; cabin pressure, temperature and CO2 changed measurably, but average conditions stayed acceptable [F-019]. Saffire VI found the rise in CO2 and CO more significant than the heat and pressure rise [F-020]. Before these tests, designers had to rely on 1 g knowledge of flame spread, detection and suppression [F-021].",
+      "findingIds": [
+        "F-019",
+        "F-020",
+        "F-021"
+      ],
+      "themes": [
+        "flame-spread",
+        "spacecraft-atmosphere"
+      ],
+      "missions": [
+        "ISS",
+        "Mars transit"
+      ]
+    },
+    {
+      "id": "Q-05",
+      "question": "What are cool flames and why do they matter for detection?",
+      "answer": "Cool flames are low-temperature reactions FLEX found around fuel droplets after the visible hot flame went out: the droplet kept vaporizing for a long time, then left a cloud of fuel vapour [F-002]. They are nearly invisible, so a fire can look extinguished while still reacting. Microgravity smoke also has different particle sizes from Earth smoke, so Earth detectors may look for the wrong signature [F-011].",
+      "findingIds": [
+        "F-002",
+        "F-011"
+      ],
+      "themes": [
+        "cool-flames",
+        "smoke-detection"
+      ],
+      "missions": [
+        "ISS",
+        "Mars transit"
+      ]
+    },
+    {
+      "id": "Q-06",
+      "question": "Is the standard 1 g material flammability test conservative for microgravity?",
+      "answer": "Not reliably. NASA-STD-6001 Test 1 is an upward-burning test in normal gravity, and drop-tower results suggest it might not be conservative for reduced gravity [F-018]. In low airflow some materials burn at lower oxygen than in 1 g [F-004], fuel droplets have a lower flammability limit in reduced gravity [F-001], and on Earth a flame's own buoyant flow makes slow-flow conditions impossible to test [F-027].",
+      "findingIds": [
+        "F-018",
+        "F-004",
+        "F-001",
+        "F-027"
+      ],
+      "themes": [
+        "materials",
+        "flammability-limits"
+      ],
+      "missions": [
+        "ISS",
+        "Mars transit",
+        "Artemis (Moon)",
+        "Mars surface"
+      ]
+    },
+    {
+      "id": "Q-07",
+      "question": "What do we know about fire in Mars gravity (0.38 g)?",
+      "answer": "Our NASA data doesn't cover Mars gravity directly: no verified finding was tested at 0.38 g. The closest evidence is NASA's review that in low-flow partial gravity some materials burn at lower oxygen than on Earth [F-004], and lunar-gravity results showing some materials are more flammable than in 1 g [F-028]. Applying these to Mars is an extrapolation, and a clear gap for NASA to test.",
+      "findingIds": [
+        "F-004",
+        "F-028"
+      ],
+      "themes": [
+        "partial-gravity"
+      ],
+      "missions": [
+        "Mars surface"
+      ]
+    },
+    {
+      "id": "Q-08",
+      "question": "Which fire suppression methods were tested in orbit, and how well did they work?",
+      "answer": "In BASS, nitrogen was applied to flames in microgravity, and a poorly aimed jet could entrain oxygen and actually strengthen the flame [F-014]. FLEX showed flammability limits are lower in reduced gravity, so Earth standards for inert-gas suppressants leave less margin [F-001]. NASA has since sent water-mist portable extinguishers to the ISS to replace CO2 units [F-023]; their performance figures are not in our findings.",
+      "findingIds": [
+        "F-014",
+        "F-001",
+        "F-023"
+      ],
+      "themes": [
+        "suppression"
+      ],
+      "missions": [
+        "ISS",
+        "Mars transit"
+      ]
+    },
+    {
+      "id": "Q-09",
+      "question": "What is the best rocket engine for a Mars mission?",
+      "answer": "That is outside what this dashboard covers. Our NASA data is about fire and flames in microgravity and partial gravity, so we can't answer questions about propulsion. Try asking about fire risk on the way to Mars or in a Mars habitat instead.",
+      "findingIds": [],
+      "themes": [],
+      "missions": []
+    },
+    {
+      "id": "Q-10",
+      "question": "What is the fire risk of lithium batteries on the ISS?",
+      "answer": "Our NASA data doesn't cover that: none of our verified findings test batteries. The closest findings are general: materials ignite more easily in low gravity [F-005], and in slow airflow they can ignite with as little as half the heat flux needed on Earth [F-009].",
+      "findingIds": [
+        "F-005",
+        "F-009"
+      ],
+      "themes": [
+        "ignition"
+      ],
+      "missions": [
+        "ISS"
+      ]
+    },
+    {
+      "id": "Q-11",
+      "question": "Is a fire in a Mars habitat worse than a fire on the ISS?",
+      "answer": "Possibly, but our data cannot say for Mars itself. At lunar gravity some materials are more flammable than on Earth, and a fabric that goes out in 1 g keeps burning [F-028, F-029]; NASA's review says partial gravity in low flow lets some materials burn at lower oxygen [F-004]. Exploration habitats may also run at higher oxygen [F-013]. Mars gravity (0.38 g) is untested in our findings, so this is an extrapolation.",
+      "findingIds": [
+        "F-028",
+        "F-029",
+        "F-004",
+        "F-013"
+      ],
+      "themes": [
+        "partial-gravity",
+        "spacecraft-atmosphere"
+      ],
+      "missions": [
+        "Mars surface",
+        "ISS"
+      ]
+    },
+    {
+      "id": "Q-12",
+      "question": "Does turning off the ventilation put a fire out?",
+      "answer": "Not reliably. NASA lists 'a fire will self-extinguish if ventilation is shut off' as a disproved misconception [F-010], and candles burned for up to 45 minutes in still air on Mir [F-024]. Very low airflow can extinguish flames on solids [F-017], and Russian Mir researchers proposed lowering ventilation as a fire-safety tool [F-030]. So it can help, but it is not a guaranteed way to put a fire out.",
+      "findingIds": [
+        "F-010",
+        "F-024",
+        "F-017",
+        "F-030"
+      ],
+      "themes": [
+        "extinction"
+      ],
+      "missions": [
+        "ISS",
+        "Mars transit"
+      ]
+    },
+    {
+      "id": "Q-13",
+      "question": "What is the biggest danger to a crew after a spacecraft fire?",
+      "answer": "Toxic gas. In Saffire VI, CO2 and CO rose more significantly than cabin temperature or pressure [F-020]. BASS-II flames burned fuel-rich, with CO to CO2 ratios ten times those of efficient combustion [F-016]. On Mir in 1997, smoke filled the station and took life support hours to clear [F-031].",
+      "findingIds": [
+        "F-020",
+        "F-016",
+        "F-031"
+      ],
+      "themes": [
+        "smoke-detection",
+        "spacecraft-atmosphere"
+      ],
+      "missions": [
+        "ISS",
+        "Mars transit"
+      ]
+    },
+    {
+      "id": "Q-14",
+      "question": "Can a fire spread against the airflow in space?",
+      "answer": "Yes. In slow microgravity airflow, a flame on a thin fuel spreads upstream into the oncoming air, the opposite of normal gravity, where it always spreads downstream [F-006]. Spread also changes immediately when the airflow changes [F-015].",
+      "findingIds": [
+        "F-006",
+        "F-015"
+      ],
+      "themes": [
+        "flame-spread"
+      ],
+      "missions": [
+        "ISS",
+        "Mars transit"
+      ]
+    },
+    {
+      "id": "Q-15",
+      "question": "Why do materials catch fire more easily in space?",
+      "answer": "Without buoyancy, less heat is carried away from a material's surface by natural convection [F-005]. In slow airflow, ignition times were well below Earth values, and a model shows the critical heat flux can be as low as half [F-009]. Heat radiated from nearby sources also makes materials ignite and spread faster [F-007].",
+      "findingIds": [
+        "F-005",
+        "F-009",
+        "F-007"
+      ],
+      "themes": [
+        "ignition"
+      ],
+      "missions": [
+        "ISS",
+        "Mars transit"
+      ]
+    },
+    {
+      "id": "Q-16",
+      "question": "How small and weak can a flame be in microgravity?",
+      "answer": "Very weak. SOFBALL's flame balls, which exist only in microgravity, were the weakest flames ever burned, about 1 watt, and some burned for over 40 minutes [F-026]. Candles on Mir burned for up to 45 minutes and to lower oxygen than on Earth [F-024].",
+      "findingIds": [
+        "F-026",
+        "F-024"
+      ],
+      "themes": [
+        "flammability-limits"
+      ],
+      "missions": [
+        "ISS",
+        "Mars transit"
+      ]
+    },
+    {
+      "id": "Q-17",
+      "question": "What happened in the Apollo 1 fire?",
+      "answer": "During a 1967 ground test, the Apollo 1 cabin held pure oxygen at 16.7 psi and more flammable material than allowed; after an electrical arc, the fire spread very rapidly and killed three astronauts [F-032].",
+      "findingIds": [
+        "F-032"
+      ],
+      "themes": [
+        "incidents",
+        "spacecraft-atmosphere"
+      ],
+      "missions": [
+        "ISS",
+        "Mars transit",
+        "Artemis (Moon)",
+        "Mars surface"
+      ]
+    },
+    {
+      "id": "Q-18",
+      "question": "What happened in the 1997 fire on the Mir space station?",
+      "answer": "On 24 February 1997, a solid-fuel oxygen generator in Mir's Kvant-1 module caught fire. The flame lasted several minutes, cut off access to one of two Soyuz escape vehicles and filled the station with smoke, which life support took hours to clear [F-031].",
+      "findingIds": [
+        "F-031"
+      ],
+      "themes": [
+        "incidents",
+        "smoke-detection"
+      ],
+      "missions": [
+        "ISS"
+      ]
+    },
+    {
+      "id": "Q-19",
+      "question": "Why does spacecraft ventilation speed matter for fire?",
+      "answer": "Because it sits near the worst case. For flames on solids, the lowest oxygen limit and the fastest spread occur at about 10 cm/s, typical of spacecraft ventilation [F-008]. On Earth such slow flows can't be tested, because a flame's own buoyant flow is at least about 30 cm/s [F-027].",
+      "findingIds": [
+        "F-008",
+        "F-027"
+      ],
+      "themes": [
+        "flame-spread",
+        "flammability-limits"
+      ],
+      "missions": [
+        "ISS",
+        "Mars transit"
+      ]
+    },
+    {
+      "id": "Q-20",
+      "question": "Do smoke detectors work the same way in space?",
+      "answer": "No. Microgravity flames produce very different particle sizes, so an Earth detector would look for the wrong signature [F-011]. SAME-2 measured smoke from overheated spacecraft materials at mostly 200–400 nm, larger in still air [F-022], and smoke onset in low gravity differs from earlier predictions [F-012].",
+      "findingIds": [
+        "F-011",
+        "F-022",
+        "F-012"
+      ],
+      "themes": [
+        "smoke-detection"
+      ],
+      "missions": [
+        "ISS",
+        "Mars transit"
+      ]
+    },
+    {
+      "id": "Q-21",
+      "question": "Can a fire extinguisher make a fire worse in space?",
+      "answer": "Yes, if it is misused. In BASS, a nitrogen jet could entrain oxygen and strengthen the flame instead of putting it out [F-014].",
+      "findingIds": [
+        "F-014"
+      ],
+      "themes": [
+        "suppression"
+      ],
+      "missions": [
+        "ISS",
+        "Mars transit"
+      ]
+    },
+    {
+      "id": "Q-22",
+      "question": "Is the Moon a safer place for fire than orbit?",
+      "answer": "Not necessarily. Lunar gravity removes much convective cooling but still brings oxygen to a flame, raising flammability limits for some materials compared with Earth [F-028]. A cotton-fiberglass fabric that goes out immediately on Earth keeps burning at lunar gravity [F-029]. Our findings do not compare lunar and orbital flammability directly.",
+      "findingIds": [
+        "F-028",
+        "F-029"
+      ],
+      "themes": [
+        "partial-gravity"
+      ],
+      "missions": [
+        "Artemis (Moon)"
+      ]
+    },
+    {
+      "id": "Q-23",
+      "question": "Could a spacecraft survive a large fire?",
+      "answer": "In Saffire IV and V, fires of up to 10 kW inside an uncrewed Cygnus measurably raised pressure, temperature and CO2, but average cabin conditions did not reach unacceptable levels [F-019]. The bigger concern was the rise in CO2 and CO [F-020].",
+      "findingIds": [
+        "F-019",
+        "F-020"
+      ],
+      "themes": [
+        "spacecraft-atmosphere"
+      ],
+      "missions": [
+        "ISS",
+        "Mars transit"
+      ]
+    }
+  ]
 }

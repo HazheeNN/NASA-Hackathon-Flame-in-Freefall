@@ -81,7 +81,7 @@ Decided 2026-11-14 (`docs/decisions.md`). These features need **world and atmosp
 | What | Where | Notes |
 |---|---|---|
 | PSI datasets (FLEX, BASS, SAME, …) | NASA PSI portal (free account; guide: [science.nasa.gov … psi-database-guide.pdf](https://science.nasa.gov/wp-content/uploads/2024/11/psi-database-guide.pdf)); mirror on the [AWS Open Data registry](https://registry.opendata.aws/nasa-psi) with no use restrictions | ACME data was marked "authorized users only": check before planning on it. Help: msfc-psi-help@mail.nasa.gov |
-| Overview book | NASA "Combustion in reduced gravity" ISS mini-book: [nasa.gov … np-2015-10-034 …pdf](https://www.nasa.gov/sites/default/files/atoms/files/np-2015-10-034-jsc_combustion_in_reduced_gravity-iss-mini-book-011116-508.pdf) | Good plain-language source for Four Worlds and the science primer |
+| Overview book | NASA "Combustion in reduced gravity" ISS mini-book: [nasa.gov … np-2015-10-034 …pdf](https://www.nasa.gov/wp-content/uploads/2016/05/np-2015-10-034-jsc_combustion_in_reduced_gravity-iss-mini-book-011116-508.pdf) | Good plain-language source for Four Worlds and the science primer |
 | Real flame images for Four Worlds | FLEX droplet and cool-flame images: [NASA ISS blog, 2013](https://blogs.nasa.gov/ISS_Science_Blog/2013/11/25/cool-flames-on-the-international-space-station-an-anatomy-of-discovery/); NASA SVS "Great Balls of Fire" [svs.gsfc.nasa.gov/11318](https://svs.gsfc.nasa.gov/11318); images.nasa.gov (search "FLEX", "cool flame", "Saffire") | Credit each image ("Image: NASA") with its page link; never the NASA logo or anything implying endorsement. Where no image exists (Moon, Mars), the card says "never filmed: no experiment yet" |
 
 ## Formulas (decision 2026-11-14, option C)
@@ -139,7 +139,7 @@ The shape of every record is in `src/lib/schema.ts` (Zod). The app parses the fi
 
 ## Schema in plain words
 
-**Experiment:** `id` (kebab-case, e.g. `bass`), `name`, `acronym`, `agency`, `platform` (ISS, Crewed spacecraft, Uncrewed spacecraft, Drop tower, Parabolic flight, Sounding rocket, Ground (1 g)), `facility`, `years` (free text), `fuels`, `summary` (2–3 plain sentences), `themes`, `sources`, `verified`.
+**Experiment:** `id` (kebab-case, e.g. `bass`), `name`, `acronym`, `agency`, `platform` (ISS, Crewed spacecraft, Uncrewed spacecraft, Drop tower, Parabolic flight, Sounding rocket, Ground (1 g), Multiple platforms: for NASA reviews that summarise many experiments), `facility`, `years` (free text), `fuels`, `summary` (2–3 plain sentences), `themes`, `sources`, `verified`.
 
 **Finding:** one claim from one source.
 - `id`: `F-001`, `F-002`, … never reused, never renumbered (insights cite them).

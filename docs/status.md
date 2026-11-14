@@ -57,11 +57,17 @@ Read this first. Update it at the end of every session (`handoff` skill). Newest
 
 | Experiments | Findings | Verified | Insights | Answers | Deployed |
 |---|---|---|---|---|---|
-| 14 (0 verified) | 0 | 0 | 0 | 0 | no |
+| 20 (all verified) | 32 | 32 | 11 | 23 | Vercel previews |
 
-Worlds: 4 · atmospheres: 5 (all unverified seeds).
+Worlds: 4 · atmospheres: 7 · formulas: 2 · FLEX tests: 276 (all verified).
 
 ## Log
+
+### 2026-11-14 · full data pass (Hazheen + Claude)
+- Done: fixed main (ISS locator); all experiments verified with corrections, 6 new experiments, 2 Apollo atmospheres, FLEX dataset verified; 32 verified findings with exact quotes checked against the sources; SI jobs 2 and 3 run (11 insights, 23 answers); citation chips inside SI text; full answers on /ask; phone overflow fix on /findings. Report: `docs/verification/2026-11-14-nasa-data-check.md` › Full pass.
+- Tested: `npm run check` (15 tests, build of 52 pages), `data:validate` (no stale warning), every page at 360 and 1440 px: no console errors, no horizontal overflow.
+- Not done: findings at Mars gravity or 34 % O₂ (no NASA data found), "what NASA should test next" proposals (F18) and their schema.
+- Next: review the insight and answer wording as a team; F18 proposals; website polish.
 
 ### 2026-11-14 · to-do list (Shera + Claude)
 - Done: "Next up" rewritten as one prioritized checklist (data verification, findings, SI runs, polish, deploy, submission); finished items removed.

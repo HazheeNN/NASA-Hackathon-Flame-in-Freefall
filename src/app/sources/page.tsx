@@ -1,6 +1,7 @@
 import { FlaskConical } from "lucide-react";
+import Link from "next/link";
 import { Card, PageHeader, SourceLink, VerifiedBadge } from "@/components/ui";
-import { atmospheres, experiments, flex, formulas, worlds } from "@/lib/data";
+import { atmospheres, experiments, flex, worlds } from "@/lib/data";
 import { showUnverified, visible } from "@/lib/visibility";
 
 export const metadata = { title: "Sources & method · Flame in Freefall" };
@@ -74,48 +75,15 @@ export default function SourcesPage() {
         </Card>
       </Section>
 
-      <Section id="formulas" title="Formulas" lead="Only formulas from NASA sources, each used only inside the conditions it was tested in.">
-        <div className="grid gap-4 md:grid-cols-2">
-          {visible(formulas).map((f) => (
-            <Card key={f.id}>
-              <div className="flex items-start justify-between gap-3">
-                <p className="font-semibold">
-                  {f.id} · {f.name}
-                </p>
-                <VerifiedBadge verified={f.verified} />
-              </div>
-              <p className="mt-3 rounded-lg bg-raised px-3 py-2 font-mono text-[15px]">{f.expression}</p>
-              <p className="mt-3 text-[15px] text-muted">{f.explanation}</p>
-              <ul className="mt-3 space-y-1 text-[14px]">
-                {f.variables.map((v) => (
-                  <li key={v.symbol}>
-                    <span className="font-mono">{v.symbol}</span> <span className="text-muted">— {v.meaning} ({v.unit})</span>
-                  </li>
-                ))}
-              </ul>
-              <p className="mt-3 text-[14px]">
-                <span className="font-semibold">Valid for: </span>
-                <span className="text-muted">
-                  {Object.keys(f.validity).length === 0
-                    ? "any cabin pressure and oxygen fraction (it is a definition)"
-                    : [
-                        f.validity.gravityG && `${f.validity.gravityG[0]}–${f.validity.gravityG[1]} g`,
-                        f.validity.pressureKPa && `${f.validity.pressureKPa[0]}–${f.validity.pressureKPa[1]} kPa`,
-                        f.validity.oxygenPercent && `${f.validity.oxygenPercent[0]}–${f.validity.oxygenPercent[1]} % O₂`,
-                        f.validity.fuel && f.validity.fuel.join(", "),
-                      ]
-                        .filter(Boolean)
-                        .join(" · ")}
-                </span>
-              </p>
-              <div className="mt-3 border-t border-line pt-3">
-                {f.sources.map((s) => (
-                  <SourceLink key={s.url} source={s} />
-                ))}
-              </div>
-            </Card>
-          ))}
-        </div>
+      <Section id="formulas" title="Formulas">
+        <Card>
+          <p className="text-[15px] text-muted">
+            Every formula, what it is for, how we use it, a worked example, its valid range and its NASA page:{" "}
+            <Link href="/formulas" className="font-semibold text-primary hover:underline">
+              see Formulas →
+            </Link>
+          </p>
+        </Card>
       </Section>
 
       <Section id="datasets" title="Datasets">

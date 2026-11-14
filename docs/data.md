@@ -102,7 +102,8 @@ The site **explains** with NASA formulas everywhere and **computes** with them o
 - `id` (`FX-01`), `name`, `expression` (plain text, e.g. `pO2 = P × xO2`), `explanation` (one plain sentence: what it shows)
 - `variables`: `symbol`, `meaning`, `unit` for each input and the output
 - `validity`: min/max for each condition it was tested in (`gravityG`, `oxygenPercent`, `pressureKPa`, `flowCmPerS`), plus `material`/`fuel` if limited to one
-- `usedIn`: `habitat`, `worlds`, `gaps`
+- `usedIn`: `lab`, `worlds`, `gaps`
+- `whereUsed` (label + link to where the result appears; empty = explained only), `steps` (how we use it, plain words), `example` (`text`, `inputs`, `result`: a worked example whose result `tests/lab.test.ts` recomputes with the code in `src/lib/lab.ts` › `FORMULA_FN`), `limits` (what it does not tell you)
 - `sources` (≥ 1, with `locator`), `verified`
 - The code that computes it lives in `src/lib/formulas.ts`, one small function per formula, with a test that reproduces one worked example from the source.
 

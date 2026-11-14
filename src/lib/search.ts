@@ -13,7 +13,7 @@ export function searchIndex(): SearchItem[] {
     ...visible(experiments).map((e) => ({ kind: "Experiment" as const, title: e.acronym ? `${e.acronym} · ${e.name}` : e.name, text: e.summary, href: `/sources#${e.id}` })),
     ...(showUnverified || flex.verified ? [{ kind: "Dataset" as const, title: flex.title, text: flex.description, href: "/findings?tab=datasets" }] : []),
     ...visible(atmospheres).map((a) => ({ kind: "Cabin air" as const, title: a.name, text: a.usedFor, href: "/sources#atmospheres" })),
-    ...visible(formulas).map((f) => ({ kind: "Formula" as const, title: `${f.id} · ${f.name}`, text: f.explanation, href: "/sources#formulas" })),
+    ...visible(formulas).map((f) => ({ kind: "Formula" as const, title: `${f.id} · ${f.name}`, text: f.explanation, href: `/formulas#${f.id}` })),
     ...visible(worlds).map((w) => ({ kind: "World" as const, title: w.name, text: `${w.gravityG} g`, href: "/" })),
   ];
 }

@@ -30,7 +30,7 @@ Read this first. Update it at the end of every session (`handoff` skill). Newest
 - [ ] Review the Flame Lab on a laptop: flame look, layout, world cards, colours.
 - [ ] Check on a real projector, in Safari and on a tablet (not tested yet).
 - [ ] Add solids and gas flames (BASS, Saffire, ACME) to the fuel choices once their data is verified.
-- [ ] 2 more NASA formulas (e.g. flame blowoff, `docs/data.md` › Formulas).
+- [ ] Verify the 3 formulas on `/formulas` (FX-01–03), then add more (each needs where used, steps, a worked example and limits in `data/formulas.json`).
 - [ ] Optional: real NASA flame photos inside the lab (FLEX droplet, Saffire), credited.
 
 ### 4. Deployment and housekeeping
@@ -62,6 +62,10 @@ Read this first. Update it at the end of every session (`handoff` skill). Newest
 Worlds: 4 · atmospheres: 5 (all unverified seeds).
 
 ## Log
+
+### 2026-11-14 · Formulas page (Shera + Claude)
+- Done: `/formulas` in the top navigation: every formula with what it tells you, the equation and symbols, how we use it step by step, a worked example, valid range and limits, where it appears on the site, and the NASA citation with page. The Flame Lab's calculated numbers now have "How is this calculated?" with the visitor's values plugged in. Added FX-03 forced stretch rate (Marcum, Olson, Ferkul 2016, p. 3; explained only). `Formula` schema gained `whereUsed`, `steps`, `example`, `limits`; a test recomputes every worked example.
+- Not tested: real GPU/projector, Safari. All 3 formulas still `verified: false`.
 
 ### 2026-11-14 · to-do list (Shera + Claude)
 - Done: "Next up" rewritten as one prioritized checklist (data verification, findings, SI runs, polish, deploy, submission); finished items removed.

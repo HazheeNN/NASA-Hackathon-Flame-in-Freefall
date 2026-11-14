@@ -28,3 +28,20 @@ describe("Flame Lab", () => {
     expect(burnTime(2, 0.5)).toBe(8);
   });
 });
+
+describe("formulas.json worked examples", () => {
+  it("each example's result follows from its inputs", async () => {
+    const { readFileSync } = await import("node:fs");
+    const { FORMULA_FN } = await import("@/lib/lab");
+    const formulas = JSON.parse(readFileSync("data/formulas.json", "utf8")) as {
+      id: string;
+      example: { inputs: { symbol: string; value: number }[]; result: { value: number } };
+    }[];
+    for (const f of formulas) {
+      const fn = FORMULA_FN[f.id];
+      expect(fn, `${f.id} has no function in FORMULA_FN`).toBeDefined();
+      const v = Object.fromEntries(f.example.inputs.map((i) => [i.symbol, i.value]));
+      expect(fn(v)).toBeCloseTo(f.example.result.value, 1);
+    }
+  });
+});

@@ -93,3 +93,13 @@ export const oxygenPartialPressure = (pressureKPa: number, o2Percent: number) =>
 
 // FX-02: d² law, burn time = d0² / K. Only called with a K measured inside the tested range.
 export const burnTime = (d0Mm: number, kMm2PerS: number) => (d0Mm * d0Mm) / kMm2PerS;
+
+// FX-03: forced stretch rate a = 3/2 · U / r (explained on /formulas; not computed in the lab).
+export const stretchRate = (flowCmPerS: number, radiusCm: number) => (1.5 * flowCmPerS) / radiusCm;
+
+// The one place each formula is computed from its worked-example inputs (tests keep data and code in step).
+export const FORMULA_FN: Record<string, (v: Record<string, number>) => number> = {
+  "FX-01": (v) => oxygenPartialPressure(v["P"], v["x(O₂)"] * 100),
+  "FX-02": (v) => burnTime(v["d₀"], v["K"]),
+  "FX-03": (v) => stretchRate(v["U"], v["r"]),
+};

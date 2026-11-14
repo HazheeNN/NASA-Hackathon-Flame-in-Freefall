@@ -17,3 +17,6 @@ export function searchIndex(): SearchItem[] {
     ...visible(worlds).map((w) => ({ kind: "World" as const, title: w.name, text: `${w.gravityG} g`, href: "/" })),
   ];
 }
+
+// Starter questions for the chat: the first prepared questions (the golden ones come first).
+export const chatSuggestions = () => answers.answers.slice(0, 4).map((a) => a.question);

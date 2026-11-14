@@ -1,17 +1,19 @@
 {
   "generatedAt": "2026-11-14T18:11:42Z",
   "model": "Claude Code (claude-opus-5-5)",
-  "findingsHash": "cd1d2ce78e4d8ff8",
+  "findingsHash": "9678921f8c8b2b8a",
   "answers": [
     {
       "id": "Q-01",
       "question": "Why do flames look different in microgravity?",
-      "answer": "Mainly because there is no buoyancy. On Earth even a small flame makes its own upward wind of at least about 30 cm/s, which shapes and feeds it [F-027]. In microgravity that wind is gone, so less heat is carried away from the fuel and things ignite more easily [F-005]. Flames can become small, dim and long-lived: candles on Mir burned for up to 45 minutes [F-024], and droplet flames can continue as almost invisible 'cool flames' after the visible flame goes out [F-002].",
+      "answer": "Mainly because there is no buoyancy. On Earth natural convection stretches a flame upward; in microgravity a droplet flame stays spherical [F-037]. On Earth even a small flame makes its own upward wind of at least about 30 cm/s, which shapes and feeds it [F-027]. In microgravity that wind is gone, so less heat is carried away from the fuel and things ignite more easily [F-005]. Flames can become small, dim and long-lived: candles on Mir burned for up to 45 minutes [F-024], and droplet flames can continue as almost invisible 'cool flames' after the visible flame goes out [F-002]. The visible flame can also be smaller than the full flame: a color camera saw about three-fourths of the diameter an ultraviolet camera measured [F-035].",
       "findingIds": [
+        "F-037",
         "F-027",
         "F-005",
         "F-024",
-        "F-002"
+        "F-002",
+        "F-035"
       ],
       "themes": [
         "flame-spread",
@@ -43,12 +45,13 @@
     {
       "id": "Q-03",
       "question": "How does oxygen concentration change fire risk, and what does it mean for a 34 % oxygen habitat?",
-      "answer": "More oxygen raises fire risk. Spacecraft often run above the oxygen fraction of air, with no easy escape [F-013], and Apollo 1's pure-oxygen cabin let a fire spread very rapidly [F-032]. In low airflow some materials already burn at lower oxygen than on Earth [F-004], and at lunar gravity some are more flammable than in 1 g [F-028]. Our data does not measure flammability at 34 % O₂ directly; that is an evidence gap, and an extrapolation from the findings above.",
+      "answer": "More oxygen raises fire risk. Spacecraft often run above the oxygen fraction of air, with no easy escape [F-013], and Apollo 1's pure-oxygen cabin let a fire spread very rapidly [F-032]. In low airflow some materials already burn at lower oxygen than on Earth [F-004], and at lunar gravity some are more flammable than in 1 g [F-028]. Our data does not measure flammability at 34 % O₂ directly, and FLEX droplet tests stopped at 0.70 atm, above the 8.2 psia (about 0.56 atm) habitat air [F-036]; that is an evidence gap, and an extrapolation from the findings above.",
       "findingIds": [
         "F-013",
         "F-032",
         "F-004",
-        "F-028"
+        "F-028",
+        "F-036"
       ],
       "themes": [
         "spacecraft-atmosphere",
@@ -99,12 +102,13 @@
     {
       "id": "Q-06",
       "question": "Is the standard 1 g material flammability test conservative for microgravity?",
-      "answer": "Not reliably. NASA-STD-6001 Test 1 is an upward-burning test in normal gravity, and drop-tower results suggest it might not be conservative for reduced gravity [F-018]. In low airflow some materials burn at lower oxygen than in 1 g [F-004], fuel droplets have a lower flammability limit in reduced gravity [F-001], and on Earth a flame's own buoyant flow makes slow-flow conditions impossible to test [F-027].",
+      "answer": "Not reliably. NASA-STD-6001 Test 1 is an upward-burning test in normal gravity, and drop-tower results suggest it might not be conservative for reduced gravity [F-018]. In low airflow some materials burn at lower oxygen than in 1 g [F-004], fuel droplets have a lower flammability limit in reduced gravity [F-001], and on Earth a flame's own buoyant flow makes slow-flow conditions impossible to test [F-027]. A better Earth test may be possible: a blowoff-based test on PMMA rods estimated a 13.4 % O₂ limit, close to the 13.6 % observed in BASS-II [F-039].",
       "findingIds": [
         "F-018",
         "F-004",
         "F-001",
-        "F-027"
+        "F-027",
+        "F-039"
       ],
       "themes": [
         "materials",

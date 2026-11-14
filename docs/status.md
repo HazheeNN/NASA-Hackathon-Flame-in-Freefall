@@ -57,11 +57,15 @@ Read this first. Update it at the end of every session (`handoff` skill). Newest
 
 | Experiments | Findings | Verified | Insights | Answers | Deployed |
 |---|---|---|---|---|---|
-| 20 (all verified) | 32 | 32 | 11 | 23 | Vercel previews |
+| 20 (all verified) | 39 | 39 | 11 | 23 | Vercel previews |
 
 Worlds: 4 · atmospheres: 7 · formulas: 2 · FLEX tests: 276 (all verified).
 
 ## Log
+
+### 2026-11-14 · FLEX review sheet and FX-03 checked (Hazheen + Claude)
+- Done: the 6 proposed FLEX findings checked against the PDF and added as F-033…F-038 (small theme and implication fixes, see the review sheet); F-039 added (1 g blowoff test, 13.4 % vs 13.6 % O₂); FX-03 verified against Marcum, Olson, Ferkul 2016 (one step reworded to the paper's "varies linearly"); insights I-04 and I-05 and answers Q-01, Q-03, Q-06 cite the new findings; files restamped. Spot-check list: the 4 FLEX rows confirmed again.
+- Not done: the rest of the spot-check list still wants a person (it checks Claude's own work).
 
 ### 2026-11-14 · spot-check list (Shera + Claude)
 - Done: `docs/verification/2026-11-14-spot-check.md`: a ~20-minute human check of what Claude verified in #11 (the 11 findings behind the top 3 insights with their quotes, 4 FLEX rows, the 4 corrected experiments) plus what's still unverified (FX-03, F-033…F-038). Every link opens at the right page; the 4 FLEX rows were confirmed on their linked pages.

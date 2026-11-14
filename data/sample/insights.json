@@ -1,0 +1,168 @@
+{
+  "generatedAt": "sample",
+  "model": "sample (not an SI run)",
+  "findingsHash": "sample",
+  "insights": [
+    {
+      "id": "I-01",
+      "rank": 1,
+      "title": "Sample insight 1: the ranked conclusion's title goes here",
+      "answer": "Placeholder answer: the SI's one-line conclusion for a mission planner, which a judge can read alone.",
+      "explanation": "Placeholder explanation: a short paragraph linking the cited findings across experiments and saying why they point the same way. Real text comes from SI job 2 (prompts/synthesize.md).",
+      "recommendation": "Placeholder recommendation: what a habitat designer or crew trainer should do about it.",
+      "caveats": "Placeholder caveats: where the evidence is thin, such as conditions never tested at partial gravity.",
+      "risk": "high",
+      "missions": [
+        "ISS",
+        "Mars transit"
+      ],
+      "themes": [
+        "flame-spread",
+        "materials"
+      ],
+      "findingIds": [
+        "F-901",
+        "F-902"
+      ],
+      "scores": {
+        "safetyRelevance": 5,
+        "severity": 5,
+        "evidence": 3,
+        "actionability": 4
+      }
+    },
+    {
+      "id": "I-02",
+      "rank": 2,
+      "title": "Sample insight 2: the ranked conclusion's title goes here",
+      "answer": "Placeholder answer: the SI's one-line conclusion for a mission planner, which a judge can read alone.",
+      "explanation": "Placeholder explanation: a short paragraph linking the cited findings across experiments and saying why they point the same way. Real text comes from SI job 2 (prompts/synthesize.md).",
+      "recommendation": "Placeholder recommendation: what a habitat designer or crew trainer should do about it.",
+      "caveats": "Placeholder caveats: where the evidence is thin, such as conditions never tested at partial gravity.",
+      "risk": "high",
+      "missions": [
+        "Artemis (Moon)",
+        "Mars surface"
+      ],
+      "themes": [
+        "flammability-limits",
+        "spacecraft-atmosphere"
+      ],
+      "findingIds": [
+        "F-902",
+        "F-901",
+        "F-903"
+      ],
+      "scores": {
+        "safetyRelevance": 5,
+        "severity": 5,
+        "evidence": 3,
+        "actionability": 4
+      }
+    },
+    {
+      "id": "I-03",
+      "rank": 3,
+      "title": "Sample insight 3: the ranked conclusion's title goes here",
+      "answer": "Placeholder answer: the SI's one-line conclusion for a mission planner, which a judge can read alone.",
+      "explanation": "Placeholder explanation: a short paragraph linking the cited findings across experiments and saying why they point the same way. Real text comes from SI job 2 (prompts/synthesize.md).",
+      "recommendation": "Placeholder recommendation: what a habitat designer or crew trainer should do about it.",
+      "caveats": "Placeholder caveats: where the evidence is thin, such as conditions never tested at partial gravity.",
+      "risk": "medium",
+      "missions": [
+        "Mars surface"
+      ],
+      "themes": [
+        "partial-gravity"
+      ],
+      "findingIds": [
+        "F-902"
+      ],
+      "scores": {
+        "safetyRelevance": 4,
+        "severity": 4,
+        "evidence": 3,
+        "actionability": 4
+      }
+    },
+    {
+      "id": "I-04",
+      "rank": 4,
+      "title": "Sample insight 4: the ranked conclusion's title goes here",
+      "answer": "Placeholder answer: the SI's one-line conclusion for a mission planner, which a judge can read alone.",
+      "explanation": "Placeholder explanation: a short paragraph linking the cited findings across experiments and saying why they point the same way. Real text comes from SI job 2 (prompts/synthesize.md).",
+      "recommendation": "Placeholder recommendation: what a habitat designer or crew trainer should do about it.",
+      "caveats": "Placeholder caveats: where the evidence is thin, such as conditions never tested at partial gravity.",
+      "risk": "medium",
+      "missions": [
+        "ISS"
+      ],
+      "themes": [
+        "smoke-detection"
+      ],
+      "findingIds": [
+        "F-903",
+        "F-901"
+      ],
+      "scores": {
+        "safetyRelevance": 4,
+        "severity": 4,
+        "evidence": 3,
+        "actionability": 3
+      }
+    },
+    {
+      "id": "I-05",
+      "rank": 5,
+      "title": "Sample insight 5: the ranked conclusion's title goes here",
+      "answer": "Placeholder answer: the SI's one-line conclusion for a mission planner, which a judge can read alone.",
+      "explanation": "Placeholder explanation: a short paragraph linking the cited findings across experiments and saying why they point the same way. Real text comes from SI job 2 (prompts/synthesize.md).",
+      "recommendation": "Placeholder recommendation: what a habitat designer or crew trainer should do about it.",
+      "caveats": "Placeholder caveats: where the evidence is thin, such as conditions never tested at partial gravity.",
+      "risk": "low",
+      "missions": [
+        "Artemis (Moon)"
+      ],
+      "themes": [
+        "suppression"
+      ],
+      "findingIds": [
+        "F-901"
+      ],
+      "scores": {
+        "safetyRelevance": 3,
+        "severity": 3,
+        "evidence": 3,
+        "actionability": 3
+      }
+    },
+    {
+      "id": "I-06",
+      "rank": 6,
+      "title": "Sample insight 6: the ranked conclusion's title goes here",
+      "answer": "Placeholder answer: the SI's one-line conclusion for a mission planner, which a judge can read alone.",
+      "explanation": "Placeholder explanation: a short paragraph linking the cited findings across experiments and saying why they point the same way. Real text comes from SI job 2 (prompts/synthesize.md).",
+      "recommendation": "Placeholder recommendation: what a habitat designer or crew trainer should do about it.",
+      "caveats": "Placeholder caveats: where the evidence is thin, such as conditions never tested at partial gravity.",
+      "risk": "low",
+      "missions": [
+        "ISS",
+        "Mars transit",
+        "Mars surface"
+      ],
+      "themes": [
+        "cool-flames"
+      ],
+      "findingIds": [
+        "F-903",
+        "F-902"
+      ],
+      "scores": {
+        "safetyRelevance": 3,
+        "severity": 3,
+        "evidence": 3,
+        "actionability": 3
+      }
+    }
+  ]
+}

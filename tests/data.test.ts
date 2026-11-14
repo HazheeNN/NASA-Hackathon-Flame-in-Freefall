@@ -10,6 +10,7 @@ const corpus = () => ({
   answers: read("data/generated/answers.json"),
   atmospheres: read("data/atmospheres.json"),
   worlds: read("data/worlds.json"),
+  flex: read("data/datasets/flex-table-ix.json"),
 });
 
 const answersWith = (answer: string, findingIds: string[]) => ({
@@ -97,5 +98,19 @@ describe("data/", () => {
     const a = { ...c.atmospheres[0], verified: true, sources: [{ title: "Example source", url: "https://ntrs.nasa.gov/citations/00000000" }] };
     c.atmospheres = [a, ...c.atmospheres.slice(1)];
     expect(validateCorpus(c)).toContain(`${a.id}: verified but no source has a page/section locator`);
+  });
+
+  it("FLEX Table IX matches the NASA report's counts", () => {
+    const rows = corpus().flex.rows as { test: number; testEnd: string }[];
+    expect(rows).toHaveLength(276);
+    const ends = (k: string) => rows.filter((r) => r.testEnd === k).length;
+    expect([ends("extinction"), ends("disruption"), ends("completion")]).toEqual([186, 62, 28]);
+    expect(rows.map((r) => r.test)).not.toContain(156);
+  });
+
+  it("catches a FLEX row whose gas mixture doesn't add up", () => {
+    const c = corpus();
+    c.flex = { ...c.flex, rows: [{ ...c.flex.rows[0], o2: 0.5 }] };
+    expect(validateCorpus(c)).toContain("flex-table-ix: FLEX-1 mole fractions sum to 1.29");
   });
 });

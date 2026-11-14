@@ -1,5 +1,6 @@
-import { BadgeCheck, CircleAlert, FlaskConical } from "lucide-react";
+import { FlaskConical } from "lucide-react";
 import { FlameMark } from "@/components/flame-mark";
+import { VerifiedBadge } from "@/components/ui";
 import { experiments, findings, insights } from "@/lib/data";
 
 // Overview. Foundation version: shows the seed corpus so the design system can be seen
@@ -52,15 +53,7 @@ export default function Home() {
                   <FlaskConical size={20} strokeWidth={1.75} className="shrink-0 text-primary" aria-hidden />
                   {e.acronym ?? e.name}
                 </h3>
-                {e.verified ? (
-                  <span className="inline-flex items-center gap-1 rounded-md bg-raised px-2 py-0.5 text-[13px] font-semibold text-verified">
-                    <BadgeCheck size={14} aria-hidden /> Verified
-                  </span>
-                ) : (
-                  <span className="inline-flex items-center gap-1 rounded-md bg-raised px-2 py-0.5 text-[13px] font-semibold text-unverified">
-                    <CircleAlert size={14} aria-hidden /> Unverified
-                  </span>
-                )}
+                <VerifiedBadge verified={e.verified} />
               </div>
               {e.acronym && <p className="text-sm text-muted">{e.name}</p>}
               <p>{e.summary}</p>

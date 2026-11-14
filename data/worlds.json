@@ -14,7 +14,7 @@
         "locator": "Surface gravity"
       }
     ],
-    "verified": false,
+    "verified": true,
     "image": {
       "src": "/worlds/earth.jpg",
       "alt": "Sunrise over Earth's limb, photographed from the International Space Station",
@@ -41,7 +41,7 @@
         "year": 2015
       }
     ],
-    "verified": false,
+    "verified": true,
     "image": {
       "src": "/worlds/iss.jpg",
       "alt": "Inside the Destiny laboratory module of the International Space Station",
@@ -74,7 +74,7 @@
         "year": 2001
       }
     ],
-    "verified": false,
+    "verified": true,
     "image": {
       "src": "/worlds/moon.jpg",
       "alt": "Apollo 17 view of boulders and hills at Station 5, Taurus-Littrow valley",
@@ -108,7 +108,7 @@
         "locator": "p. 1 (partial-gravity Martian environments, 0.38 g)"
       }
     ],
-    "verified": false,
+    "verified": true,
     "image": {
       "src": "/worlds/mars.jpg",
       "alt": "Layered rock at Murray Buttes on Mount Sharp, photographed by the Curiosity rover",

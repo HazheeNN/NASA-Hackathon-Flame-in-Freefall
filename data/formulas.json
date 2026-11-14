@@ -14,7 +14,7 @@
     "sources": [
       { "title": "Effects of the 8 psia / 32% O2 Atmosphere on the Human in the Spaceflight Environment", "url": "https://ntrs.nasa.gov/citations/20130013505", "year": 2013, "ntrsId": "20130013505", "locator": "PDF p. 11 (inspired O₂ partial pressure of the 8.2/34 and 10.2/26.5 atmospheres)" }
     ],
-    "verified": false
+    "verified": true
   },
   {
     "id": "FX-02",
@@ -31,6 +31,6 @@
     "sources": [
       { "title": "Detailed Results From the Flame Extinguishment Experiment (FLEX) March 2009 to December 2011 (NASA/TP—2015-216046)", "url": "https://ntrs.nasa.gov/citations/20150023456", "year": 2015, "ntrsId": "20150023456", "locator": "p. 19, column definitions: burning rate from a linear fit of droplet diameter squared versus time" }
     ],
-    "verified": false
+    "verified": true
   }
 ]

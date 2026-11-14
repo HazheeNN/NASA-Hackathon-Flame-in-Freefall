@@ -6,7 +6,7 @@
 |---|---|---|
 | Framework | **Next.js 16** (App Router), React 19, TypeScript (strict) | Same stack as our other project; server components make a fast, polished static dashboard; route handlers give us a safe server for the Claude key |
 | Styling | **Tailwind CSS 4** with theme tokens from `DESIGN.md` (`src/app/globals.css`) | Fast to build, consistent; tokens keep it on-brand |
-| Fonts | IBM Plex Sans + IBM Plex Mono via `next/font` | Technical-report feel; self-hosted at build |
+| Fonts | Public Sans + DM Mono via `next/font` (NASA Horizon Design System typefaces) | NASA look without NASA branding; self-hosted at build |
 | Icons | `lucide-react` | One icon set, mapped in `DESIGN.md` |
 | Charts | **Recharts** (add with the first chart) | Quick, good-looking, accessible enough; SVG |
 | Data | JSON in `data/`, validated with **Zod** (`src/lib/schema.ts`) | Small corpus; no database to set up or break |
@@ -63,20 +63,19 @@ docs/               everything a teammate or Claude needs (start at CLAUDE.md)
 .claude/            settings (deny rules for secrets) + skills
 ```
 
-## Routes (planned)
+## Routes
 
 | Route | Feature | Rendering |
 |---|---|---|
-| `/` | Overview: hero, KPIs, top insights, hero chart | Static |
-| `/insights` | All insights by rank; filter by mission, theme, risk (URL search params) | Static shell + client filters |
-| `/insights/[id]` | Insight detail with cited findings | Static (`generateStaticParams`) |
-| `/findings` | Explorer: search + filters in the URL | Static shell + client filters |
-| `/findings/[id]` | Finding detail: conditions, numbers, sources | Static |
-| `/worlds` | Same Fire, Four Worlds side by side; `/worlds/[world]` (`earth`, `iss`, `moon`, `mars`) for one world | Static |
-| `/gaps` | Gaps map + What NASA should test next; `?world=` / `?o2=` highlight a spot | Static shell + client filters |
-| `/habitat` | Habitat Designer; the setup lives in the URL (`?world=mars&atm=exploration&material=…&flow=…`) | Static shell + client filters |
-| `/ask` | Question library + search; `?q=` keeps the search, `/ask/[id]` opens an answer | Static shell + client search |
-| `/sources` | Sources, method, ranking rubric, AI disclosure | Static |
+| `/` | Flame Lab: controls, WebGL flame (`src/components/flame-canvas.tsx`), four worlds, what NASA measured, insights for the world, fire-only mode | Static shell + client component |
+| `/gaps` | Gaps map (SVG) + what NASA should test next | Static shell + client |
+| `/insights`, `/insights/[id]` | Ranked insights with filters and confidence meter; detail | Static |
+| `/findings`, `/findings/[id]` | Findings explorer + FLEX dataset table (`?tab=datasets`); finding detail | Static shell + client |
+| `/ask` | Question library search (also a dialog on every page, Ctrl/⌘ K) | Static shell + client |
+| `/sources` | Method, rubric, formulas, datasets, cabin air, experiments, image credits | Static |
+| `/about` | The project, AI use, rules, not-affiliated note | Static |
+
+Data reaches client components as plain view models from `src/lib/views.ts` (visibility applied once, in `src/lib/visibility.ts`). Flame Lab logic is pure in `src/lib/lab.ts` (tested in `tests/lab.test.ts`). World photos live in `public/worlds/` (credited in `data/worlds.json`).
 
 The Ask button in the top bar opens `/ask` (or a panel with the same content) from any page.
 

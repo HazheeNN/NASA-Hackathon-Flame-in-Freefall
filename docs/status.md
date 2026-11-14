@@ -13,6 +13,8 @@ Read this first. Update it at the end of every session (`handoff` skill). Newest
 1. **Day 0:** everyone through `docs/runbook.md` › Day 0; owner sets up Vercel (no API key: SI runs in Claude Code, decision 2026-11-13); decide one Claude account or two (`docs/claude-workflow.md`).
 2. **WP0:** paste the full challenge page into `docs/challenge.md`; re-check the plan against its data list.
 3. **WP1:** verify the 14 seed experiments; first findings from BASS, Saffire, FLEX.
+0. **Verify data so the live site isn't empty:** the live site (main) shows only verified records. Check and flip `verified: true` on `data/worlds.json` (4), `data/atmospheres.json` (5), `data/formulas.json` (2) and `data/datasets/flex-table-ix.json` (spot-check ~10 rows). Until then review on the Vercel **preview** of the PR, which shows everything with badges.
+1b. **Flame Lab review** on the preview: layout, flame look, world cards; feedback as text.
 4. **WP3a review:** PR with the app shell, shared components and insights pages on sample data; owner connects Vercel to see the Preview (`docs/runbook.md` › Vercel), team gives layout feedback. Then WP3b (findings explorer) and WP3c (filters, confidence meter, overview top 3).
 5. **FLEX Table IX:** in `data/datasets/flex-table-ix.json` (276 tests). A teammate spot-checks ~10 rows against PDF pp. 20–28, then sets `verified: true`. Next: findings from the report's text (conclusions p. 17), and the gaps map uses the rows.
 5b. **WP5 step 1:** open the links in `docs/data.md` › Sources for Four Worlds… on a laptop (NASA sites were blocked from the cloud session), verify the world and atmosphere values, and start findings on partial gravity, 8.2 psia / 34 % O₂ and ventilation flow.
@@ -33,6 +35,11 @@ Read this first. Update it at the end of every session (`handoff` skill). Newest
 Worlds: 4 · atmospheres: 5 (all unverified seeds).
 
 ## Log
+
+### 2026-11-14 · new website: Flame Lab homepage (Shera + Claude)
+- Done: redesign around NASA Horizon typefaces (DESIGN.md rewritten, lint clean); Flame Lab homepage with WebGL2 raymarched flame (0 g sphere, 1 g sooty teardrop, partial gravity in between, oxygen/pressure/airflow/fuel), cabin-air presets, sliders with tested range in blue and untested in red, "What NASA has measured" panel (FLEX coverage, nearest tests, d² law burn time, O₂ partial pressure), four world cards with real NASA photos and glow, background switch, fire-only mode (Esc), insights for the world with confidence meter; gaps map; insights with filters; findings explorer + FLEX table; Ask dialog (Ctrl/⌘ K) and page; sources & method; about. `data/formulas.json` (FX-01, FX-02, unverified); world photos in `public/worlds/`; visibility rule (live = verified only).
+- Tested: typecheck, lint, 15 tests, build, data:validate, DESIGN.md lint; headless browser at 360 and 1440 px on every page: no console errors, no horizontal overflow.
+- Not tested: on a real GPU/projector (headless used software WebGL), Safari, a production (VERCEL_ENV=production) deploy showing only verified data.
 
 ### 2026-11-14 · data checked against NASA (Hazheen + Claude)
 - Done: every table compared with its NASA source (`docs/verification/2026-11-14-nasa-data-check.md`). FLEX Table IX: all 276 rows match the PDF. Worlds and exploration atmospheres match. Fixed: Earth air values, 3 wrong source titles, SAME years, and 8 experiments now cite real NTRS papers instead of search links. Nothing set to verified.

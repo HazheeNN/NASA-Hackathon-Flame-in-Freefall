@@ -1,15 +1,20 @@
-import { MessageSquareText } from "lucide-react";
-import { ComingSoon } from "@/components/ui";
+import { AskSearch } from "@/components/ask-search";
+import { PageHeader } from "@/components/ui";
+import { searchIndex } from "@/lib/search";
 
 export const metadata = { title: "Ask · Flame in Freefall" };
 
-export default function Page() {
+// F7: the question library. Prepared, reviewed SI answers (data/generated/answers.json) plus
+// every NASA source, searchable as you type. No live AI call (docs/ai.md › Mode A).
+export default function AskPage() {
   return (
-    <ComingSoon
-      title="Ask"
-      icon={<MessageSquareText size={28} strokeWidth={1.75} className="text-primary" aria-hidden />}
-      what="Questions mission planners and judges ask, with prepared answers that cite NASA findings. Search as you type."
-      wp="WP4"
-    />
+    <div className="mx-auto max-w-3xl space-y-8">
+      <PageHeader
+        eyebrow="Prepared by our SI, reviewed by the team"
+        title="Ask"
+        lead="Questions mission planners and judges ask, answered from cited NASA findings. Search as you type; open the same search anywhere with Ctrl/⌘ K."
+      />
+      <AskSearch items={searchIndex()} autoFocus />
+    </div>
   );
 }

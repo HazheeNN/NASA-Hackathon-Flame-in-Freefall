@@ -14,7 +14,13 @@
         "locator": "Surface gravity"
       }
     ],
-    "verified": false
+    "verified": false,
+    "image": {
+      "src": "/worlds/earth.jpg",
+      "alt": "Sunrise over Earth's limb, photographed from the International Space Station",
+      "credit": "NASA/JSC, Expedition 28 (iss028e007274)",
+      "sourceUrl": "https://images.nasa.gov/details/iss028e007274"
+    }
   },
   {
     "id": "iss",
@@ -25,7 +31,8 @@
       "Mars transit"
     ],
     "atmosphereIds": [
-      "iss"
+      "iss",
+      "shuttle-staged-10-2"
     ],
     "sources": [
       {
@@ -34,7 +41,13 @@
         "year": 2015
       }
     ],
-    "verified": false
+    "verified": false,
+    "image": {
+      "src": "/worlds/iss.jpg",
+      "alt": "Inside the Destiny laboratory module of the International Space Station",
+      "credit": "NASA/JSC, Expedition 7 (iss007e11800)",
+      "sourceUrl": "https://images.nasa.gov/details/iss007e11800"
+    }
   },
   {
     "id": "moon",
@@ -45,6 +58,7 @@
     ],
     "atmosphereIds": [
       "exploration-8-2-34",
+      "eawg-8-0-32",
       "iss"
     ],
     "sources": [
@@ -60,7 +74,13 @@
         "year": 2001
       }
     ],
-    "verified": false
+    "verified": false,
+    "image": {
+      "src": "/worlds/moon.jpg",
+      "alt": "Apollo 17 view of boulders and hills at Station 5, Taurus-Littrow valley",
+      "credit": "NASA/JSC, Apollo 17 (as17-145-22183)",
+      "sourceUrl": "https://images.nasa.gov/details/as17-145-22183"
+    }
   },
   {
     "id": "mars",
@@ -71,6 +91,7 @@
     ],
     "atmosphereIds": [
       "exploration-8-2-34",
+      "eawg-8-0-32",
       "iss"
     ],
     "sources": [
@@ -87,6 +108,12 @@
         "locator": "p. 1 (partial-gravity Martian environments, 0.38 g)"
       }
     ],
-    "verified": false
+    "verified": false,
+    "image": {
+      "src": "/worlds/mars.jpg",
+      "alt": "Layered rock at Murray Buttes on Mount Sharp, photographed by the Curiosity rover",
+      "credit": "NASA/JPL-Caltech/MSSS (PIA20843)",
+      "sourceUrl": "https://images.nasa.gov/details/PIA20843"
+    }
   }
 ]

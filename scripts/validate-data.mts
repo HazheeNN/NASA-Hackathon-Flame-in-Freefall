@@ -13,6 +13,7 @@ const raw = {
   atmospheres: read("data/atmospheres.json"),
   worlds: read("data/worlds.json"),
   flex: read("data/datasets/flex-table-ix.json"),
+  formulas: read("data/formulas.json"),
 };
 const findings = raw.findings as { verified: boolean }[];
 console.log(`${raw.experiments.length} experiments · ${findings.length} findings (${findings.filter((f) => f.verified).length} verified) · ${raw.insights.insights.length} insights · ${raw.answers.answers.length} answers · ${raw.worlds.length} worlds · ${raw.atmospheres.length} atmospheres · ${raw.flex.rows.length} FLEX tests`);

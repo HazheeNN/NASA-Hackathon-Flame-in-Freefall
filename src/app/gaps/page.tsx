@@ -1,15 +1,18 @@
-import { MapIcon } from "lucide-react";
-import { ComingSoon } from "@/components/ui";
+import { GapsMap } from "@/components/gaps/gaps-map";
+import { PageHeader } from "@/components/ui";
+import { labDataset, labWorlds } from "@/lib/views";
 
-export const metadata = { title: "Where NASA has never burned · Flame in Freefall" };
+export const metadata = { title: "Gaps map · Flame in Freefall" };
 
-export default function Page() {
+export default function GapsPage() {
   return (
-    <ComingSoon
-      title="Where NASA has never burned"
-      icon={<MapIcon size={28} strokeWidth={1.75} className="text-primary" aria-hidden />}
-      what="A map of every tested condition (gravity × O₂), the empty regions, and the experiments our SI proposes next."
-      wp="WP6"
-    />
+    <div className="space-y-10">
+      <PageHeader
+        eyebrow="Where NASA has never burned"
+        title="The gaps map"
+        lead="Every verified NASA test is a dot. The red is where nobody has burned anything yet, including the air NASA plans for Moon and Mars habitats."
+      />
+      <GapsMap dataset={labDataset()} worlds={labWorlds()} />
+    </div>
   );
 }

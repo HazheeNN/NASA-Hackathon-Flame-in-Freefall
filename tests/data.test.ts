@@ -11,6 +11,7 @@ const corpus = () => ({
   atmospheres: read("data/atmospheres.json"),
   worlds: read("data/worlds.json"),
   flex: read("data/datasets/flex-table-ix.json"),
+  formulas: read("data/formulas.json"),
 });
 
 const answersWith = (answer: string, findingIds: string[]) => ({

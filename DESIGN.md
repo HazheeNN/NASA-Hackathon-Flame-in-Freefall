@@ -1,23 +1,32 @@
 ---
 version: alpha
 name: Flame in Freefall
-description: An interactive, AI-powered dashboard that summarizes, ranks and interprets NASA microgravity combustion findings into fire safety insights for crewed missions. It should feel like a mission-control console reading a NASA technical report, lit by the blue sphere of a flame burning in microgravity.
+description: An interactive flame lab and evidence dashboard that shows how fire behaves on Earth, in orbit, on the Moon and on Mars, built on verified NASA microgravity combustion data. It should feel like a NASA mission page (real photography, near-black and white, one accent, bold clean type), never like an official NASA site.
 colors:
-  primary: "#5B9BFF"
-  primary-hover: "#7DB0FF"
-  primary-soft: "#12264A"
-  on-primary: "#04122B"
-  ember: "#FF8A3D"
-  ember-soft: "#3A1E0C"
-  on-ember: "#2A1102"
-  background: "#070B14"
-  surface: "#0E1524"
-  surface-raised: "#141D30"
-  on-surface: "#E6ECF5"
-  muted: "#93A1B8"
-  line: "#22304A"
-  risk-high: "#FF6B6B"
-  risk-high-soft: "#3A1416"
+  primary: "#7FB2FF"
+  primary-hover: "#A3C8FF"
+  primary-soft: "#14223A"
+  on-primary: "#05101F"
+  ember: "#FFA24C"
+  ember-soft: "#3A230F"
+  on-ember: "#2A1404"
+  background: "#08090B"
+  surface: "#121418"
+  surface-raised: "#1A1D23"
+  on-surface: "#F3F5F8"
+  muted: "#A3ACBA"
+  line: "#2B3039"
+  tested: "#5AA2FF"
+  tested-soft: "#102440"
+  untested: "#FF5C50"
+  untested-soft: "#3D1512"
+  earth: "#5CB0FF"
+  iss: "#CFD8E3"
+  moon: "#DCD8D0"
+  mars: "#E5733F"
+  on-world: "#08090B"
+  risk-high: "#FF6B5E"
+  risk-high-soft: "#3D1512"
   risk-medium: "#F5C451"
   risk-medium-soft: "#3A2E0E"
   risk-low: "#3DD68C"
@@ -26,69 +35,69 @@ colors:
   unverified: "#F5C451"
   focus: "#FFD166"
   on-focus: "#1A1300"
-  series-1: "#5B9BFF"
-  series-2: "#FF8A3D"
+  series-1: "#5AA2FF"
+  series-2: "#FFA24C"
   series-3: "#2EC4B6"
   series-4: "#A78BFA"
   series-5: "#A3E635"
   series-6: "#F472B6"
-  on-series: "#070B14"
+  on-series: "#08090B"
 typography:
   display:
-    fontFamily: IBM Plex Sans
-    fontSize: 44px
-    fontWeight: 600
-    lineHeight: 1.1
+    fontFamily: Public Sans
+    fontSize: 52px
+    fontWeight: 700
+    lineHeight: 1.05
     letterSpacing: -0.02em
   headline-lg:
-    fontFamily: IBM Plex Sans
-    fontSize: 28px
-    fontWeight: 600
-    lineHeight: 1.2
+    fontFamily: Public Sans
+    fontSize: 32px
+    fontWeight: 700
+    lineHeight: 1.15
     letterSpacing: -0.01em
   headline-md:
-    fontFamily: IBM Plex Sans
+    fontFamily: Public Sans
     fontSize: 20px
     fontWeight: 600
     lineHeight: 1.3
   body-lg:
-    fontFamily: IBM Plex Sans
-    fontSize: 17px
+    fontFamily: Public Sans
+    fontSize: 18px
     fontWeight: 400
     lineHeight: 1.6
   body-md:
-    fontFamily: IBM Plex Sans
-    fontSize: 15px
+    fontFamily: Public Sans
+    fontSize: 16px
     fontWeight: 400
-    lineHeight: 1.55
+    lineHeight: 1.6
   body-sm:
-    fontFamily: IBM Plex Sans
-    fontSize: 13px
+    fontFamily: Public Sans
+    fontSize: 14px
     fontWeight: 400
     lineHeight: 1.5
   label-md:
-    fontFamily: IBM Plex Sans
-    fontSize: 13px
+    fontFamily: Public Sans
+    fontSize: 12px
     fontWeight: 600
     lineHeight: 1.2
-    letterSpacing: 0.04em
+    letterSpacing: 0.12em
   data-lg:
-    fontFamily: IBM Plex Mono
-    fontSize: 36px
+    fontFamily: DM Mono
+    fontSize: 32px
     fontWeight: 500
     lineHeight: 1.1
     fontFeature: '"tnum" 1'
   data-sm:
-    fontFamily: IBM Plex Mono
-    fontSize: 13px
+    fontFamily: DM Mono
+    fontSize: 14px
     fontWeight: 400
     lineHeight: 1.4
     fontFeature: '"tnum" 1'
 rounded:
   none: 0px
-  sm: 6px
-  md: 10px
-  lg: 16px
+  sm: 4px
+  md: 8px
+  lg: 12px
   full: 9999px
 spacing:
   xs: 4px
@@ -96,7 +105,7 @@ spacing:
   md: 16px
   lg: 24px
   xl: 40px
-  2xl: 64px
+  2xl: 72px
   gutter: 16px
 components:
   page:
@@ -121,25 +130,40 @@ components:
     backgroundColor: "{colors.line}"
     height: 1px
   button-primary:
-    backgroundColor: "{colors.primary}"
-    textColor: "{colors.on-primary}"
+    backgroundColor: "{colors.on-surface}"
+    textColor: "{colors.background}"
     typography: "{typography.label-md}"
-    rounded: "{rounded.md}"
-    padding: 12px 18px
+    rounded: "{rounded.full}"
+    padding: 12px 20px
     height: 44px
-  button-primary-hover:
-    backgroundColor: "{colors.primary-hover}"
-    textColor: "{colors.on-primary}"
   button-secondary:
-    backgroundColor: "{colors.primary-soft}"
+    backgroundColor: "{colors.surface-raised}"
     textColor: "{colors.on-surface}"
     typography: "{typography.label-md}"
-    rounded: "{rounded.md}"
-    padding: 12px 18px
+    rounded: "{rounded.full}"
+    padding: 12px 20px
     height: 44px
+  link:
+    backgroundColor: "{colors.background}"
+    textColor: "{colors.primary}"
+  link-hover:
+    backgroundColor: "{colors.background}"
+    textColor: "{colors.primary-hover}"
   chip-theme:
     backgroundColor: "{colors.primary-soft}"
     textColor: "{colors.primary}"
+    typography: "{typography.label-md}"
+    rounded: "{rounded.full}"
+    padding: 4px 10px
+  chip-tested:
+    backgroundColor: "{colors.tested-soft}"
+    textColor: "{colors.tested}"
+    typography: "{typography.label-md}"
+    rounded: "{rounded.full}"
+    padding: 4px 10px
+  chip-untested:
+    backgroundColor: "{colors.untested-soft}"
+    textColor: "{colors.untested}"
     typography: "{typography.label-md}"
     rounded: "{rounded.full}"
     padding: 4px 10px
@@ -149,12 +173,18 @@ components:
     typography: "{typography.label-md}"
     rounded: "{rounded.full}"
     padding: 4px 10px
-  button-ember:
-    backgroundColor: "{colors.ember}"
-    textColor: "{colors.on-ember}"
-    typography: "{typography.label-md}"
-    rounded: "{rounded.md}"
-    padding: 12px 18px
+  world-earth:
+    backgroundColor: "{colors.earth}"
+    textColor: "{colors.on-world}"
+  world-iss:
+    backgroundColor: "{colors.iss}"
+    textColor: "{colors.on-world}"
+  world-moon:
+    backgroundColor: "{colors.moon}"
+    textColor: "{colors.on-world}"
+  world-mars:
+    backgroundColor: "{colors.mars}"
+    textColor: "{colors.on-world}"
   badge-risk-high:
     backgroundColor: "{colors.risk-high-soft}"
     textColor: "{colors.risk-high}"
@@ -222,98 +252,87 @@ components:
 
 ## Overview
 
-**Reference:** a mission-control console in the middle of reading a NASA technical report. The room is dark, the data is bright, and every number has a source next to it. The one image people remember is **the blue flame sphere**: without gravity, hot gas does not rise, so a candle flame becomes a dim blue ball instead of a yellow teardrop. That sphere is our brand. Use it as the logo mark, the hero visual and the loading state.
+**Reference:** a NASA mission page (decision 2026-11-14): big real photography, near-black and white, bold clean type, generous space, one accent. Inspired by NASA's public **Horizon Design System** (its typefaces Public Sans and DM Mono). It must never look like an official NASA site: no NASA insignia or logotype, no copy of nasa.gov's header, and the "not affiliated with or endorsed by NASA" line in the footer.
 
-- **Audience:** hackathon judges (on a laptop or a projector, 3–5 minutes each), then mission engineers and crew-safety people who want answers they can trust.
-- **Mood:** calm, precise, credible. Closer to a flight-data display than a startup landing page. The excitement comes from the science and the data, not from decoration.
-- **Density:** medium. One clear idea per panel, numbers large, a source on everything.
-- **Device:** wide desktop first (demos and judging), and it must still work on a 360 px phone and a tablet. Use the screen fully: card grids (1 column on phones, 2 on tablets, 3 on wide desktops), and panels side by side where they fit.
-- **One theme: dark.** No light mode in hackathon scope (`docs/decisions.md`). Check it on a projector-like setting (brightness down) before the demo.
+- **The homepage is the Flame Lab:** pick conditions and a world, watch the flame change, read what NASA has (and hasn't) tested. Everything else is one click away.
+- **Audience:** hackathon judges on a laptop or projector, then mission engineers. Calm, readable, honest.
+- **Density:** low on the surface, detail on demand. One idea per panel.
+- **One dark theme.** Real NASA photos are always darkened by a scrim so text stays readable.
 
 ## Colors
 
-- **Primary `{colors.primary}`, microgravity-flame blue.** Main actions, active navigation, links, the flame mark, and the "microgravity" series in charts. `{colors.primary-soft}` is the quiet fill behind chips and secondary buttons.
-- **Ember `{colors.ember}`, normal-gravity flame orange.** Anything about fire on Earth (1 g) compared with microgravity, and calls to attention that are not risk levels. Never use it for the risk scale.
-- **Background `{colors.background}` → surface `{colors.surface}` → raised `{colors.surface-raised}`.** Three steps of deep space. Panels sit on the background; popovers, tooltips and selected cards sit on raised. `{colors.line}` is for hairline borders and dividers only.
-- **Text:** `{colors.on-surface}` for content, `{colors.muted}` for labels, units, captions and metadata. Never put muted text on raised surfaces below 13 px.
-- **Risk scale:** `{colors.risk-high}`, `{colors.risk-medium}`, `{colors.risk-low}`, each with a `-soft` fill. Only for the fire-risk rating of an insight or scenario. **Always a word plus the colour** ("High risk"), never colour alone.
-- **Evidence status:** `{colors.verified}` (a person checked the finding against its NASA source) and `{colors.unverified}` (extracted, not yet checked). Always a word and an icon too.
-- **Focus `{colors.focus}`:** the 2 px keyboard focus ring. Nothing else is this yellow.
-- **Chart series** `{colors.series-1}` … `{colors.series-6}`, in that order. Series 1 is always microgravity, series 2 always normal gravity (1 g) when both appear. No more than 6 series in a chart; group the rest as "Other" in `{colors.muted}`.
-- Colours reach code only through the tokens in `src/app/globals.css`, which mirrors this file. No raw hex in components (ESLint fails on `bg-[#…]`).
+- **Neutrals carry the page:** `{colors.background}` → `{colors.surface}` → `{colors.surface-raised}`, text `{colors.on-surface}`, labels `{colors.muted}`, hairlines `{colors.line}`.
+- **Primary `{colors.primary}`** for links, active navigation and focusable accents. The main button is white on black (`button-primary`), like NASA pages.
+- **Tested `{colors.tested}` / untested `{colors.untested}`:** the honesty colours. Blue = NASA measured it (with the source); red = never tested or not verified yet. Always with a word ("Tested", "Never tested").
+- **World colours** `{colors.earth}`, `{colors.iss}`, `{colors.moon}`, `{colors.mars}`: only for the world cards' subtle glow, the selected-world ring and world markers on charts.
+- **Ember `{colors.ember}`** for Earth / 1 g comparisons. **Risk** colours only for insight risk levels. **Verified / unverified** for evidence status. **Focus** yellow only for the keyboard ring.
+- Colours reach code only through the tokens in `src/app/globals.css` (ESLint fails on raw hex in class names).
 
 ## Typography
 
-- **IBM Plex Sans** for everything written, **IBM Plex Mono** for numbers, units, IDs (`F-012`) and citations. The pairing reads as "engineering document", and Plex was designed for exactly this kind of technical interface.
-- `display` only for the hero line on the overview; `headline-lg` for page titles; `headline-md` for panel titles; `body-lg` for AI summaries (people read them, so give them room); `body-md` everywhere else; `body-sm` for captions and footnotes; `label-md` uppercase for small labels above values and for chips.
-- `data-lg` for KPI numbers, `data-sm` for table cells, axis labels and citation chips. Tabular figures always, so columns of numbers line up.
-- Units always written, with a thin space, in muted: `21 % O₂`, `101.3 kPa`, `0.38 g`. Use the real subscripts (O₂, CO₂).
+- **Public Sans** for everything written, **DM Mono** for numbers, units, IDs (`F-012`) and citations.
+- `display` for the Flame Lab headline only; `headline-lg` page titles; `headline-md` panel titles; `body-lg` for lead text and AI summaries; `body-md` everywhere else; `label-md` uppercase for small labels (`.eyebrow`).
+- Units always written with a thin space: `21 % O₂`, `101.3 kPa`, `0.38 g`.
 
 ## Layout
 
-- Max content width 1440 px, centred, with `{spacing.gutter}` side gutters on phones and 40 px on desktops.
-- App shell: a slim top bar (flame mark, product name, main navigation, the "Ask" button). On phones, the navigation collapses into a menu button.
-- 8 px spacing grid (`{spacing.sm}`). Panels are separated by `{spacing.lg}`, sections by `{spacing.2xl}`.
-- Grids: 1 column under 640 px, 2 from 640 px, 3 from 1200 px. A list–detail view only splits once something is picked.
-- Every AI-written panel follows the same order: **answer first, then evidence (citation chips), then caveats.** Judges should be able to read just the first line.
+- Max content width 1440 px, 16 px gutters on phones, 40 px on desktops.
+- Top bar: flame mark, name, navigation (Flame Lab, Gaps map, Insights, Findings, Sources, About) and the Ask button (also Ctrl/⌘ K). Collapses to a menu below 1024 px.
+- Flame Lab: controls | flame | NASA data side by side on wide screens, stacked on phones; the four world cards below (1 column on small phones, 2 on tablets, 4 on desktops).
+- Every AI-written panel: answer first, then evidence (citation chips), then caveats.
 
 ## Elevation & Depth
 
-- Depth comes from surface steps (background → surface → raised), not shadows. One soft shadow is allowed on popovers and the Ask panel.
-- A single faint radial glow of `{colors.primary}` behind the hero flame sphere. Nowhere else.
-- No glassmorphism and no blur effects behind text.
+- Depth from surface steps and photography, not shadows. One soft shadow on the Ask dialog.
+- World cards glow softly in their world colour on hover and when selected (a blurred outer shadow, low opacity). Nothing pulses.
 
 ## Shapes
 
-- `{rounded.lg}` for cards and panels, `{rounded.md}` for buttons and inputs, `{rounded.sm}` for badges and citation chips, `{rounded.full}` for theme chips and the flame mark.
-- Circles carry meaning here (the flame sphere). Use them for the mark, scatter points and status dots, not as decoration.
+- `{rounded.lg}` cards, `{rounded.full}` buttons and chips, `{rounded.sm}` badges and citation chips.
 
 ## Components
 
-- **Cards** (`card`, `card-raised`): title (`headline-md`), one-line answer, then content. Click target is the whole card when it opens something.
-- **KPI tiles** (`kpi-tile`): a mono number, a label above it in `label-md`, and an optional caption below in muted. Max 4 in a row.
-- **Buttons:** `button-primary` for the one main action of a view, `button-secondary` for the rest, `button-ember` only for "compare with 1 g" style actions. Minimum height 44 px.
-- **Chips:** `chip-theme` for fire-science themes (ignition, spread, extinction…), `chip-ember` for 1 g / Earth comparisons.
-- **Badges:** `badge-risk-*` for risk level and `badge-verified` / `badge-unverified` for evidence status. Word plus icon plus colour, always.
-- **Citation chip** (`citation-chip`): mono `F-012` style ID that opens the finding with its NASA source link. Every AI sentence that states a fact ends with at least one.
-- **Charts:** the series tokens (`chart-series-1` … `chart-series-6`), hairline gridlines in `{colors.line}`, axis labels in `data-sm` muted, a short title that states the takeaway ("Flames spread slower in microgravity, until the airflow picks up"), and a source line under every chart.
-- **Focus ring** (`focus-ring`): 2 px `{colors.focus}` outline with 2 px offset on every interactive element.
+- **World card:** the world's real NASA photo, darkened at the bottom; name, gravity, cabin air. Hover: soft glow in the world colour; selected: 2 px ring in the world colour.
+- **Condition slider:** a track showing the NASA-tested range in `{colors.tested}` and untested in `{colors.untested}`, with the word under it.
+- **Coverage chip:** `chip-tested` / `chip-untested`, always a word.
+- **Confidence meter:** 4 short bars (findings, experiments, verified share, tested at this gravity) with words.
+- **Cards, badges, citation chips** as in the front matter. Every AI fact ends with at least one citation chip.
+- **Charts:** hand-drawn SVG; series tokens; a title stating the takeaway; a source line under it.
 
 ## Iconography
 
-Lucide only, 20 px, stroke 1.75. The same meaning always uses the same icon:
+Lucide only, 20 px, stroke 1.75; same meaning, same icon:
 
 | Meaning | Icon |
 |---|---|
-| Flame / combustion | `flame` |
-| Experiment / program | `flask-conical` |
+| Flame / Flame Lab | `flame` |
+| Experiment | `flask-conical` |
 | Finding | `file-text` |
 | Insight (AI) | `sparkles` |
-| Ask (question library) | `message-square-text` |
+| Ask | `message-square-text` |
 | Source / citation | `book-open` |
 | Verified | `badge-check` |
 | Unverified | `circle-alert` |
+| Never tested | `circle-off` |
 | Risk | `triangle-alert` |
-| Mission / scenario | `rocket` |
-| Gravity level | `orbit` |
+| Gravity / world | `orbit` |
 | Oxygen | `wind` |
-| Filter | `sliders-horizontal` |
+| Pressure | `gauge` |
+| Airflow | `fan` |
+| Gaps map | `map` |
+| Fire-only mode | `maximize-2` |
 
-The flame-sphere mark is ours (`src/components/flame-mark.tsx`). **Never use the NASA insignia ("meatball") or logotype ("worm")**: NASA does not allow them on third-party projects.
+The flame-sphere mark is ours (`src/components/flame-mark.tsx`).
 
 ## Motion
 
-- Purposeful and short: 150–250 ms ease-out for hovers, panels and filters.
-- One signature motion: the flame sphere gently "breathes" (scale 1 → 1.04, 4 s loop) on the hero and while the AI is thinking.
-- Streaming AI text appears as it arrives; no fake typewriter effect.
-- Respect `prefers-reduced-motion`: switch off the breathing and transitions.
+- 150–250 ms ease-out for hovers and panels; 600 ms cross-fade when the world background changes.
+- The flame animates continuously (WebGL); with `prefers-reduced-motion` it is drawn once and stays still.
 
 ## Do's and Don'ts
 
-- **Do** put a source on every number and every AI claim. Credibility is our design language.
-- **Do** say plainly when something is unverified or uncertain, in words.
-- **Do** show microgravity next to 1 g whenever possible: the contrast is the story.
-- **Don't** use stock space photos, star-field wallpapers, neon gradients or "AI" sparkle overload. One sparkles icon marks AI content; that's it.
-- **Don't** use colour alone to carry meaning (risk, status, series): add words, icons or labels.
-- **Don't** use the NASA logo or imply NASA endorses the project.
-- **Don't** add a light theme, extra fonts or a component library during the hackathon.
+- **Do** put a source on every number; show untested and unverified in words.
+- **Do** credit every NASA photo ("Image: NASA" + the page).
+- **Don't** use the NASA logo or imply endorsement; don't copy nasa.gov's header.
+- **Don't** show a simulated number: the flame is an illustration; numbers come only from verified data and NASA formulas inside their tested range.
+- **Don't** use colour alone for meaning.

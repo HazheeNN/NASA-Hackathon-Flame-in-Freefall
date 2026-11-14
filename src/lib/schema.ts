@@ -205,7 +205,28 @@ export const FlexDataset = z.object({
   rows: z.array(FlexTest).min(1),
 });
 
+// A NASA formula (docs/data.md › Formulas). Computed only inside `validity`.
+const Range = z.tuple([z.number(), z.number()]);
+export const Formula = z.object({
+  id: z.string().regex(/^FX-\d{2}$/),
+  name: z.string(),
+  expression: z.string(),
+  explanation: z.string(),
+  variables: z.array(z.object({ symbol: z.string(), meaning: z.string(), unit: z.string() })).min(1),
+  validity: z.object({
+    gravityG: Range.optional(),
+    oxygenPercent: Range.optional(),
+    pressureKPa: Range.optional(),
+    flowCmPerS: Range.optional(),
+    fuel: z.array(z.string()).optional(),
+  }),
+  usedIn: z.array(z.enum(["lab", "worlds", "gaps"])),
+  sources: z.array(Source).min(1),
+  verified: z.boolean(),
+});
+
 export type Experiment = z.infer<typeof Experiment>;
+export type Formula = z.infer<typeof Formula>;
 export type FlexTest = z.infer<typeof FlexTest>;
 export type FlexDataset = z.infer<typeof FlexDataset>;
 export type Atmosphere = z.infer<typeof Atmosphere>;

@@ -56,6 +56,6 @@ Do it yourself (no Claude) when it's: reading papers and verifying findings, dec
 ## Prompt starters
 
 - *"Read docs/status.md, then continue the task marked in progress for me."*
-- *"Plan F8 mission lens: list files, components and data you'll touch. Don't write code yet."*
+- *"Plan F8 Same Fire, Four Worlds: list files, components and data you'll touch. Don't write code yet."*
 - *"Review my branch's diff against CLAUDE.md rules and DESIGN.md; list problems, don't fix."*
 - *"Screenshot / and /insights at 360 px and 1440 px and tell me what looks off against DESIGN.md."*

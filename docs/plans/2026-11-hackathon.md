@@ -21,7 +21,7 @@ Fill in the real dates and times on Day 0. Times below assume the event runs 09:
 | 12:30 | **Check-in 1** (status.md), lunch | | |
 | 13:00–16:00 | WP1: SoFIE, ACME, CFI, SAME, FLARE → 30 findings | WP2: SI job 1 on more papers (abstract + results pages only, to save Pro usage); first trial of job 2 on ~20 findings; tune `prompts/` | WP3b: findings explorer + detail; overview with real KPIs |
 | 16:00 | **Check-in 2:** corpus on track for 40? If not, set 25 as the target | | |
-| 16:00–20:00 | WP1: to 40+ findings, verification pass | WP4: Ask page/panel: question library UI, search over questions and findings, citation chips (on sample answers first) | WP3c: insight detail polish; first chart (WP6) if data allows |
+| 16:00–20:00 | WP1: to 40+ findings, verification pass; WP5 step 1 (world + atmosphere records) | WP4: Ask page/panel: question library UI, search over questions and findings, citation chips (on sample answers first) | WP3c: insight detail polish + confidence meter (F20); gaps map (WP6) on the first findings |
 | 20:00 | **Check-in 3:** SI jobs 2 + 3 on the full corpus (B), review, deploy, everyone clicks through | | |
 | Evening | Stagger sleep. Optional: more questions answered (job 3), golden-question check | | |
 
@@ -29,7 +29,7 @@ Fill in the real dates and times on Day 0. Times below assume the event runs 09:
 
 | Time | Person A | Person B | Person C |
 |---|---|---|---|
-| 08:00–11:00 | WP7: sources & method page | WP5: mission lens (4 lenses, gaps panel) | WP6: charts (1 g vs 0 g, flammability map); mobile pass |
+| 08:00–11:00 | WP7: sources & method page; NASA images for Four Worlds (credited) | WP5: Habitat Designer; WP6: test-next proposals (SI job 2) | WP5: Four Worlds; WP6: gaps map polish; mobile pass |
 | 11:00 | **Check-in 4.** Golden questions ≥ 9/10? Search finds them? Final SI run if findings changed (no stale warning). | | |
 | 11:00–13:00 | WP8: video script, slides draft | WP4b: remaining answers, empty/no-match states | Polish pass with design skills; 360 px + 1440 px screenshots of every page |
 | **13:00** | **FEATURE FREEZE.** Only fixes from here. | | |
@@ -63,11 +63,20 @@ a. Shell and components · b. findings explorer + detail · c. insights list + d
 Ask panel or page: featured questions, questions grouped by mission and theme, client-side search over questions and findings, answer view with citation chips that open findings, "prepared by our SI" label, no-match state.
 - **Done:** golden questions ≥ 9/10 correct and findable by search; works offline.
 
-### WP5: Mission lens (F8)
-4 lenses: gravity, atmosphere (sourced), applicable insights, evidence gaps.
+### WP5: Same Fire, Four Worlds (F8) + Habitat Designer (F19)
+Both sit on the one condition space (`docs/prd.md` › One condition space).
+1. World and atmosphere records with sources (`docs/data.md` › Sources for Four Worlds…): gravity, cabin pressure, O₂ for Earth, ISS, Moon, Mars, plus the habitat presets (ISS, exploration 8.2 psia / 34 %, Shuttle staged).
+2. Four Worlds: 4 world cards side by side (stacked on phones), each with sourced conditions, "how fire differs here" from findings, a credited NASA image or "never filmed", insights that apply, and a link to its spot on the gaps map.
+3. Habitat Designer: world + atmosphere preset + material + ventilation → nearest tested findings, applicable insights, confidence meter, "never tested" state; setup kept in the URL. **Not a risk calculator.**
+- **Done:** every number sourced; no simulated physics; 360 / 1440 px screenshots.
 
-### WP6: Charts (F12, F13): cut first if late
-Only plot values from findings. One clear takeaway title + source line per chart.
+### WP6: Gaps map (F16) + What NASA should test next (F18): must
+1. Gaps map: gravity × O₂ plot of findings (burned / went out), pressure and airflow as filters, the worlds and habitat presets marked, untested regions highlighted, counts per region, list fallback on phones.
+2. Test-next list: SI job 2 also proposes 3–6 experiments for the biggest gaps (add to `prompts/synthesize.md`), each citing the gap and the closest findings.
+- **Done:** no point without a finding; no interpolation; proposals pass the review checklist.
+
+### WP3 addition: Confidence meter (F20)
+On every insight and answer, computed from the data: findings, experiments, verified share, evidence strength, tested at the mission's gravity or extrapolated. Words + shape, not colour alone.
 
 ### WP7: Sources and method (F9)
 All sources from the data; the SI diagram; the ranking rubric; AI disclosure.
@@ -77,11 +86,12 @@ Project page, video, slides, links; checked in a private window.
 
 ## Cut lines (in this order, when behind)
 
-1. F15–F17 (compare, gaps grid, export)
-2. F13 flammability map
-3. F14 explainer → a short paragraph on the overview
-4. F12 comparison chart
-5. Mission lens down to 2 lenses (ISS, Mars surface)
-6. Corpus target 40 → 25
+Updated 2026-11-14. Already cut: compare two experiments (F15), export (F17). Folded in: the 0 g vs 1 g chart and the explainer into Four Worlds, the flammability map into the gaps map. On hold: Life of a Flame (F21).
 
-**Never cut:** citations, verified badges, the Ask library, the deploy, the video.
+1. Habitat Designer down to presets only (no custom O₂ / pressure)
+2. Gaps map pressure and airflow filters (keep gravity × O₂)
+3. NASA images in Four Worlds → text + flame-sphere illustration
+4. Four Worlds down to 3 worlds (Earth, ISS, Mars)
+5. Corpus target 40 → 25
+
+**Never cut:** citations, verified badges, the confidence meter, the gaps map, the Ask library, the deploy, the video.

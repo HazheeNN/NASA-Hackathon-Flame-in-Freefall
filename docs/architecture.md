@@ -41,7 +41,9 @@ src/
     page.tsx              overview (F4)
     insights/             ranked insights (F5) + [id] detail          (to build)
     findings/             explorer (F6) + [id] detail                 (to build)
-    missions/[mission]/   mission lens (F8)                           (to build)
+    worlds/               Same Fire, Four Worlds (F8) + [world]        (to build)
+    gaps/                 gaps map (F16) + test-next list (F18)        (to build)
+    habitat/              Habitat Designer (F19)                       (to build)
     sources/              sources and method (F9)                     (to build)
     ask/                  Ask: question library + search (F7)          (to build)
     globals.css           theme tokens (mirrors DESIGN.md)
@@ -70,7 +72,9 @@ docs/               everything a teammate or Claude needs (start at CLAUDE.md)
 | `/insights/[id]` | Insight detail with cited findings | Static (`generateStaticParams`) |
 | `/findings` | Explorer: search + filters in the URL | Static shell + client filters |
 | `/findings/[id]` | Finding detail: conditions, numbers, sources | Static |
-| `/missions/[mission]` | Mission lens: `iss`, `moon`, `mars-transit`, `mars-surface` | Static |
+| `/worlds` | Same Fire, Four Worlds side by side; `/worlds/[world]` (`earth`, `iss`, `moon`, `mars`) for one world | Static |
+| `/gaps` | Gaps map + What NASA should test next; `?world=` / `?o2=` highlight a spot | Static shell + client filters |
+| `/habitat` | Habitat Designer; the setup lives in the URL (`?world=mars&atm=exploration&material=…&flow=…`) | Static shell + client filters |
 | `/ask` | Question library + search; `?q=` keeps the search, `/ask/[id]` opens an answer | Static shell + client search |
 | `/sources` | Sources, method, ranking rubric, AI disclosure | Static |
 

@@ -19,13 +19,13 @@
 |---|---|---|
 | "decades… trove of experimental data" | Real NASA experiments across eras and platforms (drop towers → ISS → Saffire) | Corpus: `data/experiments.json`, `data/findings.json`; Sources page |
 | "hard to find, compare, and understand" | Search, filter and side-by-side comparison; plain-language summaries | Findings explorer, compare view, glossary tooltips |
-| "interactive" | People click, filter, ask; not a static report | Filters, mission lens, Ask (search the question library), chart interactions |
+| "interactive" | People click, filter, ask; not a static report | Filters, Four Worlds, gaps map, Habitat Designer, Ask (search the question library), chart interactions |
 | "super intelligence (SI) powered" | AI that does real analytic work: reads papers, links findings across experiments, ranks, explains, answers questions with citations | SI jobs (`docs/ai.md`): extraction, synthesis/ranking, the cited question library |
 | "dashboard" | One glanceable overview, then drill-down | Overview page: KPIs, top insights, hero chart |
 | "summarizes" | A short, plain summary per finding, experiment and insight | `statement`, `answer`, experiment `summary` |
 | "ranks" | An explicit, explainable ordering of what matters most for safety | Ranked insights with 4 visible scores and "How we rank" |
 | "interprets" | "So what for a crew?" in every insight: implication, recommendation, caveats | Insight cards and the Ask answers |
-| "fire safety insights for human space exploration" | Tie everything to missions: ISS, Artemis (Moon, 0.17 g), Mars transit (0 g), Mars surface (0.38 g) | Mission lens |
+| "fire safety insights for human space exploration" | Tie everything to missions: ISS, Artemis (Moon, 0.17 g), Mars transit (0 g), Mars surface (0.38 g) | Same Fire, Four Worlds; Habitat Designer |
 
 **Our one-line pitch (draft):** *"An AI analyst that has read NASA's fire-in-space research, so a mission planner can ask what's dangerous on the way to Mars and get a ranked, cited answer in seconds."*
 
@@ -37,7 +37,7 @@ Global judging has usually scored projects on five criteria, roughly equally:
 
 | Criterion | What it means for us |
 |---|---|
-| **Impact / Influence** | Could this help NASA mission planners or crew-safety engineers? Make the mission lens and recommendations concrete. |
+| **Impact / Influence** | Could this help NASA mission planners or crew-safety engineers? The gaps map and "What NASA should test next" are our most direct answer; keep recommendations concrete. |
 | **Creativity** | The SI layer that ranks and links findings across experiments, the microgravity-vs-1 g framing, the flame-sphere identity. |
 | **Validity** | Scientifically sound and honest: sources on every claim, verified badges, caveats, no invented physics. |
 | **Relevance** | Directly answers the brief: summarizes, ranks, interprets, interactive, fire safety, exploration. |

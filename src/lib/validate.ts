@@ -1,11 +1,14 @@
 import { createHash } from "node:crypto";
 import { z } from "zod";
-import { AnswersFile, Experiment, Finding, InsightsFile } from "./schema";
+import { AnswersFile, Atmosphere, Experiment, Finding, InsightsFile, World } from "./schema";
 
 // Cross-record checks that the schemas alone can't express. Used by `npm run data:validate`,
 // the unit tests (so CI fails on bad data) and the SI scripts. Returns problems, never throws.
 
-type Raw = { experiments: unknown; findings: unknown; insights: unknown; answers?: unknown };
+type Raw = {
+  experiments: unknown; findings: unknown; insights: unknown; answers?: unknown;
+  atmospheres?: unknown; worlds?: unknown;
+};
 
 // Identifies the set of findings an SI output was made from. Formatting-independent.
 export function findingsHash(findings: unknown) {
@@ -27,13 +30,27 @@ export function validateCorpus(raw: Raw): string[] {
   if (!fi.success) problems.push(`findings.json: ${z.prettifyError(fi.error)}`);
   if (!ins.success) problems.push(`generated/insights.json: ${z.prettifyError(ins.error)}`);
   if (!ans.success) problems.push(`generated/answers.json: ${z.prettifyError(ans.error)}`);
-  if (!ex.success || !fi.success || !ins.success || !ans.success) return problems;
+  const atm = z.array(Atmosphere).safeParse(raw.atmospheres ?? []);
+  const wor = z.array(World).safeParse(raw.worlds ?? []);
+  if (!atm.success) problems.push(`atmospheres.json: ${z.prettifyError(atm.error)}`);
+  if (!wor.success) problems.push(`worlds.json: ${z.prettifyError(wor.error)}`);
+  if (!ex.success || !fi.success || !ins.success || !ans.success || !atm.success || !wor.success) return problems;
 
   const dupes = (ids: string[]) => ids.filter((id, i) => ids.indexOf(id) !== i);
   for (const id of dupes(ex.data.map((e) => e.id))) problems.push(`Duplicate experiment id ${id}`);
   for (const id of dupes(fi.data.map((f) => f.id))) problems.push(`Duplicate finding id ${id}`);
   for (const id of dupes(ins.data.insights.map((i) => i.id))) problems.push(`Duplicate insight id ${id}`);
   for (const id of dupes(ans.data.answers.map((a) => a.id))) problems.push(`Duplicate answer id ${id}`);
+  for (const id of dupes(atm.data.map((a) => a.id))) problems.push(`Duplicate atmosphere id ${id}`);
+  for (const id of dupes(wor.data.map((w) => w.id))) problems.push(`Duplicate world id ${id}`);
+
+  const atmosphereIds = new Set(atm.data.map((a) => a.id));
+  for (const w of wor.data) {
+    for (const ref of w.atmosphereIds) if (!atmosphereIds.has(ref)) problems.push(`world ${w.id}: unknown atmosphere "${ref}"`);
+  }
+  for (const r of [...atm.data, ...wor.data]) {
+    if (r.verified && r.sources.every((s) => !s.locator)) problems.push(`${r.id}: verified but no source has a page/section locator`);
+  }
 
   const experimentIds = new Set(ex.data.map((e) => e.id));
   const findingIds = new Set(fi.data.map((f) => f.id));

@@ -94,6 +94,37 @@ export const Finding = z.object({
 export const Mission = z.enum(["ISS", "Artemis (Moon)", "Mars transit", "Mars surface"]);
 export const Risk = z.enum(["high", "medium", "low"]);
 
+// A cabin atmosphere: a preset for the Habitat Designer and a marked spot on the gaps map.
+// Only values a NASA source states (docs/data.md › Sources for Four Worlds…).
+export const Atmosphere = z.object({
+  id: z.string().regex(/^[a-z0-9-]+$/),
+  name: z.string(),
+  pressureKPa: z.number().min(0).max(300),
+  oxygenPercent: z.number().min(0).max(100),
+  // Where it is used or proposed, in plain words, e.g. "Proposed for Moon and Mars habitats".
+  usedFor: z.string(),
+  sources: z.array(Source).min(1),
+  verified: z.boolean(),
+});
+
+// One of the four worlds in Same Fire, Four Worlds (F8). "How fire differs here" is not stored
+// here: it comes from findings at this gravity, so every sentence keeps its citation.
+export const World = z.object({
+  id: z.enum(["earth", "iss", "moon", "mars"]),
+  name: z.string(),
+  gravityG: z.number().min(0).max(2),
+  // Missions this world stands for (ISS also stands for Mars transit: both ≈ 0 g).
+  missions: z.array(Mission),
+  // Cabin atmospheres used or proposed there; the first one is the default.
+  atmosphereIds: z.array(z.string()).min(1),
+  // A real, credited NASA image of a flame in this world's gravity. None → "never filmed".
+  image: z
+    .object({ src: z.string(), alt: z.string(), credit: z.string(), sourceUrl: z.url() })
+    .optional(),
+  sources: z.array(Source).min(1),
+  verified: z.boolean(),
+});
+
 // Made by the SI (prompts/synthesize.md) from the findings. Never hand-edited.
 export const Insight = z.object({
   id: z.string().regex(/^I-\d{2}$/),
@@ -140,6 +171,8 @@ export const Answer = z.object({
 export const AnswersFile = z.object({ ...Provenance, answers: z.array(Answer) });
 
 export type Experiment = z.infer<typeof Experiment>;
+export type Atmosphere = z.infer<typeof Atmosphere>;
+export type World = z.infer<typeof World>;
 export type Finding = z.infer<typeof Finding>;
 export type Insight = z.infer<typeof Insight>;
 export type InsightsFile = z.infer<typeof InsightsFile>;

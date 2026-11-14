@@ -23,7 +23,7 @@ Fire is one of the most dangerous emergencies a crew can face, and in microgravi
 **What it does / how it works:**
 1. Corpus: N findings from M NASA experiments (list), each with conditions, numbers and a cited source; X % checked by a person.
 2. SI layer (Claude by Anthropic): extracts findings from papers, links them across experiments into ranked insights (safety relevance, severity, evidence, actionability), and prepares cited answers to the questions mission planners ask, all reviewed by the team.
-3. Mission lens: what applies to ISS, Artemis, Mars transit and the Mars surface, and where NASA has no data yet.
+3. Same Fire, Four Worlds and the gaps map: how fire differs on Earth, the ISS, the Moon and Mars, where NASA has never burned anything, and the experiments our SI proposes next. The Habitat Designer shows the evidence for a habitat's air.
 
 **Benefits:** faster, evidence-backed fire safety decisions for habitat and vehicle design; a map of evidence gaps for future experiments; a clear explainer for crews and the public.
 
@@ -44,7 +44,7 @@ Fire is one of the most dangerous emergencies a crew can face, and in microgravi
 | 0–4 s | Flame sphere, title | "In space, fire doesn't rise. It spreads in ways we don't expect." |
 | 4–10 s | Overview KPIs | "NASA has decades of experiments. We put them in one place: N findings, all sourced." |
 | 10–18 s | #1 insight → cited findings | "Our AI ranks what matters most for crew safety and shows the evidence behind every claim." |
-| 18–25 s | Mars lens, Ask search → answer | "Planning a Mars habitat? Ask, and get a cited answer in seconds." |
+| 18–25 s | Four Worlds → Mars gap, Ask search → answer | "Planning a Mars habitat? Ask, and get a cited answer in seconds." |
 | 25–30 s | Evidence gaps, URL | "And see what NASA still needs to test. Flame in Freefall." |
 
 Recording: screen capture at 1920×1080 (OBS or QuickTime), browser at 100 % zoom, voice recorded separately in a quiet room, captions burned in, no music with lyrics.

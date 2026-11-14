@@ -10,7 +10,7 @@
     "fuels": ["heptane", "methanol"],
     "summary": "Burned free-floating fuel droplets to study how flames go out and how well gaseous suppressants work. Best known for finding that large heptane droplets keep burning in an invisible, low-temperature 'cool flame' after the visible flame goes out.",
     "themes": ["extinction", "cool-flames", "suppression"],
-    "sources": [{ "title": "NTRS search: FLEX flame extinguishment experiment", "url": "https://ntrs.nasa.gov/search?q=FLEX%20flame%20extinguishment%20experiment%20droplet" }],
+    "sources": [{ "title": "Detailed Results From the Flame Extinguishment Experiment (FLEX) March 2009 to December 2011 (NASA/TP—2015-216046)", "url": "https://ntrs.nasa.gov/citations/20150023456", "year": 2015, "ntrsId": "20150023456" }],
     "verified": false
   },
   {

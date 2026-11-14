@@ -14,7 +14,7 @@ Read this first. Update it at the end of every session (`handoff` skill). Newest
 2. **WP0:** paste the full challenge page into `docs/challenge.md`; re-check the plan against its data list.
 3. **WP1:** verify the 14 seed experiments; first findings from BASS, Saffire, FLEX.
 4. **WP3a review:** PR with the app shell, shared components and insights pages on sample data; owner connects Vercel to see the Preview (`docs/runbook.md` › Vercel), team gives layout feedback. Then WP3b (findings explorer) and WP3c (filters, confidence meter, overview top 3).
-5. **FLEX Table IX into the corpus:** parse it from the NASA PDF (`docs/data.md` › Data we can use now) into `data/` as the first real dataset for the gaps map; a few verified findings from it.
+5. **FLEX Table IX:** in `data/datasets/flex-table-ix.json` (276 tests). A teammate spot-checks ~10 rows against PDF pp. 20–28, then sets `verified: true`. Next: findings from the report's text (conclusions p. 17), and the gaps map uses the rows.
 5b. **WP5 step 1:** open the links in `docs/data.md` › Sources for Four Worlds… on a laptop (NASA sites were blocked from the cloud session), verify the world and atmosphere values, and start findings on partial gravity, 8.2 psia / 34 % O₂ and ventilation flow.
 6. **Verify `data/worlds.json` and `data/atmospheres.json`** (4 worlds, 5 atmospheres, all unverified seeds) against their links; add a `locator` and set `verified: true`. Add credited NASA flame images (`image`) where they exist.
 7. **WP9 formulas (F22):** find and verify 3–4 NASA formulas (`docs/data.md` › Formulas), starting with O₂ partial pressure and one fire formula; then add the `Formula` schema.
@@ -33,6 +33,10 @@ Read this first. Update it at the end of every session (`handoff` skill). Newest
 Worlds: 4 · atmospheres: 5 (all unverified seeds).
 
 ## Log
+
+### 2026-11-14 · FLEX Table IX in the repo (Shera + Claude)
+- Done: `scripts/flex-table-ix.mts` (`npm run data:flex`) downloads NASA/TP—2015-216046 from NTRS and parses Table IX with `pdftotext`; `data/datasets/flex-table-ix.json` (276 tests, page per row, cleaning notes); `FlexDataset` schema, loaded as `flex` in `src/lib/data.ts`; checks for duplicates, mole-fraction sums and the report's counts; 2 tests; FLEX experiment now cites the report instead of a search link.
+- Not tested: a human spot-check against the PDF (dataset `verified: false`); `npm run data:flex` on Windows (needs WSL or poppler).
 
 ### 2026-11-14 · data sources checked (Shera + Claude)
 - Done: checked two other teams' repos (FLEX CSV real and matches NASA Table IX on all 276 rows; Fire-atlas data is dummy), api.nasa.gov (no combustion data; image library and TechPort only), NTRS API (works, has full-text downloads). Confirmed against NASA PDFs: exploration atmospheres (p. 11), Moon/Mars gravity (NSSDC), d² law definition (FLEX TP p. 19), stretch-rate formula (Olson 2016 p. 3). Added locators to `data/worlds.json` and `data/atmospheres.json` (still `verified: false` until a teammate checks). No-Chinese-data rule added. A personal cloud environment "NASA-Hackathon-Flame-in-Freefall" now allows NASA hosts for Claude sessions.

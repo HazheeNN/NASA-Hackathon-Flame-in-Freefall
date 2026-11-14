@@ -21,7 +21,7 @@ The corpus is the product. The SI is only as good as the findings it reads, and 
 
 | Dataset | What it is | Where | Status |
 |---|---|---|---|
-| **FLEX Table IX** | 276 ISS droplet-combustion tests (FLEX-001…280; 156, 205, 213, 228 absent): fuel (methanol/heptane), pressure (mmHg), O₂/N₂/CO₂/He mole fractions, initial droplet diameter, extinction diameter, burning-rate constant (mm²/s), burn time, outcome (Extinction 186 · Disruption 62 · Completion 28) | Dietrich et al., *Detailed Results From the Flame Extinguishment Experiment (FLEX) March 2009 to December 2011*, NASA/TP—2015-216046, [ntrs.nasa.gov/citations/20150023456](https://ntrs.nasa.gov/citations/20150023456): column definitions p. 19, Table IX from p. 20 | **Real, measured, public.** Our own parse of the PDF matches the CSV in [shaharia179/flame-in-freefall](https://github.com/shaharia179/flame-in-freefall) (`data/flex_table_ix.csv`) on all 276 rows. Gives the gaps map hundreds of real 0 g points (O₂, pressure, diluent, went out or not) |
+| **FLEX Table IX** | 276 ISS droplet-combustion tests (FLEX-001…280; 156, 205, 213, 228 absent): fuel (methanol/heptane), pressure (mmHg), O₂/N₂/CO₂/He mole fractions, initial droplet diameter, extinction diameter, burning-rate constant (mm²/s), burn time, outcome (Extinction 186 · Disruption 62 · Completion 28) | Dietrich et al., *Detailed Results From the Flame Extinguishment Experiment (FLEX) March 2009 to December 2011*, NASA/TP—2015-216046, [ntrs.nasa.gov/citations/20150023456](https://ntrs.nasa.gov/citations/20150023456): column definitions p. 19, Table IX from p. 20 | **Real, measured, public.** **In the repo:** `data/datasets/flex-table-ix.json` (276 rows, each with its page; `npm run data:flex`). Our own parse of the PDF matches the CSV in [shaharia179/flame-in-freefall](https://github.com/shaharia179/flame-in-freefall) (`data/flex_table_ix.csv`) on all 276 rows. Gives the gaps map hundreds of real 0 g points (O₂, pressure, diluent, went out or not) |
 | **BASS-II Summary Report** | Solid-fuel flame spread and blowoff on the ISS | NASA TM, [ntrs.nasa.gov/citations/20210011385](https://ntrs.nasa.gov/citations/20210011385) | To read for tables |
 | **Exploration atmospheres** | 8.2 psia / 34 % O₂, 8.0 / 32 %, 10.2 / 26.5 %, 14.7 / 21 % | [ntrs.nasa.gov/citations/20130013505](https://ntrs.nasa.gov/citations/20130013505), PDF p. 11 | Values confirmed in the PDF; `data/atmospheres.json` now has the locator |
 | **Moon and Mars gravity** | Moon 1.62 m/s², Mars 3.73 m/s² (mean) → 0.165 g, 0.380 g (÷ 9.80665) | NASA NSSDC [Moon](https://nssdc.gsfc.nasa.gov/planetary/factsheet/moonfact.html) and [Mars](https://nssdc.gsfc.nasa.gov/planetary/factsheet/marsfact.html) fact sheets, "Surface gravity" row | Confirmed; `data/worlds.json` has the locator |
@@ -125,6 +125,7 @@ Start with the first one (simple, certain) and one fire formula; 3–4 verified 
 | `data/experiments.json` | People (seed list from the foundation PR, all `verified: false`) | Yes |
 | `data/findings.json` | People, after verifying (Claude proposals copied in by hand) | Yes |
 | `data/worlds.json` | People: Earth, ISS, Moon, Mars (gravity, missions, cabin atmospheres, optional credited NASA image) | Yes |
+| `data/datasets/flex-table-ix.json` | `npm run data:flex` (parses NASA/TP—2015-216046 Table IX from the NASA PDF; needs `pdftotext` from poppler) | Yes |
 | `data/atmospheres.json` | People: cabin atmosphere presets (pressure, O₂, where used), each with a NASA source | Yes |
 | `data/generated/insights.json` | SI job 2 only (`si-run` skill) | Yes (the app reads it; no AI at runtime) |
 | `data/generated/answers.json` | SI job 3 only (`si-run` skill) | Yes |
@@ -177,6 +178,15 @@ Added 2026-11-14 for Same Fire, Four Worlds (F8), the gaps map (F16) and the Hab
 - **World:** `id` (`earth` · `iss` · `moon` · `mars`), `name`, `gravityG`, `missions` (the `Mission` values it stands for; ISS also stands for Mars transit), `atmosphereIds` (first = default; each must exist in `atmospheres.json`), optional `image` (`src`, `alt`, `credit`, `sourceUrl`: a real NASA flame image; none → the card says "never filmed"), `sources`, `verified`.
 - **Not stored on a world:** "how fire differs here". That text comes from findings at the world's gravity, so every sentence keeps its finding citation.
 - Same rules as findings: a verified record needs a source with a `locator`; seed values (written from web search, NASA hosts blocked) are all `verified: false` until a teammate checks them against the links in › Sources for Four Worlds….
+
+### Datasets (`data/datasets/`)
+
+Real NASA measurement tables, kept exactly as printed, for the gaps map and Four Worlds. Not findings: a finding is a claim; a dataset row is a measurement. Findings may cite a dataset row's source and page.
+
+- **`flex-table-ix.json`** (`FlexDataset` in `src/lib/schema.ts`): metadata (`source` with NTRS id and locator, `gravityG: 0`, `verified`) and `rows`, one per FLEX test: `test`, `identifier`, `date`, `timeGmt`, `fuel`, `pressureMmHg`, `o2`/`n2`/`co2`/`he` (mole fractions), `initialDiameterMm`, `extinctionDiameterMm`, `burningRateMm2PerS`, `burnTimeS`, `testEnd` (`extinction` · `disruption` · `completion`), `page`, optional `notes`.
+- `null` means "–" in the table (not measured or did not happen). Pressure is kept in mmHg as printed (1 mmHg = 0.133322 kPa; convert in the UI). Cleaning, all recorded in `notes`: FLEX-114 prints pressure 0 (not physical) → `null`; FLEX-227 and 229 print burn time with "~" → number kept. A few tests print extinction diameter 0: kept as printed.
+- Checks (`npm run data:validate`, tests): unique test numbers, mole fractions sum to 1 ± 0.03, counts match the report (276 tests: 186 extinction, 62 disruption, 28 completion).
+- `verified: false` until a teammate spot-checks ~10 rows against the PDF pages.
 
 ## Workflow: from paper to finding
 

@@ -1,13 +1,13 @@
 import { createHash } from "node:crypto";
 import { z } from "zod";
-import { AnswersFile, Atmosphere, Experiment, Finding, InsightsFile, World } from "./schema";
+import { AnswersFile, Atmosphere, Experiment, Finding, FlexDataset, InsightsFile, World } from "./schema";
 
 // Cross-record checks that the schemas alone can't express. Used by `npm run data:validate`,
 // the unit tests (so CI fails on bad data) and the SI scripts. Returns problems, never throws.
 
 type Raw = {
   experiments: unknown; findings: unknown; insights: unknown; answers?: unknown;
-  atmospheres?: unknown; worlds?: unknown;
+  atmospheres?: unknown; worlds?: unknown; flex?: unknown;
 };
 
 // Identifies the set of findings an SI output was made from. Formatting-independent.
@@ -34,6 +34,8 @@ export function validateCorpus(raw: Raw): string[] {
   const wor = z.array(World).safeParse(raw.worlds ?? []);
   if (!atm.success) problems.push(`atmospheres.json: ${z.prettifyError(atm.error)}`);
   if (!wor.success) problems.push(`worlds.json: ${z.prettifyError(wor.error)}`);
+  const flx = raw.flex === undefined ? undefined : FlexDataset.safeParse(raw.flex);
+  if (flx && !flx.success) problems.push(`datasets/flex-table-ix.json: ${z.prettifyError(flx.error)}`);
   if (!ex.success || !fi.success || !ins.success || !ans.success || !atm.success || !wor.success) return problems;
 
   const dupes = (ids: string[]) => ids.filter((id, i) => ids.indexOf(id) !== i);
@@ -53,6 +55,18 @@ export function validateCorpus(raw: Raw): string[] {
   }
 
   const experimentIds = new Set(ex.data.map((e) => e.id));
+  if (flx?.success) {
+    if (!experimentIds.has(flx.data.experimentId)) problems.push(`flex-table-ix: unknown experimentId "${flx.data.experimentId}"`);
+    for (const n of dupes(flx.data.rows.map((r) => String(r.test)))) problems.push(`flex-table-ix: duplicate test FLEX-${n}`);
+    for (const r of flx.data.rows) {
+      const parts = [r.o2, r.n2, r.co2, r.he];
+      if (parts.every((x) => x !== null)) {
+        const sum = parts.reduce((a, b) => a! + b!, 0)!;
+        // Printed to two decimals; the table omits trace water and fuel vapour.
+        if (Math.abs(sum - 1) > 0.03) problems.push(`flex-table-ix: FLEX-${r.test} mole fractions sum to ${sum.toFixed(2)}`);
+      }
+    }
+  }
   const findingIds = new Set(fi.data.map((f) => f.id));
   for (const f of fi.data) {
     if (!experimentIds.has(f.experimentId)) problems.push(`${f.id}: unknown experimentId "${f.experimentId}"`);

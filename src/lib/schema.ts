@@ -170,7 +170,44 @@ export const Answer = z.object({
 
 export const AnswersFile = z.object({ ...Provenance, answers: z.array(Answer) });
 
+// FLEX Table IX (NASA/TP—2015-216046): one row per ISS droplet test, values exactly as printed.
+// null = "–" in the table (not measured, or did not happen). Written by `npm run data:flex`.
+const fraction = z.number().min(0).max(1).nullable();
+export const FlexTest = z.object({
+  test: z.number().int().min(1),
+  identifier: z.string(),
+  date: z.string(),
+  timeGmt: z.string().nullable(),
+  fuel: z.enum(["methanol", "heptane"]),
+  pressureMmHg: z.number().positive().nullable(),
+  o2: fraction,
+  n2: fraction,
+  co2: fraction,
+  he: fraction,
+  initialDiameterMm: z.number().positive().nullable(),
+  extinctionDiameterMm: z.number().min(0).nullable(), // the table prints 0 for a few tests
+  burningRateMm2PerS: z.number().positive().nullable(),
+  burnTimeS: z.number().positive().nullable(),
+  testEnd: z.enum(["extinction", "disruption", "completion"]),
+  page: z.number().int(),
+  notes: z.string().optional(),
+});
+
+export const FlexDataset = z.object({
+  id: z.literal("flex-table-ix"),
+  title: z.string(),
+  experimentId: z.string(),
+  description: z.string(),
+  gravityG: z.number(),
+  source: Source,
+  extractedBy: z.enum(["script", "human"]),
+  verified: z.boolean(),
+  rows: z.array(FlexTest).min(1),
+});
+
 export type Experiment = z.infer<typeof Experiment>;
+export type FlexTest = z.infer<typeof FlexTest>;
+export type FlexDataset = z.infer<typeof FlexDataset>;
 export type Atmosphere = z.infer<typeof Atmosphere>;
 export type World = z.infer<typeof World>;
 export type Finding = z.infer<typeof Finding>;

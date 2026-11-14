@@ -12,6 +12,7 @@
     "check": "npm run typecheck && npm run lint && npm test && npm run build",
     "data:validate": "tsx scripts/validate-data.mts",
     "data:ntrs": "tsx scripts/fetch-ntrs.mts",
+    "data:flex": "tsx scripts/flex-table-ix.mts",
     "si:build": "node --env-file-if-exists=.env.local --import tsx scripts/build-insights.mts",
     "si:extract": "node --env-file-if-exists=.env.local --import tsx scripts/extract-findings.mts"
   },

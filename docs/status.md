@@ -27,7 +27,7 @@ Read this first. Update it at the end of every session (`handoff` skill). Newest
 - [ ] Review all SI output with the checklist in `docs/ai.md`.
 
 ### 3. Website polish: follow `docs/plans/2026-11-15-ui-polish.md`
-Each work package is one PR, done by one person's Claude Code session; claim it in "Now". The Flame Lab track comes first (F1 → L1 → L2 … L7, where L2 can run in parallel), then the panels (P0 … P6). The plan has the exact steps, files, checks and a prompt to paste.
+Each work package is one PR, done by one person's Claude Code session; claim it in "Now". The Flame Lab track comes first (F1 → L1 → L2 … L7, where L2 can run in parallel), then the panels (P0 … P6). One teammate does them all in order, with a builder session and a Fable critic session; the prompts are in the plan's **Quick start**.
 - [ ] WP-F1 shared pieces · [ ] WP-L1 layout · [ ] WP-L2 flame look · [ ] WP-L3 world rail + compare + URL · [ ] WP-L4 verdict · [ ] WP-L5 controls (fixes the Apollo 100 % O₂ slider bug) · [ ] WP-L6 fire-only + motion · [ ] WP-L7 "what you just saw" · [ ] WP-L8 Ignite + burn time
 - [ ] WP-P0 header/nav · [ ] WP-P1 gaps map · [ ] WP-P2 insights · [ ] WP-P3 findings · [ ] WP-P4 Ask · [ ] WP-P5 formulas/sources/about · [ ] WP-P6 final pass
 - [ ] Check on a real projector, in Safari and on a tablet (not tested yet).

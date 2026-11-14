@@ -26,7 +26,10 @@ export async function POST(request: Request) {
     return Response.json({ answer: "You've asked a lot of questions in a short time. Please wait a few minutes, or browse the prepared answers on the Ask page.", provider: "limit" }, { status: 429 });
   }
   const parsed = Body.safeParse(await request.json().catch(() => null));
-  const turns = parsed.success ? parsed.data.messages.slice(-6) : null;
+  // Last 4 messages; earlier answers shortened (they count against the free tiers' token limits).
+  const turns = parsed.success
+    ? parsed.data.messages.slice(-4).map((m) => (m.role === "assistant" ? { ...m, content: m.content.slice(0, 500) } : m))
+    : null;
   if (!turns || turns[turns.length - 1].role !== "user") {
     return Response.json({ answer: "Please type a question (up to 600 characters).", provider: "invalid" }, { status: 400 });
   }

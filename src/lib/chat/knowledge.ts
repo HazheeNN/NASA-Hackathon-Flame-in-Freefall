@@ -1,12 +1,17 @@
 import "server-only";
 import { answers, atmospheres, experimentById, experiments, findings, flex, formulas, insights, worlds } from "@/lib/data";
 import { visible } from "@/lib/visibility";
-import { rank, words } from "./guard";
+import { isAboutQuestion, rank, words } from "./guard";
 
 // What the live chat may use: verified findings (the most relevant ones for this question),
 // the NASA formulas and the worlds' gravity and cabin air. Nothing else.
 
-const MAX_FINDINGS = 14;
+// Free tiers limit tokens per minute and per request, so the briefing is kept small: only what
+// this kind of question needs (docs/ai.md › Live chat › Briefing size).
+const MAX_FINDINGS = 7;
+const MAX_FINDINGS_ABOUT = 4;
+
+const short = (t: string, n: number) => (t.length > n ? `${t.slice(0, n - 1).trimEnd()}…` : t);
 
 const findingLine = (f: (typeof findings)[number]) => {
   const c = f.conditions;
@@ -14,14 +19,13 @@ const findingLine = (f: (typeof findings)[number]) => {
     c.gravityG !== undefined && `${c.gravityG} g`,
     c.oxygenPercent !== undefined && `${c.oxygenPercent} % O₂`,
     c.pressureKPa !== undefined && `${c.pressureKPa} kPa`,
-    c.flowCmPerS !== undefined && `airflow ${c.flowCmPerS} cm/s`,
-    c.material || c.fuel,
+    c.flowCmPerS !== undefined && `${c.flowCmPerS} cm/s`,
   ]
     .filter(Boolean)
     .join(", ");
   const exp = experimentById.get(f.experimentId);
-  const src = f.sources.map((s) => `${s.title}${s.year ? ` (${s.year})` : ""}${s.locator ? `, ${s.locator}` : ""}`).join("; ");
-  return `${f.id} (${exp?.acronym ?? exp?.name ?? f.experimentId}${cond ? `; ${cond}` : ""}): ${f.statement} Why it matters: ${f.safetyImplication} Source: ${src}`;
+  const s = f.sources[0];
+  return `${f.id} (${exp?.acronym ?? short(exp?.name ?? f.experimentId, 30)}${cond ? `; ${cond}` : ""}): ${f.statement} Matters: ${short(f.safetyImplication, 140)} Source: ${short(s.title, 60)}${s.locator ? `, ${short(s.locator, 40)}` : ""}`;
 };
 
 // `href` overrides the link to our own page (formulas link to /formulas, experiments to /sources).
@@ -51,6 +55,9 @@ export function sourcesFor(ids: string[]): ChatSource[] {
   });
 }
 
+const ABOUT_SHORT =
+  "Flame in Freefall: a NASA Space Apps 2026 entry turning verified NASA microgravity combustion research into fire-safety insights for the ISS, the Moon and Mars. Not affiliated with NASA. Gaps (e.g. Mars gravity, untested habitat air) show in red on the Gaps map.";
+
 // Facts about the project itself, computed from the data (so they're always current).
 function aboutText() {
   const fs = visible(findings);
@@ -68,49 +75,46 @@ function aboutText() {
 }
 
 export function knowledgeFor(question: string) {
+  const about = isAboutQuestion(question);
+  const wantsFormulas = /\b(formulas?|equations?|calculat\w*|partial pressure|d² law|d2 law|burn time|stretch)\b/i.test(question);
   const pool = visible(findings);
   const ranked = rank(pool, (f) => `${f.title} ${f.statement} ${f.themes.join(" ")} ${f.experimentId}`, question);
-  const picked = ranked.slice(0, MAX_FINDINGS).map((r) => r.item);
+  const picked = ranked.slice(0, about ? MAX_FINDINGS_ABOUT : MAX_FINDINGS).map((r) => r.item);
   const shownFormulas = visible(formulas);
-  const formulaLines = shownFormulas.map(
-    (f) =>
-      `${f.id} ${f.name}: ${f.expression}. ${f.explanation} Valid for: ${JSON.stringify(f.validity)}. Limits: ${f.limits} Used on the site: ${f.whereUsed.map((w) => w.label).join("; ") || "explained only"}. Source: ${f.sources.map((s) => s.title + (s.locator ? `, ${s.locator}` : "")).join("; ")}`,
+  const formulaLines = shownFormulas.map((f) =>
+    about || wantsFormulas
+      ? `${f.id} ${f.name}: ${f.expression}. ${short(f.explanation, 160)} Valid: ${JSON.stringify(f.validity)}. Used: ${f.whereUsed.map((w) => w.label).join("; ") || "explained only"}. Source: ${short(f.sources[0].title, 60)}${f.sources[0].locator ? `, ${short(f.sources[0].locator, 50)}` : ""}`
+      : `${f.id} ${f.name}: ${f.expression}`,
   );
-  const worldLines = visible(worlds).map((w) => {
-    const air = w.atmosphereIds
-      .map((id) => visible(atmospheres).find((a) => a.id === id))
-      .filter((a) => a !== undefined)
-      .map((a) => `${a.name} ${a.pressureKPa} kPa / ${a.oxygenPercent} % O₂`)
-      .join("; ");
-    return `${w.name}: ${w.gravityG} g; cabin air: ${air}`;
-  });
-  const datasetLines =
-    flex.verified
-      ? [
-          `FLEX Table IX: ${flex.rows.length} droplet tests burned in microgravity (0 g) on the ISS, 2009–2011; fuels methanol and heptane; pressure 70–309 kPa (0.70–3.05 atm); oxygen 12–34 %; diluted with nitrogen, CO₂ or helium; outcomes: flame went out, droplet broke apart, or burned to the end. Source: ${flex.source.title}, ${flex.source.locator}. Shown on the Findings page (FLEX dataset tab) and the Gaps map.`,
-        ]
-      : [];
+  const worldLine = visible(worlds)
+    .map((w) => {
+      const air = w.atmosphereIds
+        .map((id) => visible(atmospheres).find((a) => a.id === id))
+        .filter((a) => a !== undefined)
+        .slice(0, 2)
+        .map((a) => `${a.pressureKPa} kPa/${a.oxygenPercent} % O₂`)
+        .join(" or ");
+      return `${w.name} ${w.gravityG} g (air ${air})`;
+    })
+    .join("; ");
+  const datasetLine = flex.verified
+    ? `FLEX Table IX: ${flex.rows.length} droplet tests in microgravity on the ISS, 2009–2011; methanol and heptane; 70–309 kPa; 12–34 % O₂; diluted with N₂, CO₂ or He. Source: ${short(flex.source.title, 70)}, ${flex.source.locator}.`
+    : "";
   const experimentLines = visible(experiments).map(
-    (e) => `${e.acronym ?? e.name} (${e.agency}, ${e.platform}, ${e.years}). Source: ${e.sources.map((s) => s.title + (s.locator ? `, ${s.locator}` : "")).join("; ")}`,
+    (e) => `${e.acronym ?? short(e.name, 40)} (${e.platform}, ${short(e.years, 40)}): ${short(e.sources[0].title, 70)}`,
   );
   const text = [
     "ABOUT THE PROJECT:",
-    aboutText(),
+    about ? aboutText() : ABOUT_SHORT,
     "",
     "VERIFIED FINDINGS (cite these IDs):",
     ...picked.map(findingLine),
     "",
-    "NASA FORMULAS (cite these IDs, e.g. [FX-01]):",
+    "NASA FORMULAS (cite as [FX-01]):",
     ...formulaLines,
     "",
-    "WORLDS:",
-    ...worldLines,
-    "",
-    "DATASETS (for questions about tested ranges; not citable as [F-###]):",
-    ...datasetLines,
-    "",
-    "EXPERIMENTS AND THEIR NASA SOURCES (for questions about where the data comes from):",
-    ...experimentLines,
+    `WORLDS: ${worldLine}`,
+    ...(about ? ["", `DATASET: ${datasetLine}`, "", "EXPERIMENTS AND THEIR NASA SOURCES:", ...experimentLines] : []),
   ].join("\n");
   return { text, allowed: new Set([...picked.map((f) => f.id), ...shownFormulas.map((f) => f.id)]) };
 }

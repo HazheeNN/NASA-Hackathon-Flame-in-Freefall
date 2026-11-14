@@ -11,6 +11,8 @@ export const Platform = z.enum([
   "Parabolic flight",
   "Sounding rocket",
   "Ground (1 g)",
+  // NASA reviews that summarise many experiments on several platforms.
+  "Multiple platforms",
 ]);
 
 export const Theme = z.enum([

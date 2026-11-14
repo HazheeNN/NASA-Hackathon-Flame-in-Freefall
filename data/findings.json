@@ -1,1 +1,1064 @@
-[]
+[
+  {
+    "id": "F-001",
+    "experimentId": "flex",
+    "title": "Flammability limit of fuel droplets is lower in reduced gravity",
+    "statement": "FLEX found that heptane and methanol droplets keep burning at lower oxygen levels in microgravity than in normal gravity, lower even than predicted.",
+    "conditions": {
+      "gravityG": 0,
+      "fuel": "heptane and methanol droplets"
+    },
+    "measurements": [],
+    "safetyImplication": "Earth-based standards for inert-gas fire suppressants may not give the same margin of safety on a spacecraft.",
+    "themes": [
+      "flammability-limits",
+      "suppression"
+    ],
+    "evidence": {
+      "kind": "measured",
+      "strength": 3
+    },
+    "sources": [
+      {
+        "title": "NASA, Combustion in Reduced Gravity (ISS mini-book, NP-2015-10-034-JSC)",
+        "url": "https://www.nasa.gov/wp-content/uploads/2016/05/np-2015-10-034-jsc_combustion_in_reduced_gravity-iss-mini-book-011116-508.pdf",
+        "year": 2015,
+        "locator": "PDF p. 12"
+      },
+      {
+        "title": "NASA, Combustion in Reduced Gravity (ISS mini-book, NP-2015-10-034-JSC)",
+        "url": "https://www.nasa.gov/wp-content/uploads/2016/05/np-2015-10-034-jsc_combustion_in_reduced_gravity-iss-mini-book-011116-508.pdf",
+        "year": 2015,
+        "locator": "PDF p. 36"
+      }
+    ],
+    "extractedBy": "claude",
+    "verified": true
+  },
+  {
+    "id": "F-002",
+    "experimentId": "flex",
+    "title": "Cool flames keep burning after the visible flame goes out",
+    "statement": "After the hot flame of a large alkane droplet went out, the droplet kept vaporizing for a long time in an almost invisible low-temperature 'cool flame', then stopped, leaving a cloud of fuel vapour.",
+    "conditions": {
+      "gravityG": 0,
+      "fuel": "heptane and other alkane droplets"
+    },
+    "measurements": [],
+    "safetyImplication": "A fire that looks extinguished may still be reacting and producing fuel vapour, which matters for detection and re-ignition.",
+    "themes": [
+      "cool-flames",
+      "extinction",
+      "smoke-detection"
+    ],
+    "evidence": {
+      "kind": "measured",
+      "strength": 2
+    },
+    "sources": [
+      {
+        "title": "NASA, Combustion in Reduced Gravity (ISS mini-book, NP-2015-10-034-JSC)",
+        "url": "https://www.nasa.gov/wp-content/uploads/2016/05/np-2015-10-034-jsc_combustion_in_reduced_gravity-iss-mini-book-011116-508.pdf",
+        "year": 2015,
+        "locator": "PDF p. 33"
+      },
+      {
+        "title": "NASA, Combustion in Reduced Gravity (ISS mini-book, NP-2015-10-034-JSC)",
+        "url": "https://www.nasa.gov/wp-content/uploads/2016/05/np-2015-10-034-jsc_combustion_in_reduced_gravity-iss-mini-book-011116-508.pdf",
+        "year": 2015,
+        "locator": "PDF p. 34"
+      }
+    ],
+    "extractedBy": "claude",
+    "verified": true
+  },
+  {
+    "id": "F-003",
+    "experimentId": "nasa-combustion-review",
+    "title": "The 'weaker flames in microgravity' safety margin does not hold with ventilation",
+    "statement": "Tests in still air suggested materials are less flammable in microgravity, but that margin may not be valid in real spacecraft, where ventilation airflow strongly strengthens flames.",
+    "conditions": {
+      "gravityG": 0
+    },
+    "measurements": [],
+    "safetyImplication": "Ventilation must be treated as a fire-strengthening factor when rating materials and designing cabins.",
+    "themes": [
+      "flammability-limits",
+      "flame-spread",
+      "materials"
+    ],
+    "evidence": {
+      "kind": "review",
+      "strength": 3
+    },
+    "sources": [
+      {
+        "title": "NASA, Combustion in Reduced Gravity (ISS mini-book, NP-2015-10-034-JSC)",
+        "url": "https://www.nasa.gov/wp-content/uploads/2016/05/np-2015-10-034-jsc_combustion_in_reduced_gravity-iss-mini-book-011116-508.pdf",
+        "year": 2015,
+        "locator": "PDF p. 18"
+      }
+    ],
+    "extractedBy": "claude",
+    "verified": true
+  },
+  {
+    "id": "F-004",
+    "experimentId": "nasa-combustion-review",
+    "title": "Some materials burn at lower oxygen in low airflow, in microgravity and partial gravity",
+    "statement": "In the low-flow conditions of microgravity or partial gravity, some materials keep burning at lower oxygen concentrations than in normal gravity.",
+    "conditions": {},
+    "measurements": [],
+    "safetyImplication": "Oxygen limits measured in Earth tests can overestimate how much oxygen a material needs to burn on a spacecraft or habitat.",
+    "themes": [
+      "flammability-limits",
+      "partial-gravity",
+      "materials"
+    ],
+    "evidence": {
+      "kind": "review",
+      "strength": 3
+    },
+    "sources": [
+      {
+        "title": "NASA, Combustion in Reduced Gravity (ISS mini-book, NP-2015-10-034-JSC)",
+        "url": "https://www.nasa.gov/wp-content/uploads/2016/05/np-2015-10-034-jsc_combustion_in_reduced_gravity-iss-mini-book-011116-508.pdf",
+        "year": 2015,
+        "locator": "PDF p. 18"
+      }
+    ],
+    "extractedBy": "claude",
+    "verified": true
+  },
+  {
+    "id": "F-005",
+    "experimentId": "nasa-combustion-review",
+    "title": "Materials ignite more easily in low gravity",
+    "statement": "Without buoyancy, less heat is carried away from a material's surface by natural convection, so materials are easier to ignite in low gravity.",
+    "conditions": {},
+    "measurements": [],
+    "safetyImplication": "Ignition sources (hot electronics, wiring faults) are a greater hazard in low gravity than Earth tests suggest.",
+    "themes": [
+      "ignition",
+      "materials"
+    ],
+    "evidence": {
+      "kind": "review",
+      "strength": 3
+    },
+    "sources": [
+      {
+        "title": "NASA, Combustion in Reduced Gravity (ISS mini-book, NP-2015-10-034-JSC)",
+        "url": "https://www.nasa.gov/wp-content/uploads/2016/05/np-2015-10-034-jsc_combustion_in_reduced_gravity-iss-mini-book-011116-508.pdf",
+        "year": 2015,
+        "locator": "PDF p. 18"
+      }
+    ],
+    "extractedBy": "claude",
+    "verified": true
+  },
+  {
+    "id": "F-006",
+    "experimentId": "nasa-combustion-review",
+    "title": "In slow airflow, flames can spread upstream, against the air",
+    "statement": "In microgravity with low forced airflow, a flame on a thin fuel spreads upstream into the oncoming air, the opposite of normal gravity, where it always spreads downstream with the buoyant flow.",
+    "conditions": {
+      "gravityG": 0
+    },
+    "measurements": [],
+    "safetyImplication": "Fire may move toward the ventilation inlet, so detector and suppressant placement cannot assume Earth-like spread direction.",
+    "themes": [
+      "flame-spread"
+    ],
+    "evidence": {
+      "kind": "review",
+      "strength": 3
+    },
+    "sources": [
+      {
+        "title": "NASA, Combustion in Reduced Gravity (ISS mini-book, NP-2015-10-034-JSC)",
+        "url": "https://www.nasa.gov/wp-content/uploads/2016/05/np-2015-10-034-jsc_combustion_in_reduced_gravity-iss-mini-book-011116-508.pdf",
+        "year": 2015,
+        "locator": "PDF p. 18"
+      },
+      {
+        "title": "NASA, Combustion in Reduced Gravity (ISS mini-book, NP-2015-10-034-JSC)",
+        "url": "https://www.nasa.gov/wp-content/uploads/2016/05/np-2015-10-034-jsc_combustion_in_reduced_gravity-iss-mini-book-011116-508.pdf",
+        "year": 2015,
+        "locator": "PDF p. 31"
+      }
+    ],
+    "extractedBy": "claude",
+    "verified": true
+  },
+  {
+    "id": "F-007",
+    "experimentId": "nasa-combustion-review",
+    "title": "Radiant heat from nearby sources makes materials ignite and spread faster",
+    "statement": "Heat lost by radiation from a material's surface reduces its flammability, but heat radiated onto it from outside can make it ignite and spread faster.",
+    "conditions": {},
+    "measurements": [],
+    "safetyImplication": "Hot surfaces or a nearby fire can turn a marginally flammable material into a spreading fire.",
+    "themes": [
+      "ignition",
+      "flame-spread",
+      "soot-radiation"
+    ],
+    "evidence": {
+      "kind": "review",
+      "strength": 2
+    },
+    "sources": [
+      {
+        "title": "NASA, Combustion in Reduced Gravity (ISS mini-book, NP-2015-10-034-JSC)",
+        "url": "https://www.nasa.gov/wp-content/uploads/2016/05/np-2015-10-034-jsc_combustion_in_reduced_gravity-iss-mini-book-011116-508.pdf",
+        "year": 2015,
+        "locator": "PDF p. 18"
+      }
+    ],
+    "extractedBy": "claude",
+    "verified": true
+  },
+  {
+    "id": "F-008",
+    "experimentId": "nasa-combustion-review",
+    "title": "Flames survive at the lowest oxygen near spacecraft ventilation speeds",
+    "statement": "For flame spread over solids, the lowest oxygen level that still supports a flame occurs at an airflow of about 10 cm/s, which is also where flames spread fastest, and is typical of spacecraft ventilation. At even lower speeds, radiative loss puts the flame out.",
+    "conditions": {
+      "flowCmPerS": 10
+    },
+    "measurements": [
+      {
+        "quantity": "airflow at the flammability minimum",
+        "value": 10,
+        "unit": "cm/s"
+      }
+    ],
+    "safetyImplication": "Normal cabin ventilation sits near the worst case for material flammability.",
+    "themes": [
+      "flammability-limits",
+      "flame-spread",
+      "extinction"
+    ],
+    "evidence": {
+      "kind": "review",
+      "strength": 3
+    },
+    "sources": [
+      {
+        "title": "NASA, Combustion in Reduced Gravity (ISS mini-book, NP-2015-10-034-JSC)",
+        "url": "https://www.nasa.gov/wp-content/uploads/2016/05/np-2015-10-034-jsc_combustion_in_reduced_gravity-iss-mini-book-011116-508.pdf",
+        "year": 2015,
+        "locator": "PDF p. 31"
+      }
+    ],
+    "extractedBy": "claude",
+    "verified": true
+  },
+  {
+    "id": "F-009",
+    "experimentId": "nasa-combustion-review",
+    "title": "Ignition is faster and needs less heat in sub-buoyant airflow",
+    "statement": "Reduced-gravity aircraft tests found ignition times well below those in normal-gravity buoyant flows when the airflow was slower than buoyancy would cause, and a model showed the critical heat flux for ignition in microgravity can be as low as half the normal-gravity value.",
+    "conditions": {},
+    "measurements": [],
+    "safetyImplication": "Heat sources that are safe on Earth may ignite materials on a spacecraft.",
+    "themes": [
+      "ignition",
+      "materials"
+    ],
+    "evidence": {
+      "kind": "modelled",
+      "strength": 2
+    },
+    "sources": [
+      {
+        "title": "NASA, Combustion in Reduced Gravity (ISS mini-book, NP-2015-10-034-JSC)",
+        "url": "https://www.nasa.gov/wp-content/uploads/2016/05/np-2015-10-034-jsc_combustion_in_reduced_gravity-iss-mini-book-011116-508.pdf",
+        "year": 2015,
+        "locator": "PDF p. 24"
+      }
+    ],
+    "extractedBy": "claude",
+    "verified": true
+  },
+  {
+    "id": "F-010",
+    "experimentId": "nasa-combustion-review",
+    "title": "Three early fire-safety beliefs were proved wrong",
+    "statement": "NASA research disproved three misconceptions: that a steady fire cannot exist in still microgravity air, that a fire will self-extinguish if ventilation is shut off, and that terrestrial fire tests are very conservative because reduced gravity is inherently safer.",
+    "conditions": {
+      "gravityG": 0
+    },
+    "measurements": [],
+    "safetyImplication": "Fire-safety plans cannot rely on microgravity, or on switching off ventilation, to put fires out.",
+    "themes": [
+      "extinction",
+      "flammability-limits",
+      "incidents"
+    ],
+    "evidence": {
+      "kind": "review",
+      "strength": 3
+    },
+    "sources": [
+      {
+        "title": "NASA, Combustion in Reduced Gravity (ISS mini-book, NP-2015-10-034-JSC)",
+        "url": "https://www.nasa.gov/wp-content/uploads/2016/05/np-2015-10-034-jsc_combustion_in_reduced_gravity-iss-mini-book-011116-508.pdf",
+        "year": 2015,
+        "locator": "PDF p. 35"
+      }
+    ],
+    "extractedBy": "claude",
+    "verified": true
+  },
+  {
+    "id": "F-011",
+    "experimentId": "nasa-combustion-review",
+    "title": "Earth smoke detectors look for the wrong particles in space",
+    "statement": "Flames in microgravity produce particles of very different sizes, so detectors that sense fire particulates need different signatures; a terrestrial detector would be 'looking' for the wrong thing.",
+    "conditions": {
+      "gravityG": 0
+    },
+    "measurements": [],
+    "safetyImplication": "Spacecraft smoke detectors must be designed and tested for microgravity smoke.",
+    "themes": [
+      "smoke-detection"
+    ],
+    "evidence": {
+      "kind": "review",
+      "strength": 3
+    },
+    "sources": [
+      {
+        "title": "NASA, Combustion in Reduced Gravity (ISS mini-book, NP-2015-10-034-JSC)",
+        "url": "https://www.nasa.gov/wp-content/uploads/2016/05/np-2015-10-034-jsc_combustion_in_reduced_gravity-iss-mini-book-011116-508.pdf",
+        "year": 2015,
+        "locator": "PDF p. 35"
+      }
+    ],
+    "extractedBy": "claude",
+    "verified": true
+  },
+  {
+    "id": "F-012",
+    "experimentId": "nasa-combustion-review",
+    "title": "Smoke production in low gravity differs from predictions",
+    "statement": "Gas-jet flame studies found that the onset of smoke production in low gravity is substantially different from normal gravity and contrary to earlier predictions, with different soot particle sizes.",
+    "conditions": {},
+    "measurements": [],
+    "safetyImplication": "Smoke and soot models built on Earth data need low-gravity validation before they are used for detection or toxicity.",
+    "themes": [
+      "soot-radiation",
+      "smoke-detection"
+    ],
+    "evidence": {
+      "kind": "measured",
+      "strength": 2
+    },
+    "sources": [
+      {
+        "title": "NASA, Combustion in Reduced Gravity (ISS mini-book, NP-2015-10-034-JSC)",
+        "url": "https://www.nasa.gov/wp-content/uploads/2016/05/np-2015-10-034-jsc_combustion_in_reduced_gravity-iss-mini-book-011116-508.pdf",
+        "year": 2015,
+        "locator": "PDF p. 32"
+      }
+    ],
+    "extractedBy": "claude",
+    "verified": true
+  },
+  {
+    "id": "F-013",
+    "experimentId": "nasa-combustion-review",
+    "title": "Spacecraft hold all three sides of the fire triangle, often with extra oxygen",
+    "statement": "Crewed spacecraft necessarily contain fuel, oxygen and ignition sources, often run at a higher oxygen fraction than air, offer limited escape and tolerate almost no damage to life support.",
+    "conditions": {},
+    "measurements": [],
+    "safetyImplication": "Fire prevention (materials and ignition control) is the first line of defence; there is nowhere to run.",
+    "themes": [
+      "spacecraft-atmosphere",
+      "incidents"
+    ],
+    "evidence": {
+      "kind": "review",
+      "strength": 3
+    },
+    "sources": [
+      {
+        "title": "NASA, Combustion in Reduced Gravity (ISS mini-book, NP-2015-10-034-JSC)",
+        "url": "https://www.nasa.gov/wp-content/uploads/2016/05/np-2015-10-034-jsc_combustion_in_reduced_gravity-iss-mini-book-011116-508.pdf",
+        "year": 2015,
+        "locator": "PDF p. 35"
+      }
+    ],
+    "extractedBy": "claude",
+    "verified": true
+  },
+  {
+    "id": "F-014",
+    "experimentId": "bass",
+    "title": "Nitrogen sprayed on a fire in microgravity can make it stronger",
+    "statement": "In BASS, a nitrogen suppressant jet aimed at a flame could entrain oxygen and actually strengthen the flame instead of putting it out.",
+    "conditions": {
+      "gravityG": 0
+    },
+    "measurements": [],
+    "safetyImplication": "Where and how a crew aims an extinguisher in microgravity matters more than on Earth; a poorly aimed jet can feed the fire.",
+    "themes": [
+      "suppression"
+    ],
+    "evidence": {
+      "kind": "measured",
+      "strength": 1
+    },
+    "sources": [
+      {
+        "title": "NASA, Combustion in Reduced Gravity (ISS mini-book, NP-2015-10-034-JSC)",
+        "url": "https://www.nasa.gov/wp-content/uploads/2016/05/np-2015-10-034-jsc_combustion_in_reduced_gravity-iss-mini-book-011116-508.pdf",
+        "year": 2015,
+        "locator": "PDF p. 22"
+      }
+    ],
+    "extractedBy": "claude",
+    "verified": true
+  },
+  {
+    "id": "F-015",
+    "experimentId": "bass",
+    "title": "Flames react fast and dramatically to changes in airflow",
+    "statement": "On a 2-cm-wide cotton-fiberglass fabric in opposed flow, BASS stepped the airflow down from 10 cm/s to below 1 cm/s; the flame and its spread rate changed very rapidly and dramatically with each step.",
+    "conditions": {
+      "gravityG": 0,
+      "flowCmPerS": 10,
+      "material": "cotton-fiberglass fabric"
+    },
+    "measurements": [
+      {
+        "quantity": "total burn time",
+        "value": 90,
+        "unit": "s"
+      }
+    ],
+    "safetyImplication": "Changing cabin ventilation during a fire immediately changes how fast it spreads.",
+    "themes": [
+      "flame-spread",
+      "materials"
+    ],
+    "evidence": {
+      "kind": "measured",
+      "strength": 1
+    },
+    "sources": [
+      {
+        "title": "NASA, Combustion in Reduced Gravity (ISS mini-book, NP-2015-10-034-JSC)",
+        "url": "https://www.nasa.gov/wp-content/uploads/2016/05/np-2015-10-034-jsc_combustion_in_reduced_gravity-iss-mini-book-011116-508.pdf",
+        "year": 2015,
+        "locator": "PDF p. 20"
+      }
+    ],
+    "extractedBy": "claude",
+    "verified": true
+  },
+  {
+    "id": "F-016",
+    "experimentId": "bass",
+    "title": "Fires in orbit burned fuel-rich and produced much more carbon monoxide",
+    "statement": "In BASS-II, CO to CO2 ratios were an order of magnitude higher than in efficient combustion; flames burned fuel-rich (global equivalence ratio about 1.3) under low-velocity flow, and most released well below 100 W.",
+    "conditions": {
+      "gravityG": 0
+    },
+    "measurements": [
+      {
+        "quantity": "global equivalence ratio (average)",
+        "value": 1.3,
+        "unit": "—"
+      },
+      {
+        "quantity": "typical heat release (upper bound)",
+        "value": 100,
+        "unit": "W"
+      }
+    ],
+    "safetyImplication": "Even small fires in microgravity can be disproportionately toxic; CO monitoring matters as much as flame detection.",
+    "themes": [
+      "smoke-detection",
+      "materials"
+    ],
+    "evidence": {
+      "kind": "measured",
+      "strength": 2
+    },
+    "sources": [
+      {
+        "title": "Burning and Suppression of Solids–II (BASS-II) Summary Report (NASA/TM-20210011385)",
+        "url": "https://ntrs.nasa.gov/citations/20210011385",
+        "year": 2021,
+        "ntrsId": "20210011385",
+        "locator": "PDF p. 19 (printed p. 11), 1.6 Overall Conclusions"
+      }
+    ],
+    "extractedBy": "claude",
+    "verified": true
+  },
+  {
+    "id": "F-017",
+    "experimentId": "bass",
+    "title": "A U-shaped flammability boundary: flames die at too little or too much airflow",
+    "statement": "BASS-II crews adapted to new flow variations, including blowoff extinctions, which helped outline a U-shaped flammability boundary.",
+    "conditions": {
+      "gravityG": 0
+    },
+    "measurements": [],
+    "safetyImplication": "Both very low and very high airflow can put a fire out; between them lies a band where materials burn best.",
+    "themes": [
+      "flammability-limits",
+      "extinction"
+    ],
+    "evidence": {
+      "kind": "measured",
+      "strength": 2
+    },
+    "sources": [
+      {
+        "title": "Burning and Suppression of Solids–II (BASS-II) Summary Report (NASA/TM-20210011385)",
+        "url": "https://ntrs.nasa.gov/citations/20210011385",
+        "year": 2021,
+        "ntrsId": "20210011385",
+        "locator": "PDF p. 19 (printed p. 11), 1.6 Overall Conclusions"
+      }
+    ],
+    "extractedBy": "claude",
+    "verified": true
+  },
+  {
+    "id": "F-018",
+    "experimentId": "nasa-std-6001",
+    "title": "NASA's ground material test may not be conservative for space",
+    "statement": "NASA-STD-6001 Test 1 rates materials with an upward flame spread test in normal gravity; drop-tower results suggest it might not be conservative for reduced gravity.",
+    "conditions": {
+      "gravityG": 1
+    },
+    "measurements": [],
+    "safetyImplication": "Materials that pass Test 1 may still burn on a spacecraft; margins or a modified test are needed.",
+    "themes": [
+      "materials",
+      "flammability-limits"
+    ],
+    "evidence": {
+      "kind": "review",
+      "strength": 2
+    },
+    "sources": [
+      {
+        "title": "NASA, Combustion in Reduced Gravity (ISS mini-book, NP-2015-10-034-JSC)",
+        "url": "https://www.nasa.gov/wp-content/uploads/2016/05/np-2015-10-034-jsc_combustion_in_reduced_gravity-iss-mini-book-011116-508.pdf",
+        "year": 2015,
+        "locator": "PDF p. 23"
+      },
+      {
+        "title": "Organizing Questions for Reduced-Gravity Flammability",
+        "url": "https://ntrs.nasa.gov/citations/20040142368",
+        "year": 2004,
+        "ntrsId": "20040142368",
+        "locator": "Abstract"
+      }
+    ],
+    "extractedBy": "claude",
+    "verified": true
+  },
+  {
+    "id": "F-019",
+    "experimentId": "saffire",
+    "title": "Large spacecraft fires reached 10 kW but cabin averages stayed acceptable",
+    "statement": "Saffire IV and V burned 40-cm-wide samples inside a Cygnus spacecraft; fires with heat release up to 10 kW measurably changed cabin pressure, temperature and CO2, but average conditions did not rise to unacceptable levels.",
+    "conditions": {
+      "gravityG": 0,
+      "material": "PMMA, cotton and cotton-fiberglass fabric"
+    },
+    "measurements": [
+      {
+        "quantity": "peak heat release",
+        "value": 10,
+        "unit": "kW"
+      },
+      {
+        "quantity": "sample width",
+        "value": 40,
+        "unit": "cm"
+      }
+    ],
+    "safetyImplication": "A crewed vehicle can survive a large fire's heat and pressure; the threat is local damage and the gases.",
+    "themes": [
+      "flame-spread",
+      "materials",
+      "spacecraft-atmosphere"
+    ],
+    "evidence": {
+      "kind": "measured",
+      "strength": 2
+    },
+    "sources": [
+      {
+        "title": "Fire Safety Implications of Preliminary Results from Saffire IV and V Experiments on Large Scale Spacecraft Fires",
+        "url": "https://ntrs.nasa.gov/citations/20210011521",
+        "year": 2021,
+        "ntrsId": "20210011521",
+        "locator": "Abstract"
+      }
+    ],
+    "extractedBy": "claude",
+    "verified": true
+  },
+  {
+    "id": "F-020",
+    "experimentId": "saffire",
+    "title": "In a spacecraft fire, CO2 and CO rise matters more than heat and pressure",
+    "statement": "In Saffire VI, the rise in spacecraft temperature and pressure was less significant than the increase in carbon dioxide and carbon monoxide.",
+    "conditions": {
+      "gravityG": 0
+    },
+    "measurements": [
+      {
+        "quantity": "fire size range across tests",
+        "value": 3.2,
+        "unit": "kW (max)"
+      },
+      {
+        "quantity": "free air volume (max)",
+        "value": 19,
+        "unit": "m³"
+      }
+    ],
+    "safetyImplication": "Toxic gas, not heat, is the main hazard to crew after a fire; detection and cleanup of CO and CO2 are critical.",
+    "themes": [
+      "smoke-detection",
+      "spacecraft-atmosphere"
+    ],
+    "evidence": {
+      "kind": "measured",
+      "strength": 2
+    },
+    "sources": [
+      {
+        "title": "Preliminary Results from the Saffire VI Experiment (ICES-2024-365)",
+        "url": "https://ntrs.nasa.gov/citations/20240002981",
+        "year": 2024,
+        "ntrsId": "20240002981",
+        "locator": "Abstract"
+      }
+    ],
+    "extractedBy": "claude",
+    "verified": true
+  },
+  {
+    "id": "F-021",
+    "experimentId": "saffire",
+    "title": "Spacecraft fire designs had to rely on 1 g knowledge",
+    "statement": "Before Saffire, the lack of large-scale data forced spacecraft designers to base fire safety on 1 g understanding of flame spread, self-extinguishment, detection and suppression.",
+    "conditions": {},
+    "measurements": [],
+    "safetyImplication": "Large-scale tests in microgravity are needed to replace Earth assumptions in vehicle design.",
+    "themes": [
+      "flame-spread",
+      "suppression",
+      "smoke-detection"
+    ],
+    "evidence": {
+      "kind": "review",
+      "strength": 2
+    },
+    "sources": [
+      {
+        "title": "Preliminary Results from the Saffire VI Experiment (ICES-2024-365)",
+        "url": "https://ntrs.nasa.gov/citations/20240002981",
+        "year": 2024,
+        "ntrsId": "20240002981",
+        "locator": "Abstract"
+      }
+    ],
+    "extractedBy": "claude",
+    "verified": true
+  },
+  {
+    "id": "F-022",
+    "experimentId": "same",
+    "title": "Smoke particles from overheated spacecraft materials are mostly 200–400 nm",
+    "statement": "SAME-2 heated five spacecraft materials (Teflon, Kapton, cotton, silicone rubber, Pyrell) below ignition in airflow up to 8 cm/s; most average smoke particle sizes were 200–400 nm, with some much larger particles in still air.",
+    "conditions": {
+      "gravityG": 0,
+      "flowCmPerS": 8
+    },
+    "measurements": [
+      {
+        "quantity": "typical smoke particle size, lower",
+        "value": 200,
+        "unit": "nm"
+      },
+      {
+        "quantity": "typical smoke particle size, upper",
+        "value": 400,
+        "unit": "nm"
+      }
+    ],
+    "safetyImplication": "Spacecraft smoke detectors must sense particles in this size range, including from smouldering before any flame.",
+    "themes": [
+      "smoke-detection",
+      "materials"
+    ],
+    "evidence": {
+      "kind": "measured",
+      "strength": 2
+    },
+    "sources": [
+      {
+        "title": "Particle Morphology and Size Results from the Smoke Aerosol Measurement Experiment-2",
+        "url": "https://ntrs.nasa.gov/citations/20130000422",
+        "year": 2012,
+        "ntrsId": "20130000422",
+        "locator": "Abstract"
+      }
+    ],
+    "extractedBy": "claude",
+    "verified": true
+  },
+  {
+    "id": "F-023",
+    "experimentId": "mist",
+    "title": "Water-mist extinguishers replaced CO2 units on the ISS",
+    "statement": "After years of research and flight experiments, water-mist portable fire extinguishers were certified for spaceflight; the first two of nine were sent to the ISS in December 2015 to replace CO2 units.",
+    "conditions": {},
+    "measurements": [],
+    "safetyImplication": "Water mist is NASA's current direction for crew-operated suppression, avoiding the CO2 hazard in a closed cabin.",
+    "themes": [
+      "suppression"
+    ],
+    "evidence": {
+      "kind": "review",
+      "strength": 2
+    },
+    "sources": [
+      {
+        "title": "NASA, Combustion in Reduced Gravity (ISS mini-book, NP-2015-10-034-JSC)",
+        "url": "https://www.nasa.gov/wp-content/uploads/2016/05/np-2015-10-034-jsc_combustion_in_reduced_gravity-iss-mini-book-011116-508.pdf",
+        "year": 2015,
+        "locator": "PDF p. 26"
+      }
+    ],
+    "extractedBy": "claude",
+    "verified": true
+  },
+  {
+    "id": "F-024",
+    "experimentId": "candle-flames",
+    "title": "Candles burned for up to 45 minutes on Mir",
+    "statement": "In still microgravity air, candle flames on Mir burned for as long as 45 minutes and to a lower oxygen level than the same candle would on Earth; on the Shuttle they lasted under 60 seconds because the candle box limited oxygen.",
+    "conditions": {
+      "gravityG": 0,
+      "fuel": "candle wax"
+    },
+    "measurements": [
+      {
+        "quantity": "longest burn on Mir",
+        "value": 45,
+        "unit": "min"
+      }
+    ],
+    "safetyImplication": "A small, dim fire can persist for a long time in still air on a spacecraft and is easy to miss.",
+    "themes": [
+      "extinction",
+      "flammability-limits"
+    ],
+    "evidence": {
+      "kind": "measured",
+      "strength": 2
+    },
+    "sources": [
+      {
+        "title": "Candle Flames in Non-Buoyant Atmospheres (Dietrich et al.)",
+        "url": "https://ntrs.nasa.gov/citations/20000005087",
+        "year": 1999,
+        "ntrsId": "20000005087",
+        "locator": "Abstract"
+      },
+      {
+        "title": "NASA, Combustion in Reduced Gravity (ISS mini-book, NP-2015-10-034-JSC)",
+        "url": "https://www.nasa.gov/wp-content/uploads/2016/05/np-2015-10-034-jsc_combustion_in_reduced_gravity-iss-mini-book-011116-508.pdf",
+        "year": 2015,
+        "locator": "PDF p. 30"
+      }
+    ],
+    "extractedBy": "claude",
+    "verified": true
+  },
+  {
+    "id": "F-025",
+    "experimentId": "candle-flames",
+    "title": "Flames oscillate before they go out",
+    "statement": "Candle flames on the Shuttle and Mir showed spontaneous, symmetric oscillations just before extinction, which could last over a minute.",
+    "conditions": {
+      "gravityG": 0
+    },
+    "measurements": [],
+    "safetyImplication": "A flickering, near-dead flame is not yet out; crews should confirm extinction.",
+    "themes": [
+      "extinction"
+    ],
+    "evidence": {
+      "kind": "measured",
+      "strength": 2
+    },
+    "sources": [
+      {
+        "title": "Candle Flames in Non-Buoyant Atmospheres (Dietrich et al.)",
+        "url": "https://ntrs.nasa.gov/citations/20000005087",
+        "year": 1999,
+        "ntrsId": "20000005087",
+        "locator": "Abstract"
+      },
+      {
+        "title": "NASA, Combustion in Reduced Gravity (ISS mini-book, NP-2015-10-034-JSC)",
+        "url": "https://www.nasa.gov/wp-content/uploads/2016/05/np-2015-10-034-jsc_combustion_in_reduced_gravity-iss-mini-book-011116-508.pdf",
+        "year": 2015,
+        "locator": "PDF p. 33"
+      }
+    ],
+    "extractedBy": "claude",
+    "verified": true
+  },
+  {
+    "id": "F-026",
+    "experimentId": "sofball",
+    "title": "The weakest flames ever burned exist only in microgravity",
+    "statement": "SOFBALL showed stationary spherical 'flame balls' can exist in lean premixed gases in microgravity, the weakest flames ever burned (about 1 watt), some burning for over 40 minutes.",
+    "conditions": {
+      "gravityG": 0
+    },
+    "measurements": [
+      {
+        "quantity": "flame power",
+        "value": 1,
+        "unit": "W"
+      },
+      {
+        "quantity": "longest burn",
+        "value": 40,
+        "unit": "min"
+      }
+    ],
+    "safetyImplication": "Very lean gas mixtures that could not burn on Earth may sustain tiny flames in microgravity.",
+    "themes": [
+      "flammability-limits"
+    ],
+    "evidence": {
+      "kind": "measured",
+      "strength": 2
+    },
+    "sources": [
+      {
+        "title": "NASA, Combustion in Reduced Gravity (ISS mini-book, NP-2015-10-034-JSC)",
+        "url": "https://www.nasa.gov/wp-content/uploads/2016/05/np-2015-10-034-jsc_combustion_in_reduced_gravity-iss-mini-book-011116-508.pdf",
+        "year": 2015,
+        "locator": "PDF p. 30"
+      }
+    ],
+    "extractedBy": "claude",
+    "verified": true
+  },
+  {
+    "id": "F-027",
+    "experimentId": "flare",
+    "title": "On Earth even a small flame makes its own 30 cm/s wind",
+    "statement": "On Earth, even small flames induce a buoyant flow of no less than about 30 cm/s, so flame spread in slower flows cannot be studied; in microgravity, flames can spread in artificial flows below 30 cm/s. FLARE measures the minimum oxygen level at which flames keep spreading.",
+    "conditions": {
+      "flowCmPerS": 30
+    },
+    "measurements": [
+      {
+        "quantity": "minimum buoyant flow of a small flame in 1 g",
+        "value": 30,
+        "unit": "cm/s"
+      }
+    ],
+    "safetyImplication": "Ground tests cannot reproduce the slow airflows of a spacecraft cabin, so microgravity data are needed for material ratings.",
+    "themes": [
+      "flame-spread",
+      "flammability-limits",
+      "materials"
+    ],
+    "evidence": {
+      "kind": "review",
+      "strength": 2
+    },
+    "sources": [
+      {
+        "title": "JAXA: Fundamental Research on International Standard of Fire Safety in Space (FLARE)",
+        "url": "https://humans-in-space.jaxa.jp/en/biz-lab/experiment/theme/detail/000807.html",
+        "year": 2021,
+        "locator": "Experiment Description: Research overview"
+      }
+    ],
+    "extractedBy": "claude",
+    "verified": true
+  },
+  {
+    "id": "F-028",
+    "experimentId": "fm2",
+    "title": "Lunar gravity can make some materials more flammable than on Earth",
+    "statement": "Lunar gravity has been found to raise the flammability limits of some materials compared with Earth: convective heat loss is reduced, yet there is enough buoyant flow to bring fresh oxygen to the flame.",
+    "conditions": {
+      "gravityG": 0.165
+    },
+    "measurements": [],
+    "safetyImplication": "Moon habitats and landers, especially at 34 % O₂, may face a higher fire risk than either Earth or orbit.",
+    "themes": [
+      "partial-gravity",
+      "flammability-limits"
+    ],
+    "evidence": {
+      "kind": "review",
+      "strength": 2
+    },
+    "sources": [
+      {
+        "title": "Flammability of Materials on the Moon (Zayac, Johnston, Ruff, Ferkul), NASA Glenn poster",
+        "url": "https://ntrs.nasa.gov/citations/20240015307",
+        "year": 2024,
+        "ntrsId": "20240015307",
+        "locator": "Poster: Introduction"
+      }
+    ],
+    "extractedBy": "claude",
+    "verified": true
+  },
+  {
+    "id": "F-029",
+    "experimentId": "fm2",
+    "title": "A fabric that goes out on Earth keeps burning at Moon gravity",
+    "statement": "SIBAL cotton-fiberglass fabric burns downward in air at lunar gravity (centrifuge and parabolic-flight tests), while in Earth gravity it goes out immediately after ignition.",
+    "conditions": {
+      "gravityG": 0.165,
+      "oxygenPercent": 21,
+      "material": "SIBAL cotton-fiberglass fabric"
+    },
+    "measurements": [],
+    "safetyImplication": "Materials judged safe by Earth tests can sustain fire in a lunar habitat.",
+    "themes": [
+      "partial-gravity",
+      "materials",
+      "flame-spread"
+    ],
+    "evidence": {
+      "kind": "measured",
+      "strength": 2
+    },
+    "sources": [
+      {
+        "title": "Flammability of Materials on the Moon (Zayac, Johnston, Ruff, Ferkul), NASA Glenn poster",
+        "url": "https://ntrs.nasa.gov/citations/20240015307",
+        "year": 2024,
+        "ntrsId": "20240015307",
+        "locator": "Poster: Introduction"
+      }
+    ],
+    "extractedBy": "claude",
+    "verified": true
+  },
+  {
+    "id": "F-030",
+    "experimentId": "mir-solid-flammability",
+    "title": "Russian Mir tests: ventilation can turn an ignition into a fire",
+    "statement": "Russian researchers on Mir reported that most solids hardly burn in zero-g without forced air, but ventilation flows can cause a fire; they proposed lowering or stopping ventilation and studied the minimum air velocity at which burning stops.",
+    "conditions": {
+      "gravityG": 0
+    },
+    "measurements": [],
+    "safetyImplication": "Ventilation control is a fire-fighting tool, but NASA's later review warns that a fire will not reliably self-extinguish just because ventilation is shut off.",
+    "themes": [
+      "extinction",
+      "flame-spread"
+    ],
+    "evidence": {
+      "kind": "measured",
+      "strength": 1
+    },
+    "sources": [
+      {
+        "title": "Fire safety experiments on MIR Orbital Station (Egorov et al.)",
+        "url": "https://ntrs.nasa.gov/citations/19960008416",
+        "year": 1995,
+        "ntrsId": "19960008416",
+        "locator": "Abstract"
+      }
+    ],
+    "extractedBy": "claude",
+    "verified": true
+  },
+  {
+    "id": "F-031",
+    "experimentId": "mir-1997",
+    "title": "The 1997 Mir fire blocked an escape route and filled the station with smoke",
+    "statement": "On 24 February 1997 a solid-fuel oxygen generator in Mir's Kvant-1 module caught fire; the flame lasted several minutes, cut off access to one of two Soyuz escape vehicles and filled the modules with smoke, which life support took hours to clear.",
+    "conditions": {
+      "gravityG": 0
+    },
+    "measurements": [],
+    "safetyImplication": "Oxygen-generating equipment is an ignition and fuel source; smoke, not only flame, disables a crew and its escape routes.",
+    "themes": [
+      "incidents",
+      "smoke-detection",
+      "suppression"
+    ],
+    "evidence": {
+      "kind": "incident-report",
+      "strength": 1
+    },
+    "sources": [
+      {
+        "title": "25 Years Ago: Fire Aboard Space Station Mir (NASA History, John Uri)",
+        "url": "https://www.nasa.gov/history/25-years-ago-fire-aboard-space-station-mir/",
+        "year": 2022,
+        "locator": "Paragraphs 1 and 3"
+      }
+    ],
+    "extractedBy": "claude",
+    "verified": true
+  },
+  {
+    "id": "F-032",
+    "experimentId": "apollo-1",
+    "title": "Pure oxygen and flammable materials made the Apollo 1 fire spread very rapidly",
+    "statement": "In the 1967 Apollo 1 ground test, the cabin held pure oxygen at 16.7 psi with more flammable material than allowed; after an electrical arc, the fire spread very rapidly and killed three astronauts.",
+    "conditions": {
+      "oxygenPercent": 100,
+      "pressureKPa": 115.1,
+      "gravityG": 1
+    },
+    "measurements": [
+      {
+        "quantity": "cabin pressure",
+        "value": 16.7,
+        "unit": "psi"
+      }
+    ],
+    "safetyImplication": "Oxygen fraction and material control are decisive; higher-oxygen exploration atmospheres need strict material rules.",
+    "themes": [
+      "incidents",
+      "spacecraft-atmosphere",
+      "materials"
+    ],
+    "evidence": {
+      "kind": "incident-report",
+      "strength": 1
+    },
+    "sources": [
+      {
+        "title": "55 Years Ago: The Apollo 1 Fire and its Aftermath (NASA History, John Uri)",
+        "url": "https://www.nasa.gov/history/55-years-ago-the-apollo-1-fire-and-its-aftermath/",
+        "year": 2022,
+        "locator": "Investigation section"
+      }
+    ],
+    "extractedBy": "claude",
+    "verified": true
+  }
+]

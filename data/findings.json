@@ -15,7 +15,7 @@
       "suppression"
     ],
     "evidence": {
-      "kind": "measured",
+      "kind": "review",
       "strength": 3
     },
     "sources": [
@@ -316,7 +316,7 @@
     "id": "F-011",
     "experimentId": "nasa-combustion-review",
     "title": "Earth smoke detectors look for the wrong particles in space",
-    "statement": "Flames in microgravity produce particles of very different sizes, so detectors that sense fire particulates need different signatures; a terrestrial detector would be 'looking' for the wrong thing.",
+    "statement": "Flames in microgravity produce smoke particles of very different size from flames on Earth, so detectors that sense fire particulates need different signatures; a terrestrial detector would be 'looking' for the wrong thing.",
     "conditions": {
       "gravityG": 0
     },
@@ -417,6 +417,12 @@
         "url": "https://www.nasa.gov/wp-content/uploads/2016/05/np-2015-10-034-jsc_combustion_in_reduced_gravity-iss-mini-book-011116-508.pdf",
         "year": 2015,
         "locator": "PDF p. 22"
+      },
+      {
+        "title": "NASA, Combustion in Reduced Gravity (ISS mini-book, NP-2015-10-034-JSC)",
+        "url": "https://www.nasa.gov/wp-content/uploads/2016/05/np-2015-10-034-jsc_combustion_in_reduced_gravity-iss-mini-book-011116-508.pdf",
+        "year": 2015,
+        "locator": "PDF p. 31"
       }
     ],
     "extractedBy": "claude",
@@ -429,7 +435,6 @@
     "statement": "On a 2-cm-wide cotton-fiberglass fabric in opposed flow, BASS stepped the airflow down from 10 cm/s to below 1 cm/s; the flame and its spread rate changed very rapidly and dramatically with each step.",
     "conditions": {
       "gravityG": 0,
-      "flowCmPerS": 10,
       "material": "cotton-fiberglass fabric"
     },
     "measurements": [
@@ -479,7 +484,7 @@
         "unit": "W"
       }
     ],
-    "safetyImplication": "Even small fires in microgravity can be disproportionately toxic; CO monitoring matters as much as flame detection.",
+    "safetyImplication": "Small, oxygen-starved fires in low airflow can produce much more CO than efficient combustion, so CO monitoring matters as much as flame detection.",
     "themes": [
       "smoke-detection",
       "materials"
@@ -534,7 +539,7 @@
     "id": "F-018",
     "experimentId": "nasa-std-6001",
     "title": "NASA's ground material test may not be conservative for space",
-    "statement": "NASA-STD-6001 Test 1 rates materials with an upward flame spread test in normal gravity; drop-tower results suggest it might not be conservative for reduced gravity.",
+    "statement": "NASA-STD-6001 Test 1 rates materials with an upward flame spread test in normal gravity. Drop-tower results suggested it might not be conservative, and later BASS results on the ISS indicate it is not conservative: materials can burn at lower oxygen levels in microgravity than on Earth.",
     "conditions": {
       "gravityG": 1
     },
@@ -554,6 +559,12 @@
         "url": "https://www.nasa.gov/wp-content/uploads/2016/05/np-2015-10-034-jsc_combustion_in_reduced_gravity-iss-mini-book-011116-508.pdf",
         "year": 2015,
         "locator": "PDF p. 23"
+      },
+      {
+        "title": "NASA, Combustion in Reduced Gravity (ISS mini-book, NP-2015-10-034-JSC)",
+        "url": "https://www.nasa.gov/wp-content/uploads/2016/05/np-2015-10-034-jsc_combustion_in_reduced_gravity-iss-mini-book-011116-508.pdf",
+        "year": 2015,
+        "locator": "PDF p. 31"
       },
       {
         "title": "Organizing Questions for Reduced-Gravity Flammability",
@@ -587,7 +598,7 @@
         "unit": "cm"
       }
     ],
-    "safetyImplication": "A crewed vehicle can survive a large fire's heat and pressure; the threat is local damage and the gases.",
+    "safetyImplication": "In a Cygnus-sized cabin, a fire of up to 10 kW did not push average heat and pressure to unacceptable levels; the gases may be the bigger threat.",
     "themes": [
       "flame-spread",
       "materials",
@@ -629,7 +640,7 @@
         "unit": "m³"
       }
     ],
-    "safetyImplication": "Toxic gas, not heat, is the main hazard to crew after a fire; detection and cleanup of CO and CO2 are critical.",
+    "safetyImplication": "In these tests CO and CO2 rose more significantly than heat or pressure, so gas detection and cleanup may be the critical post-fire need.",
     "themes": [
       "smoke-detection",
       "spacecraft-atmosphere"
@@ -700,7 +711,7 @@
         "unit": "nm"
       }
     ],
-    "safetyImplication": "Spacecraft smoke detectors must sense particles in this size range, including from smouldering before any flame.",
+    "safetyImplication": "Spacecraft smoke detectors must sense particles in this size range, including smoke from overheating materials before any flame.",
     "themes": [
       "smoke-detection",
       "materials"
@@ -794,7 +805,7 @@
     "id": "F-025",
     "experimentId": "candle-flames",
     "title": "Flames oscillate before they go out",
-    "statement": "Candle flames on the Shuttle and Mir showed spontaneous, symmetric oscillations just before extinction, which could last over a minute.",
+    "statement": "Candle flames on the Shuttle and Mir showed spontaneous, symmetric oscillations just before extinction, which in extreme cases lasted over a minute.",
     "conditions": {
       "gravityG": 0
     },
@@ -828,8 +839,8 @@
   {
     "id": "F-026",
     "experimentId": "sofball",
-    "title": "The weakest flames ever burned exist only in microgravity",
-    "statement": "SOFBALL showed stationary spherical 'flame balls' can exist in lean premixed gases in microgravity, the weakest flames ever burned (about 1 watt), some burning for over 40 minutes.",
+    "title": "The weakest flames ever burned were made in microgravity",
+    "statement": "SOFBALL showed stationary spherical 'flame balls' can exist in premixed low-Lewis-number gas mixtures in microgravity, the weakest flames ever burned (about 1 watt), some burning for over 40 minutes.",
     "conditions": {
       "gravityG": 0
     },
@@ -845,7 +856,7 @@
         "unit": "min"
       }
     ],
-    "safetyImplication": "Very lean gas mixtures that could not burn on Earth may sustain tiny flames in microgravity.",
+    "safetyImplication": "Gas mixtures near their flammability limit may sustain tiny, long-lived flames in microgravity.",
     "themes": [
       "flammability-limits"
     ],
@@ -869,9 +880,7 @@
     "experimentId": "flare",
     "title": "On Earth even a small flame makes its own 30 cm/s wind",
     "statement": "On Earth, even small flames induce a buoyant flow of no less than about 30 cm/s, so flame spread in slower flows cannot be studied; in microgravity, flames can spread in artificial flows below 30 cm/s. FLARE measures the minimum oxygen level at which flames keep spreading.",
-    "conditions": {
-      "flowCmPerS": 30
-    },
+    "conditions": {},
     "measurements": [
       {
         "quantity": "minimum buoyant flow of a small flame in 1 g",
@@ -909,7 +918,7 @@
       "gravityG": 0.165
     },
     "measurements": [],
-    "safetyImplication": "Moon habitats and landers, especially at 34 % O₂, may face a higher fire risk than either Earth or orbit.",
+    "safetyImplication": "Moon habitats and landers, especially at the planned 34 % O₂ atmosphere, may face a higher fire risk than the same materials would on Earth.",
     "themes": [
       "partial-gravity",
       "flammability-limits"
@@ -978,7 +987,7 @@
       "flame-spread"
     ],
     "evidence": {
-      "kind": "measured",
+      "kind": "review",
       "strength": 1
     },
     "sources": [
@@ -1027,7 +1036,7 @@
     "id": "F-032",
     "experimentId": "apollo-1",
     "title": "Pure oxygen and flammable materials made the Apollo 1 fire spread very rapidly",
-    "statement": "In the 1967 Apollo 1 ground test, the cabin held pure oxygen at 16.7 psi with more flammable material than allowed; after an electrical arc, the fire spread very rapidly and killed three astronauts.",
+    "statement": "In the 1967 Apollo 1 ground test, the cabin held pure oxygen at 16.7 psi with more flammable material than allowed. Investigators found evidence of arcing in several wires, although no specific ignition source was determined; the fire spread very rapidly and killed three astronauts.",
     "conditions": {
       "oxygenPercent": 100,
       "pressureKPa": 115.1,
@@ -1102,7 +1111,7 @@
       "fuel": "methanol and n-heptane droplets"
     },
     "measurements": [],
-    "safetyImplication": "How a droplet fire goes out depends on how diluted the oxygen is, so a limit measured at one dilution may not hold at another.",
+    "safetyImplication": "How a droplet fire goes out depends on how diluted the oxygen is, so a limit measured at one dilution may not hold at another. The methanol disruptions were probably caused by needle contamination (F-038).",
     "themes": [
       "extinction",
       "suppression"
@@ -1190,7 +1199,7 @@
         "unit": "mm"
       }
     ],
-    "safetyImplication": "Cabin atmospheres below 0.70 atm, such as the proposed 8.2 psia (about 0.56 atm) habitat air, lie outside the conditions FLEX measured.",
+    "safetyImplication": "Cabin atmospheres below 0.70 atm, such as the 8.2 psia (about 0.56 atm) exploration atmosphere in our atmosphere data, lie outside the conditions FLEX measured.",
     "themes": [
       "spacecraft-atmosphere",
       "flammability-limits"

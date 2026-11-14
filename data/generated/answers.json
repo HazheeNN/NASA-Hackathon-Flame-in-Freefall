@@ -1,7 +1,7 @@
 {
   "generatedAt": "2026-11-14T18:11:42Z",
   "model": "Claude Code (claude-opus-5-5)",
-  "findingsHash": "9678921f8c8b2b8a",
+  "findingsHash": "1d2fdf264bf8ea5c",
   "answers": [
     {
       "id": "Q-01",
@@ -164,7 +164,7 @@
     {
       "id": "Q-10",
       "question": "What is the fire risk of lithium batteries on the ISS?",
-      "answer": "Our NASA data doesn't cover that: none of our verified findings test batteries. The closest findings are general: materials ignite more easily in low gravity [F-005], and in slow airflow they can ignite with as little as half the heat flux needed on Earth [F-009].",
+      "answer": "Our NASA data doesn't cover that: none of our verified findings test batteries. The closest findings are general: materials ignite more easily in low gravity [F-005], and in slow airflow a model suggests they can ignite with as little as half the heat flux needed on Earth [F-009].",
       "findingIds": [
         "F-005",
         "F-009"
@@ -179,7 +179,7 @@
     {
       "id": "Q-11",
       "question": "Is a fire in a Mars habitat worse than a fire on the ISS?",
-      "answer": "Possibly, but our data cannot say for Mars itself. At lunar gravity some materials are more flammable than on Earth, and a fabric that goes out in 1 g keeps burning [F-028, F-029]; NASA's review says partial gravity in low flow lets some materials burn at lower oxygen [F-004]. Exploration habitats may also run at higher oxygen [F-013]. Mars gravity (0.38 g) is untested in our findings, so this is an extrapolation.",
+      "answer": "Possibly, but our data cannot say for Mars itself. At lunar gravity some materials are more flammable than on Earth, and a fabric that goes out in 1 g keeps burning [F-028, F-029]; NASA's review says partial gravity in low flow lets some materials burn at lower oxygen [F-004]. Spacecraft often run above air's oxygen fraction [F-013], and Moon habitats are planned at 34 % O₂ [F-028]. Mars gravity (0.38 g) is untested in our findings, so this is an extrapolation.",
       "findingIds": [
         "F-028",
         "F-029",
@@ -198,11 +198,11 @@
     {
       "id": "Q-12",
       "question": "Does turning off the ventilation put a fire out?",
-      "answer": "Not reliably. NASA lists 'a fire will self-extinguish if ventilation is shut off' as a disproved misconception [F-010], and candles burned for up to 45 minutes in still air on Mir [F-024]. Very low airflow can extinguish flames on solids [F-017], and Russian Mir researchers proposed lowering ventilation as a fire-safety tool [F-030]. So it can help, but it is not a guaranteed way to put a fire out.",
+      "answer": "Not reliably. NASA lists 'a fire will self-extinguish if ventilation is shut off' as a disproved misconception [F-010], and candles burned for up to 45 minutes in still air on Mir [F-024]. Very low airflow can extinguish flames on solids [F-008], and Russian Mir researchers proposed lowering ventilation as a fire-safety tool [F-030]. So it can help, but it is not a guaranteed way to put a fire out.",
       "findingIds": [
         "F-010",
         "F-024",
-        "F-017",
+        "F-008",
         "F-030"
       ],
       "themes": [
@@ -216,7 +216,7 @@
     {
       "id": "Q-13",
       "question": "What is the biggest danger to a crew after a spacecraft fire?",
-      "answer": "Toxic gas. In Saffire VI, CO2 and CO rose more significantly than cabin temperature or pressure [F-020]. BASS-II flames burned fuel-rich, with CO to CO2 ratios ten times those of efficient combustion [F-016]. On Mir in 1997, smoke filled the station and took life support hours to clear [F-031].",
+      "answer": "Most likely toxic gas. In Saffire VI, CO2 and CO rose more significantly than cabin temperature or pressure [F-020]. BASS-II flames burned fuel-rich, with CO to CO2 ratios an order of magnitude higher than efficient combustion [F-016]. On Mir in 1997, smoke filled the station and took life support hours to clear [F-031].",
       "findingIds": [
         "F-020",
         "F-016",
@@ -267,7 +267,7 @@
     {
       "id": "Q-16",
       "question": "How small and weak can a flame be in microgravity?",
-      "answer": "Very weak. SOFBALL's flame balls, which exist only in microgravity, were the weakest flames ever burned, about 1 watt, and some burned for over 40 minutes [F-026]. Candles on Mir burned for up to 45 minutes and to lower oxygen than on Earth [F-024].",
+      "answer": "Very weak. SOFBALL's flame balls were the weakest flames ever burned, about 1 watt, and some burned for over 40 minutes [F-026]. Candles on Mir burned for up to 45 minutes and to lower oxygen than on Earth [F-024].",
       "findingIds": [
         "F-026",
         "F-024"
@@ -283,7 +283,7 @@
     {
       "id": "Q-17",
       "question": "What happened in the Apollo 1 fire?",
-      "answer": "During a 1967 ground test, the Apollo 1 cabin held pure oxygen at 16.7 psi and more flammable material than allowed; after an electrical arc, the fire spread very rapidly and killed three astronauts [F-032].",
+      "answer": "During a 1967 ground test, the Apollo 1 cabin held pure oxygen at 16.7 psi and more flammable material than allowed. Investigators found evidence of arcing in several wires, though no specific ignition source was determined; the fire spread very rapidly and killed three astronauts [F-032].",
       "findingIds": [
         "F-032"
       ],
@@ -333,7 +333,7 @@
     {
       "id": "Q-20",
       "question": "Do smoke detectors work the same way in space?",
-      "answer": "No. Microgravity flames produce very different particle sizes, so an Earth detector would look for the wrong signature [F-011]. SAME-2 measured smoke from overheated spacecraft materials at mostly 200–400 nm, larger in still air [F-022], and smoke onset in low gravity differs from earlier predictions [F-012].",
+      "answer": "No. Microgravity flames produce smoke particles of very different size from Earth flames, so an Earth detector would look for the wrong signature [F-011]. SAME-2 measured smoke from overheated spacecraft materials at mostly 200–400 nm, with some much larger particles in still air [F-022], and smoke onset in low gravity differs from earlier predictions [F-012].",
       "findingIds": [
         "F-011",
         "F-022",
@@ -380,7 +380,7 @@
     {
       "id": "Q-23",
       "question": "Could a spacecraft survive a large fire?",
-      "answer": "In Saffire IV and V, fires of up to 10 kW inside an uncrewed Cygnus measurably raised pressure, temperature and CO2, but average cabin conditions did not reach unacceptable levels [F-019]. The bigger concern was the rise in CO2 and CO [F-020].",
+      "answer": "In Saffire IV and V, fires of up to 10 kW inside an uncrewed Cygnus measurably raised pressure, temperature and CO2, but average cabin conditions did not reach unacceptable levels [F-019]. In Saffire VI, the rise in CO2 and CO was more significant than the heat and pressure rise [F-020].",
       "findingIds": [
         "F-019",
         "F-020"

@@ -63,6 +63,10 @@ Worlds: 4 · atmospheres: 7 · formulas: 2 · FLEX tests: 276 (all verified).
 
 ## Log
 
+### 2026-11-14 · independent second review (Hazheen + Claude)
+- Done: a fresh Claude agent reviewed all findings, insights and answers against the sources (26/12/1, 4/7/0, 15/8/0 pass/minor/issue); every point re-checked and fixed (`docs/verification/2026-11-14-independent-review.md`); 66 quotes re-matched; files restamped.
+- Not done: the human spot-check list still wants a person.
+
 ### 2026-11-14 · FLEX review sheet and FX-03 checked (Hazheen + Claude)
 - Done: the 6 proposed FLEX findings checked against the PDF and added as F-033…F-038 (small theme and implication fixes, see the review sheet); F-039 added (1 g blowoff test, 13.4 % vs 13.6 % O₂); FX-03 verified against Marcum, Olson, Ferkul 2016 (one step reworded to the paper's "varies linearly"); insights I-04 and I-05 and answers Q-01, Q-03, Q-06 cite the new findings; files restamped. Spot-check list: the 4 FLEX rows confirmed again.
 - Not done: the rest of the spot-check list still wants a person (it checks Claude's own work).

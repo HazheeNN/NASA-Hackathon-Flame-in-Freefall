@@ -1,5 +1,5 @@
 import { z } from "zod";
-import { allow, cleanCitations, isGrounded, isProvenanceAnswer } from "@/lib/chat/guard";
+import { allow, cleanCitations, isAboutQuestion, isGrounded } from "@/lib/chat/guard";
 import { CHAT_INSTRUCTIONS } from "@/lib/chat/instructions";
 import { experimentSources, knowledgeFor, preparedAnswer, provenanceAnswer, sourcesFor } from "@/lib/chat/knowledge";
 import { askProviders } from "@/lib/chat/providers";
@@ -39,7 +39,8 @@ export async function POST(request: Request) {
   const checked = new Map<string, { text: string; ids: string[]; provenance: boolean }>();
   const { reply, failures } = await askProviders(system, turns, (r) => {
     const c = cleanCitations(r.text, allowed);
-    const provenance = c.ids.length === 0 && isProvenanceAnswer(question, c.text);
+    // Fire-science answers must cite; answers about the project itself may not need to.
+    const provenance = c.ids.length === 0 && isAboutQuestion(question);
     checked.set(r.text, { ...c, provenance });
     return isGrounded(c.text, c.ids) || provenance;
   });

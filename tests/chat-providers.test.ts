@@ -121,6 +121,28 @@ describe("answers about sources without any AI", () => {
     expect(r.sources.some((s) => s.url.includes("20150023456"))).toBe(true);
   });
 
+  it("answers 'what does the project cover?' from the data", async () => {
+    const { provenanceAnswer } = await import("@/lib/chat/knowledge");
+    const r = provenanceAnswer("i want to learn more about the project and what it covers")!;
+    expect(r.answer).toMatch(/verified findings/);
+    expect(r.answer).toMatch(/Not covered/);
+  });
+
+  it("answers where the formulas come from, with their sources", async () => {
+    const { provenanceAnswer } = await import("@/lib/chat/knowledge");
+    const r = provenanceAnswer("what are the sources for mars and where did you get the data such as the formulas")!;
+    expect(r.answer).toMatch(/no fire tests on Mars/);
+    expect(r.answer).toMatch(/\[FX-01\]/);
+    expect(r.sources.some((x) => x.href === "/formulas#FX-01")).toBe(true);
+  });
+
+  it("lists a formula's NASA source and links it to the Formulas page", async () => {
+    const { sourcesFor } = await import("@/lib/chat/knowledge");
+    const s = sourcesFor(["FX-01"]);
+    expect(s[0].href).toBe("/formulas#FX-01");
+    expect(s[0].url).toMatch(/ntrs\.nasa\.gov/);
+  });
+
   it("says plainly when a world has no tests, and ignores non-source questions", async () => {
     const { provenanceAnswer } = await import("@/lib/chat/knowledge");
     expect(provenanceAnswer("what was tested on Mars?")!.answer).toMatch(/no fire tests on Mars/);

@@ -29,10 +29,18 @@ describe("live chat guard", () => {
     expect(allow("v", 3, 1000, t + 2000)).toBe(true);
   });
 
-  it("accepts a sources answer only for a sources question that points to the Sources page", async () => {
-    const { isProvenanceAnswer } = await import("@/lib/chat/guard");
-    expect(isProvenanceAnswer("what are the sources for the ISS data?", "FLEX Table IX ... Every source is listed on this site's Sources page.")).toBe(true);
-    expect(isProvenanceAnswer("is Mars dangerous?", "Yes. Every source is listed on this site's Sources page.")).toBe(false);
+  it("treats questions about the project as answerable without finding IDs, science questions not", async () => {
+    const { isAboutQuestion } = await import("@/lib/chat/guard");
+    expect(isAboutQuestion("what does your findings cover?")).toBe(true);
+    expect(isAboutQuestion("i want to learn more about the project and what it covers")).toBe(true);
+    expect(isAboutQuestion("where did you get the formulas from?")).toBe(true);
+    expect(isAboutQuestion("is a fire on Mars more dangerous than on the ISS?")).toBe(false);
+  });
+
+  it("keeps formula citations like [FX-01] next to findings", () => {
+    const r = cleanCitations("pO₂ is 19.2 kPa [FX-01, F-008, FX-99].", new Set(["FX-01", "F-008"]));
+    expect(r.text).toBe("pO₂ is 19.2 kPa [FX-01, F-008].");
+    expect(r.ids).toEqual(["FX-01", "F-008"]);
   });
 });
 

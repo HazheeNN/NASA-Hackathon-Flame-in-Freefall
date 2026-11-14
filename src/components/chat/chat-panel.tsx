@@ -5,7 +5,7 @@ import Link from "next/link";
 import { useEffect, useRef, useState } from "react";
 import { CitedText } from "@/components/ui";
 
-type Source = { findingId: string; title: string; url: string; locator?: string; year?: number; experiment: string; experimentId: string };
+type Source = { findingId: string; title: string; url: string; locator?: string; year?: number; experiment: string; experimentId: string; href?: string };
 type Msg = { role: "user" | "assistant"; content: string; source?: string; sources?: Source[] };
 
 const SOURCE: Record<string, string> = {
@@ -171,8 +171,8 @@ function SourceList({ sources }: { sources: Source[] }) {
             <p className="pl-5 text-muted">
               <span className="font-mono">{s.ids.join(", ")}</span>
               {s.locator ? ` · ${s.locator}` : ""} ·{" "}
-              <Link href={`/sources#${s.experimentId}`} className="text-primary hover:underline">
-                {s.experiment} on our Sources page
+              <Link href={s.href ?? `/sources#${s.experimentId}`} className="text-primary hover:underline">
+                {s.experiment} on our {s.href?.startsWith("/formulas") ? "Formulas" : "Sources"} page
               </Link>
             </p>
           </li>

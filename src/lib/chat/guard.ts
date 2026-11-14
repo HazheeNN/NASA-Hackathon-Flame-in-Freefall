@@ -1,6 +1,8 @@
 // Pure helpers for the live chat (tested in tests/chat.test.ts). No secrets, no network.
 
-const CITE = /\s*\[(F-\d{3}(?:\s*,\s*F-\d{3})*)\]/g;
+// Citations: findings [F-012] and NASA formulas [FX-01], alone or in lists.
+const ID = "(?:F-\\d{3}|FX-\\d{2})";
+const CITE = new RegExp(`\\s*\\[(${ID}(?:\\s*,\\s*${ID})*)\\]`, "g");
 export const NO_DATA = "Our verified NASA data doesn't cover that.";
 
 // Keep only citations to findings the model was actually given; drop brackets left empty.
@@ -15,20 +17,20 @@ export function cleanCitations(text: string, allowed: Set<string>) {
   return { text: cleaned.trim(), ids: [...kept] };
 }
 
-// An answer is usable if it cites at least one real finding, or honestly says the data doesn't
-// cover the question / declines an off-topic one (no facts stated, so nothing to cite).
+// A fire-science answer is usable if it cites at least one real finding or formula, or honestly
+// says the data doesn't cover the question / declines an off-topic one.
 export function isGrounded(text: string, ids: string[]) {
   if (ids.length > 0) return true;
   const t = text.toLowerCase();
-  return t.includes("doesn't cover") || t.includes("does not cover") || t.includes("only answer questions about");
+  return ["doesn't cover", "does not cover", "only help with", "only answer questions about"].some((p) => t.includes(p));
 }
 
-// A question about where the data comes from or what was tested, answered by naming the source
-// list (experiments, datasets) rather than stating new fire facts.
-const PROVENANCE_Q = /\b(source|sources|where .*(from|come)|reference|cite|citation|dataset|data set|tested|test range|range|ranges|experiment|experiments|who measured|how do you know)\b/i;
-export function isProvenanceAnswer(question: string, answer: string) {
-  return PROVENANCE_Q.test(question) && /sources page/i.test(answer);
-}
+// Questions about the project itself (what the site is, what the data covers, where it comes
+// from, how it was checked, the formulas): answered from the ABOUT section, which needs no
+// finding ID because it states facts about our site and data, not fire science.
+const ABOUT_Q =
+  /\b(project|site|website|app|tool|cover|covers|covered|coverage|what can you|help me|how does (this|it|the site) work|who (made|built|are you)|what are you|team|source|sources|reference|references|cite|citation|dataset|data set|datasets|findings|experiments?|formulas?|equations?|verified|verify|verification|checked|tested|range|ranges|where .*(from|come)|how do you know|hello|hi|hey|thanks|thank you)\b/i;
+export const isAboutQuestion = (question: string) => ABOUT_Q.test(question);
 
 const STOP = new Set(
   "a an and are as at be by can could do does for from has have how i if in into is it its me my of on or our should than that the their them there these this those to was we what when where which who why will with would you your about fire fires flame flames".split(" "),

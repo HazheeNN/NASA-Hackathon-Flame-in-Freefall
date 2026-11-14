@@ -139,7 +139,7 @@ The shape of every record is in `src/lib/schema.ts` (Zod). The app parses the fi
 
 ## Schema in plain words
 
-**Experiment:** `id` (kebab-case, e.g. `bass`), `name`, `acronym`, `agency`, `platform` (ISS, Crewed spacecraft, Uncrewed spacecraft, Drop tower, Parabolic flight, Sounding rocket, Ground (1 g)), `facility`, `years` (free text), `fuels`, `summary` (2–3 plain sentences), `themes`, `sources`, `verified`.
+**Experiment:** `id` (kebab-case, e.g. `bass`), `name`, `acronym`, `agency`, `platform` (ISS, Crewed spacecraft, Uncrewed spacecraft, Drop tower, Parabolic flight, Sounding rocket, Ground (1 g), Multiple platforms: for NASA reviews that summarise many experiments), `facility`, `years` (free text), `fuels`, `summary` (2–3 plain sentences), `themes`, `sources`, `verified`.
 
 **Finding:** one claim from one source.
 - `id`: `F-001`, `F-002`, … never reused, never renumbered (insights cite them).

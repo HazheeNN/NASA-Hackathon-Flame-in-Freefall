@@ -82,6 +82,7 @@ describe("data/", () => {
   it("warns when answers were made from older findings, and not when current", () => {
     const c = corpus();
     c.findings = [finding];
+    c.insights = { generatedAt: "", model: "", findingsHash: "", insights: [] }; // only answers under test
     c.answers = answersWith("Spread is slow [F-001].", ["F-001"]);
     expect(staleWarnings(c)).toHaveLength(1);
     c.answers.findingsHash = findingsHash(c.findings);

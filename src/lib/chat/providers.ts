@@ -53,23 +53,42 @@ const PROVIDERS: Record<string, { key: string; ask: (system: string, turns: Turn
   },
 };
 
-export function providerOrder() {
-  return (process.env.AI_ORDER || "groq,gemini")
+const configured = () =>
+  (process.env.AI_ORDER || "groq,gemini")
     .split(",")
     .map((s) => s.trim().toLowerCase())
-    .filter((name) => PROVIDERS[name] && process.env[PROVIDERS[name].key]);
+    .filter(Boolean);
+
+export function providerOrder() {
+  return configured().filter((name) => PROVIDERS[name] && process.env[PROVIDERS[name].key]);
 }
 
 // Try each configured provider in turn; return the first non-empty reply (or null if all fail).
+// Try each configured provider in turn; return the first usable reply, plus why the others
+// failed (provider names and status codes only, never keys) so a fallback can explain itself.
 export async function askProviders(system: string, turns: Turn[], accept: (r: Reply) => boolean) {
-  for (const name of providerOrder()) {
+  const failures: string[] = [];
+  for (const name of configured()) {
     const p = PROVIDERS[name];
+    if (!p) {
+      failures.push(`${name}: unknown provider`);
+      continue;
+    }
+    if (!process.env[p.key]) {
+      failures.push(`${name}: no key`);
+      continue;
+    }
     try {
       const reply = await p.ask(system, turns, process.env[p.key]!);
-      if (reply.text.trim() && accept(reply)) return reply;
+      if (!reply.text.trim()) failures.push(`${name}: empty reply`);
+      else if (!accept(reply)) failures.push(`${name}: answer without valid sources`);
+      else return { reply, failures };
     } catch (e) {
-      console.warn(`chat: ${name} failed (${e instanceof Error ? e.message : "error"})`);
+      const why = e instanceof Error ? (e.name === "TimeoutError" ? "timeout" : e.message) : "error";
+      failures.push(`${name}: ${why}`);
+      console.warn(`chat: ${name} failed (${why})`);
     }
   }
-  return null;
+  if (!configured().length) failures.push("AI_ORDER is empty");
+  return { reply: null, failures };
 }

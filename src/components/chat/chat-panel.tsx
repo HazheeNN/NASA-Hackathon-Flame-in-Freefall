@@ -10,6 +10,7 @@ type Msg = { role: "user" | "assistant"; content: string; source?: string; sourc
 
 const SOURCE: Record<string, string> = {
   prepared: "Prepared answer, reviewed by the team",
+  data: "Answered straight from our verified data",
   none: "No answer available",
   limit: "Question limit",
   invalid: "",
@@ -40,8 +41,10 @@ export function ChatPanel({ suggestions, autoFocus = false, compact = false }: {
         headers: { "content-type": "application/json" },
         body: JSON.stringify({ messages: next.slice(-6).map(({ role, content }) => ({ role, content: content.slice(0, 2000) })) }),
       });
-      const data = (await res.json()) as { answer: string; provider: string; model?: string; sources?: Source[] };
-      const source = SOURCE[data.provider] ?? `AI answer (${data.model ?? data.provider} via ${data.provider}), checked for citations`;
+      const data = (await res.json()) as { answer: string; provider: string; model?: string; sources?: Source[]; why?: string };
+      const label = SOURCE[data.provider] ?? `AI answer (${data.model ?? data.provider} via ${data.provider}), checked for citations`;
+      // When the live AI didn't answer, say why (provider names and status codes only).
+      const source = data.why && (data.provider === "prepared" || data.provider === "none" || data.provider === "data") ? `${label} · live AI unavailable (${data.why})` : label;
       setMsgs([...next, { role: "assistant", content: data.answer, source, sources: data.sources ?? [] }]);
     } catch {
       setMsgs([...next, { role: "assistant", content: "The assistant can't be reached right now. The prepared answers on the Ask page still work.", source: "Offline" }]);

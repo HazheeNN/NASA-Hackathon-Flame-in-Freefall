@@ -1,11 +1,12 @@
 import { z } from "zod";
-import { allow, cleanCitations, isGrounded } from "@/lib/chat/guard";
+import { allow, cleanCitations, isGrounded, isProvenanceAnswer } from "@/lib/chat/guard";
 import { CHAT_INSTRUCTIONS } from "@/lib/chat/instructions";
-import { knowledgeFor, preparedAnswer, sourcesFor } from "@/lib/chat/knowledge";
+import { experimentSources, knowledgeFor, preparedAnswer, provenanceAnswer, sourcesFor } from "@/lib/chat/knowledge";
 import { askProviders } from "@/lib/chat/providers";
 
 // POST /api/chat: the live assistant. Groq → Gemini (AI_ORDER) → closest prepared answer.
-// Every reply is checked: citations must point to findings the model was given.
+// Every reply is checked: citations must point to findings the model was given; answers about
+// where the data comes from may instead name experiments and the Sources page.
 
 const Body = z.object({
   messages: z
@@ -32,22 +33,32 @@ export async function POST(request: Request) {
   const { text, allowed } = knowledgeFor(context);
   const system = `${CHAT_INSTRUCTIONS}\n\n${text}`;
 
-  let checked: { text: string; ids: string[] } | null = null;
-  const reply = await askProviders(system, turns, (r) => {
-    checked = cleanCitations(r.text, allowed);
-    return isGrounded(checked.text, checked.ids);
+  const checked = new Map<string, { text: string; ids: string[]; provenance: boolean }>();
+  const { reply, failures } = await askProviders(system, turns, (r) => {
+    const c = cleanCitations(r.text, allowed);
+    const provenance = c.ids.length === 0 && isProvenanceAnswer(question, c.text);
+    checked.set(r.text, { ...c, provenance });
+    return isGrounded(c.text, c.ids) || provenance;
   });
-  if (reply && checked) {
-    const c = checked as { text: string; ids: string[] };
-    return Response.json({ answer: c.text, provider: reply.provider, model: reply.model, findingIds: c.ids, sources: sourcesFor(c.ids) });
+  if (reply) {
+    const c = checked.get(reply.text)!;
+    const sources = [...sourcesFor(c.ids), ...(c.ids.length === 0 ? experimentSources(c.text) : [])];
+    return Response.json({ answer: c.text, provider: reply.provider, model: reply.model, findingIds: c.ids, sources });
   }
 
+  // Why the live AI didn't answer (provider names and status codes only), shown small under the reply.
+  const why = failures.join("; ");
+  const fromData = provenanceAnswer(question);
+  if (fromData) {
+    return Response.json({ answer: fromData.answer, provider: "data", sources: fromData.sources, why });
+  }
   const prepared = preparedAnswer(question);
   if (prepared) {
-    return Response.json({ answer: prepared.answer, provider: "prepared", question: prepared.question, findingIds: prepared.findingIds, sources: sourcesFor(prepared.findingIds) });
+    return Response.json({ answer: prepared.answer, provider: "prepared", question: prepared.question, findingIds: prepared.findingIds, sources: sourcesFor(prepared.findingIds), why });
   }
   return Response.json({
     answer: "I can't answer that right now from our verified NASA data. Try rephrasing, or browse the prepared answers on the Ask page.",
     provider: "none",
+    why,
   });
 }

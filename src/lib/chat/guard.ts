@@ -23,6 +23,13 @@ export function isGrounded(text: string, ids: string[]) {
   return t.includes("doesn't cover") || t.includes("does not cover") || t.includes("only answer questions about");
 }
 
+// A question about where the data comes from or what was tested, answered by naming the source
+// list (experiments, datasets) rather than stating new fire facts.
+const PROVENANCE_Q = /\b(source|sources|where .*(from|come)|reference|cite|citation|dataset|data set|tested|test range|range|ranges|experiment|experiments|who measured|how do you know)\b/i;
+export function isProvenanceAnswer(question: string, answer: string) {
+  return PROVENANCE_Q.test(question) && /sources page/i.test(answer);
+}
+
 const STOP = new Set(
   "a an and are as at be by can could do does for from has have how i if in into is it its me my of on or our should than that the their them there these this those to was we what when where which who why will with would you your about fire fires flame flames".split(" "),
 );

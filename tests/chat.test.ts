@@ -28,5 +28,10 @@ describe("live chat guard", () => {
     expect(allow("v", 3, 1000, t)).toBe(false);
     expect(allow("v", 3, 1000, t + 2000)).toBe(true);
   });
-});
 
+  it("accepts a sources answer only for a sources question that points to the Sources page", async () => {
+    const { isProvenanceAnswer } = await import("@/lib/chat/guard");
+    expect(isProvenanceAnswer("what are the sources for the ISS data?", "FLEX Table IX ... Every source is listed on this site's Sources page.")).toBe(true);
+    expect(isProvenanceAnswer("is Mars dangerous?", "Yes. Every source is listed on this site's Sources page.")).toBe(false);
+  });
+});

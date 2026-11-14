@@ -1,7 +1,8 @@
 import { ArrowLeft, FileText } from "lucide-react";
 import Link from "next/link";
 import { notFound } from "next/navigation";
-import { AiLabel, Card, Citations, Label, MissionChip, RiskBadge, SampleBanner, ThemeChip, VerifiedBadge } from "@/components/ui";
+import { AiLabel, Card, Citations, ConfidenceMeter, Label, MissionChip, RiskBadge, SampleBanner, ThemeChip, VerifiedBadge } from "@/components/ui";
+import { confidence } from "@/lib/views";
 import { displayFindingById, displayInsights, experimentById, showingSample } from "@/lib/data";
 
 export function generateStaticParams() {
@@ -60,6 +61,9 @@ export default async function InsightPage({ params }: { params: Promise<{ id: st
         </div>
 
         <aside className="space-y-6">
+          <Card>
+            <ConfidenceMeter c={confidence(insight)} />
+          </Card>
           <Card>
             <Label>How it ranks</Label>
             <dl className="mt-4 space-y-3">

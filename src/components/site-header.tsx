@@ -3,28 +3,39 @@
 import { Menu, MessageSquareText, X } from "lucide-react";
 import Link from "next/link";
 import { usePathname } from "next/navigation";
-import { useState } from "react";
+import { useEffect, useState } from "react";
+import type { SearchItem } from "@/lib/search";
+import { AskSearch } from "./ask-search";
 import { FlameMark } from "./flame-mark";
 
-// App shell top bar (DESIGN.md › Layout): flame mark, name, main navigation, the Ask button.
-// Below 1024 px the navigation folds into a menu button.
 const NAV = [
-  { href: "/", label: "Overview" },
-  { href: "/insights", label: "Insights" },
-  { href: "/worlds", label: "Four Worlds" },
+  { href: "/", label: "Flame Lab" },
   { href: "/gaps", label: "Gaps map" },
-  { href: "/habitat", label: "Habitat" },
+  { href: "/insights", label: "Insights" },
   { href: "/findings", label: "Findings" },
   { href: "/sources", label: "Sources" },
+  { href: "/about", label: "About" },
 ];
 
 const isActive = (pathname: string, href: string) => (href === "/" ? pathname === "/" : pathname.startsWith(href));
 
-export function SiteHeader() {
+export function SiteHeader({ index }: { index: SearchItem[] }) {
   const pathname = usePathname();
-  // Remember which page the menu was opened on, so navigating closes it.
-  const [openOn, setOpenOn] = useState<string | null>(null);
-  const open = openOn === pathname;
+  const [menuOn, setMenuOn] = useState<string | null>(null);
+  const [askOpen, setAskOpen] = useState(false);
+  const open = menuOn === pathname;
+
+  useEffect(() => {
+    const onKey = (e: KeyboardEvent) => {
+      if ((e.metaKey || e.ctrlKey) && e.key.toLowerCase() === "k") {
+        e.preventDefault();
+        setAskOpen((v) => !v);
+      }
+      if (e.key === "Escape") setAskOpen(false);
+    };
+    window.addEventListener("keydown", onKey);
+    return () => window.removeEventListener("keydown", onKey);
+  }, []);
 
   const link = (n: (typeof NAV)[number], mobile = false) => {
     const active = isActive(pathname, n.href);
@@ -33,9 +44,9 @@ export function SiteHeader() {
         key={n.href}
         href={n.href}
         aria-current={active ? "page" : undefined}
-        className={`rounded-md font-semibold transition-colors duration-200 ${
-          mobile ? "block px-3 py-3 text-[17px]" : "px-3 py-2 text-[15px]"
-        } ${active ? "bg-primary-soft text-primary" : "text-muted hover:bg-surface hover:text-fg"}`}
+        className={`font-semibold transition-colors duration-200 ${mobile ? "block rounded-lg px-3 py-3 text-[17px]" : "relative py-2 text-[15px]"} ${
+          active ? "text-fg" : "text-muted hover:text-fg"
+        } ${!mobile && active ? "after:absolute after:inset-x-0 after:-bottom-[17px] after:h-0.5 after:bg-fg" : ""}`}
       >
         {n.label}
       </Link>
@@ -43,41 +54,60 @@ export function SiteHeader() {
   };
 
   return (
-    <header className="sticky top-0 z-30 border-b border-line bg-page">
-      <div className="mx-auto flex h-16 max-w-[1440px] items-center gap-4 px-4 lg:px-10">
-        <Link href="/" className="flex shrink-0 items-center gap-2 font-semibold">
-          <FlameMark />
-          <span>Flame in Freefall</span>
-        </Link>
-        <nav aria-label="Main" className="ml-4 hidden items-center gap-1 lg:flex">
-          {NAV.map((n) => link(n))}
-        </nav>
-        <div className="ml-auto flex items-center gap-2">
-          <Link
-            href="/ask"
-            aria-current={isActive(pathname, "/ask") ? "page" : undefined}
-            className="inline-flex h-11 items-center gap-2 rounded-[10px] bg-primary px-4 text-[13px] font-semibold uppercase tracking-[0.04em] text-on-primary transition-colors duration-200 hover:bg-primary-hover"
-          >
-            <MessageSquareText size={20} strokeWidth={1.75} aria-hidden />
-            Ask
+    <>
+      <header className="sticky top-0 z-30 border-b border-line bg-page/95">
+        <div className="mx-auto flex h-16 max-w-[1440px] items-center gap-6 px-4 lg:px-10">
+          <Link href="/" className="flex shrink-0 items-center gap-2.5 font-bold tracking-[-0.01em]">
+            <FlameMark />
+            <span>Flame in Freefall</span>
           </Link>
-          <button
-            type="button"
-            className="inline-flex size-11 items-center justify-center rounded-[10px] text-fg hover:bg-surface lg:hidden"
-            aria-expanded={open}
-            aria-controls="mobile-nav"
-            aria-label={open ? "Close menu" : "Open menu"}
-            onClick={() => setOpenOn(open ? null : pathname)}
-          >
-            {open ? <X size={20} strokeWidth={1.75} aria-hidden /> : <Menu size={20} strokeWidth={1.75} aria-hidden />}
-          </button>
+          <nav aria-label="Main" className="hidden items-center gap-6 lg:flex">
+            {NAV.map((n) => link(n))}
+          </nav>
+          <div className="ml-auto flex items-center gap-2">
+            <button
+              type="button"
+              onClick={() => setAskOpen(true)}
+              className="inline-flex h-10 items-center gap-2 rounded-full bg-fg px-4 text-[13px] font-semibold uppercase tracking-[0.08em] text-page transition-opacity hover:opacity-90"
+            >
+              <MessageSquareText size={18} strokeWidth={1.75} aria-hidden />
+              Ask
+              <kbd className="hidden font-mono text-[11px] font-normal normal-case text-page/60 sm:inline">⌘K</kbd>
+            </button>
+            <button
+              type="button"
+              className="inline-flex size-10 items-center justify-center rounded-full text-fg hover:bg-surface lg:hidden"
+              aria-expanded={open}
+              aria-controls="mobile-nav"
+              aria-label={open ? "Close menu" : "Open menu"}
+              onClick={() => setMenuOn(open ? null : pathname)}
+            >
+              {open ? <X size={20} strokeWidth={1.75} aria-hidden /> : <Menu size={20} strokeWidth={1.75} aria-hidden />}
+            </button>
+          </div>
         </div>
-      </div>
-      {open && (
-        <nav id="mobile-nav" aria-label="Main" className="border-t border-line px-4 py-2 lg:hidden">
-          {NAV.map((n) => link(n, true))}
-        </nav>
+        {open && (
+          <nav id="mobile-nav" aria-label="Main" className="border-t border-line bg-page px-4 py-2 lg:hidden">
+            {NAV.map((n) => link(n, true))}
+          </nav>
+        )}
+      </header>
+
+      {askOpen && (
+        <div role="dialog" aria-modal="true" aria-label="Ask" className="fixed inset-0 z-40 flex items-start justify-center bg-page/70 px-4 pt-[10vh]" onClick={() => setAskOpen(false)}>
+          <div className="w-full max-w-2xl rounded-2xl border border-line bg-surface p-5 shadow-2xl" onClick={(e) => e.stopPropagation()}>
+            <div className="mb-4 flex items-center justify-between">
+              <p className="eyebrow inline-flex items-center gap-2">
+                <MessageSquareText size={14} strokeWidth={1.75} aria-hidden /> Ask · prepared answers and NASA sources
+              </p>
+              <button type="button" onClick={() => setAskOpen(false)} aria-label="Close" className="rounded-full p-1 text-muted hover:text-fg">
+                <X size={20} strokeWidth={1.75} aria-hidden />
+              </button>
+            </div>
+            <AskSearch items={index} autoFocus onNavigate={() => setAskOpen(false)} />
+          </div>
+        </div>
       )}
-    </header>
+    </>
   );
 }

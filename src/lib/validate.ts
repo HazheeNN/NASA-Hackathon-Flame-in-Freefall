@@ -1,13 +1,13 @@
 import { createHash } from "node:crypto";
 import { z } from "zod";
-import { AnswersFile, Atmosphere, Experiment, Finding, FlexDataset, InsightsFile, World } from "./schema";
+import { AnswersFile, Atmosphere, Experiment, Finding, FlexDataset, Formula, InsightsFile, World } from "./schema";
 
 // Cross-record checks that the schemas alone can't express. Used by `npm run data:validate`,
 // the unit tests (so CI fails on bad data) and the SI scripts. Returns problems, never throws.
 
 type Raw = {
   experiments: unknown; findings: unknown; insights: unknown; answers?: unknown;
-  atmospheres?: unknown; worlds?: unknown; flex?: unknown;
+  atmospheres?: unknown; worlds?: unknown; flex?: unknown; formulas?: unknown;
 };
 
 // Identifies the set of findings an SI output was made from. Formatting-independent.
@@ -34,6 +34,8 @@ export function validateCorpus(raw: Raw): string[] {
   const wor = z.array(World).safeParse(raw.worlds ?? []);
   if (!atm.success) problems.push(`atmospheres.json: ${z.prettifyError(atm.error)}`);
   if (!wor.success) problems.push(`worlds.json: ${z.prettifyError(wor.error)}`);
+  const fx = z.array(Formula).safeParse(raw.formulas ?? []);
+  if (!fx.success) problems.push(`formulas.json: ${z.prettifyError(fx.error)}`);
   const flx = raw.flex === undefined ? undefined : FlexDataset.safeParse(raw.flex);
   if (flx && !flx.success) problems.push(`datasets/flex-table-ix.json: ${z.prettifyError(flx.error)}`);
   if (!ex.success || !fi.success || !ins.success || !ans.success || !atm.success || !wor.success) return problems;
@@ -50,7 +52,8 @@ export function validateCorpus(raw: Raw): string[] {
   for (const w of wor.data) {
     for (const ref of w.atmosphereIds) if (!atmosphereIds.has(ref)) problems.push(`world ${w.id}: unknown atmosphere "${ref}"`);
   }
-  for (const r of [...atm.data, ...wor.data]) {
+  if (fx.success) for (const id of dupes(fx.data.map((f) => f.id))) problems.push(`Duplicate formula id ${id}`);
+  for (const r of [...atm.data, ...wor.data, ...(fx.success ? fx.data : [])]) {
     if (r.verified && r.sources.every((s) => !s.locator)) problems.push(`${r.id}: verified but no source has a page/section locator`);
   }
 

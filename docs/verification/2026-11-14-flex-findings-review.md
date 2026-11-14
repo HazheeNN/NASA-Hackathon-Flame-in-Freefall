@@ -12,7 +12,7 @@ Then tick **Keep**, **Fix** (write what) or **Drop**, and tell Claude. Pages: pr
 
 ## F-001 · Droplet flames needed less oxygen than expected to keep burning
 
-**Statement:** In FLEX tests on the ISS, the lowest oxygen level at which methanol and heptane droplets still burned appeared slightly lower than the team initially expected.
+**Statement:** In FLEX tests on the ISS, the lowest oxygen level at which methanol and heptane droplets still burned (the limiting oxygen index) appeared slightly lower than initially expected.
 
 **Quote** (Executive Summary, printed p. 2 (PDF p. 8); [PDF p. 8](https://ntrs.nasa.gov/api/citations/20150023456/downloads/20150023456.pdf#page=8)):
 
@@ -44,7 +44,7 @@ Then tick **Keep**, **Fix** (write what) or **Drop**, and tell Claude. Pages: pr
 
 ## F-003 · The visible flame looks smaller than the full flame
 
-**Statement:** Flame diameters seen by the color camera were about three-fourths of those measured by the ultraviolet (OH) camera; for heptane the gap was larger because the sooty glow sits inside the blue flame envelope.
+**Statement:** Flame diameters seen by the color camera were about three-fourths of those measured by the ultraviolet (OH) camera. For heptane the gap was even larger, because the peak of the soot glow is typically inside the blue flame envelope.
 
 **Quote** (Section 4.2 Analyzed Data, printed p. 16 (PDF p. 22); also Executive Summary, printed p. 2 (PDF p. 8); [PDF p. 22](https://ntrs.nasa.gov/api/citations/20150023456/downloads/20150023456.pdf#page=22)):
 
@@ -54,7 +54,7 @@ Then tick **Keep**, **Fix** (write what) or **Drop**, and tell Claude. Pages: pr
 
 **Why it matters (implication):** A microgravity flame can extend beyond what the eye or a visible-light camera shows, so visual size estimates may understate the burning zone.
 
-**Look carefully:** "About three-fourths" is stored as 0.75. The "smoke-detection" theme and the visual-size implication are ours; the paper only compares two cameras.
+**Look carefully:** Fixed after review: "the peak of the soot glow is typically inside" (the paper's wording), not "sits inside". "About three-fourths" is stored as 0.75. The "smoke-detection" theme and the visual-size implication are ours; the paper only compares two cameras.
 
 - [ ] Keep  - [ ] Fix: ……  - [ ] Drop  · Checked by: ……
 
@@ -92,16 +92,16 @@ Then tick **Keep**, **Fix** (write what) or **Drop**, and tell Claude. Pages: pr
 
 ## F-006 · Some droplet break-ups were caused by a needle coating, not the fuel
 
-**Statement:** A coating on the fuel needles contaminated some droplets; the authors judge that disruptive extinction of methanol was probably caused by it, while burning rates, flame size and radiative extinction diameters were minimally or not affected.
+**Statement:** A coating on the fuel needles contaminated some droplets. The authors judge that disruptive extinction of methanol was probably caused by it, that burning rates and flame size were only minimally influenced, and that radiative extinction diameters were not influenced.
 
 **Quote** (Section 5.2 Fuel Needle Contamination, printed p. 17 (PDF p. 23); [PDF p. 23](https://ntrs.nasa.gov/api/citations/20150023456/downloads/20150023456.pdf#page=23)):
 
-> (1) Burning-rate constants were average, and the droplet history was minimally influenced by the contaminant. ... (4) Disruptive extinction of methanol is probably due to the presence of the contaminant. ... (7) Radiative extinction droplet diameters (larger diameters) were not influenced by the presence of the contaminant.
+> (1) Burning-rate constants were average, and the droplet history was minimally influenced by the contaminant. ... (2) The flame size and flame history were similarly minimally influenced by the contaminant. ... (4) Disruptive extinction of methanol is probably due to the presence of the contaminant. ... (7) Radiative extinction droplet diameters (larger diameters) were not influenced by the presence of the contaminant.
 
 **Conditions:** gravityG: 0, fuel: methanol, n-heptane droplets · **Numbers:** — · **Themes:** extinction · **Evidence:** measured, strength 1
 
 **Why it matters (implication):** FLEX 'disruption' outcomes for methanol should not be read as how a clean fuel fire behaves, which matters when using these tests to judge fire behaviour.
 
-**Look carefully:** A data-quality caveat. Check our summary of items (1), (4) and (7) on p. 17 doesn't overstate them.
+**Look carefully:** A data-quality caveat. The quote now includes item (2) (flame size), which the statement mentions.
 
 - [ ] Keep  - [ ] Fix: ……  - [ ] Drop  · Checked by: ……

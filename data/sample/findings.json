@@ -1,0 +1,44 @@
+[
+  {
+    "id": "F-901",
+    "experimentId": "saffire",
+    "title": "Sample finding A (layout preview, not a real result)",
+    "statement": "Placeholder: one claim from one NASA source goes here, in one or two plain sentences.",
+    "conditions": { "gravityG": 0, "oxygenPercent": 21, "pressureKPa": 101.3, "flowCmPerS": 20, "material": "sample material" },
+    "measurements": [{ "quantity": "sample quantity", "value": 1.5, "unit": "mm/s" }],
+    "safetyImplication": "Placeholder: what this means for a crewed cabin.",
+    "themes": ["flame-spread", "materials"],
+    "evidence": { "kind": "measured", "strength": 2 },
+    "sources": [{ "title": "Sample source title", "url": "https://ntrs.nasa.gov/", "locator": "p. 1" }],
+    "extractedBy": "human",
+    "verified": true
+  },
+  {
+    "id": "F-902",
+    "experimentId": "bass",
+    "title": "Sample finding B (layout preview, not a real result)",
+    "statement": "Placeholder: a second claim, here marked unverified to show the badge.",
+    "conditions": { "gravityG": 0, "oxygenPercent": 34, "pressureKPa": 56.5 },
+    "measurements": [],
+    "safetyImplication": "Placeholder implication.",
+    "themes": ["flammability-limits"],
+    "evidence": { "kind": "measured", "strength": 1 },
+    "sources": [{ "title": "Sample source title", "url": "https://ntrs.nasa.gov/" }],
+    "extractedBy": "claude",
+    "verified": false
+  },
+  {
+    "id": "F-903",
+    "experimentId": "same",
+    "title": "Sample finding C (layout preview, not a real result)",
+    "statement": "Placeholder: a third claim about detection.",
+    "conditions": { "gravityG": 0 },
+    "measurements": [],
+    "safetyImplication": "Placeholder implication.",
+    "themes": ["smoke-detection"],
+    "evidence": { "kind": "measured", "strength": 2 },
+    "sources": [{ "title": "Sample source title", "url": "https://ntrs.nasa.gov/", "locator": "Section 3" }],
+    "extractedBy": "human",
+    "verified": true
+  }
+]

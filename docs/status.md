@@ -13,7 +13,7 @@ Read this first. Update it at the end of every session (`handoff` skill). Newest
 1. **Day 0:** everyone through `docs/runbook.md` › Day 0; owner sets up Vercel (no API key: SI runs in Claude Code, decision 2026-11-13); decide one Claude account or two (`docs/claude-workflow.md`).
 2. **WP0:** paste the full challenge page into `docs/challenge.md`; re-check the plan against its data list.
 3. **WP1:** verify the 14 seed experiments; first findings from BASS, Saffire, FLEX.
-4. **WP3a:** app shell + insights pages with sample data (can start before real insights exist).
+4. **WP3a review:** PR with the app shell, shared components and insights pages on sample data; owner connects Vercel to see the Preview (`docs/runbook.md` › Vercel), team gives layout feedback. Then WP3b (findings explorer) and WP3c (filters, confidence meter, overview top 3).
 5. **WP5 step 1:** open the links in `docs/data.md` › Sources for Four Worlds… on a laptop (NASA sites were blocked from the cloud session), verify the world and atmosphere values, and start findings on partial gravity, 8.2 psia / 34 % O₂ and ventilation flow.
 6. **Verify `data/worlds.json` and `data/atmospheres.json`** (4 worlds, 5 atmospheres, all unverified seeds) against their links; add a `locator` and set `verified: true`. Add credited NASA flame images (`image`) where they exist.
 7. **WP9 formulas (F22):** find and verify 3–4 NASA formulas (`docs/data.md` › Formulas), starting with O₂ partial pressure and one fire formula; then add the `Formula` schema.
@@ -32,6 +32,11 @@ Read this first. Update it at the end of every session (`handoff` skill). Newest
 Worlds: 4 · atmospheres: 5 (all unverified seeds).
 
 ## Log
+
+### 2026-11-14 · WP3a app shell (Shera + Claude)
+- Done: top bar with navigation (Overview, Insights, Four Worlds, Gaps map, Habitat, Findings, Sources), Ask button, phone menu below 1024 px, footer; shared components in `src/components/ui.tsx` (card, page header, risk badge, verified badge, theme and mission chips, citation chip, AI label, sample banner); `/insights` and `/insights/[id]` on `data/sample/` (placeholder text under a "Sample data" banner, shown only while there are no real insights); minimal `/findings/[id]` so citation chips open something; "coming next" pages for the other routes. Screenshots in `docs/screenshots/wp3a-*`.
+- Not done: insight filters by mission/theme, confidence meter (F20), findings explorer (WP3b), real overview (WP3c). Not tested on a tablet width or a projector.
+- Next: Vercel connect + layout feedback.
 
 ### 2026-11-14 · NASA formulas decision (Shera + Claude)
 - Done: decided option C: explain with NASA formulas everywhere, compute only inside each formula's tested range, label computed values (`docs/decisions.md`, `CLAUDE.md` rule, `docs/data.md` › Formulas with rules, planned shape and 6 candidate formulas, PRD F22, plan WP9, `docs/science.md`).

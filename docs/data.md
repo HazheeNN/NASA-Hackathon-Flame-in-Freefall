@@ -56,6 +56,41 @@ Decided 2026-11-14 (`docs/decisions.md`). These features need **world and atmosp
 | Overview book | NASA "Combustion in reduced gravity" ISS mini-book: [nasa.gov … np-2015-10-034 …pdf](https://www.nasa.gov/sites/default/files/atoms/files/np-2015-10-034-jsc_combustion_in_reduced_gravity-iss-mini-book-011116-508.pdf) | Good plain-language source for Four Worlds and the science primer |
 | Real flame images for Four Worlds | FLEX droplet and cool-flame images: [NASA ISS blog, 2013](https://blogs.nasa.gov/ISS_Science_Blog/2013/11/25/cool-flames-on-the-international-space-station-an-anatomy-of-discovery/); NASA SVS "Great Balls of Fire" [svs.gsfc.nasa.gov/11318](https://svs.gsfc.nasa.gov/11318); images.nasa.gov (search "FLEX", "cool flame", "Saffire") | Credit each image ("Image: NASA") with its page link; never the NASA logo or anything implying endorsement. Where no image exists (Moon, Mars), the card says "never filmed: no experiment yet" |
 
+## Formulas (decision 2026-11-14, option C)
+
+The site **explains** with NASA formulas everywhere and **computes** with them only inside each formula's tested range. A formula is evidence like a finding: no source, no formula.
+
+### Rules
+
+1. **Source:** a NASA (or partner agency) paper, report or standard, with the page or equation number. A textbook relation (e.g. partial pressure) still cites the NASA paper that uses it for spacecraft.
+2. **Validity range:** the conditions it was derived or tested in (gravity, O₂ %, pressure, flow, material or fuel). If the source doesn't state a range, use the range of the data in that paper and say so.
+3. **Compute only inside the range.** If any input is outside, show "outside tested conditions" and link the gaps map. Never extrapolate to Moon or Mars gravity because the formula "would work".
+4. **Label every computed value** "calculated from a NASA formula" with the citation chip; findings (measured) and calculations look different in the UI.
+5. **Don't invent:** no fitted curves of our own, no combining formulas into a risk score, no constants without a source.
+6. **Verified** like findings: a teammate checks the equation, units and range against the page; `verified: false` until then, and the UI says so.
+
+### Planned shape (`data/formulas.json`, schema to add when the first formula is verified)
+
+- `id` (`FX-01`), `name`, `expression` (plain text, e.g. `pO2 = P × xO2`), `explanation` (one plain sentence: what it shows)
+- `variables`: `symbol`, `meaning`, `unit` for each input and the output
+- `validity`: min/max for each condition it was tested in (`gravityG`, `oxygenPercent`, `pressureKPa`, `flowCmPerS`), plus `material`/`fuel` if limited to one
+- `usedIn`: `habitat`, `worlds`, `gaps`
+- `sources` (≥ 1, with `locator`), `verified`
+- The code that computes it lives in `src/lib/formulas.ts`, one small function per formula, with a test that reproduces one worked example from the source.
+
+### Candidate formulas (to find in a NASA source and verify)
+
+| Formula | What it shows | Feature | Where to look |
+|---|---|---|---|
+| Oxygen partial pressure, `pO2 = P × xO2` (8.2 psia × 0.34 ≈ 19.2 kPa vs ISS ≈ 21.3 kPa) | Why low-pressure habitats need a higher O₂ % to breathe, and the fire-risk trade-off | Habitat Designer | Exploration atmosphere papers ([20130013505](https://ntrs.nasa.gov/citations/20130013505), [20150021491](https://ntrs.nasa.gov/citations/20150021491)) |
+| Buoyant velocity scaling, `u_b ~ (g · β · ΔT · L)^½` | Why flames are round at 0 g and how much "natural" flow Moon and Mars gravity give a flame | Four Worlds | Partial-gravity and mixed-convection papers ([20010074098](https://ntrs.nasa.gov/citations/20010074098), Fire on the Moon [20210020516](https://ntrs.nasa.gov/citations/20210020516)) |
+| Droplet d² law, `d² = d₀² − K · t` | How a FLEX droplet burns down; burning-rate constant K | Four Worlds (ISS) | FLEX papers on NTRS |
+| Maximum O₂ concentration (MOC) from NASA-STD-6001 Test 1 | Above which O₂ % a material fails NASA's flame test | Habitat Designer, gaps map | [20040084025](https://ntrs.nasa.gov/citations/20040084025), NESC [TB 26-03](https://ntrs.nasa.gov/api/citations/20260001542/downloads/TB_26-03Final.pdf) |
+| Flammability boundary: O₂ vs flow (and vs gravity) | Where flames survive or go out | Gaps map | Ventilation papers ([20140011099](https://ntrs.nasa.gov/api/citations/20140011099/downloads/20140011099.pdf)), Ferkul LPSC 2026 ([20260001966](https://ntrs.nasa.gov/api/citations/20260001966/downloads/Ferkul-Lunar%20and%20Planetary%20Science%20Conf%202026%20v2.pdf)) |
+| Thin-fuel flame spread rate (de Ris-type relation) | How fast a flame runs over fabric or paper in a given flow | Habitat Designer | Saffire and BASS papers ([20240002981](https://ntrs.nasa.gov/citations/20240002981)) |
+
+Start with the first one (simple, certain) and one fire formula; 3–4 verified formulas beat 10 unchecked ones.
+
 ## Files
 
 | File | Who writes it | Committed |

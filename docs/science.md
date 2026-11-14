@@ -39,6 +39,10 @@ Read this before writing any science text in the app, the slides or a prompt. It
 - **Detection:** SAME (smoke particle sizes).
 - **Standards and incidents:** NASA-STD-6001, Apollo 1, Mir 1997.
 
+## Formulas
+
+We use only equations from NASA (or partner agency) sources, with their validity range, and compute with them only inside it (`docs/data.md` › Formulas, decision 2026-11-14). When you write about a formula: say what it shows in one plain sentence, name its source, and say where it stops being valid. "This formula was never tested at Mars gravity" is a valid and useful sentence.
+
 ## Glossary (use these words, in this sense)
 
 | Term | Meaning |

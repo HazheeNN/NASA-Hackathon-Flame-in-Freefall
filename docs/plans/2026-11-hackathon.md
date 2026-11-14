@@ -78,6 +78,12 @@ Both sit on the one condition space (`docs/prd.md` › One condition space).
 ### WP3 addition: Confidence meter (F20)
 On every insight and answer, computed from the data: findings, experiments, verified share, evidence strength, tested at the mission's gravity or extrapolated. Words + shape, not colour alone.
 
+### WP9: NASA formulas (F22)
+1. Corpus person: find and verify 3–4 formulas from `docs/data.md` › Formulas (start with O₂ partial pressure and one fire formula), with page, variables and validity range.
+2. Add the `Formula` schema and `data/formulas.json`; `src/lib/formulas.ts` with one function per formula and a test that reproduces a worked example from the source.
+3. Show them: in the Habitat Designer and Four Worlds (computed, in range only) and on the sources & method page (all formulas).
+- **Done:** every computed number labelled and cited; inputs outside the range show "outside tested conditions".
+
 ### WP7: Sources and method (F9)
 All sources from the data; the SI diagram; the ranking rubric; AI disclosure.
 
@@ -94,4 +100,4 @@ Updated 2026-11-14. Already cut: compare two experiments (F15), export (F17). Fo
 4. Four Worlds down to 3 worlds (Earth, ISS, Mars)
 5. Corpus target 40 → 25
 
-**Never cut:** citations, verified badges, the confidence meter, the gaps map, the Ask library, the deploy, the video.
+**Never cut:** citations, verified badges, the in-range rule for formulas, the confidence meter, the gaps map, the Ask library, the deploy, the video.

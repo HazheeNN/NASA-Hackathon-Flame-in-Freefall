@@ -16,7 +16,8 @@ Read this first. Update it at the end of every session (`handoff` skill). Newest
 4. **WP3a:** app shell + insights pages with sample data (can start before real insights exist).
 5. **WP5 step 1:** open the links in `docs/data.md` › Sources for Four Worlds… on a laptop (NASA sites were blocked from the cloud session), verify the world and atmosphere values, and start findings on partial gravity, 8.2 psia / 34 % O₂ and ventilation flow.
 6. **Verify `data/worlds.json` and `data/atmospheres.json`** (4 worlds, 5 atmospheres, all unverified seeds) against their links; add a `locator` and set `verified: true`. Add credited NASA flame images (`image`) where they exist.
-7. **Schema for the test-next proposals (F18):** add when WP6 starts (an optional list next to insights in `generated/insights.json`, written by SI job 2).
+7. **WP9 formulas (F22):** find and verify 3–4 NASA formulas (`docs/data.md` › Formulas), starting with O₂ partial pressure and one fire formula; then add the `Formula` schema.
+8. **Schema for the test-next proposals (F18):** add when WP6 starts (an optional list next to insights in `generated/insights.json`, written by SI job 2).
 
 ## Blocked / waiting
 
@@ -31,6 +32,11 @@ Read this first. Update it at the end of every session (`handoff` skill). Newest
 Worlds: 4 · atmospheres: 5 (all unverified seeds).
 
 ## Log
+
+### 2026-11-14 · NASA formulas decision (Shera + Claude)
+- Done: decided option C: explain with NASA formulas everywhere, compute only inside each formula's tested range, label computed values (`docs/decisions.md`, `CLAUDE.md` rule, `docs/data.md` › Formulas with rules, planned shape and 6 candidate formulas, PRD F22, plan WP9, `docs/science.md`).
+- Not tested: no formula verified yet; the candidates come from web search (NASA hosts blocked). No code changed.
+- Next: Next up item 7.
 
 ### 2026-11-14 · worlds and atmospheres schema (Shera + Claude)
 - Done: `World` and `Atmosphere` in `src/lib/schema.ts`; seed `data/worlds.json` (Earth, ISS, Moon, Mars) and `data/atmospheres.json` (Earth sea level, ISS, exploration 8.2 psia / 34 %, EAWG 8.0 / 32 %, Shuttle 10.2 / 26.5 %); loaded in `src/lib/data.ts`; validator checks unknown atmosphere refs, duplicates and verified-without-locator; 2 new tests; `docs/data.md` updated.

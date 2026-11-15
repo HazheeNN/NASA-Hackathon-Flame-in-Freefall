@@ -59,8 +59,6 @@ export function FlameLab({
     const w = worlds.find((x) => x.id === id);
     if (!w) return;
     setWorldId(id);
-    // Bring the flame back into view so the change is visible.
-    document.getElementById("flame-stage")?.scrollIntoView({ behavior: "smooth", block: "center" });
     const a = w.atmospheres[0];
     if (a) {
       setAtmosphereId(a.id);
@@ -122,46 +120,82 @@ export function FlameLab({
       </div>
 
       <div className="space-y-12">
-        <header className="max-w-3xl space-y-4">
-          <p className="eyebrow inline-flex items-center gap-2">
-            <Flame size={14} strokeWidth={1.75} aria-hidden className="text-ember" /> Flame Lab
-          </p>
-          <h1 className="text-[36px] font-bold leading-[1.05] tracking-[-0.02em] sm:text-[52px]">How does fire behave beyond Earth?</h1>
-          <p className="text-[18px] leading-relaxed text-muted">
-            Set the air, pick a world, and watch the flame change. Beside it: what NASA has actually measured for those conditions,
-            in <span className="font-semibold text-tested">blue</span>, and what has never been tested, in{" "}
-            <span className="font-semibold text-untested">red</span>.
-          </p>
-        </header>
+        <div className="space-y-4 lg:-mt-6">
+          <header className="space-y-1.5">
+            <p className="eyebrow inline-flex items-center gap-2">
+              <Flame size={14} strokeWidth={1.75} aria-hidden className="text-ember" /> Flame Lab
+            </p>
+            <h1 className="text-[28px] font-bold leading-[1.05] tracking-[-0.02em] sm:text-[36px] xl:text-[40px]">How does fire behave beyond Earth?</h1>
+            <p className="text-[15px] text-muted sm:text-[16px]">
+              Set the air, pick a world, watch the flame. <span className="font-semibold text-tested">Blue</span> = NASA has tested it,{" "}
+              <span className="font-semibold text-untested">red</span> = never tested.
+            </p>
+          </header>
 
-        <section aria-label="Flame Lab" className="grid gap-6 lg:grid-cols-[300px_minmax(0,1fr)] xl:grid-cols-[300px_minmax(0,1fr)_340px]">
-          {/* Flame first on phones. */}
-          <div className="order-1 lg:order-2">
-            <div id="flame-stage" className="relative scroll-mt-24 overflow-hidden rounded-xl border border-line bg-page/40">
-              <FlameCanvas params={flameParams} label={flameLabel} className="aspect-square w-full sm:aspect-[4/3] xl:aspect-square" />
-              <div className="pointer-events-none absolute inset-x-0 top-0 flex items-start justify-between p-4 pr-36">
-                <div>
-                  <p className={`text-[13px] font-semibold uppercase tracking-[0.12em] ${style.text}`}>{world.name}</p>
-                  <p className="font-mono text-[14px] text-muted tabular">
+          {/* World rail: right above the flame, so switching worlds needs no scrolling. */}
+          <div role="group" aria-label="Choose a world" className="-mx-4 flex snap-x gap-3 overflow-x-auto px-4 pb-1 sm:mx-0 sm:px-0">
+            {worlds.map((w) => {
+              const s = WORLD_STYLE[w.id];
+              const selected = w.id === world.id;
+              return (
+                <button
+                  key={w.id}
+                  type="button"
+                  aria-pressed={selected}
+                  onClick={() => chooseWorld(w.id)}
+                  className={`group relative isolate flex h-16 min-w-[148px] flex-1 snap-start flex-col justify-center overflow-hidden rounded-xl border px-4 text-left transition-shadow duration-300 ${s.glow} ${
+                    selected ? `border-transparent ring-2 ${s.ring}` : "border-line"
+                  }`}
+                >
+                  <Image src={w.image.card} alt="" fill sizes="(min-width: 1280px) 25vw, 200px" className={`-z-10 object-cover ${selected ? "" : "opacity-60"}`} />
+                  <div className="absolute inset-0 -z-10 bg-gradient-to-r from-page via-page/75 to-page/20" />
+                  <span className="flex items-center gap-2">
+                    <span className={`size-2 shrink-0 rounded-full ${s.dot}`} aria-hidden />
+                    <span className="truncate text-[16px] font-bold">{w.id === "iss" ? "Space Station" : w.name}</span>
+                  </span>
+                  <span className="pl-4 font-mono text-[13px] text-muted tabular">{gText(w.gravityG)}</span>
+                </button>
+              );
+            })}
+          </div>
+
+        <section
+          aria-label="Flame Lab"
+          className="grid gap-5 md:grid-cols-[300px_minmax(0,1fr)] xl:h-[clamp(560px,calc(100dvh-292px),720px)] xl:grid-cols-[320px_minmax(520px,1fr)_360px]"
+        >
+          {/* Flame first on phones, where it stays in view while you drag the sliders. */}
+          <div className="sticky top-16 z-10 order-1 md:top-20 md:order-2 md:self-start xl:static xl:h-full xl:min-h-0 xl:self-auto">
+            <div
+              id="flame-stage"
+              className="relative h-[38dvh] min-h-[240px] overflow-hidden rounded-xl border border-line bg-page md:aspect-[4/3] md:h-auto md:bg-page/40 xl:aspect-auto xl:h-full xl:min-h-[360px]"
+            >
+              <FlameCanvas params={flameParams} label={flameLabel} className="absolute inset-0 h-full w-full" />
+              <div className="pointer-events-none absolute inset-x-0 top-0 flex items-start justify-between gap-3 p-3 sm:p-4">
+                <div className="min-w-0">
+                  <p className={`truncate text-[13px] font-semibold uppercase tracking-[0.12em] ${style.text}`}>{world.name}</p>
+                  <p className="font-mono text-[13px] text-muted tabular sm:text-[14px]">
                     {gText(world.gravityG)} · {num(o2)} % O₂ · {num(pressure, 1)} kPa{flow ? ` · ${flow} cm/s` : ""}
                   </p>
                 </div>
+                <button
+                  type="button"
+                  onClick={() => setFireOnly(true)}
+                  className="pointer-events-auto inline-flex h-10 shrink-0 items-center gap-2 rounded-full bg-page/70 px-3 text-[13px] font-semibold text-fg transition-colors hover:bg-raised"
+                >
+                  <Maximize2 size={16} strokeWidth={1.75} aria-hidden /> Fire only
+                </button>
               </div>
-              <button
-                type="button"
-                onClick={() => setFireOnly(true)}
-                className="absolute right-3 top-3 inline-flex h-10 items-center gap-2 rounded-full bg-page/70 px-3 text-[13px] font-semibold text-fg backdrop-brightness-75 transition-colors hover:bg-raised"
-              >
-                <Maximize2 size={16} strokeWidth={1.75} aria-hidden /> Fire only
-              </button>
-              <p className="absolute bottom-3 left-4 text-[12px] text-muted">
-                Illustration: shape and colour follow NASA-documented trends; the numbers come from data.
+              <p className="absolute inset-x-3 bottom-3 w-fit max-w-[calc(100%-1.5rem)] rounded-md bg-page/75 px-2 py-1 text-[12px] leading-snug text-muted">
+                Illustration: shape and colour follow NASA-documented trends; numbers come from data.{" "}
+                <a href={world.image.sourceUrl} target="_blank" rel="noreferrer" className="hidden text-primary hover:underline sm:inline">
+                  Background: {world.image.credit}
+                </a>
               </p>
             </div>
           </div>
 
           <Controls
-            className="order-2 lg:order-1"
+            className="order-2 md:order-1 xl:h-full xl:min-h-0 xl:overflow-y-auto thin-scroll"
             world={world}
             atmosphereId={atmosphereId}
             chooseAtmosphere={chooseAtmosphere}
@@ -177,7 +211,10 @@ export function FlameLab({
             range={cov.range && world.gravityG < 0.01 ? cov.range : null}
           />
 
-          <aside aria-label="What NASA has measured" className="order-3 space-y-4 lg:col-span-2 xl:col-span-1">
+          <aside
+            aria-label="What NASA has measured"
+            className="order-3 space-y-4 md:col-span-2 md:grid md:grid-cols-2 md:items-start md:gap-4 md:space-y-0 xl:col-span-1 xl:block xl:h-full xl:min-h-0 xl:space-y-4 xl:overflow-y-auto thin-scroll"
+          >
             <div className="rounded-xl border border-line bg-surface/90 p-5">
               <div className="flex items-center justify-between gap-3">
                 <h2 className="text-[17px] font-semibold">What NASA has measured</h2>
@@ -274,60 +311,7 @@ export function FlameLab({
             )}
           </aside>
         </section>
-
-        <section aria-labelledby="worlds-title" className="space-y-4">
-          <div className="flex flex-wrap items-end justify-between gap-3">
-            <div>
-              <p className="eyebrow">Same fire, four worlds</p>
-              <h2 id="worlds-title" className="text-[24px] font-bold">
-                Choose a world
-              </h2>
-            </div>
-            <p className="max-w-md text-[14px] text-muted">Each world sets the gravity and its cabin air. Click one to switch.</p>
-          </div>
-          <div className="grid gap-4 sm:grid-cols-2 xl:grid-cols-4">
-            {worlds.map((w) => {
-              const s = WORLD_STYLE[w.id];
-              const selected = w.id === world.id;
-              const a = w.atmospheres[0];
-              return (
-                <button
-                  key={w.id}
-                  type="button"
-                  aria-pressed={selected}
-                  onClick={() => chooseWorld(w.id)}
-                  className={`group relative isolate flex aspect-[4/3] flex-col justify-end overflow-hidden rounded-xl border border-line p-5 text-left transition-shadow duration-300 ${s.glow} ${
-                    selected ? `ring-2 ${s.ring}` : ""
-                  }`}
-                >
-                  <Image
-                    src={w.image.card}
-                    alt={w.image.alt}
-                    fill
-                    sizes="(min-width: 1280px) 25vw, (min-width: 640px) 50vw, 100vw"
-                    className="-z-10 object-cover transition-transform duration-500 group-hover:scale-[1.03]"
-                  />
-                  <div className="absolute inset-0 -z-10 bg-gradient-to-t from-page via-page/60 to-transparent" />
-                  <span className="flex items-center gap-2">
-                    <span className={`size-2 rounded-full ${s.dot}`} aria-hidden />
-                    <span className="text-[20px] font-bold">{w.name}</span>
-                  </span>
-                  <span className="mt-1 font-mono text-[14px] text-muted tabular">
-                    {gText(w.gravityG)}
-                    {a ? ` · ${num(a.oxygenPercent)} % O₂ · ${num(a.pressureKPa, 1)} kPa` : ""}
-                  </span>
-                  {selected && <span className={`mt-2 text-[12px] font-semibold uppercase tracking-[0.12em] ${s.text}`}>Selected</span>}
-                </button>
-              );
-            })}
-          </div>
-          <p className="text-[12px] text-muted">
-            Background: {world.image.alt}.{" "}
-            <a href={world.image.sourceUrl} target="_blank" rel="noreferrer" className="text-primary hover:underline">
-              Image: {world.image.credit}
-            </a>
-          </p>
-        </section>
+        </div>
 
         <section aria-labelledby="insights-title" className="space-y-4">
           <div className="flex flex-wrap items-end justify-between gap-3">
@@ -466,7 +450,7 @@ function Controls(props: {
     <div className={`space-y-5 rounded-xl border border-line bg-surface/90 p-5 ${props.className}`}>
       <div>
         <label htmlFor="atmosphere" className="eyebrow">
-          Cabin air on {world.name}
+          Cabin air
         </label>
         <select
           id="atmosphere"

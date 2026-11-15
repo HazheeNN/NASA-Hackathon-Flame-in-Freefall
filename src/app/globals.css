@@ -46,6 +46,9 @@
   --color-series-5: #A3E635;
   --color-series-6: #F472B6;
 
+  /* Motion (plan WP-F1): 150 ms hover, 300 ms panel change, 600 ms world backdrop. */
+  --ease-out: cubic-bezier(0.2, 0.8, 0.2, 1);
+
   --font-sans: var(--font-public-sans), ui-sans-serif, system-ui, sans-serif;
   --font-mono: var(--font-dm-mono), ui-monospace, monospace;
 }
@@ -100,4 +103,10 @@ body {
 @media (prefers-reduced-motion: reduce) {
   .breathe { animation: none; }
   * { transition: none !important; }
+}
+
+/* Thin scrollbars inside the lab's columns (they only show if a column's content is too tall). */
+.thin-scroll {
+  scrollbar-width: thin;
+  scrollbar-color: var(--color-line) transparent;
 }

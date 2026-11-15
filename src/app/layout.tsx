@@ -22,7 +22,7 @@ export default function RootLayout({ children }: Readonly<{ children: React.Reac
         <main className="mx-auto w-full max-w-[1440px] flex-1 px-4 py-8 lg:px-10 lg:py-12">{children}</main>
         <footer className="border-t border-line">
           <div className="mx-auto flex max-w-[1440px] flex-col gap-2 px-4 py-8 text-[13px] text-muted sm:flex-row sm:justify-between lg:px-10">
-            <p>Built for the NASA Space Apps Challenge from public NASA data. Not affiliated with or endorsed by NASA.</p>
+            <p>Built for the NASA Space Apps Challenge from public NASA data. Not affiliated with or endorsed by NASA. Logo: SI-generated.</p>
             <p>
               Every number cites NASA ·{" "}
               <Link href="/sources" className="text-primary hover:underline">

@@ -1,13 +1,13 @@
 "use client";
 
 import { Menu, MessageSquareText, X } from "lucide-react";
+import Image from "next/image";
 import Link from "next/link";
 import { usePathname } from "next/navigation";
 import { useEffect, useState } from "react";
 import type { SearchItem } from "@/lib/search";
 import { AskSearch } from "./ask-search";
 import { ChatPanel } from "./chat/chat-panel";
-import { FlameMark } from "./flame-mark";
 
 const NAV = [
   { href: "/", label: "Flame Lab" },
@@ -61,7 +61,8 @@ export function SiteHeader({ index, suggestions }: { index: SearchItem[]; sugges
       <header className="sticky top-0 z-30 border-b border-line bg-page/95">
         <div className="mx-auto flex h-16 max-w-[1440px] items-center gap-6 px-4 lg:px-10">
           <Link href="/" className="flex shrink-0 items-center gap-2.5 font-bold tracking-[-0.01em]">
-            <FlameMark />
+            {/* Team logo (white line art, transparent), same 28 px as the old mark. */}
+            <Image src="/logo.png" alt="" width={28} height={28} priority />
             <span>Flame in Freefall</span>
           </Link>
           <nav aria-label="Main" className="hidden items-center gap-5 lg:flex">

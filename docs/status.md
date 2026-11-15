@@ -65,6 +65,10 @@ Worlds: 4 · atmospheres: 7 · formulas: 2 · FLEX tests: 276 (all verified).
 
 ## Log
 
+### 2026-11-15 · team logo (Shera + Claude)
+- Done: the team's SDH flame logo replaces the flame sphere in the header (28 px, white lines, background removed) and is the browser tab icon (`src/app/icon.png`, `apple-icon.png`).
+- Next: WP-L2 (the flame itself).
+
 ### 2026-11-15 · WP-L1 layout + WP-F1 shared pieces (Shera + Claude)
 - Done: critic session removed from the plan (one builder session; Shera reviews on the Vercel preview, Claude merges on OK). Flame Lab: compact header, world rail above the flame (the big "Choose a world" section is gone), three equal-height columns that fit 1440 × 900, flame sticky on phones, Fire-only button in the flow, caption pill with the image credit; `Panel`, `Stat`, `Verdict`, compact `PageHeader` and motion token added to `ui.tsx`/`globals.css` (not yet used everywhere).
 - Next: WP-L2 (the flame itself). Known: the controls column scrolls inside at 900 px height until WP-L5 compacts it; the caption pill has no blur (DESIGN.md forbids blur behind text).

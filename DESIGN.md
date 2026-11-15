@@ -323,7 +323,7 @@ Lucide only, 20 px, stroke 1.75; same meaning, same icon:
 | Formula | `sigma` |
 | Fire-only mode | `maximize-2` |
 
-The flame-sphere mark is ours (`src/components/flame-mark.tsx`).
+The logo is our team's flame mark with "SDH" (`public/logo.png`, white line art on transparent; tab icons `src/app/icon.png` and `apple-icon.png` put it on a dark rounded square). The older flame-sphere mark (`src/components/flame-mark.tsx`) is kept but no longer in the header.
 
 ## Motion
 

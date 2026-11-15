@@ -11,13 +11,59 @@ export function Card({ children, raised = false, className = "" }: { children: R
   return <article className={`rounded-xl border border-line p-6 ${raised ? "bg-raised" : "bg-surface"} ${className}`}>{children}</article>;
 }
 
-export function PageHeader({ eyebrow, title, lead }: { eyebrow?: string; title: string; lead?: ReactNode }) {
+export function PageHeader({ eyebrow, title, lead, size = "default" }: { eyebrow?: string; title: string; lead?: ReactNode; size?: "default" | "compact" }) {
+  const compact = size === "compact";
   return (
-    <header className="max-w-3xl space-y-4">
+    <header className={compact ? "max-w-2xl space-y-2" : "max-w-3xl space-y-4"}>
       {eyebrow && <p className="eyebrow">{eyebrow}</p>}
       <h1 className="text-[32px] font-bold leading-[1.15] tracking-[-0.01em] sm:text-[40px]">{title}</h1>
-      {lead && <p className="text-[18px] leading-relaxed text-muted">{lead}</p>}
+      {lead && <p className={compact ? "line-clamp-2 text-[16px] text-muted" : "text-[18px] leading-relaxed text-muted"}>{lead}</p>}
     </header>
+  );
+}
+
+// Shared pieces from the UI polish plan (WP-F1).
+export function Panel({ title, icon, action, children, className = "" }: { title?: string; icon?: ReactNode; action?: ReactNode; children: ReactNode; className?: string }) {
+  return (
+    <section className={`rounded-xl border border-line bg-surface/90 p-5 ${className}`}>
+      {(title || action) && (
+        <div className="mb-3 flex items-center justify-between gap-3">
+          {title && (
+            <h2 className="inline-flex items-center gap-2 text-[17px] font-semibold">
+              {icon}
+              {title}
+            </h2>
+          )}
+          {action}
+        </div>
+      )}
+      {children}
+    </section>
+  );
+}
+
+export function Stat({ value, unit, label }: { value: ReactNode; unit?: string; label?: ReactNode }) {
+  return (
+    <div>
+      <p className="font-mono text-[32px] font-medium leading-none tabular">
+        {value} {unit && <span className="text-[16px] text-muted">{unit}</span>}
+      </p>
+      {label && <p className="mt-1 text-[14px] text-muted">{label}</p>}
+    </div>
+  );
+}
+
+export function Verdict({ state, title, detail }: { state: "tested" | "untested" | "partial"; title: string; detail?: ReactNode }) {
+  const tested = state === "tested";
+  const Icon = tested ? BadgeCheck : CircleOff;
+  return (
+    <div className={`flex gap-3 rounded-xl border-l-[3px] p-4 ${tested ? "border-tested bg-tested-soft" : "border-untested bg-untested-soft"}`}>
+      <Icon size={20} strokeWidth={1.75} aria-hidden className={`mt-0.5 shrink-0 ${tested ? "text-tested" : "text-untested"}`} />
+      <div>
+        <p className="text-[18px] font-semibold leading-snug">{title}</p>
+        {detail && <p className="mt-1 text-[14px] text-muted">{detail}</p>}
+      </div>
+    </div>
   );
 }
 

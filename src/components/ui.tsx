@@ -1,6 +1,7 @@
 import { BadgeCheck, BookOpen, CircleAlert, CircleOff, Sparkles, TriangleAlert } from "lucide-react";
 import Link from "next/link";
 import type { ReactNode } from "react";
+import type { Confidence } from "@/lib/confidence";
 import type { Insight, ThemeName } from "@/lib/schema";
 
 // Shared building blocks (DESIGN.md › Components). Colours only through theme tokens.
@@ -221,53 +222,76 @@ export function EmptyState({ title, children }: { title: string; children: React
   );
 }
 
-// "How sure are we?": computed from the cited findings (src/lib/views.ts › confidence).
-export function ConfidenceMeter({
-  c,
-  compact = false,
-}: {
-  c: { findings: number; experiments: number; verified: number; atGravity: boolean | null };
-  compact?: boolean;
-}) {
-  const rows = [
-    { name: "Findings", value: Math.min(c.findings / 5, 1), text: String(c.findings) },
-    { name: "Experiments", value: Math.min(c.experiments / 3, 1), text: String(c.experiments) },
-    { name: "Verified", value: c.findings ? c.verified / c.findings : 0, text: `${c.verified}/${c.findings}` },
-    {
-      name: "At this gravity",
-      value: c.atGravity ? 1 : 0,
-      text: c.atGravity === null ? "unknown" : c.atGravity ? "tested" : "extrapolated",
-    },
-  ];
-  const score = rows.reduce((a, r) => a + r.value, 0) / rows.length;
-  const word = score >= 0.75 ? "Strong" : score >= 0.45 ? "Moderate" : "Weak";
+// "How sure are we?": computed from the cited findings (src/lib/confidence.ts). Gravity and cabin
+// air are checked per mission, so an untested world shows in red instead of hiding behind "tested".
+const CHECK = {
+  tested: { word: "Tested", cls: "text-tested" },
+  untested: { word: "Never tested", cls: "text-untested" },
+  unknown: { word: "Not stated", cls: "text-muted" },
+} as const;
+
+export function ConfidenceMeter({ c, compact = false }: { c: Confidence; compact?: boolean }) {
+  const gaps = [...c.gravity, ...c.air].filter((x) => x.state === "untested");
   return (
-    <div aria-label={`Confidence: ${word}`} className="space-y-2">
+    <div aria-label={`Confidence: ${c.word}`} className="space-y-2">
       <div className="flex items-baseline justify-between gap-3">
         <span className="eyebrow">How sure are we?</span>
-        <span className="text-[13px] font-semibold">{word}</span>
+        <span className="text-[13px] font-semibold">{c.word}</span>
       </div>
-      {!compact && (
-        <dl className="space-y-1.5">
-          {rows.map((r) => (
-            <div key={r.name} className="grid grid-cols-[1fr_auto] items-center gap-x-3 text-[13px]">
-              <dt className="text-muted">{r.name}</dt>
-              <dd className="font-mono tabular">{r.text}</dd>
-              <div className="col-span-2 h-1 rounded-full bg-raised" aria-hidden>
+      {compact ? (
+        <>
+          <div className="flex gap-1" aria-hidden>
+            {c.bars.map((r) => (
+              <div key={r.name} className="h-1 flex-1 rounded-full bg-raised">
                 <div className="h-1 rounded-full bg-primary" style={{ width: `${Math.round(r.value * 100)}%` }} />
               </div>
-            </div>
-          ))}
-        </dl>
-      )}
-      {compact && (
-        <div className="flex gap-1" aria-hidden>
-          {rows.map((r) => (
-            <div key={r.name} className="h-1 flex-1 rounded-full bg-raised">
-              <div className="h-1 rounded-full bg-primary" style={{ width: `${Math.round(r.value * 100)}%` }} />
-            </div>
-          ))}
-        </div>
+            ))}
+          </div>
+          {gaps.length > 0 && (
+            <p className="inline-flex items-start gap-1.5 text-[12px] leading-snug text-untested">
+              <CircleOff size={12} strokeWidth={1.75} aria-hidden className="mt-0.5 shrink-0" />
+              Never tested: {gaps.map((g) => (g.label.includes("O₂") ? `${g.label.split(",")[0]} air` : `${g.label} gravity`)).join(" · ")}
+            </p>
+          )}
+        </>
+      ) : (
+        <>
+          <dl className="space-y-1.5">
+            {c.bars.map((r) => (
+              <div key={r.name} className="grid grid-cols-[auto_1fr] items-center gap-x-3 text-[13px]">
+                <dt className="text-muted">{r.name}</dt>
+                <dd className="text-right font-mono tabular">{r.text}</dd>
+                <div className="col-span-2 h-1 rounded-full bg-raised" aria-hidden>
+                  <div className="h-1 rounded-full bg-primary" style={{ width: `${Math.round(r.value * 100)}%` }} />
+                </div>
+              </div>
+            ))}
+          </dl>
+          {[
+            ["Gravity, per mission", c.gravity],
+            ["Cabin air, per mission", c.air],
+          ].map(([title, checks]) =>
+            (checks as Confidence["gravity"]).length ? (
+              <div key={title as string} className="border-t border-line pt-2">
+                <p className="eyebrow">{title as string}</p>
+                <ul className="mt-1.5 space-y-1 text-[13px]">
+                  {(checks as Confidence["gravity"]).map((x) => (
+                    <li key={x.label} className="flex items-start justify-between gap-3">
+                      <span>
+                        <span className="font-mono tabular">{x.label}</span> <span className="text-muted">· {x.missions.join(", ")}</span>
+                      </span>
+                      <span className={`shrink-0 font-semibold ${CHECK[x.state].cls}`}>{CHECK[x.state].word}</span>
+                    </li>
+                  ))}
+                </ul>
+              </div>
+            ) : null,
+          )}
+          <p className="text-[12px] text-muted">
+            Calculated from the cited findings, not by the AI. Accident reports and reviews count less than controlled tests; the
+            thresholds are ours, not NASA&apos;s.
+          </p>
+        </>
       )}
     </div>
   );

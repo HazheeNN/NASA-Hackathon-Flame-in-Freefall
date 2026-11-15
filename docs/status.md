@@ -65,6 +65,10 @@ Worlds: 4 · atmospheres: 7 · formulas: 2 · FLEX tests: 276 (all verified).
 
 ## Log
 
+### 2026-11-15 · honest confidence meter (Shera + Claude)
+- Done: "How sure are we?" now checks gravity and cabin air for each mission and weighs evidence type; untested gravity/air shows in red on cards and the detail page. Insight #3 goes from Strong to Moderate (Moon/Mars gravity and 34 % O₂ air never tested); #5 and #9 also Moderate. 3 tests.
+- Next: WP-L2 (the flame). The chat's briefing doesn't explain the meter yet.
+
 ### 2026-11-15 · team logo (Shera + Claude)
 - Done: the team's SDH flame logo replaces the flame sphere in the header (28 px, white lines, background removed) and is the browser tab icon (`src/app/icon.png`, `apple-icon.png`).
 - Next: WP-L2 (the flame itself).

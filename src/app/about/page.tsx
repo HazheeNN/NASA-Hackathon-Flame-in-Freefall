@@ -23,8 +23,11 @@ export default function AboutPage() {
         <Card>
           <p className="eyebrow">How we use AI</p>
           <p className="mt-2 text-[15px] text-muted">
-            Claude (Anthropic) helped write the code and runs our SI jobs offline: extracting findings from NASA papers, ranking insights
-            and preparing cited answers. Teammates verify its output. The website itself makes no AI calls. Details on{" "}
+            We used SI tools openly. Claude (Anthropic, via Claude Code) helped research, write and debug the code, design the pages
+            and the flame visual, draft our texts and slides, and runs our SI jobs offline: extracting findings from NASA papers, ranking
+            insights and preparing cited answers. Teammates verify its output. The one live AI on the site is the chat, which uses free
+            models from Groq and Google Gemini, answers only from verified findings and labels every reply. No SI-generated images are
+            used: the photos are NASA&apos;s and the logo is our team&apos;s. Details on{" "}
             <Link href="/sources#method" className="text-primary hover:underline">
               Sources &amp; method
             </Link>

@@ -61,8 +61,14 @@ export function SiteHeader({ index, suggestions }: { index: SearchItem[]; sugges
       <header className="sticky top-0 z-30 border-b border-line bg-page/95">
         <div className="mx-auto flex h-16 max-w-[1440px] items-center gap-6 px-4 lg:px-10">
           <Link href="/" className="flex shrink-0 items-center gap-2.5 font-bold tracking-[-0.01em]">
-            {/* Team logo (white line art, transparent), same 28 px as the old mark. */}
-            <Image src="/logo.png" alt="" width={28} height={28} priority />
+            {/* Team logo (white line art, transparent), 28 px. It was made with an SI image tool, so Space Apps
+                rules need a visible watermark: the small "SI" tag on its corner. */}
+            <span className="relative shrink-0" title="Logo generated with SI (AI)">
+              <Image src="/logo.png" alt="Team logo, SI-generated" width={28} height={28} priority />
+              <span className="absolute -right-2 -bottom-1 rounded-sm border border-line bg-raised px-0.5 text-[8px] leading-[10px] font-semibold text-muted">
+                SI
+              </span>
+            </span>
             <span>Flame in Freefall</span>
           </Link>
           <nav aria-label="Main" className="hidden items-center gap-5 lg:flex">

@@ -1,5 +1,6 @@
 import "server-only";
 import { atmosphereById, displayFindingById, displayInsights, experimentById, flex, formulas, showingSample, worlds } from "./data";
+import { computeConfidence, type Confidence, type MissionContext } from "./confidence";
 import { mmHgToKPa, type LabTest, type WorldId } from "./lab";
 import type { Atmosphere, Formula, Insight, World } from "./schema";
 import { showUnverified, visible } from "./visibility";
@@ -58,21 +59,22 @@ export function labDataset() {
 
 export const visibleFormulas = (): Formula[] => visible(formulas);
 
-export type Confidence = { findings: number; experiments: number; verified: number; atGravity: boolean | null };
+export type { Confidence } from "./confidence";
 
-const MISSION_G: Record<string, number> = { ISS: 0, "Mars transit": 0, "Artemis (Moon)": 0.165, "Mars surface": 0.38 };
+// Each mission's gravity and planned cabin air, from the worlds data (a world lists the missions it
+// stands for; its first atmosphere is the planned one). Mars transit is the ISS world (≈ 0 g).
+function missionContexts(missions: string[]): MissionContext[] {
+  return missions.flatMap((m) => {
+    const w = worlds.find((x) => (x.missions as string[]).includes(m));
+    if (!w) return [];
+    const a = atmosphereById.get(w.atmosphereIds[0]);
+    return [{ mission: m, gravityG: w.gravityG, air: a ? { oxygenPercent: a.oxygenPercent, pressureKPa: a.pressureKPa, name: a.name } : null }];
+  });
+}
 
-// The confidence meter is computed from the cited findings, never set by hand.
 export function confidence(i: Insight): Confidence {
   const cited = i.findingIds.map((id) => displayFindingById.get(id)).filter((f) => f !== undefined);
-  const gs = i.missions.map((m) => MISSION_G[m]);
-  const tested = cited.some((f) => f.conditions.gravityG !== undefined && gs.some((g) => Math.abs(f.conditions.gravityG! - g) < 0.03));
-  return {
-    findings: cited.length,
-    experiments: new Set(cited.map((f) => f.experimentId)).size,
-    verified: cited.filter((f) => f.verified).length,
-    atGravity: cited.some((f) => f.conditions.gravityG !== undefined) ? tested : null,
-  };
+  return computeConfidence(cited, missionContexts(i.missions));
 }
 
 export type InsightCard = Pick<Insight, "id" | "rank" | "title" | "answer" | "risk" | "missions" | "findingIds"> & { confidence: Confidence };
